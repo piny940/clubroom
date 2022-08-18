@@ -1,0 +1,17 @@
+= form_with model: [:admin, @user] do |form|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold メールアドレス
+    .col-md-9= form.text_field :email, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold kind
+    .col-md-9= form.select :kind, User.kinds.keys, {}, class: 'form-control'
+  .row
+    .col
+      = form.submit '保存', class: 'btn btn-primary d-block w-100'
