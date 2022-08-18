@@ -1,0 +1,8 @@
+%h1 group
+.row.py-1
+  .col-md-3.fw-bold Name
+  .col-md-9= @group.name
+
+= link_to '編集', edit_admin_group_path(@group)
+\|
+= link_to '戻る', admin_groups_path
