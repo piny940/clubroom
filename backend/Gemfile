@@ -79,4 +79,8 @@ gem 'haml-rails'
 # ログイン
 gem 'devise'
 
+# CORS
 gem 'rack-cors'
+
+# テストを見やすくする
+gem 'minitest-reporters'
