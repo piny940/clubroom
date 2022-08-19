@@ -1,0 +1,21 @@
+%h1 Joining一覧
+%table.table
+  %thead.thead-light
+    %tr
+      %th Group
+      %th User
+      %th Role
+      %th
+
+  %tbody
+    %tr
+      %td{colspan: 4}= link_to 'Joining新規作成', new_admin_joining_path, class: 'btn btn-primary w-100'
+    - @joinings.each do |joining|
+      %tr
+        %td= joining.group_id
+        %td= joining.user_id
+        %td= joining.role
+        %td
+          = link_to '閲覧', joining_path(joining), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_joining_path(joining), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', joining_path(joining), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'

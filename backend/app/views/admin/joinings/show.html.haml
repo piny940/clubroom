@@ -1,0 +1,14 @@
+%h1 joining
+.row.py-1
+  .col-md-3.fw-bold Group
+  .col-md-9= @joining.group_id
+.row.py-1
+  .col-md-3.fw-bold User
+  .col-md-9= @joining.user_id
+.row.py-1
+  .col-md-3.fw-bold Role
+  .col-md-9= @joining.role
+
+= link_to '編集', edit_admin_joining_path(@joining)
+\|
+= link_to '戻る', admin_joinings_path

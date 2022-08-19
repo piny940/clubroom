@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   enum kind: { member: 0, admin: 1 }, _prefix: true
+  has_many :joinings
+  has_many :groups, through: :joinings
 end
