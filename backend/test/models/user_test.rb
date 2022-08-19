@@ -20,4 +20,10 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not dup.valid?
   end
+
+  test "パスワードなしではUserを作成できない" do
+    @user.password = ""
+    @user.password_confirmation = ""
+    assert_not @user.valid?
+  end
 end
