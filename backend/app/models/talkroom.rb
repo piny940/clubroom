@@ -1,5 +1,6 @@
 class Talkroom < ApplicationRecord
   has_many :talk_entries, dependent: :destroy
+  has_many :members, through: :talk_entries, source: :user
   belongs_to :group, optional: true
 
   validates :group_id, presence: true, if: :kind_group?
