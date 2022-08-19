@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_110428) do
   end
 
   create_table "talkrooms", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", default: "", null: false
     t.integer "group_id"
     t.integer "kind", default: 0, null: false
     t.datetime "created_at", null: false
