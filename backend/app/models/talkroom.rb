@@ -1,0 +1,2 @@
+class Talkroom < ApplicationRecord
+end

@@ -1,0 +1,6 @@
+%h1 Talkroom編集
+= render "form", talkroom: @talkroom
+
+= link_to '詳細', admin_talkroom_path(@talkroom)
+\|
+= link_to '戻る', admin_talkrooms_path

@@ -1,0 +1,11 @@
+%h1 Talkroom
+.row.py-1
+  .col-md-3.fw-bold Name
+  .col-md-9= @talkroom.name
+.row.py-1
+  .col-md-3.fw-bold Group
+  .col-md-9= @talkroom.group_id
+
+= link_to '編集', edit_admin_talkroom_path(@talkroom)
+\|
+= link_to '戻る', admin_talkrooms_path
