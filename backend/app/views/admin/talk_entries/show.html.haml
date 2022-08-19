@@ -1,0 +1,11 @@
+%h1 Talk_entry
+.row.py-1
+  .col-md-3.fw-bold Talkroom
+  .col-md-9= @talk_entry.talkroom_id
+.row.py-1
+  .col-md-3.fw-bold User
+  .col-md-9= @talk_entry.user_id
+
+= link_to '編集', edit_talk_entry_path(@talk_entry)
+\|
+= link_to '戻る', admin_talk_entries_path

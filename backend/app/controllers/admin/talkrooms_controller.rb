@@ -1,4 +1,4 @@
-class Admin::TalkroomsController < ApplicationController
+class Admin::TalkroomsController < Admin::Base
   before_action :set_talkroom, only: %i[ show edit update destroy ]
 
   def index

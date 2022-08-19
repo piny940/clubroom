@@ -1,4 +1,4 @@
-class Admin::JoiningsController < ApplicationController
+class Admin::JoiningsController < Admin::Base
   before_action :set_joining, only: %i[ show edit update destroy ]
 
   def index
