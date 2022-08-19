@@ -1,0 +1,21 @@
+%h1 Talk一覧
+%table.table
+  %thead.thead-light
+    %tr
+      %th User
+      %th Talkroom
+      %th Content
+      %th
+
+  %tbody
+    %tr
+      %td{colspan: 4}= link_to 'Talk新規作成', new_admin_talk_path, class: 'btn btn-primary w-100'
+    - @talks.each do |talk|
+      %tr
+        %td= talk.user_id
+        %td= talk.talkroom_id
+        %td= talk.content
+        %td
+          = link_to '閲覧', admin_talk_path(talk), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_admin_talk_path(talk), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', admin_talk_path(talk), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'

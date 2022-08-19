@@ -1,0 +1,6 @@
+%h1 Talk編集
+= render "form", talk: @talk
+
+= link_to '詳細', admin_talk_path(@talk)
+\|
+= link_to '戻る', admin_talks_path
