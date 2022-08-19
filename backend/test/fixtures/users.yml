@@ -8,3 +8,13 @@ alice:
   email: alice@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
+
+bob:
+  email: bob@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+john:
+  email: john@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0

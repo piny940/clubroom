@@ -1,7 +1,11 @@
 require "test_helper"
 
-class Admin::TalkEntryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class TalkEntryTest < ActiveSupport::TestCase
+  def setup
+    @user = users('alice')
+    @group1 = groups('group1')
+  end
+
+  test "正常にTalkEntryを作成できる" do
+  end
 end

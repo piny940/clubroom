@@ -1,1 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+alice1:
+  group: group1
+  user: alice
+  role: member
+
+alice2:
+  group: group2
+  user: alice
+  role: ob
+
+bob1:
+  group: group1
+  user: bob
+  role: member

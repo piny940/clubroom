@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_19_103836) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_19_110428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_103836) do
     t.index ["user_id"], name: "index_joinings_on_user_id"
   end
 
+  create_table "talk_entries", force: :cascade do |t|
+    t.bigint "talkroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["talkroom_id"], name: "index_talk_entries_on_talkroom_id"
+    t.index ["user_id"], name: "index_talk_entries_on_user_id"
+  end
+
   create_table "talkrooms", force: :cascade do |t|
     t.string "name", null: false
     t.integer "group_id"
@@ -55,4 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_103836) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "talk_entries", "talkrooms"
+  add_foreign_key "talk_entries", "users"
 end
