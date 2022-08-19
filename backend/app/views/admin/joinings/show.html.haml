@@ -1,10 +1,10 @@
 %h1 joining
 .row.py-1
   .col-md-3.fw-bold Group
-  .col-md-9= @joining.group_id
+  .col-md-9= @joining.group.name
 .row.py-1
   .col-md-3.fw-bold User
-  .col-md-9= @joining.user_id
+  .col-md-9= @joining.user.email
 .row.py-1
   .col-md-3.fw-bold Role
   .col-md-9= @joining.role

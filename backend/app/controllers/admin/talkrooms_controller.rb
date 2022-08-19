@@ -17,7 +17,7 @@ class Admin::TalkroomsController < Admin::Base
     @talkroom = Talkroom.new(talkroom_params)
 
     if @talkroom.save
-      redirect_to [:admin, @talkroom], notice: "Talkroomが作成されました。"
+      redirect_to admin_talkrooms_path, notice: "Talkroomが作成されました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::TalkroomsController < Admin::Base
 
   def update
     if @talkroom.update(talkroom_params)
-      redirect_to [:admin, @talkroom], notice: "Talkroomが更新されました。"
+      redirect_to admin_talkroom_path(@talkroom), notice: "Talkroomが更新されました。"
     else
       render :edit, status: :unprocessable_entity
     end

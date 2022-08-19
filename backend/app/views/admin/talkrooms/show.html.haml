@@ -4,7 +4,7 @@
   .col-md-9= @talkroom.name
 .row.py-1
   .col-md-3.fw-bold Group
-  .col-md-9= @talkroom.group_id
+  .col-md-9= @talkroom.group.name
 
 = link_to '編集', edit_admin_talkroom_path(@talkroom)
 \|

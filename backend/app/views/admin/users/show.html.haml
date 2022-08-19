@@ -6,4 +6,6 @@
   .col-md-3.fw-bold Kind
   .col-md-9= @user.kind
 
-= link_to '編集', edit_admin_user_path(@user), class: 'btn btn-primary w-100'
+= link_to '編集', edit_admin_user_path(@user)
+\|
+= link_to '戻る', admin_users_path
