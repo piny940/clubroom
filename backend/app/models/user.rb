@@ -8,5 +8,5 @@ class User < ApplicationRecord
   
   enum kind: { member: 0, admin: 1 }, _prefix: true
   has_many :joinings
-  has_many :groups, through: :joinings
+  has_many :groups, through: :joinings, source: :group
 end
