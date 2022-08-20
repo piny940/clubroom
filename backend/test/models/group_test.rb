@@ -14,13 +14,13 @@ class GroupTest < ActiveSupport::TestCase
     assert_not @group.valid?
   end
 
-  test "nameとuniversityが同じGroupは複数作成できない" do
-    @group.university = ""
+  test "nameとschoolが同じGroupは複数作成できない" do
+    @group.school = ""
     dup = @group.dup
     @group.save
     assert_not dup.valid?
 
-    @group.university = "Kyoto"
+    @group.school = "Kyoto"
     dup = @group.dup
     assert @group.valid?
     @group.save

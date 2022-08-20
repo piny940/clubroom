@@ -9,6 +9,9 @@
   .row.mb-3
     .col-md-3.col-form-label.fw-bold name
     .col-md-9= form.text_field :name, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold school
+    .col-md-9= form.text_field :school, class: 'form-control'
   .row
     .col
       = form.submit '保存', class: 'btn btn-primary d-block w-100'

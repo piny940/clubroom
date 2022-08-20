@@ -2,8 +2,8 @@
 
 group1:
   name: Group1
-  university: Kyoto
+  school: Kyoto
 
 group2:
   name: Group2
-  university: Tokyo
+  school: Tokyo

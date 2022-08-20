@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-  validates :name, presence: true, uniqueness: { scope: :university }
+  validates :name, presence: true, uniqueness: { scope: :school }
   has_many :joinings, dependent: :destroy
   has_many :members, through: :joinings, source: :user
   has_many :talkrooms, dependent: :destroy
