@@ -2,6 +2,9 @@
 .row.py-1
   .col-md-3.fw-bold Name
   .col-md-9= @group.name
+.row.py-1
+  .col-md-3.fw-bold School
+  .col-md-9= @group.school
 
 = link_to '編集', edit_admin_group_path(@group)
 \|

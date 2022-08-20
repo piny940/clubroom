@@ -3,14 +3,16 @@
   %thead.thead-light
     %tr
       %th Name
+      %th School
       %th
 
   %tbody
     %tr
-      %td{colspan: 2}= link_to 'group新規作成', new_admin_group_path, class: 'btn btn-primary w-100'
+      %td{colspan: 3}= link_to 'group新規作成', new_admin_group_path, class: 'btn btn-primary w-100'
     - @groups.each do |group|
       %tr
         %td= group.name
+        %td= group.school
         %td
           = link_to '閲覧', admin_group_path(group), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_group_path(group), class: 'btn btn-sm btn-outline-primary'
