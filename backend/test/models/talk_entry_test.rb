@@ -104,4 +104,28 @@ class TalkEntryTest < ActiveSupport::TestCase
     assert_equal before_count+1, talkroom.members.length
     assert_equal before_user_talkrooms_count+1, alice.talkrooms.length
   end
+
+  test "Talkroomが削除されるとそのTalkroomのTalkEntryは全て削除される" do
+    user = users('alice')
+    group = groups('group1')
+    group.members << user
+    talkroom = group.talkrooms.create!
+    talkroom.members << user
+
+    before_count = TalkEntry.count
+    talkroom.destroy
+    assert_equal before_count-1, TalkEntry.count
+  end
+
+  test "Userが削除されるとそのUserのTalkEntryは全て削除される" do
+    user = users('alice')
+    group = groups('group1')
+    group.members << user
+    talkroom = group.talkrooms.create!
+    talkroom.members << user
+
+    before_count = TalkEntry.count
+    user.destroy
+    assert_equal before_count-1, TalkEntry.count
+  end
 end

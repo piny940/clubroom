@@ -35,8 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_153918) do
   end
 
   create_table "talk_entries", force: :cascade do |t|
-    t.bigint "talkroom_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "talkroom_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["talkroom_id"], name: "index_talk_entries_on_talkroom_id"
@@ -49,16 +49,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_153918) do
     t.integer "kind", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_talkrooms_on_group_id"
   end
 
   create_table "talks", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "talkroom_id", null: false
-    t.text "content", default: "", null: false
+    t.integer "from_user_id"
+    t.integer "talkroom_id", null: false
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["talkroom_id"], name: "index_talks_on_talkroom_id"
-    t.index ["user_id"], name: "index_talks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,8 +74,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_153918) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "talk_entries", "talkrooms"
-  add_foreign_key "talk_entries", "users"
-  add_foreign_key "talks", "talkrooms"
-  add_foreign_key "talks", "users"
 end
