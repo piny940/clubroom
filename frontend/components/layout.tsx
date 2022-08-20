@@ -9,6 +9,10 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({
   children,
 }) => {
+  const mainStyle = {
+    paddingTop: '80px'
+  }
+
   return (
     <div>
       <Head>
@@ -19,7 +23,7 @@ export const Layout: React.FC<LayoutProps> = ({
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className="container" style={mainStyle}>
         {children}
       </main>
     </div>
