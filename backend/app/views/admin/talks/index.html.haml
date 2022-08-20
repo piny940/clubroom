@@ -12,8 +12,8 @@
       %td{colspan: 4}= link_to 'Talk新規作成', new_admin_talk_path, class: 'btn btn-primary w-100'
     - @talks.each do |talk|
       %tr
-        %td= talk.user_id
-        %td= talk.talkroom_id
+        %td= talk.from_user.email
+        %td= talk.talkroom.name
         %td= talk.content
         %td
           = link_to '閲覧', admin_talk_path(talk), class: 'btn btn-sm btn-outline-primary'

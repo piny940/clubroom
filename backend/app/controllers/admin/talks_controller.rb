@@ -25,7 +25,7 @@ class Admin::TalksController < ApplicationController
 
   def update
     if @talk.update(talk_params)
-      redirect_to @talk, notice: "Talkが更新されました。"
+      redirect_to [:admin, @talk], notice: "Talkが更新されました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,6 +43,6 @@ class Admin::TalksController < ApplicationController
   end
 
   def talk_params
-    params.require(:talk).permit(:user_id, :talkroom_id, :content)
+    params.require(:talk).permit(:from_user_id, :talkroom_id, :content)
   end
 end

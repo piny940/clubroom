@@ -8,10 +8,10 @@
   
   .row.mb-3
     .col-md-3.col-form-label.fw-bold user_id
-    .col-md-9= form.text_field :user_id, class: 'form-control'
+    .col-md-9= form.collection_select :from_user_id, User.all, :id, :email, {}, { class: 'form-control' }
   .row.mb-3
     .col-md-3.col-form-label.fw-bold talkroom_id
-    .col-md-9= form.text_field :talkroom_id, class: 'form-control'
+    .col-md-9= form.collection_select :talkroom_id, Talkroom.all, :id, :name, {}, { class: 'form-control' }
   .row.mb-3
     .col-md-3.col-form-label.fw-bold content
     .col-md-9= form.text_area :content, class: 'form-control'
