@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :email, presence: true, length: { maximum: 255 }
+  validates :name, presence: true, length: { maximum: 50 }
   
   enum kind: { member: 0, admin: 1 }, _prefix: true
   has_many :joinings, dependent: :destroy

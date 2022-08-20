@@ -6,15 +6,18 @@
 #
 alice:
   email: alice@gmail.com
+  name: alice
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
 
 bob:
   email: bob@gmail.com
+  name: bob
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
 
 john:
   email: john@gmail.com
+  name: john
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
