@@ -11,9 +11,9 @@ const defaultAlertState: AlertsStateContextInterface = {
   setAlerts: (alerts: Alert[]) => undefined
 }
 
-const alertsStateContext = createContext(defaultAlertState)
+const AlertsStateContext = createContext(defaultAlertState)
 
-const useAlertsState = () => useContext(alertsStateContext)
+const useAlertsState = () => useContext(AlertsStateContext)
 
 interface AlertsStateProviderProps {
   children: React.ReactNode
@@ -25,7 +25,7 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({ children }) =
     alerts, setAlerts
   }
 
-  return <alertsStateContext.Provider value={value}>{children}</alertsStateContext.Provider>
+  return <AlertsStateContext.Provider value={value}>{children}</AlertsStateContext.Provider>
 }
 
 export { useAlertsState, AlertsStateProvider }
