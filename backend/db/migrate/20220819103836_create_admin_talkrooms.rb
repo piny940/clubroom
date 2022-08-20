@@ -7,5 +7,7 @@ class CreateAdminTalkrooms < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :talkrooms, :group_id
   end
 end

@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :groups, through: :joinings
   has_many :talk_entries, dependent: :destroy
   has_many :talkrooms, through: :talk_entries
+  has_many :talks, foreign_key: "from_user_id", dependent: :nullify
 end

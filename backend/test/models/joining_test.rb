@@ -52,4 +52,26 @@ class JoiningTest < ActiveSupport::TestCase
     @john.reload
     assert_equal before_count+2, @john.groups.length
   end
+
+  test "Groupが削除されるとそのGroupのJoiningは全て削除される" do
+    @group1.members << @john
+    before_count = Joining.count
+    before_john_groups_count = @john.groups.length
+    
+    @group1.destroy
+    @john.reload
+    assert_equal before_count-1, Joining.count
+    assert_equal before_john_groups_count-1, @john.groups.length
+  end
+
+  test "Userが削除されるとそのUserのJoiningは全て削除される" do
+    @john.groups << @group1
+    before_count = Joining.count
+    before_group1_members_count = @group1.members.length
+
+    @john.destroy
+    @group1.reload
+    assert_equal before_count-1, Joining.count
+    assert_equal before_group1_members_count-1, @group1.members.length
+  end
 end

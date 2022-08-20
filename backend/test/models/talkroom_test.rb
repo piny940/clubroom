@@ -30,4 +30,12 @@ class TalkroomTest < ActiveSupport::TestCase
     assert_equal before_count, group.talkrooms.length
     assert_equal before_talkroom_count, Talkroom.count
   end
+
+  test "Groupが削除されるとそのGroupのTalkroomは全て削除される" do
+    group = groups('group1')
+    group.talkrooms.create!
+    before_count = Talkroom.count
+    group.destroy
+    assert_equal before_count-1, Talkroom.count
+  end
 end
