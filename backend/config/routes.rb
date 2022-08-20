@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resource to: 'csrf#show'
+  get 'csrf/', to: 'csrf#show'
 end
