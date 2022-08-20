@@ -3,15 +3,17 @@
   %thead.thead-light
     %tr
       %th メールアドレス
+      %th 名前
       %th Kind
       %th
 
   %tbody
     %tr
-      %td{colspan: 3}= link_to 'ユーザー新規作成', new_admin_user_path, class: 'btn btn-primary w-100'
+      %td{colspan: 4}= link_to 'ユーザー新規作成', new_admin_user_path, class: 'btn btn-primary w-100'
     - @users.each do |user|
       %tr
         %td= user.email
+        %td= user.name
         %td= user.kind
         %td
           = link_to '閲覧', admin_user_path(user), class: 'btn btn-sm btn-outline-primary'

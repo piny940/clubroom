@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(kind: :member, email: "test@gmail.com",
+    @user = User.new(kind: :member, email: "test@gmail.com", name: "test",
       password: "test1234", password_confirmation: "test1234")
   end
 
@@ -12,6 +12,11 @@ class UserTest < ActiveSupport::TestCase
 
   test "emailなしではUserを作成できない" do
     @user.email = ""
+    assert_not @user.valid?
+  end
+
+  test "nameなしではUserを作成できない" do
+    @user.name = ""
     assert_not @user.valid?
   end
 
