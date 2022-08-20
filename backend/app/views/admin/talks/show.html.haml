@@ -1,10 +1,10 @@
 %h1 Talk
 .row.py-1
   .col-md-3.fw-bold User
-  .col-md-9= @talk.user_id
+  .col-md-9= @talk.from_user.email
 .row.py-1
   .col-md-3.fw-bold Talkroom
-  .col-md-9= @talk.talkroom_id
+  .col-md-9= @talk.talkroom.name
 .row.py-1
   .col-md-3.fw-bold Content
   .col-md-9= @talk.content
