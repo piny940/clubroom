@@ -18,5 +18,7 @@ module Backend
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators.jbuilder = false
     config.time_zone = 'Tokyo'
+
+    config.action_controller.forgery_protection_origin_check = false
   end
 end
