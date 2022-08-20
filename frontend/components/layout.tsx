@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { ReactNode } from "react"
-import { Navbar } from "./navbar"
+import { Navbar } from "./Navbar"
 
 interface LayoutProps {
   children: ReactNode
