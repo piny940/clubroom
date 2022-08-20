@@ -10,6 +10,9 @@
     .col-md-3.col-form-label.fw-bold メールアドレス
     .col-md-9= form.email_field :email, class: 'form-control'
   .row.mb-3
+    .col-md-3.col-form-label.fw-bold 名前
+    .col-md-9= form.text_field :name, class: 'form-control'
+  .row.mb-3
     .col-md-3.col-form-label.fw-bold パスワード
     .col-md-9= form.password_field :password, class: 'form-control'
   .row.mb-3
