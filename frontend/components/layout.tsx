@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { ReactNode } from "react"
+import { Alerts } from "./Alerts"
 import { Navbar } from "./Navbar"
 
 interface LayoutProps {
@@ -24,6 +25,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <Navbar />
       </header>
       <main className="container" style={mainStyle}>
+        <Alerts />
         {children}
       </main>
     </div>

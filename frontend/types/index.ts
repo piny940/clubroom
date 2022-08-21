@@ -1,4 +1,7 @@
+import { AlertState } from "../utils/enums"
+
 export interface Alert {
+  id: number
   content: string
-  hasShown: boolean
+  state: AlertState
 }
