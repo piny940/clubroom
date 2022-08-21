@@ -1,4 +1,4 @@
-import { AlertState } from "../utils/enums"
+import { AlertState } from '../utils/enums'
 
 export interface Alert {
   id: number

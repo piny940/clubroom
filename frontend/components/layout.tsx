@@ -1,17 +1,15 @@
-import Head from "next/head"
-import { ReactNode } from "react"
-import { Alerts } from "./Alerts"
-import { Navbar } from "./Navbar"
+import Head from 'next/head'
+import { ReactNode } from 'react'
+import { Alerts } from './Alerts'
+import { Navbar } from './Navbar'
 
 interface LayoutProps {
   children: ReactNode
 }
 
-export const Layout: React.FC<LayoutProps> = ({
-  children,
-}) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const mainStyle = {
-    paddingTop: '80px'
+    paddingTop: '80px',
   }
 
   return (

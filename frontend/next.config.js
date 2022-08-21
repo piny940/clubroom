@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 
-const BACKEND = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:3000'
-  : 'https://clubroom-backend.herokuapp.com'
+const BACKEND =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://clubroom-backend.herokuapp.com'
 
 const nextConfig = {
   reactStrictMode: true,
@@ -11,10 +12,10 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${BACKEND}/:path*`
-      }
+        destination: `${BACKEND}/:path*`,
+      },
     ]
-  }
+  },
 }
 
 module.exports = nextConfig

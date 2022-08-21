@@ -1,37 +1,31 @@
-import { createContext, useContext, useState } from "react";
-import { Alert } from "../types";
-import { AlertState } from "../utils/enums";
-import { usePageChange } from "../utils/hooks";
+import { createContext, useContext, useState } from 'react'
+import { Alert } from '../types'
+import { AlertState } from '../utils/enums'
+import { usePageChange } from '../utils/hooks'
 
 interface AlertsStateContextInterface {
   alerts: Alert[]
-  addAlert: (alert: { content: string, state: AlertState }) => void
+  addAlert: (alert: { content: string; state: AlertState }) => void
   removeAlert: (id: number) => void
 }
 
 const defaultAlertState: AlertsStateContextInterface = {
   alerts: [],
-  addAlert: (alert: { content: string, state: AlertState }) => undefined,
+  addAlert: (alert: { content: string; state: AlertState }) => undefined,
   removeAlert: (id: number) => undefined,
 }
 
 const AlertsStateContext = createContext(defaultAlertState)
 
-const useAlertsState = () => {
-  const context = useContext(AlertsStateContext)
-
-  if (!context) {
-    throw new Error('useAlertsState must be called within a AlertsStateContext')
-  }
-
-  return context
-}
+const useAlertsState = () => useContext(AlertsStateContext)
 
 interface AlertsStateProviderProps {
   children: React.ReactNode
 }
 
-const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({ children }) => {
+const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
+  children,
+}) => {
   const [alerts, setAlerts] = useState<Alert[]>([])
   const [nextAlertId, setNextAlertId] = useState(0)
 
@@ -40,7 +34,7 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({ children }) =
     setAlerts([])
   })
 
-  const addAlert = (alert: { content: string, state: AlertState }) => {
+  const addAlert = (alert: { content: string; state: AlertState }) => {
     const newAlert: Alert = {
       ...alert,
       id: nextAlertId,
@@ -54,10 +48,16 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({ children }) =
   }
 
   const value: AlertsStateContextInterface = {
-    alerts, addAlert, removeAlert
+    alerts,
+    addAlert,
+    removeAlert,
   }
 
-  return <AlertsStateContext.Provider value={value}>{children}</AlertsStateContext.Provider>
+  return (
+    <AlertsStateContext.Provider value={value}>
+      {children}
+    </AlertsStateContext.Provider>
+  )
 }
 
 export { useAlertsState, AlertsStateProvider }

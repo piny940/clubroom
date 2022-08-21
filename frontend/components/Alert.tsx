@@ -1,23 +1,19 @@
-import { Alert as AlertType } from "../types"
-import { AlertState } from "../utils/enums"
+import { Alert as AlertType } from '../types'
+import { AlertState } from '../utils/enums'
 
-export const Alert: React.FC<{alert: AlertType}> = ({ alert }) => {
-  let className = ""
+export const Alert: React.FC<{ alert: AlertType }> = ({ alert }) => {
+  let className = ''
   switch (alert.state) {
     case AlertState.DANGER:
-      className = "alert alert-danger"
+      className = 'alert alert-danger'
       break
     case AlertState.NOTICE:
-      className = "alert alert-info"
+      className = 'alert alert-info'
       break
     case AlertState.SUCCESS:
-      className = "alert alert-success"
+      className = 'alert alert-success'
       break
   }
 
-  return (
-    <div className={className}>
-      { alert.content }
-    </div>
-  )
+  return <div className={className}>{alert.content}</div>
 }

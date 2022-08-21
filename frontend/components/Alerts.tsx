@@ -1,10 +1,10 @@
-import { useAlertsState } from "../containers/AlertsStateProvider"
-import { Alert } from "./Alert"
+import { useAlertsState } from '../containers/AlertsStateProvider'
+import { Alert } from './Alert'
 
 export const Alerts: React.FC = () => {
   const { alerts } = useAlertsState()
 
-  if (!alerts.length) {
+  if (alerts.length === 0) {
     return <></>
   }
 
