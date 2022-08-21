@@ -6,12 +6,12 @@ interface CsrfData {
 }
 
 const getToken = async (): Promise<CsrfData> => {
-  const url = "api/csrf"
+  const url = 'api/csrf'
   const response = await fetch(url, {
-    credentials: "include"
+    credentials: 'include',
   })
 
-  return response.json()
+  return await response.json()
 }
 
 const fetchApi = async (params: {
@@ -25,10 +25,10 @@ const fetchApi = async (params: {
   const response = await fetch(`api/${params.url}`, {
     method: params.method,
     headers: {
-      "X-CSRF-Token": csrfData.token
+      'X-CSRF-Token': csrfData.token,
     },
     body: params.method === 'GET' ? null : serialize(params.data),
-    credentials: "include",
+    credentials: 'include',
   })
   return response
 }
