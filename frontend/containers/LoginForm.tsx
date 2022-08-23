@@ -4,15 +4,19 @@ import { FormGroup } from '../components/FormGroup'
 import { Message } from '../resources/Messages'
 import { PostSessionsResult } from '../utils/apiResults'
 import { AlertState } from '../utils/enums'
-import { fetchApi } from '../utils/helpers'
+import { fetchApi, toClass } from '../utils/helpers'
 import { useAlertsState } from './AlertsStateProvider'
+import styles from '../styles/accounts.module.scss'
+import { useState } from 'react'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
     shouldUseNativeValidation: true,
   })
 
-  const { setAlerts } = useAlertsState()
+  const { setAlerts: setGlobalAlerts } = useAlertsState()
+
+  const [alert, setAlert] = useState<string>('')
 
   const router = useRouter()
 
@@ -26,13 +30,10 @@ export const LoginForm: React.FC = () => {
       const json: Promise<PostSessionsResult> = response.json()
 
       if (response.status >= 400) {
-        setAlerts({
-          content: (await json).message,
-          state: AlertState.DANGER,
-        })
+        setAlert((await json).message)
       } else {
         await router.push('/')
-        setAlerts({
+        setGlobalAlerts({
           content: (await json).message,
           state: AlertState.SUCCESS,
         })
@@ -43,9 +44,13 @@ export const LoginForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(_submit)}
-      className="container border border-secondary bg-light p-5 border-2 rounded"
+      className={toClass(
+        'container border border-secondary bg-light p-5 border-2 rounded',
+        styles.form
+      )}
     >
       <h2 className="ms-2 mb-4">ログイン</h2>
+      {alert ? <div className="text-danger">{alert}</div> : <></>}
       <FormGroup
         register={register}
         label="メールアドレス"
