@@ -2,16 +2,14 @@ import Head from 'next/head'
 import { ReactNode } from 'react'
 import { Alerts } from './Alerts'
 import { Navbar } from './Navbar'
+import styles from '../styles/layout.module.scss'
+import { toClass } from '../utils/helpers'
 
 interface LayoutProps {
   children: ReactNode
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const mainStyle = {
-    paddingTop: '80px',
-  }
-
   return (
     <div>
       <Head>
@@ -22,7 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <header>
         <Navbar />
       </header>
-      <main className="container" style={mainStyle}>
+      <main className={toClass('container', styles.main)}>
         <Alerts />
         {children}
       </main>
