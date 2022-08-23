@@ -1,24 +1,21 @@
-import { useRouter } from 'next/router'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/FormGroup'
 import { Message } from '../resources/Messages'
 import { PostSessionsResult } from '../utils/apiResults'
 import { AlertState } from '../utils/enums'
 import { fetchApi, toClass } from '../utils/helpers'
-import { useAlertsState } from './AlertsStateProvider'
 import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
+import { useMovePage } from '../utils/hooks'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
     shouldUseNativeValidation: true,
   })
 
-  const { setAlerts: setGlobalAlerts } = useAlertsState()
-
   const [alert, setAlert] = useState<string>('')
 
-  const router = useRouter()
+  const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     try {
@@ -32,8 +29,7 @@ export const LoginForm: React.FC = () => {
       if (response.status >= 400) {
         setAlert((await json).message)
       } else {
-        await router.push('/')
-        setGlobalAlerts({
+        void movePage('/', {
           content: (await json).message,
           state: AlertState.SUCCESS,
         })
