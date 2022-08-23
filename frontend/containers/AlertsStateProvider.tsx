@@ -3,16 +3,23 @@ import { Alert } from '../types'
 import { AlertState } from '../utils/enums'
 import { usePageChange } from '../utils/hooks'
 
+interface AlertInput {
+  content: string
+  state: AlertState
+}
+
 interface AlertsStateContextInterface {
   alerts: Alert[]
-  addAlert: (alert: { content: string; state: AlertState }) => void
+  addAlert: (alert: AlertInput) => void
   removeAlert: (id: number) => void
+  setAlerts: (...alerts: AlertInput[]) => void
 }
 
 const defaultAlertState: AlertsStateContextInterface = {
   alerts: [],
-  addAlert: (alert: { content: string; state: AlertState }) => undefined,
+  addAlert: (alert: AlertInput) => undefined,
   removeAlert: (id: number) => undefined,
+  setAlerts: (...alerts: AlertInput[]) => undefined,
 }
 
 const AlertsStateContext = createContext(defaultAlertState)
@@ -29,18 +36,28 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
   const [alerts, setAlerts] = useState<Alert[]>([])
   const [nextAlertId, setNextAlertId] = useState(0)
 
-  // Remove all alerts on page change
-  usePageChange(() => {
-    setAlerts([])
-  })
-
-  const addAlert = (alert: { content: string; state: AlertState }) => {
+  const addAlert = (alert: AlertInput) => {
     const newAlert: Alert = {
       ...alert,
       id: nextAlertId,
     }
     setAlerts([...alerts, newAlert])
     setNextAlertId(nextAlertId + 1)
+  }
+
+  const _setAlerts = (...alerts: AlertInput[]) => {
+    const newAlerts: Alert[] = []
+    let nextId = nextAlertId
+    for (const alert of alerts) {
+      newAlerts.push({
+        content: alert.content,
+        state: alert.state,
+        id: nextId,
+      })
+      nextId++
+    }
+    setAlerts(newAlerts)
+    setNextAlertId(nextId)
   }
 
   const removeAlert = (id: number) => {
@@ -51,7 +68,13 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
     alerts,
     addAlert,
     removeAlert,
+    setAlerts: _setAlerts,
   }
+
+  // Remove all alerts on page change
+  usePageChange(() => {
+    setAlerts([])
+  })
 
   return (
     <AlertsStateContext.Provider value={value}>

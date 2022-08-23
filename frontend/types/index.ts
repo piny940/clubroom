@@ -5,3 +5,5 @@ export interface Alert {
   content: string
   state: AlertState
 }
+
+export type InputType = 'text' | 'email' | 'password'
