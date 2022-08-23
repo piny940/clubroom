@@ -1,12 +1,8 @@
 import { serialize } from 'object-to-formdata'
+import { GetTokenResult } from './apiResults'
 
-interface CsrfData {
-  token: string
-  status: string
-}
-
-const getToken = async (): Promise<CsrfData> => {
-  const url = 'api/csrf'
+const getToken = async (): Promise<GetTokenResult> => {
+  const url = `/api/csrf`
   const response = await fetch(url, {
     credentials: 'include',
   })
@@ -14,15 +10,14 @@ const getToken = async (): Promise<CsrfData> => {
   return await response.json()
 }
 
-const fetchApi = async (params: {
+export const fetchApi = async (params: {
   url: string
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
   data?: any
 }) => {
   const csrfData = await getToken()
-  console.log(JSON.stringify(params.data))
 
-  const response = await fetch(`api/${params.url}`, {
+  const response = await fetch(`/api/${params.url}`, {
     method: params.method,
     headers: {
       'X-CSRF-Token': csrfData.token,
@@ -33,4 +28,6 @@ const fetchApi = async (params: {
   return response
 }
 
-export default fetchApi
+export const toClass = (...args: string[]) => {
+  return args.join(' ')
+}

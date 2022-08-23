@@ -18,6 +18,8 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    'object-shorthand': 'off',
   },
 }
