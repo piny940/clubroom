@@ -1,12 +1,6 @@
 import { createContext, useContext, useState } from 'react'
-import { Alert } from '../types'
-import { AlertState } from '../utils/enums'
+import { Alert, AlertInput } from '../types'
 import { usePageChange } from '../utils/hooks'
-
-interface AlertInput {
-  content: string
-  state: AlertState
-}
 
 interface AlertsStateContextInterface {
   alerts: Alert[]

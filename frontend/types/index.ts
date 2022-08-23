@@ -6,4 +6,9 @@ export interface Alert {
   state: AlertState
 }
 
+export interface AlertInput {
+  content: string
+  state: AlertState
+}
+
 export type InputType = 'text' | 'email' | 'password'
