@@ -23,10 +23,10 @@ interface AlertsStateProviderProps {
   children: React.ReactNode
 }
 
-const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
-  children,
-}) => {
-  const [alerts, setAlerts] = useState<Alert[]>([])
+const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({ children }) => {
+  const [alerts, setAlerts] = useState<Alert[]>([
+    { content: 'Test', state: AlertState.DANGER, id: -1 },
+  ])
   const [nextAlertId, setNextAlertId] = useState(0)
 
   // Remove all alerts on page change
@@ -54,9 +54,7 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
   }
 
   return (
-    <AlertsStateContext.Provider value={value}>
-      {children}
-    </AlertsStateContext.Provider>
+    <AlertsStateContext.Provider value={value}>{children}</AlertsStateContext.Provider>
   )
 }
 

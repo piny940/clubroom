@@ -1,3 +1,4 @@
+import { TestID } from '../resources/TestID'
 import { Alert as AlertType } from '../types'
 import { AlertState } from '../utils/enums'
 
@@ -15,5 +16,9 @@ export const Alert: React.FC<{ alert: AlertType }> = ({ alert }) => {
       break
   }
 
-  return <div className={className}>{alert.content}</div>
+  return (
+    <div className={className} data-testid={TestID.ALERT}>
+      {alert.content}
+    </div>
+  )
 }
