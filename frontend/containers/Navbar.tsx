@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { NavbarView } from '../components/NavbarView'
+import { useGroupState } from '../contexts/GroupStateProvider'
 import { Group } from '../types'
 import { fetchApi } from '../utils/helpers'
 
 export const Navbar: React.FC = () => {
   const [groups, setGroups] = useState<Group[]>([])
+
+  const { group, setGroup } = useGroupState()
 
   const _fetchUser = async () => {
     const response = await fetchApi({ url: '/user', method: 'GET' })
@@ -22,5 +25,5 @@ export const Navbar: React.FC = () => {
     void _updateGroups()
   }, [])
 
-  return <NavbarView groups={groups} />
+  return <NavbarView groups={groups} title={group?.name} setGroup={setGroup} />
 }

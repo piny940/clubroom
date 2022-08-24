@@ -1,13 +1,16 @@
 import { Group } from '../types'
+import { TitleDropdownItem } from './TitleDropdownItem'
 
 export interface NavbarViewProps {
   title?: string
   groups: Group[]
+  setGroup: (group: Group) => void
 }
 
 export const NavbarView: React.FC<NavbarViewProps> = ({
   title = 'Clubroom',
   groups,
+  setGroup,
 }) => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -24,9 +27,11 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
           </div>
           <ul className="dropdown-menu m-0">
             {groups.map((group) => (
-              <li className="dropdown-item" key={group.id}>
-                {group.name}
-              </li>
+              <TitleDropdownItem
+                group={group}
+                setGroup={setGroup}
+                key={group.id}
+              />
             ))}
           </ul>
         </div>
