@@ -1,7 +1,6 @@
-import { NextPage } from 'next'
 import { LoginForm } from '../../containers/LoginForm'
 
-const Login: NextPage = () => {
+const Login: React.FC = () => {
   return <LoginForm />
 }
 
