@@ -1,9 +1,13 @@
+import { Group } from '../types'
+
 export interface NavbarViewProps {
   title?: string
+  groups: Group[]
 }
 
 export const NavbarView: React.FC<NavbarViewProps> = ({
   title = 'Clubroom',
+  groups,
 }) => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -19,10 +23,11 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
             {title}
           </div>
           <ul className="dropdown-menu m-0">
-            <li className="dropdown-item">a</li>
-            <li className="dropdown-item">b</li>
-            <li className="dropdown-item">c</li>
-            <li className="dropdown-item">d</li>
+            {groups.map((group) => (
+              <li className="dropdown-item" key={group.id}>
+                {group.name}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

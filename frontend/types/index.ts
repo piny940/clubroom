@@ -12,3 +12,11 @@ export interface AlertInput {
 }
 
 export type InputType = 'text' | 'email' | 'password'
+
+export interface Group {
+  id: number
+  name: string
+  school?: string
+  created_at: Date
+  updated_at: Date
+}
