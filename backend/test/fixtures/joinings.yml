@@ -1,1 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+kaguya-seitokai:
+  user: kaguya
+  group: seitokai
+
+miyuki-seitokai:
+  user: miyuki
+  group: seitokai
+
+miko-seitokai:
+  user: miko
+  group: seitokai
+
+yuu-seitokai:
+  user: yuu
+  group: seitokai
+
+chika-seitokai:
+  user: chika
+  group: seitokai

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SessionsControllerTest < ActionDispatch::IntegrationTest
+class Member::SessionsControllerTest < ActionDispatch::IntegrationTest
   test '正常にログインできる' do
     user = users('alice')
     post '/member/session', params: { email: user.email, password: 'password' }

@@ -6,8 +6,9 @@ class Member::GroupsController < Member::Base
   end
 
   def create
-    group = current_user.groups.new(group_params)
-    if group.save
+    group = current_user.groups.create(group_params)
+
+    if group.id
       render json: {
         group: group,
         message: "グループを作成しました。"
@@ -15,8 +16,8 @@ class Member::GroupsController < Member::Base
     else
       render json: {
         group: nil,
-        message: "グループが作成できませんでした。"
-      }
+        message: "グループを作成できませんでした。"
+      }, status: 400
     end
   end
 
