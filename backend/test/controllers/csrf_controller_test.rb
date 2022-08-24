@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Member::CsrfControllerTest < ActionDispatch::IntegrationTest
+class CsrfControllerTest < ActionDispatch::IntegrationTest
   test "正常にcsrf tokenをGETできる" do
     get '/csrf'
     json = JSON.parse(response.body)
