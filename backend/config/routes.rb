@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   get 'csrf/', to: 'csrf#show'
   namespace :member do
-    resources :groups
+    resources :groups, only: %i[index create]
     resource :session, only: %i[create destroy]
+    resource :user, only: %i[show]
   end
 end
