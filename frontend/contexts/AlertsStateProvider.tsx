@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useState } from 'react'
 import { Alert, AlertInput } from '../types'
 import { usePageChange } from '../utils/hooks'
 
@@ -21,7 +21,7 @@ const AlertsStateContext = createContext(defaultAlertState)
 const useAlertsState = () => useContext(AlertsStateContext)
 
 interface AlertsStateProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({

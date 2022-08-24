@@ -1,4 +1,4 @@
-import { useAlertsState } from '../containers/AlertsStateProvider'
+import { useAlertsState } from '../contexts/AlertsStateProvider'
 import { Alert } from './Alert'
 
 export const Alerts: React.FC = () => {

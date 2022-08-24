@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useAlertsState } from '../containers/AlertsStateProvider'
+import { useAlertsState } from '../contexts/AlertsStateProvider'
 import { AlertInput } from '../types'
 
 export const usePageChange = (handler: () => void) => {
