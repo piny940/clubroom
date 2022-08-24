@@ -5,19 +5,55 @@
 # below each fixture, per the syntax in the comments below
 #
 alice:
-  email: alice@gmail.com
+  email: alice@example.com
   name: alice
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
 
 bob:
-  email: bob@gmail.com
+  email: bob@example.com
   name: bob
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
 
 john:
-  email: john@gmail.com
+  email: john@example.com
   name: john
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+kaguya:
+  email: kaguya@example.com
+  name: 四宮かぐや
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+miyuki:
+  email: miyuki@example.com
+  name: 白銀御行
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+chika:
+  email: chika@example.com
+  name: 藤原千花
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+miko:
+  email: miko@example.com
+  name: 伊井野ミコ
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+yuu:
+  email: yuu@example.com
+  name: 石上優
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+kei:
+  email: kei@example.com
+  name: 白銀圭
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0

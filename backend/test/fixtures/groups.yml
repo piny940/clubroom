@@ -7,3 +7,10 @@ group1:
 group2:
   name: Group2
   school: Tokyo
+
+seitokai:
+  name: 生徒会
+  school: 周知院
+
+chiroganeke:
+  name: 白銀家

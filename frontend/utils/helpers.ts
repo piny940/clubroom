@@ -17,7 +17,7 @@ export const fetchApi = async (params: {
 }) => {
   const csrfData = await getToken()
 
-  const response = await fetch(`/api/${params.url}`, {
+  const response = await fetch(`/api${params.url}`, {
     method: params.method,
     headers: {
       'X-CSRF-Token': csrfData.token,
