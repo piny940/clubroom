@@ -1,7 +1,9 @@
 class CsrfController < ApplicationController
   def show
     render json: {
-      token: form_authenticity_token,
+      data: {
+        token: form_authenticity_token,
+      }
     }, status: :ok
   end
 end

@@ -8,8 +8,8 @@ export const Navbar: React.FC = () => {
 
   const _fetchUser = async () => {
     const response = await fetchApi({ url: '/user', method: 'GET' })
-    const data = await response.json()
-    return data.user
+    const json = await response.json()
+    return json.data.user
   }
   const _updateGroups = async () => {
     if (!(await _fetchUser())) return
