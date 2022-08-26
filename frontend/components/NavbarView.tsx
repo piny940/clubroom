@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { LoginRequired } from '../containers/LoginRequired'
 import { Group } from '../types'
-import { TitleDropdownItem } from './TitleDropdownItem'
+import { GroupsNav } from './GroupsNav'
+import { ProfileNav } from './ProfileNav'
 
 export interface NavbarViewProps {
   group?: string
@@ -10,7 +11,7 @@ export interface NavbarViewProps {
 }
 
 export const NavbarView: React.FC<NavbarViewProps> = ({
-  group = 'グループを選ぶ',
+  group,
   groups,
   setGroup,
 }) => {
@@ -21,27 +22,9 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
           <a className="navbar-brand">Clubroom</a>
         </Link>
         <LoginRequired>
-          <div className="d-flex justify-content-end w-100">
-            <div className="dropdown navbar-item">
-              <div
-                className="text-white dropdown-toggle"
-                data-bs-toggle="dropdown"
-                role="button"
-                aria-expanded="false"
-                dropdown-target="#brand-items"
-              >
-                {group}
-              </div>
-              <ul className="dropdown-menu m-0">
-                {groups.map((group) => (
-                  <TitleDropdownItem
-                    group={group}
-                    setGroup={setGroup}
-                    key={group.id}
-                  />
-                ))}
-              </ul>
-            </div>
+          <div className="d-flex justify-content-end align-items-center w-100">
+            <GroupsNav group={group} groups={groups} setGroup={setGroup} />
+            <ProfileNav />
           </div>
         </LoginRequired>
       </div>
