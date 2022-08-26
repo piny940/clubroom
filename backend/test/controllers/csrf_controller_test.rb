@@ -5,6 +5,6 @@ class CsrfControllerTest < ActionDispatch::IntegrationTest
     get '/csrf'
     json = JSON.parse(response.body)
     assert_response :success
-    assert json["token"]
+    assert json["data"]["token"]
   end
 end
