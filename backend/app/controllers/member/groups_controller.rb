@@ -1,7 +1,9 @@
 class Member::GroupsController < Member::Base
   def index
     render json: {
-      groups: current_user.groups
+      data: {
+        groups: current_user.groups
+      }
     }, status: :ok
   end
 

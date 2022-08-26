@@ -1,10 +1,11 @@
 import { render } from '@testing-library/react'
-import { NavbarView } from '../../components/NavbarView'
+import { GroupsNav } from '../../components/GroupsNav'
 import { TestID } from '../../resources/TestID'
 import { Group } from '../../types'
 
-describe('<NavbarView />', () => {
+describe('<GroupsNav />', () => {
   it('正常に描画される', () => {
+    const setGroup = jest.fn()
     const groups: Group[] = [
       {
         id: 0,
@@ -20,11 +21,10 @@ describe('<NavbarView />', () => {
       },
     ]
 
-    const setGroups = jest.fn()
     const { getAllByTestId } = render(
-      <NavbarView groups={groups} setGroup={setGroups} />
+      <GroupsNav groups={groups} setGroup={setGroup} />
     )
 
-    expect(getAllByTestId(TestID.TITLE_DROPDOWN_ITEM).length).toBe(2)
+    expect(getAllByTestId(TestID.DROPDOWN_ACTION_BUTTON).length).toBe(2)
   })
 })

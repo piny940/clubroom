@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import { Alerts } from '../../components/Alerts'
 import { AlertState } from '../../utils/enums'
 import { TestID } from '../../resources/TestID'
@@ -26,8 +26,11 @@ jest.mock('../../contexts/AlertsStateProvider', () => {
 })
 
 describe('<Alerts />', () => {
-  it('正常に描画される', () => {
+  it('正常に描画される', async () => {
     const { getAllByTestId } = render(<Alerts />)
-    expect(getAllByTestId(TestID.ALERT).length).toBe(2)
+
+    await waitFor(() => {
+      expect(getAllByTestId(TestID.ALERT).length).toBe(2)
+    })
   })
 })
