@@ -40,7 +40,7 @@ describe('useMovePage', () => {
       expect(push.mock.calls[0][0]).toBe(url)
 
       expect(setAlerts).toBeCalled()
-      expect(setAlerts.mock.calls[0][0]).toBe(...alerts)
+      expect(setAlerts.mock.calls[0][0]).toBe(alerts[0])
     })
   })
 })
