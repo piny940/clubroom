@@ -41,7 +41,9 @@ jobs:
         run: bundle install --jobs 4 --retry 3
         working-directory: ./backend
       - name: DB setup
-        run: bundle exec rails db:setup
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:migrate
         working-directory: ./backend
       - name: Run rails test
         run: if (bundle exec rails test) | grep -E "(FAIL|ERROR)"; then exit 1; fi
