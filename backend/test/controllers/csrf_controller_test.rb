@@ -1,10 +1,10 @@
-require "test_helper"
+require 'test_helper'
 
 class CsrfControllerTest < ActionDispatch::IntegrationTest
-  test "正常にcsrf tokenをGETできる" do
+  test '正常にcsrf tokenをGETできる' do
     get '/csrf'
     json = JSON.parse(response.body)
     assert_response :success
-    assert json["data"]["token"]
+    assert json['data']['token']
   end
 end
