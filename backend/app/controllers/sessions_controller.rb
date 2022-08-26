@@ -3,7 +3,10 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user&.valid_password?(params[:password])
       sign_in user
-      render json: { message: 'ログインしました。' }, status: :ok
+      render json: { message: 'ログインしました。',
+                     data: {
+                       user:
+                     } }, status: :ok
     else
       render json: { message: 'メールアドレスまたはパスワードが違います。' }, status: :bad_request
     end
@@ -11,6 +14,8 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out current_user
-    render json: { message: 'ログアウトしました。' }, status: :ok
+    render json: { message: 'ログアウトしました。', data: {
+      user: nil
+    } }, status: :ok
   end
 end

@@ -1,4 +1,5 @@
 import { serialize } from 'object-to-formdata'
+import { LogoutReturn } from '../resources/apiRetuns'
 import { Group, User } from '../types'
 
 const getToken = async (): Promise<string> => {
@@ -44,4 +45,17 @@ export const fetchGroups = async (): Promise<Group[]> => {
   })
   const json = await response.json()
   return json.data.groups
+}
+
+export const logout = async (): Promise<{
+  message: string
+  data: LogoutReturn
+}> => {
+  const response = await fetchApi({
+    url: '/session',
+    method: 'DELETE',
+  })
+  const json = await response.json()
+
+  return json
 }

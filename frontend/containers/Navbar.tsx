@@ -1,23 +1,42 @@
 import { useEffect, useState } from 'react'
 import { NavbarView } from '../components/NavbarView'
+import { useAlertsState } from '../contexts/AlertsStateProvider'
 import { useGroupState } from '../contexts/GroupStateProvider'
 import { useUserState } from '../contexts/UserStateProvider'
 import { Group } from '../types'
-import { fetchGroups } from '../utils/api'
+import { fetchGroups, logout } from '../utils/api'
+import { AlertState } from '../utils/enums'
 
 export const Navbar: React.FC = () => {
   const [groups, setGroups] = useState<Group[]>([])
 
   const { group, setGroup } = useGroupState()
-  const { user } = useUserState()
+  const { user, setUser } = useUserState()
+  const { setAlerts } = useAlertsState()
 
   const _updateGroups = async () => {
     setGroups(await fetchGroups())
+  }
+
+  const handleLogout = async () => {
+    const json = await logout()
+    setAlerts({
+      content: json.message,
+      state: AlertState.NOTICE,
+    })
+    setUser(json.data.user)
   }
 
   useEffect(() => {
     void _updateGroups()
   }, [user])
 
-  return <NavbarView groups={groups} group={group?.name} setGroup={setGroup} />
+  return (
+    <NavbarView
+      groups={groups}
+      group={group?.name}
+      setGroup={setGroup}
+      logout={handleLogout}
+    />
+  )
 }
