@@ -4,6 +4,7 @@ import { AlertsStateProvider } from '../contexts/AlertsStateProvider'
 import { Layout } from '../components/Layout'
 import { useEffect } from 'react'
 import { GroupStateProvider } from '../contexts/GroupStateProvider'
+import { UserStateProvider } from '../contexts/UserStateProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -13,9 +14,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AlertsStateProvider>
       <GroupStateProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <UserStateProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </UserStateProvider>
       </GroupStateProvider>
     </AlertsStateProvider>
   )
