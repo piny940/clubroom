@@ -21,7 +21,7 @@ describe('<LoginRequired />', () => {
     const AskLogin = <Test textContent="Test2" />
 
     const { getByTestId } = render(
-      <LoginRequired askLogin={AskLogin}>
+      <LoginRequired whenNoUser={AskLogin}>
         <Test textContent="Test1" />
       </LoginRequired>,
       { wrapper: UserStateProvider }
@@ -40,7 +40,7 @@ describe('<LoginRequired />', () => {
     const AskLogin = <Test textContent="Test1" />
 
     const { getByTestId } = render(
-      <LoginRequired askLogin={AskLogin}>
+      <LoginRequired whenNoUser={AskLogin}>
         <Test textContent="Test2" />
       </LoginRequired>,
       { wrapper: UserStateProvider }

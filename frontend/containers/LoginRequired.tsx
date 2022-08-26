@@ -4,12 +4,12 @@ import { fetchUser } from '../utils/api'
 
 export interface LoginRequiredProps {
   children: ReactNode
-  askLogin?: ReactNode
+  whenNoUser?: ReactNode
 }
 
 export const LoginRequired: React.FC<LoginRequiredProps> = ({
   children,
-  askLogin = <></>,
+  whenNoUser = <></>,
 }) => {
   const { user, setUser } = useUserState()
 
@@ -21,5 +21,5 @@ export const LoginRequired: React.FC<LoginRequiredProps> = ({
     void _updateUser()
   }, [])
 
-  return user === null ? <>{askLogin}</> : <>{children}</>
+  return user === null ? <>{whenNoUser}</> : <>{children}</>
 }
