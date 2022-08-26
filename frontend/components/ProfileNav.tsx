@@ -1,4 +1,5 @@
 import { DropdownActionButton } from './DropdownActionButton'
+import styles from '../styles/navbar.module.scss'
 
 export interface ProfileNavProps {
   logout: () => void
@@ -12,7 +13,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({ logout }) => {
           account_circle
         </span>
       </a>
-      <ul className="dropdown-menu m-0">
+      <ul className="dropdown-menu m-0" id={styles.profile_dropdown}>
         <DropdownActionButton handler={logout} label="ログアウト" />
       </ul>
     </div>
