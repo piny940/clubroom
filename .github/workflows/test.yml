@@ -9,22 +9,22 @@ jobs:
         image: postgres:12
         ports:
           - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         env:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-    env:
-      RAILS_ENV: test
-      DATABASE_HOST: postgres
-      TEST_PG_USER: postgres
-      TEST_PG_PASSWORD: postgres
-      TEST_PG_HOST: postgres
+    container:
+      image: ruby:3.1.2
+      env:
+        RAILS_ENV: test
+        DATABASE_HOST: postgres
+        TEST_PG_USER: postgres
+        TEST_PG_PASSWORD: postgres
+        TEST_PG_HOST: postgres
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1.2
       - name: Cache bundle gems
         uses: actions/cache@v2
         with:
@@ -41,9 +41,7 @@ jobs:
         run: bundle install --jobs 4 --retry 3
         working-directory: ./backend
       - name: DB setup
-        run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
+        run: bundle exec rails db:setup
         working-directory: ./backend
       - name: Run rails test
         run: if (bundle exec rails test) | grep -E "(FAIL|ERROR)"; then exit 1; fi
