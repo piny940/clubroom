@@ -12,6 +12,6 @@ class TalkEntry < ApplicationRecord
   end
 
   def can_user_join?
-    errors.add(:base, 'user need to join the group') if talkroom.kind_group? && !talkroom.group.members.include?(user)
+    errors.add(:base, 'user need to join the group') if talkroom.kind_group? && talkroom.group.members.exclude?(user)
   end
 end

@@ -9,6 +9,6 @@ class Talk < ApplicationRecord
   private
 
   def from_user_in_talkroom?
-    errors.add(:base, 'user need to join the talkroom') if !from_user.nil? && !talkroom.members.include?(from_user)
+    errors.add(:base, 'user need to join the talkroom') if !from_user.nil? && talkroom.members.exclude?(from_user)
   end
 end
