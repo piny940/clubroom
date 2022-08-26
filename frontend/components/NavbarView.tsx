@@ -8,12 +8,14 @@ export interface NavbarViewProps {
   group?: string
   groups: Group[]
   setGroup: (group: Group) => void
+  logout: () => void
 }
 
 export const NavbarView: React.FC<NavbarViewProps> = ({
   group,
   groups,
   setGroup,
+  logout,
 }) => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -23,8 +25,8 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
         </Link>
         <LoginRequired>
           <div className="d-flex justify-content-end align-items-center w-100">
-            <GroupsNav group={group} groups={groups} setGroup={setGroup} />
-            <ProfileNav />
+            <GroupsNav groupName={group} groups={groups} setGroup={setGroup} />
+            <ProfileNav logout={logout} />
           </div>
         </LoginRequired>
       </div>

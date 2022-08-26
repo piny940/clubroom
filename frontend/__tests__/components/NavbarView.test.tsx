@@ -20,13 +20,15 @@ describe('<NavbarView />', () => {
       },
     ]
 
+    const logout = jest.fn()
+
     const setGroups = jest.fn()
     const { getAllByTestId } = render(
-      <NavbarView groups={groups} setGroup={setGroups} />
+      <NavbarView groups={groups} setGroup={setGroups} logout={logout} />
     )
 
     await waitFor(() => {
-      expect(getAllByTestId(TestID.TITLE_DROPDOWN_ITEM).length).toBe(2)
+      expect(getAllByTestId(TestID.DROPDOWN_ACTION_BUTTON).length).toBe(2)
     })
   })
 })

@@ -12,7 +12,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({ logout }) => {
           account_circle
         </span>
       </a>
-      <ul className="dropdown-menu">
+      <ul className="dropdown-menu m-0">
         <DropdownActionButton handler={logout} label="ログアウト" />
       </ul>
     </div>

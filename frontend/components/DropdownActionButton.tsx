@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react'
+import { TestID } from '../resources/TestID'
 
 export interface DropdownActionButtonProps {
   label: string
@@ -11,7 +12,11 @@ export const DropdownActionButton: React.FC<DropdownActionButtonProps> = ({
 }) => {
   return (
     <li>
-      <a className="dropdown-item" onClick={handler}>
+      <a
+        className="dropdown-item"
+        onClick={handler}
+        data-testid={TestID.DROPDOWN_ACTION_BUTTON}
+      >
         {label}
       </a>
     </li>

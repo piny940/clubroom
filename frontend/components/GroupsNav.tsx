@@ -1,14 +1,14 @@
 import { Group } from '../types'
-import { TitleDropdownItem } from './TitleDropdownItem'
+import { DropdownActionButton } from './DropdownActionButton'
 
 export interface GroupNavProps {
-  group?: string
+  groupName?: string
   groups: Group[]
   setGroup: (group: Group) => void
 }
 
 export const GroupsNav: React.FC<GroupNavProps> = ({
-  group = 'グループを選ぶ',
+  groupName = 'グループを選ぶ',
   groups,
   setGroup,
 }) => {
@@ -21,11 +21,15 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
         aria-expanded="false"
         dropdown-target="#brand-items"
       >
-        {group}
+        {groupName}
       </div>
       <ul className="dropdown-menu m-0">
         {groups.map((group) => (
-          <TitleDropdownItem group={group} setGroup={setGroup} key={group.id} />
+          <DropdownActionButton
+            label={group.name}
+            handler={() => setGroup(group)}
+            key={group.id}
+          />
         ))}
       </ul>
     </div>
