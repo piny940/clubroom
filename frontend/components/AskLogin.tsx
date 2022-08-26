@@ -1,3 +1,11 @@
+import Link from 'next/link'
+
 export const AskLogin: React.FC = () => {
-  return <div className="text-danger">ログインしてください</div>
+  return (
+    <Link href="/accounts/login">
+      <a className="text-danger border-bottom border-danger">
+        ログインしてください。
+      </a>
+    </Link>
+  )
 }
