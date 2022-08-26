@@ -26,7 +26,7 @@ jest.mock('../../contexts/AlertsStateProvider', () => {
 })
 
 describe('<Alerts />', () => {
-  it('正常に描画される', async () => {
+  it('正常に描画される', () => {
     const { queryAllByTestId } = render(<Alerts />)
     expect(queryAllByTestId(TestID.ALERT).length).toBe(2)
   })
