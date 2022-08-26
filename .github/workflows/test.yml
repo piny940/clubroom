@@ -48,7 +48,7 @@ jobs:
         run: bundle exec rails db:setup
         working-directory: ./backend
       - name: Run rails test
-        run: if (bundle exec rails test) |& grep -E "(FAIL|ERROR)"; then exit 1; fi
+        run: if (bundle exec rails test) | grep -E "(FAIL|ERROR)"; then exit 1; fi
         working-directory: ./backend
       - name: Run rubocop
         run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
