@@ -1,13 +1,13 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/FormGroup'
 import { Message } from '../resources/Messages'
-import { PostSessionsResult } from '../utils/apiResults'
 import { AlertState } from '../utils/enums'
 import { toClass } from '../utils/helpers'
 import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'
 import { fetchApi } from '../utils/api'
+import { useUserState } from '../contexts/UserStateProvider'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -15,6 +15,7 @@ export const LoginForm: React.FC = () => {
   })
 
   const [alert, setAlert] = useState<string>('')
+  const { setUser } = useUserState()
 
   const movePage = useMovePage()
 
@@ -25,13 +26,14 @@ export const LoginForm: React.FC = () => {
         method: 'POST',
         data: data,
       })
-      const json: Promise<PostSessionsResult> = response.json()
+      const json = await response.json()
 
       if (response.status >= 400) {
-        setAlert((await json).message)
+        setAlert(json.message)
       } else {
+        setUser(json.data.user)
         void movePage('/', {
-          content: (await json).message,
+          content: json.message,
           state: AlertState.SUCCESS,
         })
       }
