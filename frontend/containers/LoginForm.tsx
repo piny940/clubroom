@@ -3,10 +3,11 @@ import { FormGroup } from '../components/FormGroup'
 import { Message } from '../resources/Messages'
 import { PostSessionsResult } from '../utils/apiResults'
 import { AlertState } from '../utils/enums'
-import { fetchApi, toClass } from '../utils/helpers'
+import { toClass } from '../utils/helpers'
 import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'
+import { fetchApi } from '../utils/api'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({

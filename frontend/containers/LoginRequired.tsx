@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react'
 import { User } from '../types'
-import { fetchApi } from '../utils/helpers'
+import { fetchUser } from '../utils/api'
 
 export interface LoginRequiredProps {
   children: ReactNode
@@ -14,12 +14,7 @@ export const LoginRequired: React.FC<LoginRequiredProps> = ({
   let user: User | null = null
 
   const _updateUser = async () => {
-    const response = await fetchApi({
-      url: '/user',
-      method: 'GET',
-    })
-    const json = await response.json()
-    user = json.data.user
+    user = await fetchUser()
   }
 
   useEffect(() => {
