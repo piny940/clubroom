@@ -1,6 +1,5 @@
-import { renderHook, waitFor } from '@testing-library/react'
+import { renderHook, waitFor, act } from '@testing-library/react'
 import { ReactNode } from 'react'
-import { act } from 'react-dom/test-utils'
 import {
   AlertsStateProvider,
   useAlertsState,
