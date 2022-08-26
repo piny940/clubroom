@@ -18,6 +18,7 @@ jobs:
         image: redis:alpine
         options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
     container:
+      image: ruby:3.1.2
       env:
         RAILS_ENV: test
         DATABASE_HOST: postgres
@@ -37,8 +38,6 @@ jobs:
             ${{ runner.os }}-gem-${{ env.cache-name }}-
             ${{ runner.os }}-gem-
             ${{ runner.os }}-
-      - name: Install ruby
-        run: apt install Ruby gem ruby-dev build-essential
       - name: Install Bundler
         run: gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
         working-directory: ./backend
