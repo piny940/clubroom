@@ -25,5 +25,5 @@ export const Navbar: React.FC = () => {
     void _updateGroups()
   }, [])
 
-  return <NavbarView groups={groups} title={group?.name} setGroup={setGroup} />
+  return <NavbarView groups={groups} group={group?.name} setGroup={setGroup} />
 }
