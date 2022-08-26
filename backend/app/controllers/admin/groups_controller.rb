@@ -1,5 +1,5 @@
 class Admin::GroupsController < Admin::Base
-  before_action :set_group, only: %i[ show edit update destroy ]
+  before_action :set_group, only: %i[show edit update destroy]
 
   def index
     @groups = Group.all
@@ -17,7 +17,7 @@ class Admin::GroupsController < Admin::Base
     @group = Group.new(group_params)
 
     if @group.save
-      redirect_to admin_groups_path, notice: "Groupが作成されました。"
+      redirect_to admin_groups_path, notice: 'Groupが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::GroupsController < Admin::Base
 
   def update
     if @group.update(group_params)
-      redirect_to admin_group_path(@group), notice: "Groupが更新されました。"
+      redirect_to admin_group_path(@group), notice: 'Groupが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Admin::GroupsController < Admin::Base
 
   def destroy
     @group.destroy
-    redirect_to admin_groups_path, notice: "Groupが削除されました。"
+    redirect_to admin_groups_path, notice: 'Groupが削除されました。'
   end
 
   private

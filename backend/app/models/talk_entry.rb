@@ -1,4 +1,4 @@
-class TalkEntry < ApplicationRecord  
+class TalkEntry < ApplicationRecord
   belongs_to :talkroom
   belongs_to :user
 
@@ -7,15 +7,11 @@ class TalkEntry < ApplicationRecord
 
   private
 
-    def entry_count_within_limit?
-      if talkroom.kind_direct? && talkroom.talk_entries.count >= 2
-        errors.add(:base, "talk entry count limit")
-      end
-    end
+  def entry_count_within_limit?
+    errors.add(:base, 'talk entry count limit') if talkroom.kind_direct? && talkroom.talk_entries.count >= 2
+  end
 
-    def can_user_join?
-      if talkroom.kind_group? && !talkroom.group.members.include?(user)
-        errors.add(:base, "user need to join the group")
-      end
-    end
+  def can_user_join?
+    errors.add(:base, 'user need to join the group') if talkroom.kind_group? && !talkroom.group.members.include?(user)
+  end
 end

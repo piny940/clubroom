@@ -4,8 +4,10 @@ class Member::Base < ApplicationController
   private
 
   def authenticate_user!
-    render json: {
-      message: "ログインしてください。"
-    }, status: 400 if current_user.nil?
+    if current_user.nil?
+      render json: {
+        message: 'ログインしてください。'
+      }, status: :bad_request
+    end
   end
 end

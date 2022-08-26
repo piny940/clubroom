@@ -10,19 +10,19 @@ class Member::GroupsController < Member::Base
 
     if group.id
       render json: {
-        group: group,
-        message: "グループを作成しました。"
+        group:,
+        message: 'グループを作成しました。'
       }, status: :ok
     else
       render json: {
         group: nil,
-        message: "グループを作成できませんでした。"
-      }, status: 400
+        message: 'グループを作成できませんでした。'
+      }, status: :bad_request
     end
   end
 
   private
-  
+
   def group_params
     params.require(:group).permit(:name, :school)
   end

@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 AllCops:
   Exclude:
     - "vendor/**/*" # rubocop config/default.yml
@@ -12,5 +14,3 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
-StringLiterals:
-  EnforcedStyle: double_quotes

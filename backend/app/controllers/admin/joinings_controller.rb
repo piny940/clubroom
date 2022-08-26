@@ -1,5 +1,5 @@
 class Admin::JoiningsController < Admin::Base
-  before_action :set_joining, only: %i[ show edit update destroy ]
+  before_action :set_joining, only: %i[show edit update destroy]
 
   def index
     @joinings = Joining.all
@@ -17,7 +17,7 @@ class Admin::JoiningsController < Admin::Base
     @joining = Joining.new(joining_params)
 
     if @joining.save
-      redirect_to admin_joinings_path, notice: "Joiningが作成されました。"
+      redirect_to admin_joinings_path, notice: 'Joiningが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::JoiningsController < Admin::Base
 
   def update
     if @joining.update(joining_params)
-      redirect_to admin_joining_path(@joining), notice: "Joiningが更新されました。"
+      redirect_to admin_joining_path(@joining), notice: 'Joiningが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Admin::JoiningsController < Admin::Base
 
   def destroy
     @joining.destroy
-    redirect_to admin_joinings_path, notice: "Joiningが削除されました。"
+    redirect_to admin_joinings_path, notice: 'Joiningが削除されました。'
   end
 
   private

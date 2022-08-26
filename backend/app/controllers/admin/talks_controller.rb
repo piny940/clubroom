@@ -1,5 +1,5 @@
 class Admin::TalksController < ApplicationController
-  before_action :set_talk, only: %i[ show edit update destroy ]
+  before_action :set_talk, only: %i[show edit update destroy]
 
   def index
     @talks = Talk.all
@@ -17,7 +17,7 @@ class Admin::TalksController < ApplicationController
     @talk = Talk.new(talk_params)
 
     if @talk.save
-      redirect_to admin_talks_path, notice: "Talkが作成されました。"
+      redirect_to admin_talks_path, notice: 'Talkが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::TalksController < ApplicationController
 
   def update
     if @talk.update(talk_params)
-      redirect_to [:admin, @talk], notice: "Talkが更新されました。"
+      redirect_to [:admin, @talk], notice: 'Talkが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Admin::TalksController < ApplicationController
 
   def destroy
     @talk.destroy
-    redirect_to admin_talks_path, notice: "Talkが削除されました。"
+    redirect_to admin_talks_path, notice: 'Talkが削除されました。'
   end
 
   private

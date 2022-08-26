@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class TalkTest < ActiveSupport::TestCase
   def setup
@@ -8,43 +8,43 @@ class TalkTest < ActiveSupport::TestCase
     @talkroom = @group.talkrooms.create!
   end
 
-  test "Talkを正常に作成できる" do
+  test 'Talkを正常に作成できる' do
     @talkroom.members << @user
-    talk = Talk.new(from_user_id: @user.id, talkroom_id: @talkroom.id, content: "Test")
+    talk = Talk.new(from_user_id: @user.id, talkroom_id: @talkroom.id, content: 'Test')
     talk.save!
     assert talk.valid?
   end
 
-  test "TalkroomからTalkを作成できる" do
+  test 'TalkroomからTalkを作成できる' do
     @talkroom.members << @user
     before_count = Talk.count
-    @talkroom.talks.create(content: "Test", from_user_id: @user.id)
-    assert_equal before_count+1, Talk.count
+    @talkroom.talks.create(content: 'Test', from_user_id: @user.id)
+    assert_equal before_count + 1, Talk.count
   end
 
-  test "UserからTalkを作成できる" do
+  test 'UserからTalkを作成できる' do
     @talkroom.members << @user
     before_count = Talk.count
-    @user.talks.create(content: "Test", talkroom_id: @talkroom.id)
-    assert_equal before_count+1, Talk.count
+    @user.talks.create(content: 'Test', talkroom_id: @talkroom.id)
+    assert_equal before_count + 1, Talk.count
   end
 
-  test "自分の入っていないTalkroomのTalkは作成できない" do
-    talk = Talk.new(from_user_id: @user.id, talkroom_id: @talkroom.id, content: "Test")
+  test '自分の入っていないTalkroomのTalkは作成できない' do
+    talk = Talk.new(from_user_id: @user.id, talkroom_id: @talkroom.id, content: 'Test')
     assert_not talk.valid?
   end
 
-  test "Talkroomを削除するとそのTalkroomのTalkは全て削除される" do
+  test 'Talkroomを削除するとそのTalkroomのTalkは全て削除される' do
     @talkroom.members << @user
-    @user.talks.create!(content: "Test", talkroom_id: @talkroom.id)
+    @user.talks.create!(content: 'Test', talkroom_id: @talkroom.id)
     before_count = Talk.count
     @talkroom.destroy
-    assert_equal before_count-1, Talk.count
+    assert_equal before_count - 1, Talk.count
   end
 
-  test "FromUserを削除するとそのUser送ったTalkのfrom_user_idはnilになる" do
+  test 'FromUserを削除するとそのUser送ったTalkのfrom_user_idはnilになる' do
     @talkroom.members << @user
-    talk = @user.talks.create!(content: "Test", talkroom_id: @talkroom.id)
+    talk = @user.talks.create!(content: 'Test', talkroom_id: @talkroom.id)
     before_count = Talk.count
     @user.destroy
     assert_equal before_count, Talk.count
@@ -52,14 +52,14 @@ class TalkTest < ActiveSupport::TestCase
     assert_nil talk.from_user_id
   end
 
-  test "Contentは空白ではいけない" do
+  test 'Contentは空白ではいけない' do
     @talkroom.members << @user
-    talk = Talk.new(from_user_id: @user.id, talkroom_id: @talkroom.id, content: "")
+    talk = Talk.new(from_user_id: @user.id, talkroom_id: @talkroom.id, content: '')
     assert_not talk.valid?
   end
 
-  test "Talk作成時はFromUserを空白にはできない" do
-    talk = Talk.new(talkroom_id: @talkroom.id, content: "Test")
+  test 'Talk作成時はFromUserを空白にはできない' do
+    talk = Talk.new(talkroom_id: @talkroom.id, content: 'Test')
     assert_not talk.valid?
   end
 end
