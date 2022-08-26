@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react'
+import { TestID } from '../resources/TestID'
 import { Group } from '../types'
 
 export interface TitleDropdownItemProps {
@@ -15,7 +16,11 @@ export const TitleDropdownItem: React.FC<TitleDropdownItemProps> = ({
   }
 
   return (
-    <li className="dropdown-item" onClick={_onClick}>
+    <li
+      className="dropdown-item"
+      onClick={_onClick}
+      data-testid={TestID.TITLE_DROPDOWN_ITEM}
+    >
       {group.name}
     </li>
   )
