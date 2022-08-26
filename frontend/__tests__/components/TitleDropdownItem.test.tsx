@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import { TitleDropdownItem } from '../../components/TitleDropdownItem'
 import { TestID } from '../../resources/TestID'
 import { Group } from '../../types'
@@ -13,10 +13,14 @@ describe('<TitleDropdownItem />', () => {
 
   const setGroup = jest.fn()
 
-  it('正常に描画される', () => {
+  it('正常に描画される', async () => {
     const { getByTestId } = render(
       <TitleDropdownItem group={group} setGroup={setGroup} />
     )
-    expect(getByTestId(TestID.TITLE_DROPDOWN_ITEM).textContent).toBe(group.name)
+    await waitFor(() => {
+      expect(getByTestId(TestID.TITLE_DROPDOWN_ITEM).textContent).toBe(
+        group.name
+      )
+    })
   })
 })

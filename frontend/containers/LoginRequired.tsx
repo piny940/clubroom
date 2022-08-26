@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from 'react'
-import { User } from '../types'
+import { useUserState } from '../contexts/UserStateProvider'
 import { fetchUser } from '../utils/api'
 
 export interface LoginRequiredProps {
@@ -11,15 +11,15 @@ export const LoginRequired: React.FC<LoginRequiredProps> = ({
   children,
   askLogin = <></>,
 }) => {
-  let user: User | null = null
+  const { user, setUser } = useUserState()
 
   const _updateUser = async () => {
-    user = await fetchUser()
+    setUser(await fetchUser())
   }
 
   useEffect(() => {
     void _updateUser()
-  })
+  }, [])
 
-  return user === null ? <>{children}</> : <>{askLogin}</>
+  return user === null ? <>{askLogin}</> : <>{children}</>
 }
