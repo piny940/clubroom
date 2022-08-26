@@ -28,6 +28,8 @@ Layout/LineLength:
   Enabled: false
 Naming/VariableNumber:
   Enabled: false
+Rails/InverseOf:
+  Enabled: false
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
 Gemspec/RequireMFA: # new in 1.23
