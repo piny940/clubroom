@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "lint": "npx prettier --write . && npx eslint . --fix",
+    "lint-check": "npx prettier -c . & npx eslint .",
     "test": "jest",
     "watch-test": "jest --watch"
   },
