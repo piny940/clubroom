@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
-import { AskLogin } from '../components/AskLogin'
-import { LoginRequired } from '../containers/LoginRequired'
+import { TalkApp } from '../containers/TalkApp'
 
 const Home: NextPage = () => {
-  return <LoginRequired whenNoUser={<AskLogin />}>ログイン済み</LoginRequired>
+  return <TalkApp />
 }
 
 export default Home

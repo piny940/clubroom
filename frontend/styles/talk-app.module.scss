@@ -1,0 +1,5 @@
+@use './layout.module.scss' as layout;
+
+#app {
+  height: calc(100vh - #{layout.$header-height});
+}
