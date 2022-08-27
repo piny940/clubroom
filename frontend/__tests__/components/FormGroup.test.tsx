@@ -1,6 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
 import { FormGroup, FormGroupProps } from '../../components/FormGroup'
-import { TestID } from '../../resources/TestID'
 import { expect } from '@jest/globals'
 
 describe('<FormGroup />', () => {
@@ -12,15 +11,13 @@ describe('<FormGroup />', () => {
       type: 'password',
       name: 'password',
       register: register,
+      testID: 'test',
     }
 
     const { getByTestId } = render(<FormGroup {...props} />)
 
     await waitFor(() => {
-      expect(getByTestId(TestID.FORM_GROUP_LABEL).textContent).toBe('Test1')
-      expect(getByTestId(TestID.FORM_GROUP_INPUT).getAttribute('type')).toBe(
-        'password'
-      )
+      expect(getByTestId('test').getAttribute('type')).toBe('password')
       expect(register).toBeCalled()
       expect(register.mock.calls[0][0]).toBe('password')
     })
@@ -34,15 +31,13 @@ describe('<FormGroup />', () => {
       type: 'text',
       name: 'test',
       register: register,
+      testID: 'test',
     }
 
     const { getByTestId } = render(<FormGroup {...props} />)
 
     await waitFor(() => {
-      expect(getByTestId(TestID.FORM_GROUP_LABEL).textContent).toBe('Test2')
-      expect(getByTestId(TestID.FORM_GROUP_INPUT).getAttribute('type')).toBe(
-        'text'
-      )
+      expect(getByTestId('test').getAttribute('type')).toBe('text')
       expect(register).toBeCalled()
       expect(register.mock.calls[0][0]).toBe('test')
     })
