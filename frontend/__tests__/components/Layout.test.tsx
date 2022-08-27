@@ -5,7 +5,7 @@ import { Test } from '../testHelpers/Test'
 
 jest.mock('../../containers/Navbar.tsx', () => ({
   Navbar: () => {
-    return <div />
+    return <></>
   },
 }))
 
