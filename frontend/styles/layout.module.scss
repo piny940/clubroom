@@ -1,4 +1,5 @@
-.main {
-  padding-top: 100px;
-  max-width: 1000px;
+$header-height: 56px;
+
+#header {
+  height: $header-height;
 }

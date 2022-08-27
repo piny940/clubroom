@@ -1,0 +1,91 @@
+@use './layout.module.scss' as layout;
+
+$talk_list_button_border_color: rgb(229, 229, 229);
+$talk_room_height: 110px;
+$talk_room_padding: 8px;
+
+#app {
+  height: calc(100vh - #{layout.$header-height});
+}
+.talk_list {
+  background-color: rgb(249, 249, 249);
+  border: 1px solid rgb(209, 209, 209);
+  overflow-y: auto;
+
+  .talk_list_button {
+    height: 65px;
+    width: 100%;
+    list-style-type: none;
+    border-bottom: 1px solid $talk_list_button_border_color;
+
+    h5 {
+      font-size: 16px;
+      color: black;
+    }
+
+    &:hover {
+      background-color: $talk_list_button_border_color;
+    }
+  }
+}
+.talk_room {
+  background-color: white;
+  border: 1px solid white;
+  position: relative;
+
+  #talks {
+    overflow-y: auto;
+    height: calc(100vh - #{layout.$header-height + $talk_room_height});
+
+    li {
+      list-style-type: none;
+    }
+
+    .talk {
+      overflow-wrap: break-word;
+      padding: 5px 13px;
+      display: block;
+      max-width: 70%;
+
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+
+  #talk_form {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    background-color: rgb(249, 249, 249);
+    height: $talk_room_height;
+    padding: $talk_room_padding;
+
+    textarea {
+      margin: 0 2%;
+      width: 90%;
+      height: $talk_room_height - $talk_room_padding * 2;
+      background-color: white;
+
+      &::placeholder {
+        color: rgb(200, 200, 200);
+      }
+    }
+
+    button {
+      padding-top: 9px;
+      padding-right: 11px;
+      background-color: inherit;
+      height: 45px;
+      width: 45px;
+
+      &:hover {
+        background-color: rgb(237, 237, 237);
+        border: 1px solid rgb(237, 237, 237);
+      }
+    }
+  }
+}

@@ -18,7 +18,7 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
   logout,
 }) => {
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav className="navbar navbar-expand navbar-dark bg-dark">
       <div className="container">
         <Link href="/">
           <a className="navbar-brand">Clubroom</a>

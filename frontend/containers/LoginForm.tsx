@@ -45,7 +45,7 @@ export const LoginForm: React.FC = () => {
     <form
       onSubmit={handleSubmit(_submit)}
       className={toClass(
-        'container border border-secondary bg-light p-5 border-2 rounded',
+        'container border border-secondary bg-light p-5 mt-5 border-2 rounded',
         styles.form
       )}
     >
