@@ -40,7 +40,7 @@ $talk_room_padding: 8px;
     width: 100%;
     display: flex;
     align-items: flex-end;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(249, 249, 249);
     height: $talk_room_height;
     padding: $talk_room_padding;
 
@@ -48,6 +48,7 @@ $talk_room_padding: 8px;
       margin: 0 2%;
       width: 90%;
       height: $talk_room_height - $talk_room_padding * 2;
+      background-color: white;
 
       &::placeholder {
         color: rgb(200, 200, 200);
@@ -55,13 +56,11 @@ $talk_room_padding: 8px;
     }
 
     button {
-      padding-left: 6px;
-      padding-right: 6px;
-      padding-top: 3px;
-      background-color: white;
-      height: 35px;
-      width: 35px;
-      margin-bottom: 5px;
+      padding-top: 9px;
+      padding-right: 11px;
+      background-color: inherit;
+      height: 45px;
+      width: 45px;
 
       &:hover {
         background-color: rgb(237, 237, 237);
