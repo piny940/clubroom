@@ -1,0 +1,10 @@
+@use './layout.module.scss' as layout;
+
+#alerts {
+  position: absolute;
+  z-index: 2000;
+  right: 10px;
+  top: layout.$header-height + 10px;
+  min-width: 230px;
+  max-width: 60%;
+}
