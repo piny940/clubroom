@@ -9,7 +9,6 @@ module.exports = {
     'next/core-web-vitals',
     'prettier',
   ],
-  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -23,4 +22,13 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     'object-shorthand': 'off',
   },
+  overrides: [
+    {
+      files: ['**/cypress/*.ts'],
+      parserOptions: {
+        project: ['cypress/tsconfig.json'],
+      },
+      extends: ['plugin:cypress/recommended'],
+    },
+  ],
 }
