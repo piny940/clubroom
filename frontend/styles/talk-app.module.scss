@@ -34,7 +34,7 @@ $talk_room_padding: 8px;
   position: relative;
 
   #talks {
-    overflow: auto;
+    overflow-y: auto;
     height: calc(100vh - #{layout.$header-height + $talk_room_height});
 
     li {
