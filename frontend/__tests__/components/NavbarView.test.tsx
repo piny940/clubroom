@@ -2,6 +2,7 @@ import { render, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { NavbarView } from '../../components/NavbarView'
 import { Group } from '../../types'
+import { expect } from '@jest/globals'
 
 jest.mock('../../containers/LoginRequired', () => ({
   LoginRequired: ({ children }: { children: ReactNode }) => {

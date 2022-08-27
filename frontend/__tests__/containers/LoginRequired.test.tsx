@@ -4,6 +4,7 @@ import { UserStateProvider } from '../../contexts/UserStateProvider'
 import { TestID } from '../../resources/TestID'
 import { fetchUser } from '../../utils/api'
 import { Test } from '../testHelpers/Test'
+import { expect } from '@jest/globals'
 
 jest.mock('../../utils/api')
 

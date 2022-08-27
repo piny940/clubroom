@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react'
 import { FormGroup, FormGroupProps } from '../../components/FormGroup'
 import { TestID } from '../../resources/TestID'
+import { expect } from '@jest/globals'
 
 describe('<FormGroup />', () => {
   it('パスワードのFormGroupが正常に描画される', async () => {

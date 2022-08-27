@@ -4,6 +4,7 @@ import {
   GroupStateProvider,
   useGroupState,
 } from '../../contexts/GroupStateProvider'
+import { expect } from '@jest/globals'
 
 describe('<GroupStateProvider />', () => {
   it('正常にgroupをsetできる', async () => {

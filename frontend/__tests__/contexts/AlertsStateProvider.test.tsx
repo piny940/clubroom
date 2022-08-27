@@ -5,6 +5,7 @@ import {
   useAlertsState,
 } from '../../contexts/AlertsStateProvider'
 import { AlertState } from '../../utils/enums'
+import { expect } from '@jest/globals'
 
 jest.mock('next/router', () => {
   return {

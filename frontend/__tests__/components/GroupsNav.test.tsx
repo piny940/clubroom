@@ -2,6 +2,7 @@ import { render } from '@testing-library/react'
 import { GroupsNav } from '../../components/GroupsNav'
 import { TestID } from '../../resources/TestID'
 import { Group } from '../../types'
+import { expect } from '@jest/globals'
 
 describe('<GroupsNav />', () => {
   it('正常に描画される', () => {

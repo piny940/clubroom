@@ -3,6 +3,7 @@ import { Alerts } from '../../components/Alerts'
 import { AlertState } from '../../utils/enums'
 import { TestID } from '../../resources/TestID'
 import { Alert } from '../../types'
+import { expect } from '@jest/globals'
 
 jest.mock('../../contexts/AlertsStateProvider', () => {
   return {

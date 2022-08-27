@@ -3,6 +3,7 @@ import { Alert } from '../../components/Alert'
 import { TestID } from '../../resources/TestID'
 import { Alert as AlertType } from '../../types'
 import { AlertState } from '../../utils/enums'
+import { expect } from '@jest/globals'
 
 describe('<Alert />', () => {
   it('SuccessのAlertが正常に表示される', async () => {
