@@ -7,5 +7,6 @@ export default defineConfig({
     },
     specPattern: '__tests__/cypress/*.cy.{js,jsx,ts,tsx}',
     supportFile: '__tests__/cypress/support/e2e.ts',
+    baseUrl: 'http://localhost:3001',
   },
 })
