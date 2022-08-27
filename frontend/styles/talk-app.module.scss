@@ -1,6 +1,8 @@
 @use './layout.module.scss' as layout;
 
 $talk_list_button_border_color: rgb(229, 229, 229);
+$talk_room_height: 110px;
+$talk_room_padding: 8px;
 
 #app {
   height: calc(100vh - #{layout.$header-height});
@@ -29,4 +31,42 @@ $talk_list_button_border_color: rgb(229, 229, 229);
 .talk_room {
   background-color: white;
   border: 1px solid white;
+  position: relative;
+
+  #talk_form {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    background-color: rgb(235, 235, 235);
+    height: $talk_room_height;
+    padding: $talk_room_padding;
+
+    textarea {
+      margin: 0 2%;
+      width: 90%;
+      height: $talk_room_height - $talk_room_padding * 2;
+
+      &::placeholder {
+        color: rgb(200, 200, 200);
+      }
+    }
+
+    button {
+      padding-left: 6px;
+      padding-right: 6px;
+      padding-top: 3px;
+      background-color: white;
+      height: 35px;
+      width: 35px;
+      margin-bottom: 5px;
+
+      &:hover {
+        background-color: rgb(237, 237, 237);
+        border: 1px solid rgb(237, 237, 237);
+      }
+    }
+  }
 }
