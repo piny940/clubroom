@@ -1,6 +1,7 @@
 export enum TestID {
   TEST = 'test',
   ALERT = 'alert',
+  ALERT_CLOSE = 'alert-close',
   LOGIN_EMAIL = 'login-email',
   LOGIN_PASSWORD = 'login-password',
   LOGIN_SUBMIT = 'login-submit',
