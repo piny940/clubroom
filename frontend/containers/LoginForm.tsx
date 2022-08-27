@@ -50,7 +50,13 @@ export const LoginForm: React.FC = () => {
       )}
     >
       <h2 className="ms-2 mb-4">ログイン</h2>
-      {alert ? <div className="text-danger">{alert}</div> : <></>}
+      {alert ? (
+        <div className="text-danger" data-testid={TestID.FORM_ERROR}>
+          {alert}
+        </div>
+      ) : (
+        <></>
+      )}
       <FormGroup
         register={register}
         label="メールアドレス"

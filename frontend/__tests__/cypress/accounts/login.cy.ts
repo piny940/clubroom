@@ -31,7 +31,7 @@ describe('accounts/login', () => {
     typeTestId(TestID.LOGIN_PASSWORD, 'wrongPassword')
     clickTestId(TestID.LOGIN_SUBMIT)
 
-    locationShouldBe('accounts/login')
-    getTestId(TestID.ALERT).should('have.class', 'alert alert-danger')
+    locationShouldBe('/accounts/login')
+    getTestId(TestID.FORM_ERROR).should('exist')
   })
 })
