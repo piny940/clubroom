@@ -1,7 +1,9 @@
 export enum TestID {
   TEST = 'test',
   ALERT = 'alert',
-  FORM_GROUP_LABEL = 'form-group-label',
-  FORM_GROUP_INPUT = 'from-group-input',
+  LOGIN_EMAIL = 'login-email',
+  LOGIN_PASSWORD = 'login-password',
+  LOGIN_SUBMIT = 'login-submit',
   DROPDOWN_ACTION_BUTTON = 'dropdown-action-button',
+  FORM_ERROR = 'form-error',
 }

@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'
 import { fetchApi } from '../utils/api'
 import { useUserState } from '../contexts/UserStateProvider'
+import { TestID } from '../resources/TestID'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -49,13 +50,20 @@ export const LoginForm: React.FC = () => {
       )}
     >
       <h2 className="ms-2 mb-4">ログイン</h2>
-      {alert ? <div className="text-danger">{alert}</div> : <></>}
+      {alert ? (
+        <div className="text-danger" data-testid={TestID.FORM_ERROR}>
+          {alert}
+        </div>
+      ) : (
+        <></>
+      )}
       <FormGroup
         register={register}
         label="メールアドレス"
         type="email"
         name="email"
         required={Message.INPUT_REQUIRED}
+        testID={TestID.LOGIN_EMAIL}
       />
       <FormGroup
         register={register}
@@ -63,8 +71,12 @@ export const LoginForm: React.FC = () => {
         type="password"
         name="password"
         required={Message.INPUT_REQUIRED}
+        testID={TestID.LOGIN_PASSWORD}
       />
-      <button className="btn btn-primary col-md-6 my-3 offset-md-3">
+      <button
+        className="btn btn-primary col-md-6 my-3 offset-md-3"
+        data-testid={TestID.LOGIN_SUBMIT}
+      >
         ログイン
       </button>
     </form>
