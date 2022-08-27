@@ -33,6 +33,26 @@ $talk_room_padding: 8px;
   border: 1px solid white;
   position: relative;
 
+  #talks {
+    overflow: auto;
+    height: calc(100vh - #{layout.$header-height + $talk_room_height});
+
+    li {
+      list-style-type: none;
+    }
+
+    .talk {
+      overflow-wrap: break-word;
+      padding: 5px 13px;
+      display: block;
+      max-width: 70%;
+
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+
   #talk_form {
     position: absolute;
     bottom: 0;

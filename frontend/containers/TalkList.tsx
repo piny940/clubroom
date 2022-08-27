@@ -8,7 +8,7 @@ export interface TalkListInterface {
 
 export const TalkList: React.FC<TalkListInterface> = ({ width }) => {
   return (
-    <div
+    <section
       style={{ width: width }}
       className={toClass('h-100', styles.talk_list)}
     >
@@ -16,6 +16,6 @@ export const TalkList: React.FC<TalkListInterface> = ({ width }) => {
         <TalkListButton />
         <TalkListButton />
       </ul>
-    </div>
+    </section>
   )
 }
