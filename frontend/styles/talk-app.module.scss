@@ -1,5 +1,32 @@
 @use './layout.module.scss' as layout;
 
+$talk_list_button_border_color: rgb(229, 229, 229);
+
 #app {
   height: calc(100vh - #{layout.$header-height});
+}
+.talk_list {
+  background-color: rgb(249, 249, 249);
+  border: 1px solid rgb(209, 209, 209);
+  overflow-y: auto;
+
+  .talk_list_button {
+    height: 65px;
+    width: 100%;
+    list-style-type: none;
+    border-bottom: 1px solid $talk_list_button_border_color;
+
+    h5 {
+      font-size: 16px;
+      color: black;
+    }
+
+    &:hover {
+      background-color: $talk_list_button_border_color;
+    }
+  }
+}
+.talk_room {
+  background-color: white;
+  border: 1px solid white;
 }
