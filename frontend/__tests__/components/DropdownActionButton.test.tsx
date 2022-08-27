@@ -15,6 +15,7 @@ describe('<DropdownActionButton />', () => {
 
     await waitFor(() => {
       expect(el.textContent).toBe(label)
+      expect(handler).not.toBeCalled()
     })
 
     act(() => {
