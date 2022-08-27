@@ -4,6 +4,7 @@ import {
   useUserState,
   UserStateProvider,
 } from '../../contexts/UserStateProvider'
+import { expect } from '@jest/globals'
 
 describe('<UserStateProvider />', () => {
   it('正常にUserをsetできる', async () => {
