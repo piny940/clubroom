@@ -14,9 +14,9 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     get '/member/groups'
     assert_response :success
     json = JSON.parse(response.body)
-    
+
     assert json['data']['groups'].length, 1
-    assert json['data']['groups'][0]["name"], 'group1'
+    assert json['data']['groups'][0]['name'], 'group1'
   end
 
   test 'ログインしていない状態では400を返す' do

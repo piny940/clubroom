@@ -13,7 +13,7 @@ class Member::GroupsController < Member::Base
     if group.id
       render json: {
         data: {
-          group: group
+          group:
         },
         message: 'グループを作成しました。'
       }, status: :ok
