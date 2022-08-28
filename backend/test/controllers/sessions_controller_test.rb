@@ -1,17 +1,19 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    @user = User.create!(name: 'alice', email: 'alice@example.com', password: 'password', password_confirmation: 'password')
+  end
+
   test '正常にログインできる' do
-    user = users('alice')
-    post '/session', params: { email: user.email, password: 'password' }
+    post '/session', params: { email: @user.email, password: 'password' }
     assert_response :success
     json = JSON.parse(response.body)
     assert_equal json['message'], 'ログインしました。'
   end
 
   test 'メールアドレスまたはパスワードが違う場合はログインできない' do
-    user = users('alice')
-    post '/session', params: { email: user.email, password: 'wrongPassword' }
+    post '/session', params: { email: @user.email, password: 'wrongPassword' }
     assert_response 400
     json = JSON.parse(response.body)
     assert_equal json['message'], 'メールアドレスまたはパスワードが違います。'
