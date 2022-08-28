@@ -45,6 +45,8 @@ describe('<Talkroom />', () => {
       expect(mockedFetchTalks).toBeCalledTimes(1)
     })
 
+    mockedFetchTalks.mockReset()
+
     openTalkroom = {
       id: 1,
       name: 'Test1',
@@ -57,14 +59,16 @@ describe('<Talkroom />', () => {
     rerender(<Talkroom width={width} openTalkroom={openTalkroom} />)
 
     await waitFor(() => {
-      expect(mockedFetchTalks).toBeCalledTimes(2)
+      expect(mockedFetchTalks).toBeCalledTimes(1)
     })
+
+    mockedFetchTalks.mockReset()
 
     rerender(<Talkroom width={width} openTalkroom={null} />)
 
     await waitFor(() => {
       // openTalkroomがnullの時はfetchTalksは呼ばれない
-      expect(mockedFetchTalks).toBeCalledTimes(2)
+      expect(mockedFetchTalks).not.toBeCalled()
     })
   })
 })
