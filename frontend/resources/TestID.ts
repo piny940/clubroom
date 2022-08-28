@@ -9,4 +9,5 @@ export enum TestID {
   FORM_ERROR = 'form-error',
   TALK_LIST_BUTTON = 'talk-list-button',
   TALK = 'talk',
+  TALK_ROW = 'talk-row',
 }
