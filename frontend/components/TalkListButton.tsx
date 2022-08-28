@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react'
+import { TestID } from '../resources/TestID'
 import styles from '../styles/talk-app.module.scss'
 
 export interface TalkListButtonProps {
@@ -18,6 +19,7 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
         role="button"
         className="w-100 h-100 d-block pt-2 ps-4"
         onClick={handler}
+        data-testid={TestID.TALK_LIST_BUTTON}
       >
         <h5>{title}</h5>
         <div className="detail small text-secondary ms-3">{detail}</div>
