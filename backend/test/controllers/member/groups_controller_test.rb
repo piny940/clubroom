@@ -7,8 +7,8 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     get '/member/groups'
     assert_response :success
     json = JSON.parse(response.body)
-    assert json['groups']
-    assert_not json['groups'].empty?
+    assert json['data']['groups']
+    assert_not json['data']['groups'].empty?
   end
 
   test 'ログインしていない状態では400を返す' do
@@ -24,7 +24,7 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     get '/member/groups'
     assert_response :success
     json = JSON.parse(response.body)
-    assert json['groups'].empty?
+    assert json['data']['groups'].empty?
   end
 
   test '正常に自身の属するグループを作成できる' do
@@ -38,7 +38,7 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     user.reload
     assert_equal before_groups_count + 1, Group.count
     assert_equal before_count + 1, user.groups.length
-    assert_equal json['group']['name'], 'Test'
+    assert_equal json['data']['group']['name'], 'Test'
   end
 
   test 'paramsに不備がある場合は400を返す' do

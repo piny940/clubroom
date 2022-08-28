@@ -19,3 +19,31 @@ yuu-seitokai:
 chika-seitokai:
   user: chika
   group: seitokai
+
+miyuki-shiroganeke:
+  user: miyuki
+  group: shiroganeke
+
+kei-shiroganeke:
+  user: kei
+  group: shiroganeke
+
+kaguya-shinomiyake:
+  user: kaguya
+  group: shinomiyake
+
+gannann-shinomiyake:
+  user: gannann
+  group: shinomiyake
+
+oukou-shinomiyake:
+  user: oukou
+  group: shinomiyake
+
+seiryu-shinomiyake:
+  user: seiryu
+  group: shinomiyake
+
+unnyou-shinomiyake:
+  user: unnyou
+  group: shinomiyake

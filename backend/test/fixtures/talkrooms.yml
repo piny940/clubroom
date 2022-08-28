@@ -1,1 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+shiroganeke-room1:
+  name: 白銀家トークルーム1
+  group: shiroganeke
+
+shinomiyake-room1:
+  name: 四宮家トークルーム1
+  group: shinomiyake
+
+shinomiyake-brothers:
+  name: 四宮家兄弟トークルーム
+  group: shinomiyake

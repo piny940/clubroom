@@ -1,1 +1,33 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+kaguya-shinomiyake-room1:
+  user: kaguya
+  talkroom: shinomiyake-room1
+
+gannann-shinomiyake-room1:
+  user: gannann
+  talkroom: shinomiyake-room1
+
+oukou-shinomiyake-room1:
+  user: oukou
+  talkroom: shinomiyake-room1
+
+seiryu-shinomiyake-room1:
+  user: seiryu
+  talkroom: shinomiyake-room1
+
+unnyou-shinomiyake-room1:
+  user: unnyou
+  talkroom: shinomiyake-room1
+
+oukou-shinomiyake-brothers:
+  user: oukou
+  talkroom: shinomiyake-brothers
+
+seiryu-shinomiyake-brothers:
+  user: seiryu
+  talkroom: shinomiyake-brothers
+
+unnyou-shinomiyake-brothers:
+  user: unnyou
+  talkroom: shinomiyake-brothers
