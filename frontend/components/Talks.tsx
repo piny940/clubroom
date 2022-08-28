@@ -5,7 +5,7 @@ import { Talk } from '../types'
 
 export interface TalksProps {
   talks: Talk[]
-  userID: number
+  userID?: number
 }
 
 export const Talks: React.FC<TalksProps> = ({ talks, userID }) => {
@@ -18,13 +18,17 @@ export const Talks: React.FC<TalksProps> = ({ talks, userID }) => {
   return (
     <section id={styles.talks}>
       <ul className="px-0 pb-1 m-0" id="inner-talks">
-        {talks.map((talk) => (
-          <TalkRow
-            content={talk.content}
-            sentFrom={talk.from_user_id === userID ? 'myself' : 'others'}
-            key={talk.id}
-          />
-        ))}
+        {userID ? (
+          talks.map((talk) => (
+            <TalkRow
+              content={talk.content}
+              sentFrom={talk.from_user_id === userID ? 'myself' : 'others'}
+              key={talk.id}
+            />
+          ))
+        ) : (
+          <></>
+        )}
       </ul>
     </section>
   )

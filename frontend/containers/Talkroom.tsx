@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { TalkForm } from '../components/TalkForm'
 import { Talks } from '../components/Talks'
+import { useUserState } from '../contexts/UserStateProvider'
 import styles from '../styles/talk-app.module.scss'
 import { Talk, Talkroom as TalkroomType } from '../types'
 import { fetchTalks } from '../utils/api'
@@ -15,6 +16,7 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
   openTalkroom,
 }) => {
   const [talks, setTalks] = useState<Talk[]>([])
+  const { user } = useUserState()
 
   const _updateTalks = async () => {
     if (!openTalkroom) {
@@ -31,7 +33,7 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
 
   return (
     <section style={{ width: width }} className={styles.talk_room}>
-      <Talks talks={talks} />
+      <Talks talks={talks} userID={user?.id} />
       <TalkForm />
     </section>
   )
