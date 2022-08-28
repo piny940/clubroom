@@ -2,8 +2,8 @@ require 'test_helper'
 
 class TalkTest < ActiveSupport::TestCase
   def setup
-    @user = users('alice')
-    @group = groups('group1')
+    @user = User.create!(name: 'alice', email: 'alice@example.com', password: 'password', password_confirmation: 'password')
+    @group = Group.create!(name: 'group1')
     @group.members << @user
     @talkroom = @group.talkrooms.create!
   end
