@@ -8,4 +8,5 @@ export enum TestID {
   DROPDOWN_ACTION_BUTTON = 'dropdown-action-button',
   FORM_ERROR = 'form-error',
   TALK_LIST_BUTTON = 'talk-list-button',
+  TALK = 'talk',
 }
