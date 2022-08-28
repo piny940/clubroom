@@ -17,7 +17,7 @@ bob:
   kind: 0
 
 john:
-  email: john@example.com
+  email: johnn@example.com
   name: john
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
