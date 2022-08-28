@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Member::Groups::Talkrooms_controller < ActionDispatch::IntegrationTest
+class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = User.create!(name: 'alice', email: 'alice@example.com', password: 'password', password_confirmation: 'password')
     @group1 = Group.create!(name: 'group1')
@@ -13,11 +13,11 @@ class Member::Groups::Talkrooms_controller < ActionDispatch::IntegrationTest
 
   test '指定されたグループに所属していない場合は400を返す' do
     sign_in @user
-    
+
     get "/member/groups/#{@group2.id}/talkrooms"
     assert_response 400
     json = JSON.parse(response.body)
-    assert_equal json['message'], 'このグループには所属していません。'
+    assert_equal 'このグループには所属していません。', json['message']
   end
 
   test '指定されたグループのトークルームの中で、自身が入っているものだけを取得できる' do
@@ -27,7 +27,7 @@ class Member::Groups::Talkrooms_controller < ActionDispatch::IntegrationTest
     assert_response 200
     json = JSON.parse(response.body)
 
-    assert_equal json["data"]["talkrooms"][0]["name"], @room1.name
-    assert_equal json["data"]["talkrooms"].length, 1
+    assert_equal @room1.name, json['data']['talkrooms'][0]['name']
+    assert_equal 1, json['data']['talkrooms'].length
   end
 end
