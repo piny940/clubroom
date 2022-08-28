@@ -23,7 +23,7 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     get '/member/groups'
     assert_response 400
     json = JSON.parse(response.body)
-    assert_equal json['message'], 'ログインしてください。'
+    assert_equal 'ログインしてください。', json['message']
   end
 
   test 'どのグループにも属していない場合は空の配列をgroupsとして返す' do
@@ -44,7 +44,7 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal before_groups_count + 1, Group.count
     assert_equal before_count + 1, @user.groups.length
-    assert_equal json['data']['group']['name'], 'Test'
+    assert_equal 'Test', json['data']['group']['name']
   end
 
   test 'paramsに不備がある場合は400を返す' do
@@ -54,6 +54,6 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     assert_response 400
     json = JSON.parse(response.body)
     assert_equal before_count, Group.count
-    assert_equal json['message'], 'グループを作成できませんでした。'
+    assert_equal 'グループを作成できませんでした。', json['message']
   end
 end

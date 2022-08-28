@@ -32,7 +32,7 @@ class Member::Groups::Talkrooms::TalksControllerTest < ActionDispatch::Integrati
 
     assert_response 400
     json = JSON.parse(response.body)
-    assert_equal json['message'], 'このグループには所属していません。'
+    assert_equal 'このグループには所属していません。', json['message']
   end
 
   test '指定されたトークルームに入っていない場合は400を返す' do
@@ -40,7 +40,7 @@ class Member::Groups::Talkrooms::TalksControllerTest < ActionDispatch::Integrati
 
     assert_response 400
     json = JSON.parse(response.body)
-    assert_equal json['message'], 'このトークルームのメンバーではありません。'
+    assert_equal 'このトークルームのメンバーではありません。', json['message']
   end
 
   test '指定されたトークルームが指定されたグループのものでない場合は400を返す' do
@@ -48,7 +48,7 @@ class Member::Groups::Talkrooms::TalksControllerTest < ActionDispatch::Integrati
 
     assert_response 400
     json = JSON.parse(response.body)
-    assert_equal json['message'], '指定されたグループにこのトークルームはありません。'
+    assert_equal '指定されたグループにこのトークルームはありません。', json['message']
   end
 
   test '自身の入っているトークルームのトークを正常に取得できる' do
@@ -56,6 +56,6 @@ class Member::Groups::Talkrooms::TalksControllerTest < ActionDispatch::Integrati
 
     assert_response :success
     json = JSON.parse(response.body)
-    assert_equal json['data']['talks'].length, 2
+    assert_equal 2, json['data']['talks'].length
   end
 end

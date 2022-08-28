@@ -17,7 +17,7 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     get "/member/groups/#{@group2.id}/talkrooms"
     assert_response 400
     json = JSON.parse(response.body)
-    assert_equal json['message'], 'このグループには所属していません。'
+    assert_equal 'このグループには所属していません。', json['message']
   end
 
   test '指定されたグループのトークルームの中で、自身が入っているものだけを取得できる' do
@@ -27,7 +27,7 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
     json = JSON.parse(response.body)
 
-    assert_equal json['data']['talkrooms'][0]['name'], @room1.name
-    assert_equal json['data']['talkrooms'].length, 1
+    assert_equal @room1.name, json['data']['talkrooms'][0]['name']
+    assert_equal 1, json['data']['talkrooms'].length
   end
 end

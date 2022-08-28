@@ -7,7 +7,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get '/user'
     assert_response :success
     json = JSON.parse(response.body)
-    assert_equal json['data']['user']['name'], 'john'
+    assert_equal 'john', json['data']['user']['name']
   end
 
   test 'ログインしていないときはuserをnullとして返す' do
