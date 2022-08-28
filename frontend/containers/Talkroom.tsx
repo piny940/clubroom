@@ -31,7 +31,7 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
 
   return (
     <section style={{ width: width }} className={styles.talk_room}>
-      <Talks />
+      <Talks talks={talks} />
       <TalkForm />
     </section>
   )
