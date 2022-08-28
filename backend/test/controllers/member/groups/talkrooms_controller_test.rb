@@ -30,7 +30,4 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_equal json['data']['talkrooms'][0]['name'], @room1.name
     assert_equal json['data']['talkrooms'].length, 1
   end
-
-  test '指定されたグループのものではないトークルームを指定された場合は400を返す' do
-  end
 end
