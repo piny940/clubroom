@@ -4,7 +4,7 @@ import styles from '../styles/talk-app.module.scss'
 
 export interface TalkListButtonProps {
   handler: MouseEventHandler
-  detail: string
+  detail?: string
   title: string
 }
 
@@ -22,7 +22,11 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
         data-testid={TestID.TALK_LIST_BUTTON}
       >
         <h5>{title}</h5>
-        <div className="detail small text-secondary ms-3">{detail}</div>
+        {detail ? (
+          <div className="detail small text-secondary ms-3">{detail}</div>
+        ) : (
+          <></>
+        )}
       </a>
     </li>
   )

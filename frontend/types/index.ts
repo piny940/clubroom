@@ -28,3 +28,12 @@ export interface Group {
   created_at: Date
   updated_at: Date
 }
+
+export interface Talkroom {
+  id: number
+  name: string
+  group_id?: number
+  kind: 'group' | 'direct'
+  created_at: Date
+  updated_at: Date
+}
