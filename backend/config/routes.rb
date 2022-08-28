@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   resource :session, only: %i[create destroy]
   resource :user, only: %i[show]
   namespace :member do
-    resources :groups, only: %i[index create]
+    resources :groups, only: %i[index create] do
+      scope module: :groups do
+        resources :talkrooms
+      end
+    end
   end
 end

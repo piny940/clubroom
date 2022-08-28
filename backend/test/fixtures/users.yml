@@ -57,3 +57,27 @@ kei:
   name: 白銀圭
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   kind: 0
+
+gannann:
+  email: gannann@example.com
+  name: 四宮雁庵
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+oukou:
+  email: oukou@example.com
+  name: 四宮黄光
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+seiryu:
+  email: seiryu@example.com
+  name: 四宮青龍
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0
+
+unnyou:
+  email: unnyou@example.com
+  name: 四宮雲鷹
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  kind: 0

@@ -12,12 +12,16 @@ class Member::GroupsController < Member::Base
 
     if group.id
       render json: {
-        group:,
+        data: {
+          group: group
+        },
         message: 'グループを作成しました。'
       }, status: :ok
     else
       render json: {
-        group: nil,
+        data: {
+          group: nil
+        },
         message: 'グループを作成できませんでした。'
       }, status: :bad_request
     end
