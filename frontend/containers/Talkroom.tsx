@@ -26,6 +26,19 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
     shouldUseNativeValidation: true,
   })
 
+  const _updateTalks = async () => {
+    if (!openTalkroom) {
+      setTalks([])
+      return
+    }
+
+    setTalks(await fetchTalks(openTalkroom))
+  }
+
+  useEffect(() => {
+    void _updateTalks()
+  }, [openTalkroom])
+
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     if (!openTalkroom) throw new Error('トークルームを選んでください。')
 
@@ -46,22 +59,10 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
         state: AlertState.DANGER,
       })
     } else {
+      await _updateTalks()
       reset()
     }
   }
-
-  const _updateTalks = async () => {
-    if (!openTalkroom) {
-      setTalks([])
-      return
-    }
-
-    setTalks(await fetchTalks(openTalkroom))
-  }
-
-  useEffect(() => {
-    void _updateTalks()
-  }, [openTalkroom])
 
   return (
     <section style={{ width: width }} className={styles.talk_room}>
