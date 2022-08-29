@@ -10,4 +10,6 @@ export enum TestID {
   TALK_LIST_BUTTON = 'talk-list-button',
   TALK = 'talk',
   TALK_ROW = 'talk-row',
+  TALK_FORM = 'talk-form',
+  TALK_FORM_INPUT = 'talk-form-input',
 }
