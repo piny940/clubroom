@@ -58,4 +58,22 @@ class Member::Groups::Talkrooms::TalksControllerTest < ActionDispatch::Integrati
     json = JSON.parse(response.body)
     assert_equal 2, json['data']['talks'].length
   end
+
+  test '正常にトークを作成できる' do
+    post "/member/groups/#{@talkroom1.group_id}/talkrooms/#{@talkroom1.id}/talks", params: { talk: {content: 'Test'}}
+    
+    assert_response :success
+    json = JSON.parse(response.body)
+    assert_equal 'Test', json['data']['talk']['content']
+    assert_equal @talkroom1.id, json['data']['talk']['talkroom_id']
+    assert_equal @user1.id, json['data']['talk']['from_user_id']
+  end
+
+  test 'contentがpresentでない場合は400を返す' do
+    post "/member/groups/#{@talkroom1.group_id}/talkrooms/#{@talkroom1.id}/talks", params: { talk: { content: ''}}
+
+    assert_response 400
+    json = JSON.parse(response.body)
+    assert_equal 'トークのcontentを入力してください', json['message']
+  end
 end
