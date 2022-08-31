@@ -2,7 +2,7 @@ import { FormEventHandler, useRef } from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { TestID } from '../resources/TestID'
 import styles from '../styles/talk-app.module.scss'
-import { useKeys } from 'rooks'
+import { useKey } from '../utils/hooks'
 
 export interface TalkFormProps {
   name: string
@@ -19,12 +19,7 @@ export const TalkForm: React.FC<TalkFormProps> = ({
 }) => {
   const submitButtonRef = useRef<HTMLButtonElement>(null)
 
-  useKeys(['Meta', 'Enter'], () => submitButtonRef.current?.click(), {
-    when: submitButtonRef !== null,
-  })
-  useKeys(['Control', 'Enter'], () => submitButtonRef.current?.click(), {
-    when: submitButtonRef !== null,
-  })
+  useKey(() => submitButtonRef.current?.click(), 'Enter', { meta: true })
 
   return (
     <form
