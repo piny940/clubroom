@@ -23,3 +23,51 @@ export const useMovePage = () => {
     setAlerts(...alerts)
   }
 }
+
+export const useKey = (
+  callback: (event: KeyboardEvent) => void,
+  key: string,
+  specials: {
+    meta?: boolean
+    ctrl?: boolean
+    shift?: boolean
+    alt?: boolean
+  } = {},
+  options?: {
+    target?: HTMLElement
+    event?: 'keydown' | 'keypress' | 'keyup'
+  }
+) => {
+  const targetEl = options?.target || window
+  const keyEvent = options?.event || 'keypress'
+
+  const willRun = (event: KeyboardEvent) => {
+    // Key
+    if (key !== event.key) {
+      return false
+    }
+    if (
+      (specials.meta && !event.metaKey) ||
+      (specials.ctrl && !event.ctrlKey) ||
+      (specials.shift && !event.shiftKey) ||
+      (specials.alt && !event.altKey)
+    ) {
+      return false
+    }
+    return true
+  }
+
+  const handleKeyEvent = (event: KeyboardEvent) => {
+    if (willRun(event)) {
+      callback(event)
+    }
+  }
+
+  useEffect(() => {
+    targetEl.addEventListener(keyEvent, handleKeyEvent as EventListener)
+
+    return () => {
+      targetEl.removeEventListener(keyEvent, handleKeyEvent as EventListener)
+    }
+  })
+}
