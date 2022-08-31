@@ -20,6 +20,7 @@ export const TalkForm: React.FC<TalkFormProps> = ({
   const submitButtonRef = useRef<HTMLButtonElement>(null)
 
   useKey(() => submitButtonRef.current?.click(), 'Enter', { meta: true })
+  useKey(() => submitButtonRef.current?.click(), 'Enter', { ctrl: true })
 
   return (
     <form

@@ -36,7 +36,7 @@ describe('<TalkForm />', () => {
     })
   })
 
-  it('Command + Enterでsubmitが呼ばれる', async () => {
+  it('Command + Enterでsubmitがクリックされる', async () => {
     const register = jest.fn()
     const onSubmit = jest.fn()
     const enabledProps: TalkFormProps = {
@@ -58,6 +58,35 @@ describe('<TalkForm />', () => {
       fireEvent.keyPress(window, {
         key: 'Enter',
         metaKey: true,
+      })
+    })
+    await waitFor(() => {
+      expect(submit).toBeCalled()
+    })
+  })
+
+  it('Ctrl + Enterでsubmitがクリックされる', async () => {
+    const register = jest.fn()
+    const onSubmit = jest.fn()
+    const enabledProps: TalkFormProps = {
+      name: 'Test',
+      requireMessage: 'This form is required.',
+      register: register,
+      onSubmit: onSubmit,
+    }
+    const { getByTestId } = render(<TalkForm {...enabledProps} />)
+
+    const submit = jest.fn((e) => e.preventDefault())
+    getByTestId(TestID.TALK_FORM_SUBMIT).onclick = submit
+
+    await waitFor(() => {
+      expect(submit).not.toBeCalled()
+    })
+
+    act(() => {
+      fireEvent.keyPress(window, {
+        key: 'Enter',
+        ctrlKey: true,
       })
     })
     await waitFor(() => {
