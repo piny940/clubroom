@@ -33,7 +33,12 @@ export const TalkForm: React.FC<TalkFormProps> = ({
         {...register(name, { required: requireMessage })}
         data-testid={TestID.TALK_FORM_INPUT}
       />
-      <button className="btn" ref={submitButtonRef} type="submit">
+      <button
+        className="btn"
+        ref={submitButtonRef}
+        type="submit"
+        data-testid={TestID.TALK_FORM_SUBMIT}
+      >
         <span className="material-icons text-primary">send</span>
       </button>
     </form>

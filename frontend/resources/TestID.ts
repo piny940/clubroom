@@ -12,4 +12,5 @@ export enum TestID {
   TALK_ROW = 'talk-row',
   TALK_FORM = 'talk-form',
   TALK_FORM_INPUT = 'talk-form-input',
+  TALK_FORM_SUBMIT = 'talk-form-submit',
 }
