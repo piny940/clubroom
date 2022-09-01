@@ -4,6 +4,7 @@ import { useGroupState } from '../../contexts/GroupStateProvider'
 import { TestID } from '../../resources/TestID'
 import { fetchTalkrooms } from '../../utils/api'
 import { expect } from '@jest/globals'
+import { Talkroom } from '../../types'
 
 jest.mock('../../utils/api')
 jest.mock('../../contexts/GroupStateProvider')
@@ -18,6 +19,14 @@ describe('<TalkList />', () => {
 
   it('groupが選択済みの時はtalkroomsを取得して表示する', async () => {
     const groupID = 1
+    const openTalkroom: Talkroom = {
+      id: 0,
+      name: 'Test',
+      group_id: 0,
+      kind: 'group',
+      created_at: new Date(),
+      updated_at: new Date(),
+    }
 
     mockedUseGroupState.mockImplementation(
       jest.fn(() => {
@@ -48,7 +57,11 @@ describe('<TalkList />', () => {
     const setOpenTalkroom = jest.fn()
 
     const { getAllByTestId } = render(
-      <TalkList width={width} setOpenTalkroom={setOpenTalkroom} />
+      <TalkList
+        width={width}
+        setOpenTalkroom={setOpenTalkroom}
+        openTalkroom={openTalkroom}
+      />
     )
 
     await waitFor(() => {
@@ -60,6 +73,14 @@ describe('<TalkList />', () => {
   })
 
   it('groupが選択されていないときはtalkroomをfetchしない', async () => {
+    const openTalkroom: Talkroom = {
+      id: 0,
+      name: 'Test',
+      group_id: 0,
+      kind: 'group',
+      created_at: new Date(),
+      updated_at: new Date(),
+    }
     const mockedUseGroupState = jest.mocked(useGroupState)
     mockedUseGroupState.mockImplementation(
       jest.fn(() => {
@@ -75,7 +96,11 @@ describe('<TalkList />', () => {
     const setOpenTalkroom = jest.fn()
 
     const { queryAllByTestId } = render(
-      <TalkList width={width} setOpenTalkroom={setOpenTalkroom} />
+      <TalkList
+        width={width}
+        setOpenTalkroom={setOpenTalkroom}
+        openTalkroom={openTalkroom}
+      />
     )
 
     await waitFor(() => {

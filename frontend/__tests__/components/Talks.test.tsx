@@ -3,17 +3,9 @@ import { Talks } from '../../components/Talks'
 import { Talk } from '../../types'
 import { expect } from '@jest/globals'
 import { TalkRow } from '../../components/TalkRow'
+import { RefObject } from 'react'
 
 jest.mock('../../components/TalkRow')
-const mockedGetElementById = jest.spyOn(document, 'getElementById')
-const mockedScrollIntoView = jest.fn()
-mockedGetElementById.mockImplementation(
-  jest.fn(() => {
-    return {
-      scrollIntoView: mockedScrollIntoView,
-    }
-  }) as jest.Mock
-)
 
 describe('<Talks />', () => {
   it('talkのfrom_user_idとpropsのuserIDから正常にmyselfとothersの割り振りがされる', async () => {
@@ -36,12 +28,12 @@ describe('<Talks />', () => {
     ]
 
     const mockedTalkRow = jest.mocked(TalkRow)
+    const talksRef: RefObject<HTMLUListElement> = { current: null }
 
-    render(<Talks talks={talks} userID={userID} />)
+    render(<Talks talks={talks} userID={userID} talksRef={talksRef} />)
 
     await waitFor(() => {
       expect(mockedTalkRow).toBeCalledTimes(2)
-      expect(mockedScrollIntoView).toBeCalledTimes(1)
       expect(mockedTalkRow.mock.calls[0][0].sentFrom).toBe('myself')
       expect(mockedTalkRow.mock.calls[1][0].sentFrom).toBe('others')
     })

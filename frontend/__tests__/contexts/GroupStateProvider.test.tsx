@@ -13,7 +13,7 @@ describe('<GroupStateProvider />', () => {
     )
     const { result } = renderHook(() => useGroupState(), { wrapper })
 
-    expect(result.current.group).toBe(null)
+    expect(result.current.group).toBe(undefined)
 
     act(() => {
       result.current.setGroup({
