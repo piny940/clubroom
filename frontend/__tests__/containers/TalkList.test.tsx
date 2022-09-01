@@ -64,7 +64,7 @@ describe('<TalkList />', () => {
     mockedUseGroupState.mockImplementation(
       jest.fn(() => {
         return {
-          group: null,
+          group: undefined,
         }
       }) as jest.Mock
     )
