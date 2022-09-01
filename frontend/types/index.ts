@@ -28,3 +28,20 @@ export interface Group {
   created_at: Date
   updated_at: Date
 }
+
+export interface Talkroom {
+  id: number
+  name: string
+  group_id: number // DMの機能ができたらgroup_id?: numberになる
+  kind: 'group' | 'direct'
+  created_at: Date
+  updated_at: Date
+}
+
+export interface Talk {
+  id: number
+  from_user_id?: number
+  content: string
+  created_at: Date
+  updated_at: Date
+}

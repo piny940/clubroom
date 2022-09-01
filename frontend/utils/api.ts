@@ -1,6 +1,6 @@
 import { serialize } from 'object-to-formdata'
 import { LogoutReturn } from '../resources/apiRetuns'
-import { Group, User } from '../types'
+import { Group, Talk, Talkroom, User } from '../types'
 
 const getToken = async (): Promise<string> => {
   const url = `/api/csrf`
@@ -45,6 +45,24 @@ export const fetchGroups = async (): Promise<Group[]> => {
   })
   const json = await response.json()
   return json.data.groups
+}
+
+export const fetchTalkrooms = async (groupID: number): Promise<Talkroom[]> => {
+  const response = await fetchApi({
+    url: `/member/groups/${groupID}/talkrooms`,
+    method: 'GET',
+  })
+  const json = await response.json()
+  return json.data.talkrooms
+}
+
+export const fetchTalks = async (talkroom: Talkroom): Promise<Talk[]> => {
+  const response = await fetchApi({
+    url: `/member/groups/${talkroom.group_id}/talkrooms/${talkroom.id}/talks`,
+    method: 'GET',
+  })
+  const json = await response.json()
+  return json.data.talks
 }
 
 export const logout = async (): Promise<{

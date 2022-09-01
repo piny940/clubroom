@@ -21,24 +21,22 @@ export const LoginForm: React.FC = () => {
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
-    try {
-      const response = await fetchApi({
-        url: '/session',
-        method: 'POST',
-        data: data,
-      })
-      const json = await response.json()
+    const response = await fetchApi({
+      url: '/session',
+      method: 'POST',
+      data: data,
+    })
+    const json = await response.json()
 
-      if (response.status >= 400) {
-        setAlert(json.message)
-      } else {
-        setUser(json.data.user)
-        void movePage('/', {
-          content: json.message,
-          state: AlertState.SUCCESS,
-        })
-      }
-    } catch (e) {}
+    if (response.status >= 400) {
+      setAlert(json.message)
+    } else {
+      setUser(json.data.user)
+      void movePage('/', {
+        content: json.message,
+        state: AlertState.SUCCESS,
+      })
+    }
   }
 
   return (
