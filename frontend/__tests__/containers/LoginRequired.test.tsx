@@ -35,7 +35,7 @@ describe('<LoginRequired />', () => {
   it('ログイン済みでないときはAskLoginを表示する', async () => {
     const mockedFetchUser = jest.mocked(fetchUser)
     mockedFetchUser.mockImplementation(async () => {
-      return await Promise.resolve(null)
+      return await Promise.resolve(undefined)
     })
 
     const AskLogin = <Test textContent="Test1" />

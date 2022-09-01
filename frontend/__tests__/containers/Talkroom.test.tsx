@@ -64,10 +64,10 @@ describe('<Talkroom />', () => {
 
     mockedFetchTalks.mockReset()
 
-    rerender(<Talkroom width={width} openTalkroom={null} />)
+    rerender(<Talkroom width={width} openTalkroom={undefined} />)
 
     await waitFor(() => {
-      // openTalkroomがnullの時はfetchTalksは呼ばれない
+      // openTalkroomがundefinedの時はfetchTalksは呼ばれない
       expect(mockedFetchTalks).not.toBeCalled()
     })
   })

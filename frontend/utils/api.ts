@@ -28,7 +28,7 @@ export const fetchApi = async (params: {
   return response
 }
 
-export const fetchUser = async (): Promise<User | null> => {
+export const fetchUser = async (): Promise<User | undefined> => {
   const response = await fetchApi({
     url: '/user',
     method: 'GET',

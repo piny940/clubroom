@@ -9,10 +9,10 @@ import { useGroupState } from '../contexts/GroupStateProvider'
 
 export const TalkApp: React.FC = () => {
   const { group } = useGroupState()
-  const [openTalkroom, setOpenTalkroom] = useState<TalkroomType | null>(null)
+  const [openTalkroom, setOpenTalkroom] = useState<TalkroomType>()
 
   useEffect(() => {
-    setOpenTalkroom(null)
+    setOpenTalkroom(undefined)
   }, [group])
 
   return (

@@ -21,5 +21,5 @@ export const LoginRequired: React.FC<LoginRequiredProps> = ({
     void _updateUser()
   }, [])
 
-  return user === null ? <>{whenNoUser}</> : <>{children}</>
+  return user ? <>{children}</> : <>{whenNoUser}</>
 }

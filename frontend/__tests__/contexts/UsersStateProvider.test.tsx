@@ -14,7 +14,7 @@ describe('<UserStateProvider />', () => {
     const { result } = renderHook(() => useUserState(), { wrapper })
 
     await waitFor(() => {
-      expect(result.current.user).toBe(null)
+      expect(result.current.user).toBe(undefined)
     })
 
     act(() => {

@@ -1,3 +1,3 @@
 export interface LogoutReturn {
-  user: null
+  user: undefined
 }

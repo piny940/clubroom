@@ -9,7 +9,7 @@ import { fetchTalkrooms } from '../utils/api'
 export interface TalkListInterface {
   width: string
   setOpenTalkroom: (talkroom: Talkroom) => void
-  openTalkroom: Talkroom | null
+  openTalkroom: Talkroom | undefined
 }
 
 export const TalkList: React.FC<TalkListInterface> = ({
