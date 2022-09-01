@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { TalkForm } from '../components/TalkForm'
 import { Talks } from '../components/Talks'
@@ -26,6 +26,12 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
     shouldUseNativeValidation: true,
   })
 
+  const talksRef = useRef<HTMLUListElement>(null)
+
+  const _scrollToBottom = () => {
+    talksRef.current?.scrollIntoView(false)
+  }
+
   const _updateTalks = async () => {
     if (!openTalkroom) {
       setTalks([])
@@ -34,6 +40,10 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
 
     setTalks(await fetchTalks(openTalkroom))
   }
+
+  useEffect(() => {
+    _scrollToBottom()
+  }, [talks])
 
   useEffect(() => {
     void _updateTalks()
@@ -68,7 +78,7 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
     <section style={{ width: width }} className={styles.talk_room}>
       {openTalkroom ? (
         <>
-          <Talks talks={talks} userID={user?.id} />
+          <Talks talks={talks} userID={user?.id} talksRef={talksRef} />
           <TalkForm
             register={register}
             name="content"
