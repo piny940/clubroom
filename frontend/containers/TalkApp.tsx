@@ -18,7 +18,11 @@ export const TalkApp: React.FC = () => {
   return (
     <LoginRequired whenNoUser={<AskLogin />}>
       <div className="d-flex" id={styles.app}>
-        <TalkList width="25%" setOpenTalkroom={setOpenTalkroom} />
+        <TalkList
+          width="25%"
+          setOpenTalkroom={setOpenTalkroom}
+          openTalkroom={openTalkroom}
+        />
         <Talkroom width="75%" openTalkroom={openTalkroom} />
       </div>
     </LoginRequired>

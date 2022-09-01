@@ -9,11 +9,13 @@ import { fetchTalkrooms } from '../utils/api'
 export interface TalkListInterface {
   width: string
   setOpenTalkroom: (talkroom: Talkroom) => void
+  openTalkroom: Talkroom | null
 }
 
 export const TalkList: React.FC<TalkListInterface> = ({
   width,
   setOpenTalkroom,
+  openTalkroom,
 }) => {
   const { group } = useGroupState()
 
@@ -40,6 +42,7 @@ export const TalkList: React.FC<TalkListInterface> = ({
             key={talkroom.id}
             title={talkroom.name}
             handler={() => setOpenTalkroom(talkroom)}
+            open={talkroom.id === openTalkroom?.id}
           />
         ))}
       </ul>
