@@ -2,13 +2,13 @@ import { createContext, ReactNode, useContext, useState } from 'react'
 import { Group } from '../types'
 
 interface GroupStateContextInterface {
-  group: Group | null
-  setGroup: (group: Group | null) => void
+  group: Group | undefined
+  setGroup: (group: Group | undefined) => void
 }
 
 const defaultContextState: GroupStateContextInterface = {
-  group: null,
-  setGroup: (group: Group | null) => undefined,
+  group: undefined,
+  setGroup: (group: Group | undefined) => undefined,
 }
 
 const GroupStateContext = createContext(defaultContextState)
@@ -22,7 +22,7 @@ interface GroupStateProviderProps {
 const GroupStateProvider: React.FC<GroupStateProviderProps> = ({
   children,
 }) => {
-  const [group, setGroup] = useState<Group | null>(null)
+  const [group, setGroup] = useState<Group | undefined>(undefined)
 
   const value: GroupStateContextInterface = {
     group,

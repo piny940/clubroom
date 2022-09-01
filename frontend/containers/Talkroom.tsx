@@ -11,7 +11,7 @@ import { AlertState } from '../utils/enums'
 
 export interface TalkroomInterface {
   width: string
-  openTalkroom: TalkroomType | null
+  openTalkroom: TalkroomType | undefined
 }
 
 export const Talkroom: React.FC<TalkroomInterface> = ({
