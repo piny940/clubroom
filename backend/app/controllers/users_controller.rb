@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = new User(user_params)
+    user = User.new(user_params)
 
     if user.save
       sign_in user
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         data: {
           user: nil
         },
-        message: 'アカウントの作成に失敗しました。'
+        message: 'アカウントが作成できませんでした。'
       }, status: 400
     end
   end
