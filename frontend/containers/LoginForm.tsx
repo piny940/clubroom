@@ -9,6 +9,7 @@ import { useMovePage } from '../utils/hooks'
 import { fetchApi } from '../utils/api'
 import { useUserState } from '../contexts/UserStateProvider'
 import { TestID } from '../resources/TestID'
+import Link from 'next/link'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -71,6 +72,13 @@ export const LoginForm: React.FC = () => {
         required={Message.INPUT_REQUIRED}
         testID={TestID.LOGIN_PASSWORD}
       />
+      <div className="row">
+        <span className="w-auto mx-auto">
+          <Link href="/accounts/signup">
+            <a id={styles.signup_link}>アカウントをお持ちでない方</a>
+          </Link>
+        </span>
+      </div>
       <button
         className="btn btn-primary col-md-6 my-3 offset-md-3"
         data-testid={TestID.LOGIN_SUBMIT}
