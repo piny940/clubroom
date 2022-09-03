@@ -9,7 +9,8 @@
   position: absolute;
   width: 80vh;
   max-width: 230px;
-  left: -80px;
+  left: calc(100% - 150px);
+  top: 27px;
 
   a#new_group_link {
     color: #0000ee;
