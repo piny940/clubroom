@@ -1,7 +1,7 @@
 import { TestID } from '../resources/TestID'
 import { Alert as AlertType } from '../types'
 import { AlertState } from '../utils/enums'
-import styles from '../styles/alert.module.scss'
+import styles from '../styles/common.module.scss'
 import { toClass } from '../utils/helpers'
 import { MouseEventHandler, useEffect } from 'react'
 
