@@ -5,3 +5,14 @@
   max-width: 180px;
   width: 80vh;
 }
+#groups_dropdown {
+  position: absolute;
+  width: 80vh;
+  max-width: 230px;
+  left: -80px;
+
+  a#new_group_link {
+    color: #0000ee;
+    text-decoration: underline;
+  }
+}
