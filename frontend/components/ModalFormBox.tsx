@@ -1,4 +1,4 @@
-import { FormEventHandler, ReactNode } from 'react'
+import { FormEventHandler, ReactNode, RefObject } from 'react'
 import { TestID } from '../resources/TestID'
 import styles from '../styles/common.module.scss'
 import { toClass } from '../utils/helpers'
@@ -11,6 +11,7 @@ export interface ModalFormBoxProps {
   submitTestID: TestID
   submitButtonText: string
   children: ReactNode
+  closeButtonRef: RefObject<HTMLButtonElement>
 }
 
 export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
@@ -21,6 +22,7 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
   alert,
   submitTestID,
   submitButtonText,
+  closeButtonRef,
 }) => {
   return (
     <div className="modal fade" id={targetID}>
@@ -50,6 +52,7 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
                 className="btn btn-secondary col-md-6 my-2 offset-md-3"
                 data-bs-dismiss="modal"
                 onClick={(e) => e.preventDefault()}
+                ref={closeButtonRef}
               >
                 キャンセル
               </button>

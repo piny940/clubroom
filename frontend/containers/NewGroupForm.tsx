@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/FormGroup'
 import { ModalFormBox } from '../components/ModalFormBox'
@@ -13,6 +13,8 @@ export interface NewGroupFormProps {
 }
 
 export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
   const { register, handleSubmit } = useForm({
     shouldUseNativeValidation: true,
   })
@@ -21,8 +23,14 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
 
   const movePage = useMovePage()
 
+  const _closeModal = () => {
+    closeButtonRef.current?.click()
+  }
+
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
+      _closeModal()
+
       void movePage('/', {
         content: 'グループを作成しました。',
         state: AlertState.SUCCESS,
@@ -46,6 +54,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
       submitTestID={TestID.GROUP_FORM_SUBMIT}
       targetID={targetID}
       onSubmit={handleSubmit(_submit)}
+      closeButtonRef={closeButtonRef}
     >
       <FormGroup
         register={register}
