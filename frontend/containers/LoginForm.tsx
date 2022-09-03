@@ -67,7 +67,9 @@ export const LoginForm: React.FC = () => {
       <div className="row">
         <span className="w-auto mx-auto">
           <Link href="/accounts/signup">
-            <a id={styles.signup_link}>アカウントをお持ちでない方</a>
+            <a id={styles.signup_link} data-testid={TestID.SIGNUP_LINK}>
+              アカウントをお持ちでない方
+            </a>
           </Link>
         </span>
       </div>

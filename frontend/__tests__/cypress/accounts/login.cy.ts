@@ -14,10 +14,8 @@ describe('accounts/login', () => {
   it('正常にログインできる', () => {
     cy.visit(LOGIN_PATH)
     typeTestId(TestID.LOGIN_EMAIL, user.email)
-    getTestId(TestID.LOGIN_EMAIL).should('have.value', user.email)
 
     typeTestId(TestID.LOGIN_PASSWORD, user.password)
-    getTestId(TestID.LOGIN_PASSWORD).should('have.value', user.password)
 
     clickTestId(TestID.LOGIN_SUBMIT)
 
@@ -33,5 +31,16 @@ describe('accounts/login', () => {
 
     locationShouldBe('/accounts/login')
     getTestId(TestID.FORM_ERROR).should('exist')
+
+    // Form should not be erased
+    getTestId(TestID.LOGIN_EMAIL).should('have.value', user.email)
+    getTestId(TestID.LOGIN_PASSWORD).should('have.value', 'wrongPassword')
+  })
+
+  it('signup画面に移動できる', () => {
+    cy.visit(LOGIN_PATH)
+    clickTestId(TestID.SIGNUP_LINK)
+
+    locationShouldBe('/accounts/signup')
   })
 })
