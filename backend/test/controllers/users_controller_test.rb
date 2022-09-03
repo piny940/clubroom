@@ -76,4 +76,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_nil json['data']['user']
     assert_equal before_count, User.count
   end
+
+  test 'emailがすでに使われている場合はユーザーを作成できない' do
+    User.create!(email: 'alice@example.com', name: 'Alice1', password: 'password', password_confirmation: 'password')
+
+    before_count = User.count
+
+    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice2', password: 'password', password_confirmation: 'password'}}
+    assert_response 400
+    json = JSON.parse(response.body)
+
+    assert_equal 'このメールアドレスはすでに使用されています。', json['message']
+    assert_equal before_count, User.count
+  end
 end

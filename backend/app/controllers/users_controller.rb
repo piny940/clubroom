@@ -8,6 +8,16 @@ class UsersController < ApplicationController
   end
 
   def create
+    if User.find_by(email: user_params['email'])
+      render json: {
+        data: {
+          user: nil
+        },
+        message: 'このメールアドレスはすでに使用されています。'
+      }, status: 400
+      return
+    end
+    
     user = User.new(user_params)
 
     if user.save
