@@ -9,7 +9,7 @@ import { TestID } from '../resources/TestID'
 import { FormGroup } from '../components/FormGroup'
 import { Message } from '../resources/Messages'
 import Link from 'next/link'
-import { AccountFormBox } from '../components/AccountFormBox'
+import { FormBox } from '../components/FormBox'
 
 export const SignupForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -45,7 +45,7 @@ export const SignupForm: React.FC = () => {
   }
 
   return (
-    <AccountFormBox
+    <FormBox
       onSubmit={handleSubmit(_submit)}
       alert={alert}
       title="新規アカウント作成"
@@ -91,6 +91,6 @@ export const SignupForm: React.FC = () => {
           </Link>
         </span>
       </div>
-    </AccountFormBox>
+    </FormBox>
   )
 }

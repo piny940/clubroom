@@ -9,7 +9,7 @@ import { postData } from '../utils/api'
 import { useUserState } from '../contexts/UserStateProvider'
 import { TestID } from '../resources/TestID'
 import Link from 'next/link'
-import { AccountFormBox } from '../components/AccountFormBox'
+import { FormBox } from '../components/FormBox'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -39,7 +39,7 @@ export const LoginForm: React.FC = () => {
   }
 
   return (
-    <AccountFormBox
+    <FormBox
       onSubmit={handleSubmit(_submit)}
       title="ログイン"
       alert={alert}
@@ -71,6 +71,6 @@ export const LoginForm: React.FC = () => {
           </Link>
         </span>
       </div>
-    </AccountFormBox>
+    </FormBox>
   )
 }

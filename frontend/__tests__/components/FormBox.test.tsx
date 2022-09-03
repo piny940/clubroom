@@ -1,16 +1,13 @@
 import { render } from '@testing-library/react'
-import {
-  AccountFormBox,
-  AccountFormBoxProps,
-} from '../../components/AccountFormBox'
+import { FormBox, FormBoxProps } from '../../components/FormBox'
 import { TestID } from '../../resources/TestID'
 import { Test } from '../testHelpers/Test'
 import { expect } from '@jest/globals'
 
-describe('<AccountFormBox />', () => {
+describe('<FormBox />', () => {
   it('正常に描画される', async () => {
     const onSubmit = jest.fn()
-    const enabledProps: AccountFormBoxProps = {
+    const enabledProps: FormBoxProps = {
       onSubmit: onSubmit,
       title: 'Test',
       alert: '',
@@ -19,7 +16,7 @@ describe('<AccountFormBox />', () => {
       children: <Test />,
     }
 
-    const component = render(<AccountFormBox {...enabledProps} />)
+    const component = render(<FormBox {...enabledProps} />)
     expect(component).toBeTruthy()
   })
 })
