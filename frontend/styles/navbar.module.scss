@@ -13,11 +13,7 @@
   top: 27px;
 
   a#new_group_link {
-    color: #0000ee;
+    color: var(--bs-link-color);
     text-decoration: underline;
   }
-}
-
-.modal_dialog {
-  padding-top: 80px;
 }

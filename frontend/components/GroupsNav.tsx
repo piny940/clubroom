@@ -36,6 +36,7 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
               id={styles.new_group_link}
               data-bs-toggle="modal"
               data-bs-target="#new-group-form"
+              href=""
             >
               グループを新規作成
             </a>
@@ -51,7 +52,7 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
           </ul>
         </div>
       </div>
-      <NewGroupForm />
+      <NewGroupForm targetID="new-group-form" />
     </>
   )
 }
