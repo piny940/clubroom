@@ -1,5 +1,7 @@
+import { SignupForm } from '../../containers/SignupForm'
+
 const Signup: React.FC = () => {
-  return <>hoge</>
+  return <SignupForm />
 }
 
 export default Signup
