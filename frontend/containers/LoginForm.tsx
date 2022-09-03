@@ -2,7 +2,6 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/FormGroup'
 import { Message } from '../resources/Messages'
 import { AlertState } from '../utils/enums'
-import { toClass } from '../utils/helpers'
 import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'
@@ -10,6 +9,7 @@ import { fetchApi } from '../utils/api'
 import { useUserState } from '../contexts/UserStateProvider'
 import { TestID } from '../resources/TestID'
 import Link from 'next/link'
+import { AccountFormBox } from '../components/AccountFormBox'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -41,21 +41,13 @@ export const LoginForm: React.FC = () => {
   }
 
   return (
-    <form
+    <AccountFormBox
       onSubmit={handleSubmit(_submit)}
-      className={toClass(
-        'container border border-secondary bg-light p-5 mt-5 border-2 rounded',
-        styles.form
-      )}
+      title="ログイン"
+      alert={alert}
+      submitTestID={TestID.LOGIN_SUBMIT}
+      submitButtonText="ログイン"
     >
-      <h2 className="ms-2 mb-4">ログイン</h2>
-      {alert ? (
-        <div className="text-danger" data-testid={TestID.FORM_ERROR}>
-          {alert}
-        </div>
-      ) : (
-        <></>
-      )}
       <FormGroup
         register={register}
         label="メールアドレス"
@@ -79,12 +71,6 @@ export const LoginForm: React.FC = () => {
           </Link>
         </span>
       </div>
-      <button
-        className="btn btn-primary col-md-6 my-3 offset-md-3"
-        data-testid={TestID.LOGIN_SUBMIT}
-      >
-        ログイン
-      </button>
-    </form>
+    </AccountFormBox>
   )
 }
