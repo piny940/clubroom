@@ -6,6 +6,7 @@ export const getTestId = (testID: TestID) => {
 
 export const typeTestId = (testID: TestID, value: string) => {
   getTestId(testID).type(value)
+  getTestId(testID).should('have.value', value)
 }
 
 export const clickTestId = (testID: TestID) => {
