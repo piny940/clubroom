@@ -24,7 +24,7 @@ export const AccountFormBox: React.FC<AccountFormBoxProps> = ({
     <form
       onSubmit={onSubmit}
       className={toClass(
-        'container border border-secondary bg-light p-5 mt-5 border-2 rounded',
+        'container border border-secondary bg-light p-5 my-5 border-2 rounded',
         styles.form
       )}
     >
