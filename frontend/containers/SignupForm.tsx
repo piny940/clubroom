@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useUserState } from '../contexts/UserStateProvider'
-import { fetchApi } from '../utils/api'
+import { postData } from '../utils/api'
 import { AlertState } from '../utils/enums'
 import { useMovePage } from '../utils/hooks'
 import styles from '../styles/accounts.module.scss'
@@ -22,29 +22,26 @@ export const SignupForm: React.FC = () => {
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
-    if (data.password !== data['password-confirmation']) {
-      setAlert('確認用パスワードがパスワードと一致しません。')
-      return
-    }
-
-    const response = await fetchApi({
-      url: '/user',
-      method: 'POST',
-      data: {
-        user: data,
-      },
-    })
-    const json = await response.json()
-
-    if (response.status >= 400) {
-      setAlert(json.message)
-    } else {
+    const _onSuccess = (json: any) => {
       setUser(json.data.user)
       void movePage('/', {
         content: json.message,
         state: AlertState.SUCCESS,
       })
     }
+
+    if (data.password !== data['password-confirmation']) {
+      setAlert('確認用パスワードがパスワードと一致しません。')
+      return
+    }
+
+    void postData({
+      url: '/user',
+      data: data,
+      scope: 'user',
+      onFail: (json: any) => setAlert(json.message),
+      onSuccess: _onSuccess,
+    })
   }
 
   return (

@@ -5,7 +5,7 @@ import { AlertState } from '../utils/enums'
 import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'
-import { fetchApi } from '../utils/api'
+import { postData } from '../utils/api'
 import { useUserState } from '../contexts/UserStateProvider'
 import { TestID } from '../resources/TestID'
 import Link from 'next/link'
@@ -22,22 +22,20 @@ export const LoginForm: React.FC = () => {
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
-    const response = await fetchApi({
-      url: '/session',
-      method: 'POST',
-      data: data,
-    })
-    const json = await response.json()
-
-    if (response.status >= 400) {
-      setAlert(json.message)
-    } else {
+    const _onSuccess = (json: any) => {
       setUser(json.data.user)
       void movePage('/', {
         content: json.message,
         state: AlertState.SUCCESS,
       })
     }
+
+    void postData({
+      url: '/session',
+      data: data,
+      onFail: (json: any) => setAlert(json.message),
+      onSuccess: _onSuccess,
+    })
   }
 
   return (
