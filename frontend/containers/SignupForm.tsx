@@ -22,7 +22,6 @@ export const SignupForm: React.FC = () => {
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data)
     if (data.password !== data['password-confirmation']) {
       setAlert('確認用パスワードがパスワードと一致しません。')
       return
