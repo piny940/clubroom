@@ -1,6 +1,13 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { Group } from '../types/index'
 import { fetchGroups } from '../utils/api'
+import { useUserState } from './UserStateProvider'
 
 interface GroupsStateContextInterface {
   groups: Group[]
@@ -24,11 +31,16 @@ const GroupsStateProvider: React.FC<GroupsStateProviderProps> = ({
   children,
 }) => {
   const [groups, setGroups] = useState<Group[]>([])
+  const { user } = useUserState()
 
   const updateGroups = async () => {
     const groups = await fetchGroups()
     setGroups(groups)
   }
+
+  useEffect(() => {
+    void updateGroups()
+  }, [user])
 
   const value: GroupsStateContextInterface = {
     groups,
