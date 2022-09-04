@@ -5,6 +5,7 @@ import { Layout } from '../components/Layout'
 import { useEffect } from 'react'
 import { GroupStateProvider } from '../contexts/GroupStateProvider'
 import { UserStateProvider } from '../contexts/UserStateProvider'
+import { GroupsStateProvider } from '../contexts/GroupsStateProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -13,13 +14,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <AlertsStateProvider>
-      <GroupStateProvider>
-        <UserStateProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </UserStateProvider>
-      </GroupStateProvider>
+      <GroupsStateProvider>
+        <GroupStateProvider>
+          <UserStateProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </UserStateProvider>
+        </GroupStateProvider>
+      </GroupsStateProvider>
     </AlertsStateProvider>
   )
 }

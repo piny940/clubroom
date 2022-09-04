@@ -6,6 +6,16 @@ import {
 } from '../../contexts/UserStateProvider'
 import { expect } from '@jest/globals'
 
+jest.mock('../../utils/api', () => ({
+  fetchUser: () => ({
+    id: 0,
+    name: 'Test',
+    kind: 'member',
+    created_at: new Date(),
+    updated_at: new Date(),
+  }),
+}))
+
 describe('<UserStateProvider />', () => {
   it('正常にUserをsetできる', async () => {
     const wrapper = ({ children }: { children: ReactNode }) => (
@@ -18,13 +28,7 @@ describe('<UserStateProvider />', () => {
     })
 
     act(() => {
-      result.current.setUser({
-        id: 0,
-        name: 'Test',
-        kind: 'member',
-        created_at: new Date(),
-        updated_at: new Date(),
-      })
+      result.current.updateUser()
     })
 
     await waitFor(() => {

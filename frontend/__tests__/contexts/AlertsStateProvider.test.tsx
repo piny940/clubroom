@@ -27,7 +27,9 @@ describe('<AlertStateProvider />', () => {
     )
     const { result } = renderHook(() => useAlertsState(), { wrapper })
 
-    expect(result.current.alerts.length).toBe(0)
+    await waitFor(() => {
+      expect(result.current.alerts.length).toBe(0)
+    })
 
     // Test for setAlert
     act(() => {

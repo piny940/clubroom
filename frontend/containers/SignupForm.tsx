@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useUserState } from '../contexts/UserStateProvider'
-import { fetchApi } from '../utils/api'
+import { postData } from '../utils/api'
 import { AlertState } from '../utils/enums'
 import { useMovePage } from '../utils/hooks'
 import styles from '../styles/accounts.module.scss'
@@ -9,7 +9,7 @@ import { TestID } from '../resources/TestID'
 import { FormGroup } from '../components/FormGroup'
 import { Message } from '../resources/Messages'
 import Link from 'next/link'
-import { AccountFormBox } from '../components/AccountFormBox'
+import { FormBox } from '../components/FormBox'
 
 export const SignupForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -17,38 +17,35 @@ export const SignupForm: React.FC = () => {
   })
 
   const [alert, setAlert] = useState<string>('')
-  const { setUser } = useUserState()
+  const { updateUser } = useUserState()
 
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
-    if (data.password !== data['password-confirmation']) {
-      setAlert('確認用パスワードがパスワードと一致しません。')
-      return
-    }
-
-    const response = await fetchApi({
-      url: '/user',
-      method: 'POST',
-      data: {
-        user: data,
-      },
-    })
-    const json = await response.json()
-
-    if (response.status >= 400) {
-      setAlert(json.message)
-    } else {
-      setUser(json.data.user)
+    const _onSuccess = (json: any) => {
+      updateUser()
       void movePage('/', {
         content: json.message,
         state: AlertState.SUCCESS,
       })
     }
+
+    if (data.password !== data['password-confirmation']) {
+      setAlert('確認用パスワードがパスワードと一致しません。')
+      return
+    }
+
+    void postData({
+      url: '/user',
+      data: data,
+      scope: 'user',
+      onFail: (json: any) => setAlert(json.message),
+      onSuccess: _onSuccess,
+    })
   }
 
   return (
-    <AccountFormBox
+    <FormBox
       onSubmit={handleSubmit(_submit)}
       alert={alert}
       title="新規アカウント作成"
@@ -94,6 +91,6 @@ export const SignupForm: React.FC = () => {
           </Link>
         </span>
       </div>
-    </AccountFormBox>
+    </FormBox>
   )
 }

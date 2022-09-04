@@ -3,7 +3,7 @@ import { toClass } from '../utils/helpers'
 import styles from '../styles/accounts.module.scss'
 import { TestID } from '../resources/TestID'
 
-export interface AccountFormBoxProps {
+export interface FormBoxProps {
   onSubmit: FormEventHandler
   title: string
   alert: string
@@ -12,7 +12,7 @@ export interface AccountFormBoxProps {
   children: ReactNode
 }
 
-export const AccountFormBox: React.FC<AccountFormBoxProps> = ({
+export const FormBox: React.FC<FormBoxProps> = ({
   onSubmit,
   title,
   alert,
@@ -24,7 +24,7 @@ export const AccountFormBox: React.FC<AccountFormBoxProps> = ({
     <form
       onSubmit={onSubmit}
       className={toClass(
-        'container border border-secondary bg-light p-5 my-5 border-2 rounded',
+        'container border border-secondary bg-light p-5 my-5 border-2 w-75 rounded',
         styles.form
       )}
     >

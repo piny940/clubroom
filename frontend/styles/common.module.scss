@@ -2,9 +2,13 @@
 
 #alerts {
   position: absolute;
-  z-index: 2000;
+  z-index: 800;
   right: 10px;
   top: layout.$header-height + 10px;
   min-width: 230px;
   max-width: 60%;
+}
+
+.modal_dialog {
+  padding-top: 80px;
 }

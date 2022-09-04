@@ -5,11 +5,11 @@ import { AlertState } from '../utils/enums'
 import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'
-import { fetchApi } from '../utils/api'
+import { postData } from '../utils/api'
 import { useUserState } from '../contexts/UserStateProvider'
 import { TestID } from '../resources/TestID'
 import Link from 'next/link'
-import { AccountFormBox } from '../components/AccountFormBox'
+import { FormBox } from '../components/FormBox'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -17,31 +17,29 @@ export const LoginForm: React.FC = () => {
   })
 
   const [alert, setAlert] = useState<string>('')
-  const { setUser } = useUserState()
+  const { updateUser } = useUserState()
 
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
-    const response = await fetchApi({
-      url: '/session',
-      method: 'POST',
-      data: data,
-    })
-    const json = await response.json()
-
-    if (response.status >= 400) {
-      setAlert(json.message)
-    } else {
-      setUser(json.data.user)
+    const _onSuccess = (json: any) => {
+      updateUser()
       void movePage('/', {
         content: json.message,
         state: AlertState.SUCCESS,
       })
     }
+
+    void postData({
+      url: '/session',
+      data: data,
+      onFail: (json: any) => setAlert(json.message),
+      onSuccess: _onSuccess,
+    })
   }
 
   return (
-    <AccountFormBox
+    <FormBox
       onSubmit={handleSubmit(_submit)}
       title="ログイン"
       alert={alert}
@@ -73,6 +71,6 @@ export const LoginForm: React.FC = () => {
           </Link>
         </span>
       </div>
-    </AccountFormBox>
+    </FormBox>
   )
 }

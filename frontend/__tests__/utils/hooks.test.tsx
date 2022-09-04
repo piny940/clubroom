@@ -3,6 +3,7 @@ import { useAlertsState } from '../../contexts/AlertsStateProvider'
 import { AlertInput } from '../../types'
 import { AlertState } from '../../utils/enums'
 import { useMovePage } from '../../utils/hooks'
+import { expect } from '@jest/globals'
 
 const push = jest.fn()
 

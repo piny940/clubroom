@@ -1,4 +1,5 @@
 import { toClass } from '../../utils/helpers'
+import { expect } from '@jest/globals'
 
 describe('toClass', () => {
   test('正常にclassNameに変換できる', () => {

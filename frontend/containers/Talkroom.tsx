@@ -6,7 +6,7 @@ import { useAlertsState } from '../contexts/AlertsStateProvider'
 import { useUserState } from '../contexts/UserStateProvider'
 import styles from '../styles/talk-app.module.scss'
 import { Talk, Talkroom as TalkroomType } from '../types'
-import { fetchApi, fetchTalks } from '../utils/api'
+import { fetchTalks, postData } from '../utils/api'
 import { AlertState } from '../utils/enums'
 
 export interface TalkroomInterface {
@@ -52,26 +52,20 @@ export const Talkroom: React.FC<TalkroomInterface> = ({
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     if (!openTalkroom) throw new Error('トークルームを選んでください。')
 
-    const response = await fetchApi({
+    void postData({
       url: `/member/groups/${openTalkroom.group_id}/talkrooms/${openTalkroom.id}/talks`,
-      method: 'POST',
-      data: {
-        talk: {
-          content: data.content,
-        },
+      data: { content: data.content },
+      scope: 'talk',
+      onFail: (json: any) =>
+        setAlerts({
+          content: json.message,
+          state: AlertState.DANGER,
+        }),
+      onSuccess: async (json: any) => {
+        await _updateTalks()
+        reset()
       },
     })
-    const json = await response.json()
-
-    if (response.status >= 400) {
-      setAlerts({
-        content: json.message,
-        state: AlertState.DANGER,
-      })
-    } else {
-      await _updateTalks()
-      reset()
-    }
   }
 
   return (
