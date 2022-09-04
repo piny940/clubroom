@@ -3,6 +3,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/FormGroup'
 import { ModalFormBox } from '../components/ModalFormBox'
 import { useAlertsState } from '../contexts/AlertsStateProvider'
+import { useGroupsState } from '../contexts/GroupsStateProvider'
 import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
 import { postData } from '../utils/api'
@@ -21,6 +22,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
 
   const [alert, setFormAlert] = useState<string>('')
   const { setAlerts } = useAlertsState()
+  const { updateGroups } = useGroupsState()
 
   const _closeModal = () => {
     closeButtonRef.current?.click()
@@ -34,7 +36,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
         content: 'グループを作成しました。',
         state: AlertState.SUCCESS,
       })
-      // TODO: Update Groups
+      updateGroups()
     }
 
     void postData({
