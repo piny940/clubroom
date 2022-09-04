@@ -3,7 +3,7 @@ import { Group } from '../types/index'
 
 interface GroupsStateContextInterface {
   groups: Group[]
-  setGroups: (groups: Group[]) => void
+  setGroups: (...groups: Group[]) => void
 }
 
 const defaultContextValue: GroupsStateContextInterface = {
@@ -26,7 +26,7 @@ const GroupsStateProvider: React.FC<GroupsStateProviderProps> = ({
 
   const value: GroupsStateContextInterface = {
     groups,
-    setGroups,
+    setGroups: (...groups) => setGroups(groups),
   }
 
   return (
