@@ -1,14 +1,15 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { User } from '../types'
+import { fetchUser } from '../utils/api'
 
 interface UserStateContextInterface {
   user: User | undefined
-  setUser: (user: User | undefined) => void
+  updateUser: () => void
 }
 
 const defaultUserStateContext: UserStateContextInterface = {
   user: undefined,
-  setUser: (user: User | undefined) => undefined,
+  updateUser: () => undefined,
 }
 
 const UserStateContext = createContext(defaultUserStateContext)
@@ -22,9 +23,14 @@ interface UserStateProviderProps {
 const UserStateProvider: React.FC<UserStateProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | undefined>(undefined)
 
+  const updateUser = async () => {
+    const user = await fetchUser()
+    setUser(user)
+  }
+
   const value: UserStateContextInterface = {
-    user: user,
-    setUser: setUser,
+    user,
+    updateUser,
   }
 
   return (

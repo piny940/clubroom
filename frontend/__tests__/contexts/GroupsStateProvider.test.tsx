@@ -6,6 +6,23 @@ import {
 } from '../../contexts/GroupsStateProvider'
 import { expect } from '@jest/globals'
 
+jest.mock('../../utils/api', () => ({
+  fetchGroups: () => [
+    {
+      id: 0,
+      name: 'Test1',
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      id: 1,
+      name: 'Test2',
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+  ],
+}))
+
 describe('<GroupsStateProvider />', () => {
   it('正常にGroupsをsetできる', async () => {
     const wrapper = ({ children }: { children: ReactNode }) => (
@@ -18,16 +35,11 @@ describe('<GroupsStateProvider />', () => {
     })
 
     act(() => {
-      result.current.setGroups({
-        id: 0,
-        name: 'Test1',
-        created_at: new Date(),
-        updated_at: new Date(),
-      })
+      result.current.updateGroups()
     })
 
     await waitFor(() => {
-      expect(result.current.groups.length).toBe(1)
+      expect(result.current.groups.length).toBe(2)
     })
   })
 })

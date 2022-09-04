@@ -17,13 +17,13 @@ export const LoginForm: React.FC = () => {
   })
 
   const [alert, setAlert] = useState<string>('')
-  const { setUser } = useUserState()
+  const { updateUser } = useUserState()
 
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
-      setUser(json.data.user)
+      updateUser()
       void movePage('/', {
         content: json.message,
         state: AlertState.SUCCESS,

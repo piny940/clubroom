@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
   const [groups, setGroups] = useState<Group[]>([])
 
   const { group, setGroup } = useGroupState()
-  const { user, setUser } = useUserState()
+  const { user, updateUser } = useUserState()
   const { setAlerts } = useAlertsState()
 
   const _updateGroups = async () => {
@@ -24,7 +24,7 @@ export const Navbar: React.FC = () => {
       content: json.message,
       state: AlertState.NOTICE,
     })
-    setUser(json.data.user)
+    updateUser()
   }
 
   useEffect(() => {
