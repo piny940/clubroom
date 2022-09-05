@@ -10,6 +10,29 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
   end
 
   def create
+    # Group's talkroom
+    talkroom = current_user.talkrooms.new(name: talkroom_params[:name], group_id: params[:group_id])
+    
+    if talkroom.save
+      render json: {
+        message: "トークルームを作成しました。",
+        data: {
+          talkroom: talkroom
+        }
+      }, status: :ok
+    else
+      render json: {
+        message: "トークルームを作成できませんでした。",
+        data: {
+          talkroom: nil
+        }
+      }, status: 400
+    end
+  end
 
+  private
+
+  def talkroom_params
+    params.require(:talkroom).permit(:name)
   end
 end

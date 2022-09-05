@@ -60,6 +60,5 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     json = JSON.parse(response.body)
 
     assert_equal json["message"], "このグループには所属していません。"
-    assert_equal before_count, Talkroom.count
   end
 end
