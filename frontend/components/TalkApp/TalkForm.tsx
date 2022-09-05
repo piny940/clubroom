@@ -3,6 +3,7 @@ import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { TestID } from '../../resources/TestID'
 import styles from '../../styles/talk-app.module.scss'
 import { useKey } from '../../utils/hooks'
+import { MaterialIcon } from '../Common/MaterialIcon'
 
 export interface TalkFormProps {
   name: string
@@ -40,7 +41,7 @@ export const TalkForm: React.FC<TalkFormProps> = ({
         type="submit"
         data-testid={TestID.TALK_FORM_SUBMIT}
       >
-        <span className="material-icons text-primary">send</span>
+        <MaterialIcon name="send" className="text-primary" />
       </button>
     </form>
   )

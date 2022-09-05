@@ -1,6 +1,7 @@
 import { MouseEventHandler } from 'react'
 import { toClass } from '../../utils/helpers'
 import styles from '../../styles/talk-app.module.scss'
+import { MaterialIcon } from '../Common/MaterialIcon'
 
 export interface TalkListActionButtonProps {
   handler: MouseEventHandler
@@ -27,9 +28,7 @@ export const TalkListActionButton: React.FC<TalkListActionButtonProps> = ({
       data-bs-target={modalID ? '#' + modalID : ''}
       data-testid={testID}
     >
-      <span className="material-icons me-1" style={{ color: iconColor }}>
-        {iconName}
-      </span>
+      <MaterialIcon color={iconColor} name={iconName} className="me-1" />
       {label}
     </a>
   )

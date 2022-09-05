@@ -4,6 +4,8 @@ import { expect } from '@jest/globals'
 import { TestID } from '../../resources/TestID'
 import { postData } from '../../utils/api'
 import { AlertState } from '../../utils/enums'
+import { Mock } from 'ts-mockery'
+import { Group } from '../../types'
 
 const setAlerts = jest.fn()
 jest.mock('../../contexts/AlertsStateProvider', () => ({
@@ -26,7 +28,11 @@ describe('<NewGroupForm />', () => {
     const mockedPostData = jest.mocked(postData)
     mockedPostData.mockImplementation(
       jest.fn(({ onSuccess }) => {
-        onSuccess()
+        onSuccess({
+          data: {
+            group: Mock.all<Group>(),
+          },
+        })
       }) as jest.Mock
     )
 
