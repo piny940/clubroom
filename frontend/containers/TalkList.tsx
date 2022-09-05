@@ -71,6 +71,7 @@ export const TalkList: React.FC<TalkListInterface> = ({
       <NewTalkroomForm
         targetID="new-talkroom"
         updateTalkroomList={updateTalkroomList}
+        setOpenTalkroom={setOpenTalkroom}
       />
     </section>
   )

@@ -6,17 +6,20 @@ import { useAlertsState } from '../contexts/AlertsStateProvider'
 import { useGroupState } from '../contexts/GroupStateProvider'
 import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
+import { Talkroom } from '../types'
 import { postData } from '../utils/api'
 import { AlertState } from '../utils/enums'
 
 export interface NewTalkroomFormProps {
   targetID: string
   updateTalkroomList: () => void
+  setOpenTalkroom: (talkroom: Talkroom) => void
 }
 
 export const NewTalkroomForm: React.FC<NewTalkroomFormProps> = ({
   targetID,
   updateTalkroomList,
+  setOpenTalkroom,
 }) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -47,6 +50,7 @@ export const NewTalkroomForm: React.FC<NewTalkroomFormProps> = ({
       })
 
       updateTalkroomList()
+      setOpenTalkroom(json.data.talkroom)
     }
 
     void postData({
