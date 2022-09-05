@@ -1,5 +1,5 @@
-import { TestID } from '../resources/TestID'
-import { toClass } from '../utils/helpers'
+import { TestID } from '../../resources/TestID'
+import { toClass } from '../../utils/helpers'
 import { Talk } from './Talk'
 
 export interface TalkRowProps {

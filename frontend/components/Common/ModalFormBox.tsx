@@ -1,7 +1,7 @@
 import { FormEventHandler, ReactNode, RefObject } from 'react'
-import { TestID } from '../resources/TestID'
-import styles from '../styles/common.module.scss'
-import { toClass } from '../utils/helpers'
+import { TestID } from '../../resources/TestID'
+import styles from '../../styles/common.module.scss'
+import { toClass } from '../../utils/helpers'
 
 export interface ModalFormBoxProps {
   targetID: string

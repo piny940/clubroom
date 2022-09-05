@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
-import { ProfileNav, ProfileNavProps } from '../../components/ProfileNav'
+import { ProfileNav, ProfileNavProps } from '../../components/Navbar/ProfileNav'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 

@@ -1,5 +1,5 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { FormGroup } from '../components/FormGroup'
+import { FormGroup } from '../components/Common/FormGroup'
 import { Message } from '../resources/Messages'
 import { AlertState } from '../utils/enums'
 import styles from '../styles/accounts.module.scss'
@@ -9,7 +9,7 @@ import { postData } from '../utils/api'
 import { useUserState } from '../contexts/UserStateProvider'
 import { TestID } from '../resources/TestID'
 import Link from 'next/link'
-import { FormBox } from '../components/FormBox'
+import { FormBox } from '../components/Common/FormBox'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({

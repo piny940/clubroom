@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
-import { NavbarView, NavbarViewProps } from '../../components/NavbarView'
+import { NavbarView, NavbarViewProps } from '../../components/Navbar/NavbarView'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 

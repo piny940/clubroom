@@ -1,11 +1,11 @@
 import { CSSProperties } from 'react'
-import { TestID } from '../resources/TestID'
-import styles from '../styles/talk-app.module.scss'
+import { TestID } from '../../resources/TestID'
+import styles from '../../styles/talk-app.module.scss'
 import {
   MY_TALK_COLOR,
   OTHERS_TALK_COLOR,
   TALK_BORDER_RADIUS,
-} from '../resources/constants'
+} from '../../resources/constants'
 
 export interface TalkProps {
   content: string

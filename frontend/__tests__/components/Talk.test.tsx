@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
-import { Talk, TalkProps } from '../../components/Talk'
+import { Talk, TalkProps } from '../../components/TalkApp/Talk'
 import { TestID } from '../../resources/TestID'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'

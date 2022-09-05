@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { ReactNode } from 'react'
 import { Alerts } from './Alerts'
-import { Navbar } from '../containers/Navbar'
-import styles from '../styles/layout.module.scss'
+import { Navbar } from '../../containers/Navbar'
+import styles from '../../styles/layout.module.scss'
 
 interface LayoutProps {
   children: ReactNode

@@ -1,5 +1,5 @@
-import { DropdownActionButton } from './DropdownActionButton'
-import styles from '../styles/navbar.module.scss'
+import { DropdownActionButton } from '../Common/DropdownActionButton'
+import styles from '../../styles/navbar.module.scss'
 
 export interface ProfileNavProps {
   logout: () => void

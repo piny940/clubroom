@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react'
-import { TestID } from '../resources/TestID'
+import { TestID } from '../../resources/TestID'
 
 export interface DropdownActionButtonProps {
   label: string

@@ -1,11 +1,11 @@
 import { render, waitFor } from '@testing-library/react'
-import { Talks, TalksProps } from '../../components/Talks'
+import { Talks, TalksProps } from '../../components/TalkApp/Talks'
 import { Talk } from '../../types'
 import { expect } from '@jest/globals'
-import { TalkRow } from '../../components/TalkRow'
+import { TalkRow } from '../../components/TalkApp/TalkRow'
 import { Mock } from 'ts-mockery'
 
-jest.mock('../../components/TalkRow')
+jest.mock('../../components/TalkApp/TalkRow')
 const mockedTalkRow = jest.mocked(TalkRow)
 
 describe('<Talks />', () => {

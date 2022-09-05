@@ -1,6 +1,6 @@
-import { useAlertsState } from '../contexts/AlertsStateProvider'
+import { useAlertsState } from '../../contexts/AlertsStateProvider'
 import { Alert } from './Alert'
-import styles from '../styles/common.module.scss'
+import styles from '../../styles/common.module.scss'
 
 export const Alerts: React.FC = () => {
   const { alerts, removeAlert } = useAlertsState()

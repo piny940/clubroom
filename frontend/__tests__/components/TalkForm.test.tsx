@@ -1,5 +1,5 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react'
-import { TalkForm, TalkFormProps } from '../../components/TalkForm'
+import { TalkForm, TalkFormProps } from '../../components/TalkApp/TalkForm'
 import { expect } from '@jest/globals'
 import { TestID } from '../../resources/TestID'
 import { Mock } from 'ts-mockery'

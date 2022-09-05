@@ -2,7 +2,7 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react'
 import {
   TalkListActionButton,
   TalkListActionButtonProps,
-} from '../../components/TalkListActionButton'
+} from '../../components/TalkApp/TalkListActionButton'
 import { Mock } from 'ts-mockery'
 import { expect } from '@jest/globals'
 

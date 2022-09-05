@@ -6,7 +6,7 @@ import { expect } from '@jest/globals'
 
 jest.mock('../../containers/TalkList')
 jest.mock('../../containers/Talkroom')
-jest.mock('../../components/AskLogin')
+jest.mock('../../components/Common/AskLogin')
 jest.mock('../../containers/LoginRequired', () => ({
   LoginRequired: ({ children }: { children: ReactNode }) => <>{children}</>,
 }))

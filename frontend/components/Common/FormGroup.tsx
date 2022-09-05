@@ -1,7 +1,7 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form'
-import { InputType } from '../types'
-import styles from '../styles/accounts.module.scss'
-import { toClass } from '../utils/helpers'
+import { InputType } from '../../types'
+import styles from '../../styles/accounts.module.scss'
+import { toClass } from '../../utils/helpers'
 
 export interface FormGroupProps {
   label: string

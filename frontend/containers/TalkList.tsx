@@ -1,11 +1,11 @@
-import { TalkListButton } from '../components/TalkListButton'
+import { TalkListButton } from '../components/TalkApp/TalkListButton'
 import { toClass } from '../utils/helpers'
 import styles from '../styles/talk-app.module.scss'
 import { useGroupState } from '../contexts/GroupStateProvider'
 import { useEffect, useState } from 'react'
 import { Talkroom } from '../types'
 import { fetchTalkrooms } from '../utils/api'
-import { TalkListActionButton } from '../components/TalkListActionButton'
+import { TalkListActionButton } from '../components/TalkApp/TalkListActionButton'
 import { NewTalkroomForm } from './NewTalkroomForm'
 import { TestID } from '../resources/TestID'
 

@@ -1,8 +1,8 @@
 import { FormEventHandler, useRef } from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
-import { TestID } from '../resources/TestID'
-import styles from '../styles/talk-app.module.scss'
-import { useKey } from '../utils/hooks'
+import { TestID } from '../../resources/TestID'
+import styles from '../../styles/talk-app.module.scss'
+import { useKey } from '../../utils/hooks'
 
 export interface TalkFormProps {
   name: string

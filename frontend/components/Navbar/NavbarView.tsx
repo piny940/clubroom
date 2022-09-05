@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { LoginRequired } from '../containers/LoginRequired'
-import { Group } from '../types'
+import { LoginRequired } from '../../containers/LoginRequired'
+import { Group } from '../../types'
 import { GroupsNav } from './GroupsNav'
 import { ProfileNav } from './ProfileNav'
 

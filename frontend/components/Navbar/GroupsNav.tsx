@@ -1,7 +1,7 @@
-import { Group } from '../types'
-import { DropdownActionButton } from './DropdownActionButton'
-import styles from '../styles/navbar.module.scss'
-import { NewGroupForm } from '../containers/NewGroupForm'
+import { Group } from '../../types'
+import { DropdownActionButton } from '../Common/DropdownActionButton'
+import styles from '../../styles/navbar.module.scss'
+import { NewGroupForm } from '../../containers/NewGroupForm'
 
 export interface GroupNavProps {
   groupName?: string

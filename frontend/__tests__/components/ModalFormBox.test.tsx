@@ -1,4 +1,7 @@
-import { ModalFormBox, ModalFormBoxProps } from '../../components/ModalFormBox'
+import {
+  ModalFormBox,
+  ModalFormBoxProps,
+} from '../../components/Common/ModalFormBox'
 import { render, waitFor } from '@testing-library/react'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'

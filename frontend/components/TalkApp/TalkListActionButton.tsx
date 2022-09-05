@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react'
-import { toClass } from '../utils/helpers'
-import styles from '../styles/talk-app.module.scss'
+import { toClass } from '../../utils/helpers'
+import styles from '../../styles/talk-app.module.scss'
 
 export interface TalkListActionButtonProps {
   handler: MouseEventHandler
