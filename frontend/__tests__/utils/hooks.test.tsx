@@ -1,9 +1,9 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { useAlertsState } from '../../contexts/AlertsStateProvider'
 import { AlertInput } from '../../types'
-import { AlertState } from '../../utils/enums'
 import { useMovePage } from '../../utils/hooks'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
 
 const push = jest.fn()
 
@@ -25,12 +25,7 @@ describe('useMovePage', () => {
 
     const { result } = renderHook(() => useMovePage())
     const url = 'test'
-    const alerts: AlertInput[] = [
-      {
-        content: 'Test',
-        state: AlertState.DANGER,
-      },
-    ]
+    const alerts: AlertInput[] = [Mock.all<AlertInput>()]
 
     await act(async () => {
       await result.current(url, ...alerts)
