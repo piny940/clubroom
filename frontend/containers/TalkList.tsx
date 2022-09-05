@@ -5,6 +5,7 @@ import { useGroupState } from '../contexts/GroupStateProvider'
 import { useEffect, useState } from 'react'
 import { Talkroom } from '../types'
 import { fetchTalkrooms } from '../utils/api'
+import { TalkListActionButton } from '../components/TalkListActionButton'
 
 export interface TalkListInterface {
   width: string
@@ -36,6 +37,19 @@ export const TalkList: React.FC<TalkListInterface> = ({
       style={{ width: width }}
       className={toClass('h-100', styles.talk_list)}
     >
+      <div
+        className={toClass(
+          'ps-4 py-2 d-flex flex-column',
+          styles.action_buttons
+        )}
+      >
+        <TalkListActionButton
+          handler={() => undefined}
+          iconName="add_circle"
+          label="新規トークルーム作成"
+          iconColor="#00d77b" // Green
+        />
+      </div>
       <ul className="p-0">
         {talkrooms.map((talkroom) => (
           <TalkListButton
