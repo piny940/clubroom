@@ -21,7 +21,7 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
       <a
         role="button"
         className={toClass(
-          'w-100 h-100 d-block pt-2 ps-4',
+          'w-100 h-100 d-block pt-2 pe-1 ps-4',
           open ? styles.open : ''
         )}
         onClick={handler}

@@ -12,6 +12,21 @@ $talk_room_padding: 8px;
   border: 1px solid rgb(209, 209, 209);
   overflow-y: auto;
 
+  .action_buttons {
+    border-bottom: 1px solid $talk_list_button_border_color;
+
+    .action_button {
+      font-weight: 500;
+      font-size: 16px;
+      color: black;
+
+      &:hover {
+        cursor: pointer;
+        color: #0e6dfd;
+      }
+    }
+  }
+
   .talk_list_button {
     height: 65px;
     width: 100%;

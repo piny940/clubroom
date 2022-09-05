@@ -22,4 +22,7 @@ export enum TestID {
   GROUP_FORM_NAME = 'group-form-name',
   GROUP_FORM_SCHOOL = 'group-form-school',
   GROUP_FORM_SUBMIT = 'group-form-submit',
+  NEW_TALKROOM_BUTTON = 'new-talkroom-button',
+  TALKROOM_FORM_NAME = 'talkroom-form-name',
+  TALKROOM_FORM_SUBMIT = 'talkroom-form-submit',
 }
