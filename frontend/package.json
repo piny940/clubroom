@@ -22,7 +22,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.34.2",
-    "rooks": "^6.4.3",
     "sass": "^1.54.4"
   },
   "devDependencies": {
