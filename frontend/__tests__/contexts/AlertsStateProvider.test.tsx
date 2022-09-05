@@ -8,18 +8,14 @@ import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 import { AlertInput } from '../../types'
 
-jest.mock('next/router', () => {
-  return {
-    useRouter() {
-      return {
-        events: {
-          on: jest.fn(),
-          off: jest.fn(),
-        },
-      }
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    events: {
+      on: jest.fn(),
+      off: jest.fn(),
     },
-  }
-})
+  }),
+}))
 
 describe('<AlertStateProvider />', () => {
   it('addAlert, removeAlert, setAlertが正常に動作する', async () => {
