@@ -4,6 +4,7 @@ import { FormGroup } from '../components/FormGroup'
 import { ModalFormBox } from '../components/ModalFormBox'
 import { useAlertsState } from '../contexts/AlertsStateProvider'
 import { useGroupsState } from '../contexts/GroupsStateProvider'
+import { useGroupState } from '../contexts/GroupStateProvider'
 import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
 import { postData } from '../utils/api'
@@ -16,13 +17,14 @@ export interface NewGroupFormProps {
 export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     shouldUseNativeValidation: true,
   })
 
   const [alert, setFormAlert] = useState<string>('')
   const { setAlerts } = useAlertsState()
   const { updateGroups } = useGroupsState()
+  const { setGroup } = useGroupState()
 
   const _closeModal = () => {
     closeButtonRef.current?.click()
@@ -30,6 +32,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
+      reset()
       _closeModal()
 
       setAlerts({
@@ -37,6 +40,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
         state: AlertState.SUCCESS,
       })
       updateGroups()
+      setGroup(json.data.group)
     }
 
     void postData({
