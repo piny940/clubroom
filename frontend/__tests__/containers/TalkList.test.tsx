@@ -5,6 +5,7 @@ import { TestID } from '../../resources/TestID'
 import { fetchTalkrooms } from '../../utils/api'
 import { expect } from '@jest/globals'
 import { Talkroom } from '../../types'
+import { Mock } from 'ts-mockery'
 
 jest.mock('../../utils/api')
 jest.mock('../../contexts/GroupStateProvider')
@@ -19,38 +20,27 @@ describe('<TalkList />', () => {
 
   it('groupが選択済みの時はtalkroomsを取得して表示する', async () => {
     const groupID = 1
-    const openTalkroom: Talkroom = {
-      id: 0,
-      name: 'Test',
-      group_id: 0,
-      kind: 'group',
-      created_at: new Date(),
-      updated_at: new Date(),
-    }
+    const openTalkroom = Mock.all<Talkroom>()
 
     mockedUseGroupState.mockImplementation(
-      jest.fn(() => {
-        return {
-          group: {
-            id: groupID,
-          },
-        }
-      }) as jest.Mock
+      jest.fn(() => ({
+        group: {
+          id: groupID,
+        },
+      })) as jest.Mock
     )
 
     mockedFetchTalkrooms.mockImplementation(
-      jest.fn((groupID: number) => {
-        return [
-          {
-            id: 0,
-            name: 'Test1',
-          },
-          {
-            id: 1,
-            name: 'Test2',
-          },
-        ]
-      }) as jest.Mock
+      jest.fn((groupID: number) => [
+        {
+          id: 0,
+          name: 'Test1',
+        },
+        {
+          id: 1,
+          name: 'Test2',
+        },
+      ]) as jest.Mock
     )
 
     const width = '25%'
@@ -73,21 +63,13 @@ describe('<TalkList />', () => {
   })
 
   it('groupが選択されていないときはtalkroomをfetchしない', async () => {
-    const openTalkroom: Talkroom = {
-      id: 0,
-      name: 'Test',
-      group_id: 0,
-      kind: 'group',
-      created_at: new Date(),
-      updated_at: new Date(),
-    }
+    const openTalkroom = Mock.all<Talkroom>()
+
     const mockedUseGroupState = jest.mocked(useGroupState)
     mockedUseGroupState.mockImplementation(
-      jest.fn(() => {
-        return {
-          group: undefined,
-        }
-      }) as jest.Mock
+      jest.fn(() => ({
+        group: undefined,
+      })) as jest.Mock
     )
 
     const mockedFetchTalkrooms = jest.mocked(fetchTalkrooms)
