@@ -4,8 +4,9 @@ import {
   AlertsStateProvider,
   useAlertsState,
 } from '../../contexts/AlertsStateProvider'
-import { AlertState } from '../../utils/enums'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
+import { AlertInput } from '../../types'
 
 jest.mock('next/router', () => {
   return {
@@ -34,14 +35,8 @@ describe('<AlertStateProvider />', () => {
     // Test for setAlert
     act(() => {
       result.current.setAlerts(
-        {
-          content: 'Test0',
-          state: AlertState.DANGER,
-        },
-        {
-          content: 'Test1',
-          state: AlertState.NOTICE,
-        }
+        Mock.from<AlertInput>({ content: 'Test0' }),
+        Mock.from<AlertInput>({ content: 'Test1' })
       )
     })
     await waitFor(() => {
@@ -51,10 +46,7 @@ describe('<AlertStateProvider />', () => {
 
     // Test for addAlert
     act(() => {
-      result.current.addAlert({
-        content: 'Test2',
-        state: AlertState.NOTICE,
-      })
+      result.current.addAlert(Mock.from<AlertInput>({ content: 'Test2' }))
     })
     await waitFor(() => {
       expect(result.current.alerts.length).toBe(3)

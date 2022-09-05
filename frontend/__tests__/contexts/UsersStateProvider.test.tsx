@@ -5,15 +5,14 @@ import {
   UserStateProvider,
 } from '../../contexts/UserStateProvider'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
 
 jest.mock('../../utils/api', () => ({
-  fetchUser: () => ({
-    id: 0,
-    name: 'Test',
-    kind: 'member',
-    created_at: new Date(),
-    updated_at: new Date(),
-  }),
+  fetchUser: () =>
+    Mock.from({
+      id: 0,
+      name: 'Test',
+    }),
 }))
 
 describe('<UserStateProvider />', () => {
