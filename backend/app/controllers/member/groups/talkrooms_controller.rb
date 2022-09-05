@@ -8,4 +8,8 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
       }
     }, status: :ok
   end
+
+  def create
+
+  end
 end
