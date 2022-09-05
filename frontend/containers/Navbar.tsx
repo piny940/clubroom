@@ -1,4 +1,4 @@
-import { NavbarView } from '../components/NavbarView'
+import { NavbarView } from '../components/Navbar/NavbarView'
 import { useAlertsState } from '../contexts/AlertsStateProvider'
 import { useGroupsState } from '../contexts/GroupsStateProvider'
 import { useGroupState } from '../contexts/GroupStateProvider'

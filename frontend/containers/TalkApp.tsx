@@ -1,4 +1,4 @@
-import { AskLogin } from '../components/AskLogin'
+import { AskLogin } from '../components/Common/AskLogin'
 import { LoginRequired } from './LoginRequired'
 import { TalkList } from './TalkList'
 import { Talkroom } from './Talkroom'

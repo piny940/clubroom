@@ -6,10 +6,10 @@ import { AlertState } from '../utils/enums'
 import { useMovePage } from '../utils/hooks'
 import styles from '../styles/accounts.module.scss'
 import { TestID } from '../resources/TestID'
-import { FormGroup } from '../components/FormGroup'
+import { FormGroup } from '../components/Common/FormGroup'
 import { Message } from '../resources/Messages'
 import Link from 'next/link'
-import { FormBox } from '../components/FormBox'
+import { FormBox } from '../components/Common/FormBox'
 
 export const SignupForm: React.FC = () => {
   const { register, handleSubmit } = useForm({

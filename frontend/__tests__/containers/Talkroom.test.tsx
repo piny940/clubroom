@@ -8,8 +8,8 @@ import { Mock } from 'ts-mockery'
 
 jest.mock('../../contexts/UserStateProvider')
 jest.mock('../../utils/api')
-jest.mock('../../components/Talks')
-jest.mock('../../components/TalkForm')
+jest.mock('../../components/TalkApp/Talks')
+jest.mock('../../components/TalkApp/TalkForm')
 const mockedFetchTalks = jest.mocked(fetchTalks)
 const mockedUseUserState = jest.mocked(useUserState)
 

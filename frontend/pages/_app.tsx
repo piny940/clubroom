@@ -1,7 +1,7 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { AlertsStateProvider } from '../contexts/AlertsStateProvider'
-import { Layout } from '../components/Layout'
+import { Layout } from '../components/Common/Layout'
 import { useEffect } from 'react'
 import { GroupStateProvider } from '../contexts/GroupStateProvider'
 import { UserStateProvider } from '../contexts/UserStateProvider'
