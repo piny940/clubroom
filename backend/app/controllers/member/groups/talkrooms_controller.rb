@@ -11,9 +11,11 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
 
   def create
     # Group's talkroom
-    talkroom = current_user.talkrooms.new(name: talkroom_params[:name], group_id: params[:group_id])
+    talkroom = Talkroom.new(name: talkroom_params[:name], group_id: params[:group_id])
     
     if talkroom.save
+      talkroom.members << current_user
+      
       render json: {
         message: "トークルームを作成しました。",
         data: {
