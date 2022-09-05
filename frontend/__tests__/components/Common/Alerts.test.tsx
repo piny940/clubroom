@@ -1,11 +1,11 @@
 import { render, waitFor } from '@testing-library/react'
-import { Alerts } from '../../components/Common/Alerts'
-import { TestID } from '../../resources/TestID'
-import { Alert } from '../../types'
+import { Alerts } from '../../../components/Common/Alerts'
+import { TestID } from '../../../resources/TestID'
+import { Alert } from '../../../types'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 
-jest.mock('../../contexts/AlertsStateProvider', () => {
+jest.mock('../../../contexts/AlertsStateProvider', () => {
   return {
     useAlertsState(): { alerts: Alert[] } {
       return {

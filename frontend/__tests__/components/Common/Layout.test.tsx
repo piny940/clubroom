@@ -1,10 +1,10 @@
 import { render, waitFor } from '@testing-library/react'
-import { Layout } from '../../components/Common/Layout'
-import { TestID } from '../../resources/TestID'
-import { Test } from '../testHelpers/Test'
+import { Layout } from '../../../components/Common/Layout'
+import { TestID } from '../../../resources/TestID'
+import { Test } from '../../testHelpers/Test'
 import { expect } from '@jest/globals'
 
-jest.mock('../../containers/Navbar.tsx', () => ({
+jest.mock('../../../containers/Navbar.tsx', () => ({
   Navbar: () => <></>,
 }))
 

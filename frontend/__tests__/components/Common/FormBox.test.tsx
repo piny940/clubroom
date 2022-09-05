@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { FormBox, FormBoxProps } from '../../components/Common/FormBox'
+import { FormBox, FormBoxProps } from '../../../components/Common/FormBox'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 

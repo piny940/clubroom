@@ -1,8 +1,8 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react'
-import { TestID } from '../../resources/TestID'
-import { AlertState } from '../../utils/enums'
+import { TestID } from '../../../resources/TestID'
+import { AlertState } from '../../../utils/enums'
 import { expect } from '@jest/globals'
-import { Alert, AlertProps } from '../../components/Common/Alert'
+import { Alert, AlertProps } from '../../../components/Common/Alert'
 import { Mock } from 'ts-mockery'
 
 jest.useFakeTimers()

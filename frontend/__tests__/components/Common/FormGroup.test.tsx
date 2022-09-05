@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
-import { FormGroup, FormGroupProps } from '../../components/Common/FormGroup'
+import { FormGroup, FormGroupProps } from '../../../components/Common/FormGroup'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 

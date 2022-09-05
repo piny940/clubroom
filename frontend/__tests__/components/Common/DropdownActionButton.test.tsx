@@ -2,8 +2,8 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react'
 import {
   DropdownActionButton,
   DropdownActionButtonProps,
-} from '../../components/Common/DropdownActionButton'
-import { TestID } from '../../resources/TestID'
+} from '../../../components/Common/DropdownActionButton'
+import { TestID } from '../../../resources/TestID'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 

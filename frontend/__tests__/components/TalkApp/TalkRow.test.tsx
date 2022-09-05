@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react'
-import { TalkRow, TalkRowProps } from '../../components/TalkApp/TalkRow'
+import { TalkRow, TalkRowProps } from '../../../components/TalkApp/TalkRow'
 import { expect } from '@jest/globals'
-import { TestID } from '../../resources/TestID'
+import { TestID } from '../../../resources/TestID'
 import { Mock } from 'ts-mockery'
 
 describe('<TalkRow />', () => {

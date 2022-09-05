@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
-import { AskLogin } from '../../components/Common/AskLogin'
+import { AskLogin } from '../../../components/Common/AskLogin'
 import { expect } from '@jest/globals'
 
 describe('<AskLogin />', () => {

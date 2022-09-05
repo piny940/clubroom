@@ -1,13 +1,13 @@
 import { render, waitFor } from '@testing-library/react'
-import { Talk, TalkProps } from '../../components/TalkApp/Talk'
-import { TestID } from '../../resources/TestID'
+import { Talk, TalkProps } from '../../../components/TalkApp/Talk'
+import { TestID } from '../../../resources/TestID'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 import {
   MY_TALK_COLOR,
   OTHERS_TALK_COLOR,
   TALK_BORDER_RADIUS,
-} from '../../resources/constants'
+} from '../../../resources/constants'
 
 describe('<Talk />', () => {
   it('sentFromがmyselfのとき、右上のみが直角になる', async () => {
