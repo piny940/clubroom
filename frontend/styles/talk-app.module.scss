@@ -7,6 +7,8 @@ $talk_room_padding: 8px;
 #app {
   height: calc(100vh - #{layout.$header-height});
 }
+
+// ========== TalkList ==========
 .talk_list {
   background-color: rgb(249, 249, 249);
   border: 1px solid rgb(209, 209, 209);
@@ -46,6 +48,8 @@ $talk_room_padding: 8px;
     }
   }
 }
+
+// ========== Talkroom ==========
 .talk_room {
   background-color: white;
   border: 1px solid white;
@@ -73,6 +77,7 @@ $talk_room_padding: 8px;
     }
   }
 
+  // ========== Talkroom's form ==========
   #talk_form {
     position: absolute;
     bottom: 0;
