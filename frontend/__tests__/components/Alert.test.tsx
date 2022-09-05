@@ -1,9 +1,9 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react'
 import { TestID } from '../../resources/TestID'
-import { Alert as AlertType } from '../../types'
 import { AlertState } from '../../utils/enums'
 import { expect } from '@jest/globals'
-import { Alert } from '../../components/Alert'
+import { Alert, AlertProps } from '../../components/Alert'
+import { Mock } from 'ts-mockery'
 
 jest.useFakeTimers()
 
@@ -11,14 +11,15 @@ describe('<Alert />', () => {
   it('SuccessのAlertが正常に表示され、closeボタンで削除できる', async () => {
     const removeAlert = jest.fn()
 
-    const alert: AlertType = {
-      id: 0,
-      content: 'Test',
-      state: AlertState.SUCCESS,
-    }
-    const { getByTestId } = render(
-      <Alert removeAlert={removeAlert} margin="m-0" alert={alert} />
-    )
+    const props = Mock.from<AlertProps>({
+      alert: {
+        state: AlertState.SUCCESS,
+      },
+      margin: 'm-0',
+      removeAlert: removeAlert,
+    })
+
+    const { getByTestId } = render(<Alert {...props} />)
 
     await waitFor(() => {
       expect(getByTestId(TestID.ALERT).classList).toContain('alert')
@@ -37,13 +38,13 @@ describe('<Alert />', () => {
   it('時間経過で正常にAlertが削除される', async () => {
     const removeAlert = jest.fn()
 
-    const alert: AlertType = {
-      id: 0,
-      content: 'Test',
-      state: AlertState.SUCCESS,
-    }
+    const props = Mock.of<AlertProps>({
+      margin: 'm-0',
+      removeAlert: removeAlert,
+      alert: Mock.all(),
+    })
 
-    render(<Alert removeAlert={removeAlert} margin="m-0" alert={alert} />)
+    render(<Alert {...props} />)
 
     await waitFor(() => {
       expect(removeAlert).not.toBeCalled()

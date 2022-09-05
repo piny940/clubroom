@@ -1,24 +1,20 @@
 import { render, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
-import { NavbarView } from '../../components/NavbarView'
-import { Group } from '../../types'
+import { NavbarView, NavbarViewProps } from '../../components/NavbarView'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
 
 jest.mock('../../containers/LoginRequired', () => ({
-  LoginRequired: ({ children }: { children: ReactNode }) => {
-    return <>{children}</>
-  },
+  LoginRequired: ({ children }: { children: ReactNode }) => <>{children}</>,
 }))
 
 describe('<NavbarView />', () => {
   it('正常に描画される', async () => {
-    const groups: Group[] = []
-    const setGroup = jest.fn()
-    const logout = jest.fn()
+    const props = Mock.from<NavbarViewProps>({
+      groups: [],
+    })
 
-    const component = render(
-      <NavbarView groups={groups} setGroup={setGroup} logout={logout} />
-    )
+    const component = render(<NavbarView {...props} />)
 
     await waitFor(() => {
       expect(component).toBeTruthy()

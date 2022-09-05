@@ -3,23 +3,14 @@ import { GroupsNav } from '../../components/GroupsNav'
 import { TestID } from '../../resources/TestID'
 import { Group } from '../../types'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
 
 describe('<GroupsNav />', () => {
   it('正常に描画される', () => {
     const setGroup = jest.fn()
     const groups: Group[] = [
-      {
-        id: 0,
-        name: 'Test1',
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 1,
-        name: 'Test2',
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
+      Mock.from<Group>({ id: 0 }),
+      Mock.from<Group>({ id: 1 }),
     ]
 
     const { getAllByTestId } = render(

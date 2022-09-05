@@ -5,18 +5,17 @@ import {
 } from '../../components/TalkListButton'
 import { TestID } from '../../resources/TestID'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
 
 describe('<TalkListButton />', () => {
   it('正常に描画される', async () => {
     const handler = jest.fn()
 
-    const enabledProps: TalkListButtonProps = {
+    const props = Mock.from<TalkListButtonProps>({
       handler: handler,
-      detail: 'This is a test detail',
-      title: 'Test',
-    }
+    })
 
-    const { getByTestId } = render(<TalkListButton {...enabledProps} />)
+    const { getByTestId } = render(<TalkListButton {...props} />)
 
     act(() => {
       fireEvent.click(getByTestId(TestID.TALK_LIST_BUTTON))

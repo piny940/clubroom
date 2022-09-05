@@ -5,9 +5,7 @@ import { Test } from '../testHelpers/Test'
 import { expect } from '@jest/globals'
 
 jest.mock('../../containers/Navbar.tsx', () => ({
-  Navbar: () => {
-    return <></>
-  },
+  Navbar: () => <></>,
 }))
 
 describe('<Layout />', () => {
