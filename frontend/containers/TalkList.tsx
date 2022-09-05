@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { Talkroom } from '../types'
 import { fetchTalkrooms } from '../utils/api'
 import { TalkListActionButton } from '../components/TalkListActionButton'
+import { NewTalkroomForm } from './NewTalkroomForm'
 
 export interface TalkListInterface {
   width: string
@@ -39,7 +40,7 @@ export const TalkList: React.FC<TalkListInterface> = ({
     >
       <div
         className={toClass(
-          'ps-4 py-2 d-flex flex-column',
+          'ps-4 pe-1 py-2 d-flex flex-column',
           styles.action_buttons
         )}
       >
@@ -48,6 +49,7 @@ export const TalkList: React.FC<TalkListInterface> = ({
           iconName="add_circle"
           label="新規トークルーム作成"
           iconColor="#00d77b" // Green
+          modalID="new-talkroom"
         />
       </div>
       <ul className="p-0">
@@ -60,6 +62,7 @@ export const TalkList: React.FC<TalkListInterface> = ({
           />
         ))}
       </ul>
+      <NewTalkroomForm targetID="new-talkroom" />
     </section>
   )
 }

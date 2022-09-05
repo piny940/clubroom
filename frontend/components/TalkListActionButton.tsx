@@ -7,6 +7,7 @@ export interface TalkListActionButtonProps {
   iconName: string
   label: string
   iconColor: string
+  modalID?: string
 }
 
 export const TalkListActionButton: React.FC<TalkListActionButtonProps> = ({
@@ -14,9 +15,15 @@ export const TalkListActionButton: React.FC<TalkListActionButtonProps> = ({
   iconName,
   label,
   iconColor,
+  modalID,
 }) => {
   return (
-    <a onClick={handler} className={toClass('d-flex', styles.action_button)}>
+    <a
+      onClick={handler}
+      className={toClass('d-flex', styles.action_button)}
+      data-bs-toggle={modalID ? 'modal' : ''}
+      data-bs-target={modalID ? '#' + modalID : ''}
+    >
       <span className="material-icons me-1" style={{ color: iconColor }}>
         {iconName}
       </span>
