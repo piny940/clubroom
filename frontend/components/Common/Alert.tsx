@@ -4,7 +4,7 @@ import { AlertState } from '../../utils/enums'
 import styles from '../../styles/common.module.scss'
 import { toClass } from '../../utils/helpers'
 import { MouseEventHandler, useEffect } from 'react'
-import { Icon } from './Icon'
+import { MaterialIcon } from './MaterialIcon'
 
 export interface AlertProps {
   alert: AlertType
@@ -50,7 +50,7 @@ export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
     >
       <div>{alert.content}</div>
       <a role="button" onClick={_close} data-testid={TestID.ALERT_CLOSE}>
-        <Icon name="close" />
+        <MaterialIcon name="close" />
       </a>
     </div>
   )

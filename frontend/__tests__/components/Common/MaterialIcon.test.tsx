@@ -1,17 +1,20 @@
 import { render, waitFor } from '@testing-library/react'
 import { Mock } from 'ts-mockery'
-import { Icon, IconProps } from '../../../components/Common/Icon'
+import {
+  MaterialIcon,
+  MaterialIconProps,
+} from '../../../components/Common/MaterialIcon'
 import { expect } from '@jest/globals'
 
 describe('<Icon />', () => {
   it('正常に動作する', async () => {
-    const props = Mock.from<IconProps>({
+    const props = Mock.from<MaterialIconProps>({
       name: 'test',
       className: 'test-class',
       color: 'rgb(0, 0, 238)',
     })
 
-    const { getByText } = render(<Icon {...props} />)
+    const { getByText } = render(<MaterialIcon {...props} />)
 
     await waitFor(() => {
       expect(getByText(props.name)).toBeTruthy()
