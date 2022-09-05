@@ -1,21 +1,27 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react'
-import { DropdownActionButton } from '../../components/DropdownActionButton'
+import {
+  DropdownActionButton,
+  DropdownActionButtonProps,
+} from '../../components/DropdownActionButton'
 import { TestID } from '../../resources/TestID'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
 
 describe('<DropdownActionButton />', () => {
   it('正常に描画される', async () => {
-    const label = 'Test'
     const handler = jest.fn()
 
-    const { getByTestId } = render(
-      <DropdownActionButton label={label} handler={handler} />
-    )
+    const props = Mock.from<DropdownActionButtonProps>({
+      label: 'Test',
+      handler: handler,
+    })
+
+    const { getByTestId } = render(<DropdownActionButton {...props} />)
 
     const el = getByTestId(TestID.DROPDOWN_ACTION_BUTTON)
 
     await waitFor(() => {
-      expect(el.textContent).toBe(label)
+      expect(el.textContent).toBe(props.label)
       expect(handler).not.toBeCalled()
     })
 

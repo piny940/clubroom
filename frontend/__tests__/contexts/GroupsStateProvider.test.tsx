@@ -5,22 +5,11 @@ import {
   useGroupsState,
 } from '../../contexts/GroupsStateProvider'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
+import { Group } from '../../types'
 
 jest.mock('../../utils/api', () => ({
-  fetchGroups: () => [
-    {
-      id: 0,
-      name: 'Test1',
-      created_at: new Date(),
-      updated_at: new Date(),
-    },
-    {
-      id: 1,
-      name: 'Test2',
-      created_at: new Date(),
-      updated_at: new Date(),
-    },
-  ],
+  fetchGroups: () => [Mock.from<Group>({ id: 0 }), Mock.from<Group>({ id: 1 })],
 }))
 
 describe('<GroupsStateProvider />', () => {

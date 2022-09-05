@@ -5,6 +5,8 @@ import {
   useGroupState,
 } from '../../contexts/GroupStateProvider'
 import { expect } from '@jest/globals'
+import { Mock } from 'ts-mockery'
+import { Group } from '../../types'
 
 describe('<GroupStateProvider />', () => {
   it('正常にgroupをsetできる', async () => {
@@ -16,12 +18,12 @@ describe('<GroupStateProvider />', () => {
     expect(result.current.group).toBe(undefined)
 
     act(() => {
-      result.current.setGroup({
-        name: 'Test',
-        id: 0,
-        created_at: new Date(),
-        updated_at: new Date(),
-      })
+      result.current.setGroup(
+        Mock.from<Group>({
+          name: 'Test',
+          id: 0,
+        })
+      )
     })
     await waitFor(() => {
       expect(result.current.group?.name).toBe('Test')

@@ -4,6 +4,7 @@ import { Talkroom as TalkroomType } from '../../types'
 import { fetchTalks } from '../../utils/api'
 import { expect } from '@jest/globals'
 import { useUserState } from '../../contexts/UserStateProvider'
+import { Mock } from 'ts-mockery'
 
 jest.mock('../../contexts/UserStateProvider')
 jest.mock('../../utils/api')
@@ -28,14 +29,7 @@ describe('<Talkroom />', () => {
     )
 
     const width = '75%'
-    let openTalkroom: TalkroomType = {
-      id: 0,
-      name: 'Test0',
-      created_at: new Date(),
-      updated_at: new Date(),
-      kind: 'group',
-      group_id: 0,
-    }
+    let openTalkroom = Mock.from<TalkroomType>({ id: 0 })
 
     const { rerender } = render(
       <Talkroom width={width} openTalkroom={openTalkroom} />
@@ -47,14 +41,7 @@ describe('<Talkroom />', () => {
 
     mockedFetchTalks.mockReset()
 
-    openTalkroom = {
-      id: 1,
-      name: 'Test1',
-      created_at: new Date(),
-      updated_at: new Date(),
-      kind: 'group',
-      group_id: 0,
-    }
+    openTalkroom = Mock.from<TalkroomType>({ id: 1 })
 
     rerender(<Talkroom width={width} openTalkroom={openTalkroom} />)
 

@@ -12,11 +12,9 @@ describe('<LoginRequired />', () => {
   it('ログイン済みの時はchildrenを表示する', async () => {
     const mockedFetchUser = jest.mocked(fetchUser)
     mockedFetchUser.mockImplementation(
-      jest.fn(async () => {
-        return await Promise.resolve({
-          name: 'Test',
-        })
-      }) as jest.Mock
+      jest.fn(() => ({
+        name: 'Test',
+      })) as jest.Mock
     )
 
     const AskLogin = <Test textContent="Test2" />
@@ -34,9 +32,7 @@ describe('<LoginRequired />', () => {
   })
   it('ログイン済みでないときはAskLoginを表示する', async () => {
     const mockedFetchUser = jest.mocked(fetchUser)
-    mockedFetchUser.mockImplementation(async () => {
-      return await Promise.resolve(undefined)
-    })
+    mockedFetchUser.mockImplementation(jest.fn(() => undefined) as jest.Mock)
 
     const AskLogin = <Test textContent="Test1" />
 
