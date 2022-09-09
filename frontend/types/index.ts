@@ -45,3 +45,12 @@ export interface Talk {
   created_at: Date
   updated_at: Date
 }
+
+export interface TalkEntry {
+  id: number
+  talkroom_id: number
+  user_id: number
+  role: 'member' | 'staff'
+  created_at: Date
+  updated_at: Date
+}
