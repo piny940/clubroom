@@ -20,19 +20,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test '正常にユーザーを作成できる' do
     before_count = User.count
 
-    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'password'} }
+    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'password' } }
     assert_response :success
     json = JSON.parse(response.body)
 
     assert_equal 'アカウントが作成されました。', json['message']
     assert_equal 'Alice', json['data']['user']['name']
-    assert_equal before_count+1, User.count
+    assert_equal before_count + 1, User.count
   end
 
   test 'passwordとpassword_confirmationが違う場合はユーザーを作成できない' do
     before_count = User.count
 
-    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'wrongPassword'} }
+    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'wrongPassword' } }
     assert_response 400
     json = JSON.parse(response.body)
 
@@ -44,7 +44,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'emailが空欄の場合はユーザーを作成できない' do
     before_count = User.count
 
-    post '/user', params: { user: { email: ' ', name: 'Alice', password: 'password', password_confirmation: 'password'} }
+    post '/user', params: { user: { email: ' ', name: 'Alice', password: 'password', password_confirmation: 'password' } }
     assert_response 400
     json = JSON.parse(response.body)
 
@@ -56,7 +56,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'nameが空欄の場合はユーザーを作成できない' do
     before_count = User.count
 
-    post '/user', params: { user: { email: 'alice@example.com', name: ' ', password: 'password', password_confirmation: 'password'} }
+    post '/user', params: { user: { email: 'alice@example.com', name: ' ', password: 'password', password_confirmation: 'password' } }
     assert_response 400
     json = JSON.parse(response.body)
 
@@ -68,7 +68,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'passwordが空欄の場合はユーザーを作成できない' do
     before_count = User.count
 
-    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice', password: ' ', password_confirmation: ' '} }
+    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice', password: ' ', password_confirmation: ' ' } }
     assert_response 400
     json = JSON.parse(response.body)
 
@@ -82,7 +82,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     before_count = User.count
 
-    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice2', password: 'password', password_confirmation: 'password'}}
+    post '/user', params: { user: { email: 'alice@example.com', name: 'Alice2', password: 'password', password_confirmation: 'password' } }
     assert_response 400
     json = JSON.parse(response.body)
 

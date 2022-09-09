@@ -9,6 +9,7 @@ export interface NavbarViewProps {
   groups: Group[]
   setGroup: (group: Group) => void
   logout: () => void
+  newGroupFormID: string
 }
 
 export const NavbarView: React.FC<NavbarViewProps> = ({
@@ -16,6 +17,7 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
   groups,
   setGroup,
   logout,
+  newGroupFormID,
 }) => {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -25,7 +27,12 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
         </Link>
         <LoginRequired>
           <div className="d-flex justify-content-end align-items-center w-100">
-            <GroupsNav groupName={group} groups={groups} setGroup={setGroup} />
+            <GroupsNav
+              groupName={group}
+              groups={groups}
+              setGroup={setGroup}
+              newGroupFormID={newGroupFormID}
+            />
             <ProfileNav logout={logout} />
           </div>
         </LoginRequired>

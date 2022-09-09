@@ -14,17 +14,17 @@ class UsersController < ApplicationController
           user: nil
         },
         message: 'このメールアドレスはすでに使用されています。'
-      }, status: 400
+      }, status: :bad_request
       return
     end
-    
+
     user = User.new(user_params)
 
     if user.save
       sign_in user
       render json: {
         data: {
-          user: user
+          user:
         },
         message: 'アカウントが作成されました。'
       }, status: :ok
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
           user: nil
         },
         message: 'アカウントが作成できませんでした。'
-      }, status: 400
+      }, status: :bad_request
     end
   end
 

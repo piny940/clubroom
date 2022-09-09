@@ -12,27 +12,27 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
   def create
     # Group's talkroom
     talkroom = @group.talkrooms.new(name: talkroom_params[:name])
-    
+
     if talkroom.save
       talkroom.members << current_user
       talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom.id)
       talk_entry.role = 'staff'
       talk_entry.save!
-      
+
       render json: {
-        message: "トークルームを作成しました。",
+        message: 'トークルームを作成しました。',
         data: {
-          talkroom: talkroom,
-          talk_entry: talk_entry
+          talkroom:,
+          talk_entry:
         }
       }, status: :ok
     else
       render json: {
-        message: "トークルームを作成できませんでした。",
+        message: 'トークルームを作成できませんでした。',
         data: {
           talkroom: nil
         }
-      }, status: 400
+      }, status: :bad_request
     end
   end
 

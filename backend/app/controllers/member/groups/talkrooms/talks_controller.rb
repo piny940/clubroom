@@ -8,10 +8,10 @@ class Member::Groups::Talkrooms::TalksController < Member::Groups::Talkrooms::Ba
   end
 
   def create
-    if !talk_params[:content].present?
+    if talk_params[:content].blank?
       render json: {
         message: 'トークのcontentを入力してください'
-      }, status: 400
+      }, status: :bad_request
       return
     end
 
@@ -21,13 +21,13 @@ class Member::Groups::Talkrooms::TalksController < Member::Groups::Talkrooms::Ba
       render json: {
         message: 'トークを作成しました。',
         data: {
-          talk: talk
+          talk:
         }
       }, status: :ok
     else
       render json: {
         message: 'トークを作成できませんでした。'
-      }, status: 400
+      }, status: :bad_request
     end
   end
 

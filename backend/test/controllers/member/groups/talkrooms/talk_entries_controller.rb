@@ -12,9 +12,9 @@ class Member::Groups::Talkrooms::TalkEntriesControllerTest < ActionDispatch::Int
     sign_in @user1
   end
 
-  test '正常にトークルームへの自身のTalkEntryを取得できる'
+  test '正常にトークルームへの自身のTalkEntryを取得できる' do
     get "/member/groups/#{@talkroom1.group.id}/talkrooms/#{@talkroom1.id}/talk_entry"
-    
+
     assert_response :success
     json = JSON.parse(response.body)
 

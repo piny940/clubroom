@@ -5,8 +5,10 @@ import { useGroupState } from '../contexts/GroupStateProvider'
 import { useUserState } from '../contexts/UserStateProvider'
 import { logout } from '../utils/api'
 import { AlertState } from '../utils/enums'
+import { NewGroupForm } from './NewGroupForm'
 
 export const Navbar: React.FC = () => {
+  const newGroupFormID = 'new-group-form'
   const { groups } = useGroupsState()
 
   const { group, setGroup } = useGroupState()
@@ -23,11 +25,15 @@ export const Navbar: React.FC = () => {
   }
 
   return (
-    <NavbarView
-      groups={groups}
-      group={group?.name}
-      setGroup={setGroup}
-      logout={handleLogout}
-    />
+    <>
+      <NavbarView
+        groups={groups}
+        group={group?.name}
+        setGroup={setGroup}
+        logout={handleLogout}
+        newGroupFormID={newGroupFormID}
+      />
+      <NewGroupForm targetID={newGroupFormID} />
+    </>
   )
 }

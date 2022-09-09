@@ -1,18 +1,19 @@
 import { Group } from '../../types'
 import { DropdownActionButton } from '../Common/DropdownActionButton'
 import styles from '../../styles/navbar.module.scss'
-import { NewGroupForm } from '../../containers/NewGroupForm'
 
 export interface GroupNavProps {
   groupName?: string
   groups: Group[]
   setGroup: (group: Group) => void
+  newGroupFormID: string
 }
 
 export const GroupsNav: React.FC<GroupNavProps> = ({
   groupName = 'グループを選ぶ',
   groups,
   setGroup,
+  newGroupFormID,
 }) => {
   return (
     <>
@@ -35,7 +36,7 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
               className="mx-auto w-auto"
               id={styles.new_group_link}
               data-bs-toggle="modal"
-              data-bs-target="#new-group-form"
+              data-bs-target={'#' + newGroupFormID}
               href=""
             >
               グループを新規作成
@@ -52,7 +53,6 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
           </ul>
         </div>
       </div>
-      <NewGroupForm targetID="new-group-form" />
     </>
   )
 }

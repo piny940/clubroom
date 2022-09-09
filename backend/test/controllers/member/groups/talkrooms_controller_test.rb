@@ -37,51 +37,47 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     before_user_talkroom_count = @user.talkrooms.length
     before_group_talkroom_count = @group1.talkrooms.length
 
-    post "/member/groups/#{@group1.id}/talkrooms", params: { talkroom: { name: "Test" } }
+    post "/member/groups/#{@group1.id}/talkrooms", params: { talkroom: { name: 'Test' } }
 
     assert_response :success
     json = JSON.parse(response.body)
     @user.reload
     @group1.reload
 
-    assert_equal before_count+1, Talkroom.count
-    assert_equal before_user_talkroom_count+1, @user.talkrooms.length
-    assert_equal before_group_talkroom_count+1, @group1.talkrooms.length
-    assert_equal 'Test', json["data"]["talkroom"]["name"]
-    assert_equal 'group', json["data"]["talkroom"]["kind"]
-    assert_equal 'staff', json["data"]["talk_entry"]["role"]
-    assert @user.talk_entries.find_by(talkroom_id: json["data"]["talkroom"]["id"]).role_staff?
+    assert_equal before_count + 1, Talkroom.count
+    assert_equal before_user_talkroom_count + 1, @user.talkrooms.length
+    assert_equal before_group_talkroom_count + 1, @group1.talkrooms.length
+    assert_equal 'Test', json['data']['talkroom']['name']
+    assert_equal 'group', json['data']['talkroom']['kind']
+    assert_equal 'staff', json['data']['talk_entry']['role']
+    assert @user.talk_entries.find_by(talkroom_id: json['data']['talkroom']['id']).role_staff?
   end
 
   test '自身の入っていないグループのトークルームは作成できない' do
     sign_in @user
     before_count = Talkroom.count
 
-    post "/member/groups/#{@group2.id}/talkrooms", params: { talkroom: { name: "Test" } }
+    post "/member/groups/#{@group2.id}/talkrooms", params: { talkroom: { name: 'Test' } }
 
     assert_response 400
     json = JSON.parse(response.body)
 
-    assert_equal json["message"], "このグループには所属していません。"
+    assert_equal json['message'], 'このグループには所属していません。'
+    assert_equal before_count, Talkroom.count
   end
 
   test 'トークルームを削除できる' do
     sign_in @user
-    
+
     before_count = Talkroom.count
     before_group_talkroom_count = @group1.talkrooms.length
 
     delete "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}"
-    
+
     assert_response :success
-    json = JSON.parse(response.body)
 
     @group1.reload
     assert_equal before_count - 1, Talkroom.count
     assert_equal before_group_talkroom_count - 1, @group1.talkrooms.length
-  end
-
-  test '自身の入っていないトークルームは削除できない' do
-
   end
 end

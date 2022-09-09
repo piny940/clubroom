@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { GroupsNav } from '../../../components/Navbar/GroupsNav'
+import { GroupNavProps, GroupsNav } from '../../../components/Navbar/GroupsNav'
 import { TestID } from '../../../resources/TestID'
 import { Group } from '../../../types'
 import { expect } from '@jest/globals'
@@ -13,9 +13,12 @@ describe('<GroupsNav />', () => {
       Mock.from<Group>({ id: 1 }),
     ]
 
-    const { getAllByTestId } = render(
-      <GroupsNav groups={groups} setGroup={setGroup} />
-    )
+    const props = Mock.from<GroupNavProps>({
+      groups: groups,
+      setGroup: setGroup,
+    })
+
+    const { getAllByTestId } = render(<GroupsNav {...props} />)
 
     expect(getAllByTestId(TestID.DROPDOWN_ACTION_BUTTON).length).toBe(2)
   })
