@@ -48,12 +48,13 @@ $talk_room_padding: 8px;
     }
 
     a.menu_button {
-      $size: 24px;
+      $size: 38px;
       width: $size;
       height: $size;
+      padding: 7px;
       position: absolute;
       top: calc((100% - $size) / 2);
-      right: 8px;
+      right: 6px;
 
       &:hover {
         cursor: pointer;
