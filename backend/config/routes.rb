@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :member do
     resources :groups, only: %i[index create] do
       scope module: :groups do
-        resources :talkrooms, only: %i[index create] do
+        resources :talkrooms, only: %i[index create destroy] do
           scope module: :talkrooms do
             resources :talks, only: %i[index create]
             resources :members, only: %i[index]

@@ -64,4 +64,24 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal json["message"], "このグループには所属していません。"
   end
+
+  test 'トークルームを削除できる' do
+    sign_in @user
+    
+    before_count = Talkroom.count
+    before_group_talkroom_count = @group1.talkrooms.length
+
+    delete "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}"
+    
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    @group1.reload
+    assert_equal before_count - 1, Talkroom.count
+    assert_equal before_group_talkroom_count - 1, @group1.talkrooms.length
+  end
+
+  test '自身の入っていないトークルームは削除できない' do
+
+  end
 end

@@ -36,6 +36,14 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
     end
   end
 
+  def destroy
+    talkroom = current_user.talkrooms.find(params[:id])
+    talkroom.destroy
+    render json: {
+      message: 'トークルームを削除しました。'
+    }, status: :ok
+  end
+
   private
 
   def talkroom_params
