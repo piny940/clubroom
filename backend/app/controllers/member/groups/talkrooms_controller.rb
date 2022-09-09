@@ -11,15 +11,19 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
 
   def create
     # Group's talkroom
-    talkroom = Talkroom.new(name: talkroom_params[:name], group_id: params[:group_id])
+    talkroom = @group.talkrooms.new(name: talkroom_params[:name])
     
     if talkroom.save
       talkroom.members << current_user
+      talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom.id)
+      talk_entry.role = 'staff'
+      talk_entry.save!
       
       render json: {
         message: "トークルームを作成しました。",
         data: {
-          talkroom: talkroom
+          talkroom: talkroom,
+          talk_entry: talk_entry
         }
       }, status: :ok
     else
@@ -30,6 +34,14 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
         }
       }, status: 400
     end
+  end
+
+  def destroy
+    talkroom = current_user.talkrooms.find(params[:id])
+    talkroom.destroy
+    render json: {
+      message: 'トークルームを削除しました。'
+    }, status: :ok
   end
 
   private

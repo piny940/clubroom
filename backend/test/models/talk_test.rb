@@ -18,14 +18,14 @@ class TalkTest < ActiveSupport::TestCase
   test 'TalkroomからTalkを作成できる' do
     @talkroom.members << @user
     before_count = Talk.count
-    @talkroom.talks.create(content: 'Test', from_user_id: @user.id)
+    @talkroom.talks.create!(content: 'Test', from_user_id: @user.id)
     assert_equal before_count + 1, Talk.count
   end
 
   test 'UserからTalkを作成できる' do
     @talkroom.members << @user
     before_count = Talk.count
-    @user.talks.create(content: 'Test', talkroom_id: @talkroom.id)
+    @user.talks.create!(content: 'Test', talkroom_id: @talkroom.id)
     assert_equal before_count + 1, Talk.count
   end
 

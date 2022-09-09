@@ -4,15 +4,17 @@
     %tr
       %th Talkroom
       %th User
+      %th Role
       %th
 
   %tbody
     %tr
-      %td{colspan: 3}= link_to 'TalkEntry新規作成', new_admin_talk_entry_path, class: 'btn btn-primary w-100'
+      %td{colspan: 4}= link_to 'TalkEntry新規作成', new_admin_talk_entry_path, class: 'btn btn-primary w-100'
     - @talk_entries.each do |talk_entry|
       %tr
         %td= talk_entry.talkroom.name
         %td= talk_entry.user.email
+        %td= talk_entry.role
         %td
           = link_to '閲覧', admin_talk_entry_path(talk_entry), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_talk_entry_path(talk_entry), class: 'btn btn-sm btn-outline-primary'

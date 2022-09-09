@@ -9,15 +9,12 @@ import { Talk, Talkroom as TalkroomType } from '../types'
 import { fetchTalks, postData } from '../utils/api'
 import { AlertState } from '../utils/enums'
 
-export interface TalkroomInterface {
+export interface TalkroomProps {
   width: string
   openTalkroom: TalkroomType | undefined
 }
 
-export const Talkroom: React.FC<TalkroomInterface> = ({
-  width,
-  openTalkroom,
-}) => {
+export const Talkroom: React.FC<TalkroomProps> = ({ width, openTalkroom }) => {
   const [talks, setTalks] = useState<Talk[]>([])
   const { user } = useUserState()
   const { setAlerts } = useAlertsState()

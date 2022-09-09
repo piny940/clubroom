@@ -13,6 +13,7 @@ class TalkEntryTest < ActiveSupport::TestCase
   test '正常に自身の入っているGroupのTalkroomへのTalkEntryを作成できる' do
     talk_entry = TalkEntry.new(talkroom_id: @talkroom.id, user_id: @user1.id)
     assert talk_entry.valid?
+    assert talk_entry.role_member?
   end
 
   test '自分の属していないGroupのTalkroomには参加できない' do

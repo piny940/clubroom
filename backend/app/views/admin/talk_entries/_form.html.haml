@@ -12,6 +12,9 @@
   .row.mb-3
     .col-md-3.col-form-label.fw-bold user
     .col-md-9= form.collection_select :user_id, User.all, :id, :email, {}, { class: "form-control" }
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold role
+    .col-md-9= form.select :role, TalkEntry.roles.keys, {}, class: 'form-control'
   .row
     .col
       = form.submit '保存', class: 'btn btn-primary d-block w-100'

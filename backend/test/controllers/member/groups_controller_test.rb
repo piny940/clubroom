@@ -38,13 +38,16 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     before_count = @user.groups.length
     before_groups_count = Group.count
+    before_joinings_count = Joining.count
     post '/member/groups', params: { group: { name: 'Test' } }
     assert_response :success
     json = JSON.parse(response.body)
-    @user.reload
     assert_equal before_groups_count + 1, Group.count
+    assert_equal before_joinings_count + 1, Joining.count
     assert_equal before_count + 1, @user.groups.length
     assert_equal 'Test', json['data']['group']['name']
+    assert_equal 'admin', json['data']['joining']['role']
+    assert @user.joinings.find_by(group_id: json['data']['group']['id']).role_admin?
   end
 
   test 'paramsに不備がある場合は400を返す' do

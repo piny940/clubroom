@@ -1,6 +1,6 @@
 import { serialize } from 'object-to-formdata'
 import { LogoutReturn } from '../resources/apiRetuns'
-import { Group, Talk, Talkroom, User } from '../types'
+import { Group, Talk, TalkEntry, Talkroom, User } from '../types'
 
 const getToken = async (): Promise<string> => {
   const url = `/api/csrf`
@@ -84,6 +84,35 @@ export const fetchTalks = async (talkroom: Talkroom): Promise<Talk[]> => {
   })
   const json = await response.json()
   return json.data.talks
+}
+
+export const deleteTalkroom = async (talkroom: Talkroom): Promise<void> => {
+  await fetchApi({
+    url: `/member/groups/${talkroom.group_id}/talkrooms/${talkroom.id}`,
+    method: 'DELETE',
+  })
+}
+
+export const fetchTalkroomMembers = async (
+  talkroom: Talkroom
+): Promise<User[]> => {
+  const response = await fetchApi({
+    url: `/member/groups/${talkroom.group_id}/talkrooms/${talkroom.id}/members`,
+    method: 'GET',
+  })
+  const json = await response.json()
+  return json.data.members
+}
+
+export const fetchTalkEntry = async (
+  talkroom: Talkroom
+): Promise<TalkEntry> => {
+  const response = await fetchApi({
+    url: `/member/groups/${talkroom.group_id}/talkrooms/${talkroom.id}/talk_entry`,
+    method: 'GET',
+  })
+  const json = await response.json()
+  return json.data.talk_entry
 }
 
 export const logout = async (): Promise<{

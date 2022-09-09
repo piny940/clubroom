@@ -10,6 +10,7 @@ class JoiningTest < ActiveSupport::TestCase
 
   test '正常にJoiningを作成できる' do
     assert @joining.valid?
+    assert @joining.role_member?
   end
 
   test '存在しないuserのidを指定してもJoiningは作成できない' do
@@ -18,12 +19,12 @@ class JoiningTest < ActiveSupport::TestCase
   end
 
   test 'User側からJoiningが作成できる' do
-    joining = @user.joinings.create(group_id: @group1.id)
+    joining = @user.joinings.new(group_id: @group1.id)
     assert joining.save
   end
 
   test 'Groupを指定しないとUser側からJoiningは作成できない' do
-    joining = @user.joinings.create
+    joining = @user.joinings.new
     assert_not joining.save
   end
 
