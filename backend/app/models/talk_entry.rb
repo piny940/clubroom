@@ -5,6 +5,8 @@ class TalkEntry < ApplicationRecord
   validate :entry_count_within_limit?
   validate :can_user_join?
 
+  enum role: { member: 0, staff: 10 }, _prefix: true
+
   private
 
   def entry_count_within_limit?

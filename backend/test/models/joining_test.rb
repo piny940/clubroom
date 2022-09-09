@@ -10,6 +10,7 @@ class JoiningTest < ActiveSupport::TestCase
 
   test '正常にJoiningを作成できる' do
     assert @joining.valid?
+    assert @joining.role_member?
   end
 
   test '存在しないuserのidを指定してもJoiningは作成できない' do
