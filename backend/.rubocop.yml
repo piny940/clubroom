@@ -6,6 +6,8 @@ AllCops:
     - "db/**/*"
     - "bin/**/*"
     - "node_modules/**/*"
+Metrics/AbcSize:
+  Enabled: false
 Style/AsciiComments:
   Enabled: false
 Documentation:
