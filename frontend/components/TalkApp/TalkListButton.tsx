@@ -44,7 +44,6 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
 
       <a
         className={styles.menu_button}
-        href=""
         data-bs-target={'#' + talkroomMenuID}
         data-bs-toggle="modal"
         onClick={() => setMenuTalkroom(talkroom)}

@@ -22,7 +22,6 @@ export const TalkListActionButton: React.FC<TalkListActionButtonProps> = ({
 }) => {
   return (
     <a
-      href=""
       onClick={handler}
       className={toClass('d-flex', styles.action_button)}
       data-bs-toggle={modalID ? 'modal' : ''}

@@ -23,6 +23,7 @@ $talk_room_padding: 8px;
       color: black;
 
       &:hover {
+        cursor: pointer;
         color: #0e6dfd;
       }
     }
@@ -53,6 +54,11 @@ $talk_room_padding: 8px;
       position: absolute;
       top: calc((100% - $size) / 2);
       right: 8px;
+
+      &:hover {
+        cursor: pointer;
+        color: black;
+      }
 
       span {
         font-size: 22px;
