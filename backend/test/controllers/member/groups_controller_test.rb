@@ -47,6 +47,7 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     assert_equal before_count + 1, @user.groups.length
     assert_equal 'Test', json['data']['group']['name']
     assert_equal 'admin', json['data']['joining']['role']
+    assert @user.joinings.find_by(group_id: json['data']['group']['id']).role_admin?
   end
 
   test 'paramsに不備がある場合は400を返す' do

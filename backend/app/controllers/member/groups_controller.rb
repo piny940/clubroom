@@ -13,6 +13,7 @@ class Member::GroupsController < Member::Base
     if group.save
       joining = current_user.joinings.find_by(group_id: group.id)
       joining.role = 'admin'
+      joining.save!
 
       render json: {
         data: {
