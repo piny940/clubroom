@@ -1,38 +1,28 @@
 import { TalkListButton } from '../components/TalkApp/TalkListButton'
 import { toClass } from '../utils/helpers'
 import styles from '../styles/talk-app.module.scss'
-import { useGroupState } from '../contexts/GroupStateProvider'
-import { useEffect, useState } from 'react'
 import { Talkroom } from '../types'
-import { fetchTalkrooms } from '../utils/api'
 import { TalkListActionButton } from '../components/TalkApp/TalkListActionButton'
 import { NewTalkroomForm } from './NewTalkroomForm'
 import { TestID } from '../resources/TestID'
+import { useGroupState } from '../contexts/GroupStateProvider'
 
 export interface TalkListInterface {
   width: string
   setOpenTalkroom: (talkroom: Talkroom) => void
   openTalkroom: Talkroom | undefined
+  talkrooms: Talkroom[]
+  updateTalkroomList: () => void
 }
 
 export const TalkList: React.FC<TalkListInterface> = ({
   width,
   setOpenTalkroom,
   openTalkroom,
+  talkrooms,
+  updateTalkroomList,
 }) => {
   const { group } = useGroupState()
-
-  const [talkrooms, setTalkrooms] = useState<Talkroom[]>([])
-
-  const updateTalkroomList = async () => {
-    if (!group) return
-
-    setTalkrooms(await fetchTalkrooms(group.id))
-  }
-
-  useEffect(() => {
-    void updateTalkroomList()
-  }, [group])
 
   return (
     <section
