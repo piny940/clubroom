@@ -5,6 +5,9 @@
 .row.py-1
   .col-md-3.fw-bold User
   .col-md-9= @talk_entry.user.email
+.row.py-1
+  .col-md-3.fw-bold Role
+  .col-md-9= @talk_entry.role
 
 = link_to '編集', edit_admin_talk_entry_path(@talk_entry)
 \|
