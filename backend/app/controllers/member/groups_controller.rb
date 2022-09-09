@@ -17,8 +17,8 @@ class Member::GroupsController < Member::Base
 
       render json: {
         data: {
-          group: group,
-          joining: joining
+          group:,
+          joining:
         },
         message: 'グループを作成しました。'
       }, status: :ok
