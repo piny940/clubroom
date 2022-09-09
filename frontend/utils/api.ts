@@ -86,6 +86,13 @@ export const fetchTalks = async (talkroom: Talkroom): Promise<Talk[]> => {
   return json.data.talks
 }
 
+export const deleteTalkroom = async (talkroom: Talkroom): Promise<void> => {
+  await fetchApi({
+    url: `/member/groups/${talkroom.group_id}/talkrooms/${talkroom.id}`,
+    method: 'DELETE',
+  })
+}
+
 export const fetchTalkroomMembers = async (
   talkroom: Talkroom
 ): Promise<User[]> => {
