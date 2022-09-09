@@ -86,6 +86,17 @@ export const fetchTalks = async (talkroom: Talkroom): Promise<Talk[]> => {
   return json.data.talks
 }
 
+export const fetchTalkroomMembers = async (
+  talkroom: Talkroom
+): Promise<User[]> => {
+  const response = await fetchApi({
+    url: `/member/groups/${talkroom.group_id}/talkrooms/${talkroom.id}/members`,
+    method: 'GET',
+  })
+  const json = await response.json()
+  return json.data.members
+}
+
 export const logout = async (): Promise<{
   message: string
   data: LogoutReturn
