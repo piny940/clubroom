@@ -41,6 +41,7 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     json = JSON.parse(response.body)
+    @user.reload
     @group1.reload
 
     assert_equal before_count+1, Talkroom.count

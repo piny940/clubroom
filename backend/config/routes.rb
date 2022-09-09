@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         resources :talkrooms, only: %i[index create] do
           scope module: :talkrooms do
             resources :talks, only: %i[index create]
+            resources :members, only: %i[index]
           end
         end
       end
