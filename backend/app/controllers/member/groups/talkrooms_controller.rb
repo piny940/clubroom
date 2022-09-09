@@ -11,7 +11,7 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
 
   def create
     # Group's talkroom
-    talkroom = Talkroom.new(name: talkroom_params[:name], group_id: params[:group_id])
+    talkroom = @group.talkrooms.new(name: talkroom_params[:name])
     
     if talkroom.save
       talkroom.members << current_user

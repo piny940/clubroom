@@ -8,9 +8,9 @@ class Member::GroupsController < Member::Base
   end
 
   def create
-    group = current_user.groups.create(group_params)
+    group = current_user.groups.new(group_params)
 
-    if group.id
+    if group.save
       render json: {
         data: {
           group:

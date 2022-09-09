@@ -19,12 +19,12 @@ class JoiningTest < ActiveSupport::TestCase
   end
 
   test 'User側からJoiningが作成できる' do
-    joining = @user.joinings.create(group_id: @group1.id)
+    joining = @user.joinings.new(group_id: @group1.id)
     assert joining.save
   end
 
   test 'Groupを指定しないとUser側からJoiningは作成できない' do
-    joining = @user.joinings.create
+    joining = @user.joinings.new
     assert_not joining.save
   end
 

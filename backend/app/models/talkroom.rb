@@ -1,5 +1,5 @@
 class Talkroom < ApplicationRecord
-  has_many :talk_entries, dependent: :destroy
+  has_many :talk_entries, dependent: :destroy, inverse_of: :talkroom
   has_many :members, through: :talk_entries, source: :user
   has_many :talks, dependent: :destroy
   belongs_to :group, optional: true
