@@ -49,7 +49,11 @@ export const TalkApp: React.FC = () => {
         updateTalkroomList={updateTalkroomList}
         setOpenTalkroom={setOpenTalkroom}
       />
-      <TalkroomMenu targetID={talkroomMenuID} menuTalkroom={menuTalkroom} />
+      <TalkroomMenu
+        targetID={talkroomMenuID}
+        menuTalkroom={menuTalkroom}
+        updateTalkroomList={updateTalkroomList}
+      />
     </LoginRequired>
   )
 }
