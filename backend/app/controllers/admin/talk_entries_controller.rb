@@ -43,6 +43,6 @@ class Admin::TalkEntriesController < Admin::Base
   end
 
   def talk_entry_params
-    params.require(:talk_entry).permit(:talkroom_id, :user_id)
+    params.require(:talk_entry).permit(:talkroom_id, :user_id, :role)
   end
 end
