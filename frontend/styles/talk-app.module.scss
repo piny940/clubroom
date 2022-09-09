@@ -45,6 +45,19 @@ $talk_room_padding: 8px;
     .open {
       background-color: $talk_list_button_border_color;
     }
+
+    a.menu_button {
+      $size: 24px;
+      width: $size;
+      height: $size;
+      position: absolute;
+      top: calc((100% - $size) / 2);
+      right: 8px;
+
+      span {
+        font-size: 22px;
+      }
+    }
   }
 }
 

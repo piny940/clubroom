@@ -2,6 +2,7 @@ import { MouseEventHandler } from 'react'
 import { TestID } from '../../resources/TestID'
 import styles from '../../styles/talk-app.module.scss'
 import { toClass } from '../../utils/helpers'
+import { MaterialIcon } from '../Common/MaterialIcon'
 
 export interface TalkListButtonProps {
   handler: MouseEventHandler
@@ -17,7 +18,7 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
   open,
 }) => {
   return (
-    <li className={styles.talk_list_button}>
+    <li className={toClass('position-relative', styles.talk_list_button)}>
       <a
         role="button"
         className={toClass(
@@ -33,6 +34,10 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
         ) : (
           <></>
         )}
+      </a>
+
+      <a className={styles.menu_button} href="">
+        <MaterialIcon name="settings" />
       </a>
     </li>
   )
