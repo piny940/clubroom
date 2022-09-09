@@ -49,6 +49,8 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_equal before_group_talkroom_count+1, @group1.talkrooms.length
     assert_equal 'Test', json["data"]["talkroom"]["name"]
     assert_equal 'group', json["data"]["talkroom"]["kind"]
+    assert_equal 'staff', json["data"]["talk_entry"]["role"]
+    assert @user.talk_entries.find_by(talkroom_id: json["data"]["talkroom"]["id"]).role_staff?
   end
 
   test '自身の入っていないグループのトークルームは作成できない' do

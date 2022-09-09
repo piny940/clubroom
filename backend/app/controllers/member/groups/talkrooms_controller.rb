@@ -15,11 +15,15 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
     
     if talkroom.save
       talkroom.members << current_user
+      talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom.id)
+      talk_entry.role = 'staff'
+      talk_entry.save!
       
       render json: {
         message: "トークルームを作成しました。",
         data: {
-          talkroom: talkroom
+          talkroom: talkroom,
+          talk_entry: talk_entry
         }
       }, status: :ok
     else
