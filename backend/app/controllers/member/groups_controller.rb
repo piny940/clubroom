@@ -11,9 +11,13 @@ class Member::GroupsController < Member::Base
     group = current_user.groups.new(group_params)
 
     if group.save
+      joining = current_user.joinings.find_by(group_id: group.id)
+      joining.role = 'admin'
+
       render json: {
         data: {
-          group:
+          group: group,
+          joining: joining
         },
         message: 'グループを作成しました。'
       }, status: :ok
