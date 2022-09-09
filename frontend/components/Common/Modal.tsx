@@ -1,9 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactNode, RefObject } from 'react'
 import { toClass } from '../../utils/helpers'
 
 export interface ModalProps {
   targetID: string
   children: ReactNode
+  closeButtonRef?: RefObject<HTMLButtonElement>
   title?: string
   scrollable?: boolean
 }
@@ -13,6 +14,7 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   title,
   scrollable,
+  closeButtonRef,
 }) => {
   return (
     <div className="modal fade" id={targetID}>
@@ -25,7 +27,11 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="modal-content">
           <div className="modal-header">
             {title ? <h5 className="modal-title">{title}</h5> : <></>}
-            <button className="btn btn-close" data-bs-dismiss="modal" />
+            <button
+              className="btn btn-close"
+              data-bs-dismiss="modal"
+              ref={closeButtonRef}
+            />
           </div>
           <div className="modal-body p-0">{children}</div>
         </div>

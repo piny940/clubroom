@@ -1,7 +1,7 @@
 import { Modal } from '../components/Common/Modal'
 import { TalkEntry, Talkroom, User } from '../types'
 import styles from '../styles/talk-app.module.scss'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   deleteTalkroom,
   fetchTalkEntry,
@@ -22,6 +22,11 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
 }) => {
   const [members, setMembers] = useState<User[]>([])
   const [talkEntry, setTalkEntry] = useState<TalkEntry>()
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  const _closeModal = () => {
+    closeButtonRef.current?.click()
+  }
 
   const _updateMembers = async () => {
     if (!menuTalkroom) return
@@ -40,7 +45,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
     if (!window.confirm(Message.DELETE_CONFIRMATION)) return
 
     await deleteTalkroom(menuTalkroom)
-    // TODO: Close modal
+    _closeModal()
     void updateTalkroomList()
   }
 
@@ -50,7 +55,12 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
   }, [menuTalkroom])
 
   return (
-    <Modal targetID={targetID} title={menuTalkroom?.name} scrollable>
+    <Modal
+      targetID={targetID}
+      title={menuTalkroom?.name}
+      scrollable
+      closeButtonRef={closeButtonRef}
+    >
       <div className="container py-4 px-5" id={styles.talkroom_menu}>
         <div className="row my-3">
           <div className="col-md-3 fw-bold">メンバー</div>

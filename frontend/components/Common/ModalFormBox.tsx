@@ -24,7 +24,7 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
   closeButtonRef,
 }) => {
   return (
-    <Modal targetID={targetID}>
+    <Modal targetID={targetID} closeButtonRef={closeButtonRef}>
       <form onSubmit={onSubmit} className="container p-5">
         <h2 className="ms-2 mb-4">{title}</h2>
         {alert ? (
@@ -45,7 +45,6 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
           className="btn btn-secondary col-md-6 my-2 offset-md-3"
           data-bs-dismiss="modal"
           onClick={(e) => e.preventDefault()}
-          ref={closeButtonRef}
         >
           キャンセル
         </button>
