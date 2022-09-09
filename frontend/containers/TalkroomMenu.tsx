@@ -1,8 +1,8 @@
 import { Modal } from '../components/Common/Modal'
-import { Talkroom, User } from '../types'
+import { TalkEntry, Talkroom, User } from '../types'
 import styles from '../styles/talk-app.module.scss'
 import { useEffect, useState } from 'react'
-import { fetchTalkroomMembers } from '../utils/api'
+import { fetchTalkEntry, fetchTalkroomMembers } from '../utils/api'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -14,6 +14,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
   menuTalkroom,
 }) => {
   const [members, setMembers] = useState<User[]>([])
+  const [talkEntry, setTalkEntry] = useState<TalkEntry>()
 
   const _updateMembers = async () => {
     if (!menuTalkroom) return
@@ -21,8 +22,15 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
     setMembers(await fetchTalkroomMembers(menuTalkroom))
   }
 
+  const _updateTalkEntry = async () => {
+    if (!menuTalkroom) return
+
+    setTalkEntry(await fetchTalkEntry(menuTalkroom))
+  }
+
   useEffect(() => {
     void _updateMembers()
+    void _updateTalkEntry()
   }, [menuTalkroom])
 
   return (
@@ -34,11 +42,13 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
             {members.map((user) => user.name).join(', ')}
           </div>
         </div>
-        <div className="row my-3">
-          <button className="col-md-8 offset-md-2 btn btn-danger">
-            トークルームを削除
-          </button>
-        </div>
+        {talkEntry?.role === 'staff' && (
+          <div className="row my-3">
+            <button className="col-md-8 offset-md-2 btn btn-danger">
+              トークルームを削除
+            </button>
+          </div>
+        )}
       </div>
     </Modal>
   )
