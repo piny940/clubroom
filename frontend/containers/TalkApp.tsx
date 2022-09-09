@@ -7,11 +7,17 @@ import { useEffect, useState } from 'react'
 import { Talkroom as TalkroomType } from '../types'
 import { useGroupState } from '../contexts/GroupStateProvider'
 import { fetchTalkrooms } from '../utils/api'
+import { NewTalkroomForm } from './NewTalkroomForm'
+import { TalkroomMenu } from './TalkroomMenu'
 
 export const TalkApp: React.FC = () => {
+  const newTalkroomID = 'new-talkroom'
+  const talkroomMenuID = 'talkroom-menu'
+
   const { group } = useGroupState()
   const [openTalkroom, setOpenTalkroom] = useState<TalkroomType>()
   const [talkrooms, setTalkrooms] = useState<TalkroomType[]>([])
+  const [menuTalkroom, setMenuTalkroom] = useState<TalkroomType>()
 
   const updateTalkroomList = async () => {
     if (!group) return
@@ -32,10 +38,18 @@ export const TalkApp: React.FC = () => {
           setOpenTalkroom={setOpenTalkroom}
           openTalkroom={openTalkroom}
           talkrooms={talkrooms}
-          updateTalkroomList={updateTalkroomList}
+          newTalkroomFormID={newTalkroomID}
+          talkroomMenuID={talkroomMenuID}
+          setMenuTalkroom={setMenuTalkroom}
         />
         <Talkroom width="75%" openTalkroom={openTalkroom} />
       </div>
+      <NewTalkroomForm
+        targetID={newTalkroomID}
+        updateTalkroomList={updateTalkroomList}
+        setOpenTalkroom={setOpenTalkroom}
+      />
+      <TalkroomMenu targetID={talkroomMenuID} menuTalkroom={menuTalkroom} />
     </LoginRequired>
   )
 }

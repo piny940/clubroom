@@ -3,7 +3,6 @@ import { toClass } from '../utils/helpers'
 import styles from '../styles/talk-app.module.scss'
 import { Talkroom } from '../types'
 import { TalkListActionButton } from '../components/TalkApp/TalkListActionButton'
-import { NewTalkroomForm } from './NewTalkroomForm'
 import { TestID } from '../resources/TestID'
 import { useGroupState } from '../contexts/GroupStateProvider'
 
@@ -12,7 +11,9 @@ export interface TalkListProps {
   setOpenTalkroom: (talkroom: Talkroom) => void
   openTalkroom: Talkroom | undefined
   talkrooms: Talkroom[]
-  updateTalkroomList: () => void
+  newTalkroomFormID: string
+  talkroomMenuID: string
+  setMenuTalkroom: (talkroom: Talkroom) => void
 }
 
 export const TalkList: React.FC<TalkListProps> = ({
@@ -20,7 +21,9 @@ export const TalkList: React.FC<TalkListProps> = ({
   setOpenTalkroom,
   openTalkroom,
   talkrooms,
-  updateTalkroomList,
+  newTalkroomFormID,
+  talkroomMenuID,
+  setMenuTalkroom,
 }) => {
   const { group } = useGroupState()
 
@@ -29,7 +32,7 @@ export const TalkList: React.FC<TalkListProps> = ({
       style={{ width: width }}
       className={toClass('h-100', styles.talk_list)}
     >
-      {group ? (
+      {group && (
         <>
           <div
             className={toClass(
@@ -42,7 +45,7 @@ export const TalkList: React.FC<TalkListProps> = ({
               iconName="add_circle"
               label="新規トークルーム作成"
               iconColor="#00d77b" // Green
-              modalID="new-talkroom"
+              modalID={newTalkroomFormID}
               testID={TestID.NEW_TALKROOM_BUTTON}
             />
           </div>
@@ -51,19 +54,15 @@ export const TalkList: React.FC<TalkListProps> = ({
               <TalkListButton
                 key={talkroom.id}
                 title={talkroom.name}
-                handler={() => setOpenTalkroom(talkroom)}
                 open={talkroom.id === openTalkroom?.id}
+                talkroomMenuID={talkroomMenuID}
+                talkroom={talkroom}
+                setOpenTalkroom={setOpenTalkroom}
+                setMenuTalkroom={setMenuTalkroom}
               />
             ))}
           </ul>
-          <NewTalkroomForm
-            targetID="new-talkroom"
-            updateTalkroomList={updateTalkroomList}
-            setOpenTalkroom={setOpenTalkroom}
-          />
         </>
-      ) : (
-        <></>
       )}
     </section>
   )
