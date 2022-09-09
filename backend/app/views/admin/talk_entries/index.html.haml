@@ -9,7 +9,7 @@
 
   %tbody
     %tr
-      %td{colspan: 3}= link_to 'TalkEntry新規作成', new_admin_talk_entry_path, class: 'btn btn-primary w-100'
+      %td{colspan: 4}= link_to 'TalkEntry新規作成', new_admin_talk_entry_path, class: 'btn btn-primary w-100'
     - @talk_entries.each do |talk_entry|
       %tr
         %td= talk_entry.talkroom.name
