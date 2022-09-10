@@ -1,5 +1,5 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
-import { useAlertsState } from '../../contexts/AlertsStateProvider'
+import { useAlerts } from '../../contexts/AlertsProvider'
 import { AlertInput } from '../../types'
 import { useMovePage, usePageChange } from '../../utils/hooks'
 import { expect } from '@jest/globals'
@@ -19,7 +19,7 @@ jest.mock('next/router', () => ({
   }),
 }))
 
-jest.mock('../../contexts/AlertsStateProvider')
+jest.mock('../../contexts/AlertsProvider')
 
 describe('useRouter', () => {
   it('ページ遷移時に引数で与えられた関数が呼び出される', async () => {
@@ -37,9 +37,9 @@ describe('useRouter', () => {
 
 describe('useMovePage', () => {
   it('返り値の関数にalertを与えて実行するとalertが正常にcontextのalertsに追加される', async () => {
-    const mockedUseAlertsState = jest.mocked(useAlertsState) as jest.Mock
+    const mockedUseAlerts = jest.mocked(useAlerts) as jest.Mock
     const setAlerts = jest.fn()
-    mockedUseAlertsState.mockImplementation(() => ({
+    mockedUseAlerts.mockImplementation(() => ({
       setAlerts: setAlerts,
     }))
 

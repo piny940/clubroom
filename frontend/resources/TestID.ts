@@ -14,6 +14,7 @@ export enum TestID {
   DROPDOWN_ACTION_BUTTON = 'dropdown-action-button',
   FORM_ERROR = 'form-error',
   TALK_LIST_BUTTON = 'talk-list-button',
+  TALKROOM_MENU_BUTTON = 'talkroom-menu-button',
   TALK = 'talk',
   TALK_ROW = 'talk-row',
   TALK_FORM = 'talk-form',

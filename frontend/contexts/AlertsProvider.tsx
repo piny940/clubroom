@@ -2,31 +2,29 @@ import { createContext, ReactNode, useContext, useState } from 'react'
 import { Alert, AlertInput } from '../types'
 import { usePageChange } from '../utils/hooks'
 
-interface AlertsStateContextInterface {
+interface AlertsContextInterface {
   alerts: Alert[]
   addAlert: (alert: AlertInput) => void
   removeAlert: (id: number) => void
   setAlerts: (...alerts: AlertInput[]) => void
 }
 
-const defaultAlertState: AlertsStateContextInterface = {
+const defaultAlertState: AlertsContextInterface = {
   alerts: [],
   addAlert: (alert: AlertInput) => undefined,
   removeAlert: (id: number) => undefined,
   setAlerts: (...alerts: AlertInput[]) => undefined,
 }
 
-const AlertsStateContext = createContext(defaultAlertState)
+const AlertsContext = createContext(defaultAlertState)
 
-const useAlertsState = () => useContext(AlertsStateContext)
+const useAlerts = () => useContext(AlertsContext)
 
-interface AlertsStateProviderProps {
+interface AlertsProviderProps {
   children: ReactNode
 }
 
-const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
-  children,
-}) => {
+const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
   const [alerts, setAlerts] = useState<Alert[]>([])
   const [nextAlertId, setNextAlertId] = useState(0)
 
@@ -58,7 +56,7 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
     setAlerts(alerts.filter((alert) => alert.id !== id))
   }
 
-  const value: AlertsStateContextInterface = {
+  const value: AlertsContextInterface = {
     alerts,
     addAlert,
     removeAlert,
@@ -71,10 +69,8 @@ const AlertsStateProvider: React.FC<AlertsStateProviderProps> = ({
   })
 
   return (
-    <AlertsStateContext.Provider value={value}>
-      {children}
-    </AlertsStateContext.Provider>
+    <AlertsContext.Provider value={value}>{children}</AlertsContext.Provider>
   )
 }
 
-export { useAlertsState, AlertsStateProvider }
+export { useAlerts, AlertsProvider }

@@ -5,16 +5,16 @@ import { Talkroom } from './Talkroom'
 import styles from '../styles/talk-app.module.scss'
 import { useEffect, useState } from 'react'
 import { Talkroom as TalkroomType } from '../types'
-import { useGroupState } from '../contexts/GroupStateProvider'
 import { fetchTalkrooms } from '../utils/api'
 import { NewTalkroomForm } from './NewTalkroomForm'
 import { TalkroomMenu } from './TalkroomMenu'
+import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export const TalkApp: React.FC = () => {
   const newTalkroomID = 'new-talkroom'
   const talkroomMenuID = 'talkroom-menu'
 
-  const { group } = useGroupState()
+  const { group } = useUserInfo()
   const [openTalkroom, setOpenTalkroom] = useState<TalkroomType>()
   const [talkrooms, setTalkrooms] = useState<TalkroomType[]>([])
   const [menuTalkroom, setMenuTalkroom] = useState<TalkroomType>()

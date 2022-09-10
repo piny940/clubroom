@@ -5,9 +5,9 @@ import { Alert } from '../../../types'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 
-jest.mock('../../../contexts/AlertsStateProvider', () => {
+jest.mock('../../../contexts/AlertsProvider', () => {
   return {
-    useAlertsState(): { alerts: Alert[] } {
+    useAlerts(): { alerts: Alert[] } {
       return {
         alerts: [Mock.from<Alert>({ id: 0 }), Mock.from<Alert>({ id: 1 })],
       }

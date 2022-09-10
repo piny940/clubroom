@@ -1,10 +1,10 @@
 import { render, waitFor } from '@testing-library/react'
 import { LoginRequired } from '../../containers/LoginRequired'
-import { UserStateProvider } from '../../contexts/UserStateProvider'
 import { TestID } from '../../resources/TestID'
 import { fetchUser } from '../../utils/api'
 import { Test } from '../testHelpers/Test'
 import { expect } from '@jest/globals'
+import { UserInfoProvider } from '../../contexts/UserInfoProvider'
 
 jest.mock('../../utils/api')
 
@@ -23,7 +23,7 @@ describe('<LoginRequired />', () => {
       <LoginRequired whenNoUser={AskLogin}>
         <Test textContent="Test1" />
       </LoginRequired>,
-      { wrapper: UserStateProvider }
+      { wrapper: UserInfoProvider }
     )
 
     await waitFor(() => {
@@ -40,7 +40,7 @@ describe('<LoginRequired />', () => {
       <LoginRequired whenNoUser={AskLogin}>
         <Test textContent="Test2" />
       </LoginRequired>,
-      { wrapper: UserStateProvider }
+      { wrapper: UserInfoProvider }
     )
 
     await waitFor(() => {

@@ -1,16 +1,16 @@
 import { render, waitFor } from '@testing-library/react'
 import { TalkList, TalkListProps } from '../../containers/TalkList'
-import { useGroupState } from '../../contexts/GroupStateProvider'
 import { TestID } from '../../resources/TestID'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
+import { useUserInfo } from '../../contexts/UserInfoProvider'
 
-jest.mock('../../contexts/GroupStateProvider')
+jest.mock('../../contexts/UserInfoProvider')
 
 describe('<TalkList />', () => {
   it('groupがundefinedでない時は新規トークルーム作成ボタンが表示される', async () => {
-    const mockedUseGroupState = jest.mocked(useGroupState)
-    mockedUseGroupState.mockImplementation(
+    const mockedUseUserInfo = jest.mocked(useUserInfo)
+    mockedUseUserInfo.mockImplementation(
       jest.fn(() => ({
         group: {
           id: 0,
@@ -30,8 +30,8 @@ describe('<TalkList />', () => {
   })
 
   it('groupがundefinedの時は新規トークルーム作成ボタンが表示されない', async () => {
-    const mockedUseGroupState = jest.mocked(useGroupState)
-    mockedUseGroupState.mockImplementation(
+    const mockedUseUserInfo = jest.mocked(useUserInfo)
+    mockedUseUserInfo.mockImplementation(
       jest.fn(() => ({
         group: undefined,
       })) as jest.Mock

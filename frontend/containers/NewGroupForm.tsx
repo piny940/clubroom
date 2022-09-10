@@ -2,9 +2,8 @@ import { useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/Common/FormGroup'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
-import { useAlertsState } from '../contexts/AlertsStateProvider'
-import { useGroupsState } from '../contexts/GroupsStateProvider'
-import { useGroupState } from '../contexts/GroupStateProvider'
+import { useAlerts } from '../contexts/AlertsProvider'
+import { useUserInfo } from '../contexts/UserInfoProvider'
 import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
 import { postData } from '../utils/api'
@@ -22,9 +21,8 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
   })
 
   const [alert, setFormAlert] = useState<string>('')
-  const { setAlerts } = useAlertsState()
-  const { updateGroups } = useGroupsState()
-  const { setGroup } = useGroupState()
+  const { setAlerts } = useAlerts()
+  const { updateGroups, setGroup } = useUserInfo()
 
   const _closeModal = () => {
     closeButtonRef.current?.click()
@@ -39,7 +37,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
         content: 'グループを作成しました。',
         state: AlertState.SUCCESS,
       })
-      updateGroups()
+      void updateGroups()
       setGroup(json.data.group)
     }
 

@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from 'react'
-import { useUserState } from '../contexts/UserStateProvider'
+import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export interface LoginRequiredProps {
   children: ReactNode
@@ -10,7 +10,7 @@ export const LoginRequired: React.FC<LoginRequiredProps> = ({
   children,
   whenNoUser = <></>,
 }) => {
-  const { user, updateUser } = useUserState()
+  const { user, updateUser } = useUserInfo()
 
   useEffect(() => {
     void updateUser()

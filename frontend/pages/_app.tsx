@@ -1,11 +1,9 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
-import { AlertsStateProvider } from '../contexts/AlertsStateProvider'
+import { AlertsProvider } from '../contexts/AlertsProvider'
 import { Layout } from '../components/Common/Layout'
 import { useEffect } from 'react'
-import { GroupStateProvider } from '../contexts/GroupStateProvider'
-import { UserStateProvider } from '../contexts/UserStateProvider'
-import { GroupsStateProvider } from '../contexts/GroupsStateProvider'
+import { UserInfoProvider } from '../contexts/UserInfoProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -13,17 +11,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <AlertsStateProvider>
-      <GroupsStateProvider>
-        <GroupStateProvider>
-          <UserStateProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </UserStateProvider>
-        </GroupStateProvider>
-      </GroupsStateProvider>
-    </AlertsStateProvider>
+    <AlertsProvider>
+      <UserInfoProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </UserInfoProvider>
+    </AlertsProvider>
   )
 }
 

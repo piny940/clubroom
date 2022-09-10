@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useAlertsState } from '../contexts/AlertsStateProvider'
+import { useAlerts } from '../contexts/AlertsProvider'
 import { AlertInput } from '../types'
 
 export const usePageChange = (handler: () => void) => {
@@ -17,7 +17,7 @@ export const usePageChange = (handler: () => void) => {
 
 export const useMovePage = () => {
   const router = useRouter()
-  const { setAlerts } = useAlertsState()
+  const { setAlerts } = useAlerts()
   return async (url: string, ...alerts: AlertInput[]) => {
     await router.push(url)
     setAlerts(...alerts)

@@ -1,9 +1,9 @@
-import { useAlertsState } from '../../contexts/AlertsStateProvider'
+import { useAlerts } from '../../contexts/AlertsProvider'
 import { Alert } from './Alert'
 import styles from '../../styles/common.module.scss'
 
 export const Alerts: React.FC = () => {
-  const { alerts, removeAlert } = useAlertsState()
+  const { alerts, removeAlert } = useAlerts()
 
   if (alerts.length === 0) {
     return <></>
