@@ -1,5 +1,12 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { Group } from '../types'
+import { useUserState } from './UserStateProvider'
 
 interface GroupStateContextInterface {
   group: Group | undefined
@@ -23,6 +30,11 @@ const GroupStateProvider: React.FC<GroupStateProviderProps> = ({
   children,
 }) => {
   const [group, setGroup] = useState<Group | undefined>(undefined)
+  const { user } = useUserState()
+
+  useEffect(() => {
+    setGroup(undefined)
+  }, [user])
 
   const value: GroupStateContextInterface = {
     group,
