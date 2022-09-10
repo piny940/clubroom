@@ -34,6 +34,7 @@ export interface Talkroom {
   name: string
   group_id: number // DMの機能ができたらgroup_id?: numberになる
   kind: 'group' | 'direct'
+  entry_token: string
   created_at: Date
   updated_at: Date
 }
