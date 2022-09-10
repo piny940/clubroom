@@ -6,7 +6,7 @@ class TalkroomTest < ActiveSupport::TestCase
   end
 
   test '正常にGroupのTalkroomを作成できる' do
-    talkroom = Talkroom.new(group_id: @group.id, kind: :group)
+    talkroom = Talkroom.new(group_id: @group.id, kind: :group, name: 'Test')
     assert talkroom.valid?
   end
 
@@ -15,8 +15,18 @@ class TalkroomTest < ActiveSupport::TestCase
     assert talkroom.valid?
   end
 
+  test 'kindがgroupの時はnameは空ではいけない' do
+    talkroom = Talkroom.new(group_id: @group.id, name: ' ')
+    assert_not talkroom.valid?
+  end
+
+  test 'kindがdirectの時はnameは空でも良い' do
+    talkroom = Talkroom.new(kind: :direct)
+    assert talkroom.valid?
+  end
+
   test 'kindがgroupの時はgroup_idを指定しなくてはならない' do
-    talkroom = Talkroom.new
+    talkroom = Talkroom.new(name: 'Test')
     assert_not talkroom.valid?
   end
 
@@ -24,7 +34,7 @@ class TalkroomTest < ActiveSupport::TestCase
     before_count = @group.talkrooms.length
     before_talkroom_count = Talkroom.count
 
-    talkroom = @group.talkrooms.create!
+    talkroom = @group.talkrooms.create!(name: 'Test')
     assert_equal before_count + 1, @group.talkrooms.length
     assert_equal before_talkroom_count + 1, Talkroom.count
 
@@ -34,7 +44,7 @@ class TalkroomTest < ActiveSupport::TestCase
   end
 
   test 'Groupが削除されるとそのGroupのTalkroomは全て削除される' do
-    @group.talkrooms.create!
+    @group.talkrooms.create!(name: 'Test')
     before_count = Talkroom.count
     @group.destroy
     assert_equal before_count - 1, Talkroom.count

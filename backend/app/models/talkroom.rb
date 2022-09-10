@@ -5,6 +5,7 @@ class Talkroom < ApplicationRecord
   belongs_to :group, optional: true
 
   validates :group_id, presence: true, if: :kind_group?
+  validates :name, presence: true, if: :kind_group?
 
   enum kind: { group: 0, direct: 10 }, _prefix: true
 end
