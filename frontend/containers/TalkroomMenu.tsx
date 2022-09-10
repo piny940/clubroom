@@ -14,6 +14,8 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActionButton'
 import { TestID } from '../resources/TestID'
 import { TalkroomMenuDetail } from '../components/TalkApp/TalkroomMenuDetail'
+import { useAlerts } from '../contexts/AlertsProvider'
+import { AlertState } from '../utils/enums'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -32,6 +34,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
   const { register, reset, handleSubmit, setValue } = useForm({
     shouldUseNativeValidation: true,
   })
+  const { setAlerts } = useAlerts()
 
   const _closeModal = () => {
     closeButtonRef.current?.click()
@@ -72,10 +75,14 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
       reset()
       _closeModal()
       void updateTalkroomList()
+      setAlerts({
+        content: 'トークルーム名を更新しました。',
+        state: AlertState.SUCCESS,
+      })
     }
 
     void updateData({
-      url: `/member/groups/${menuTalkroom.id}/talkrooms/${menuTalkroom.id}`,
+      url: `/member/groups/${menuTalkroom.group_id}/talkrooms/${menuTalkroom.id}`,
       data: data,
       scope: 'talkroom',
       onSuccess: _onSuccess,
