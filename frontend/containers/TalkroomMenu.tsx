@@ -10,6 +10,7 @@ import {
 import { Message } from '../resources/Messages'
 import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActionButton'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -85,14 +86,10 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           </div>
         </div>
         {talkEntry?.role === 'staff' && (
-          <div className="row my-3">
-            <button
-              className="col-md-8 offset-md-2 btn btn-danger"
-              onClick={_deleteTalkroom}
-            >
-              トークルームを削除
-            </button>
-          </div>
+          <TalkroomMenuActionButton
+            label="トークルームを削除"
+            handler={_deleteTalkroom}
+          />
         )}
       </div>
     </Modal>
