@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_145644) do
     t.integer "kind", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "entry_token"
+    t.string "entry_token", default: "", null: false
     t.index ["group_id"], name: "index_talkrooms_on_group_id"
   end
 
