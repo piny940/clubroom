@@ -1,9 +1,6 @@
 import { renderHook, waitFor, act } from '@testing-library/react'
 import { ReactNode } from 'react'
-import {
-  AlertsStateProvider,
-  useAlertsState,
-} from '../../contexts/AlertsStateProvider'
+import { AlertsProvider, useAlerts } from '../../contexts/AlertsProvider'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 import { AlertInput } from '../../types'
@@ -20,9 +17,9 @@ jest.mock('next/router', () => ({
 describe('<AlertStateProvider />', () => {
   it('addAlert, removeAlert, setAlertが正常に動作する', async () => {
     const wrapper = ({ children }: { children: ReactNode }) => (
-      <AlertsStateProvider>{children}</AlertsStateProvider>
+      <AlertsProvider>{children}</AlertsProvider>
     )
-    const { result } = renderHook(() => useAlertsState(), { wrapper })
+    const { result } = renderHook(() => useAlerts(), { wrapper })
 
     await waitFor(() => {
       expect(result.current.alerts.length).toBe(0)

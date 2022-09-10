@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/Common/FormGroup'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
-import { useAlertsState } from '../contexts/AlertsStateProvider'
+import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
@@ -21,7 +21,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
   })
 
   const [alert, setFormAlert] = useState<string>('')
-  const { setAlerts } = useAlertsState()
+  const { setAlerts } = useAlerts()
   const { updateGroups, setGroup } = useUserInfo()
 
   const _closeModal = () => {

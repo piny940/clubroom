@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
-import { AlertsStateProvider } from '../contexts/AlertsStateProvider'
+import { AlertsProvider } from '../contexts/AlertsProvider'
 import { Layout } from '../components/Common/Layout'
 import { useEffect } from 'react'
 import { UserInfoProvider } from '../contexts/UserInfoProvider'
@@ -11,13 +11,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <AlertsStateProvider>
+    <AlertsProvider>
       <UserInfoProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </UserInfoProvider>
-    </AlertsStateProvider>
+    </AlertsProvider>
   )
 }
 

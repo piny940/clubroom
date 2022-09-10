@@ -8,8 +8,8 @@ import { Mock } from 'ts-mockery'
 import { Group } from '../../types'
 
 const setAlerts = jest.fn()
-jest.mock('../../contexts/AlertsStateProvider', () => ({
-  useAlertsState: () => ({
+jest.mock('../../contexts/AlertsProvider', () => ({
+  useAlerts: () => ({
     setAlerts: setAlerts,
   }),
 }))

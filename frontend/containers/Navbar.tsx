@@ -1,5 +1,5 @@
 import { NavbarView } from '../components/Navbar/NavbarView'
-import { useAlertsState } from '../contexts/AlertsStateProvider'
+import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import { logout } from '../utils/api'
 import { AlertState } from '../utils/enums'
@@ -8,7 +8,7 @@ import { NewGroupForm } from './NewGroupForm'
 export const Navbar: React.FC = () => {
   const newGroupFormID = 'new-group-form'
   const { groups, group, updateUser, setGroup } = useUserInfo()
-  const { setAlerts } = useAlertsState()
+  const { setAlerts } = useAlerts()
 
   const handleLogout = async () => {
     const json = await logout()
