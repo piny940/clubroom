@@ -5,7 +5,7 @@ class TalkTest < ActiveSupport::TestCase
     @user = User.create!(name: 'alice', email: 'alice@example.com', password: 'password', password_confirmation: 'password')
     @group = Group.create!(name: 'group1')
     @group.members << @user
-    @talkroom = @group.talkrooms.create!
+    @talkroom = @group.talkrooms.create!(name: 'Test')
   end
 
   test 'Talkを正常に作成できる' do

@@ -7,7 +7,7 @@ class TalkEntryTest < ActiveSupport::TestCase
     @user3 = User.create!(name: 'john', email: 'john@example.com', password: 'password', password_confirmation: 'password')
     @group = Group.create!(name: 'group1')
     @group.members << @user1
-    @talkroom = @group.talkrooms.create!(kind: :group)
+    @talkroom = @group.talkrooms.create!(kind: :group, name: 'Test')
   end
 
   test '正常に自身の入っているGroupのTalkroomへのTalkEntryを作成できる' do

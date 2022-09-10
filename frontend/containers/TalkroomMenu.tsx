@@ -6,8 +6,16 @@ import {
   deleteTalkroom,
   fetchTalkEntry,
   fetchTalkroomMembers,
+  updateData,
 } from '../utils/api'
 import { Message } from '../resources/Messages'
+import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActionButton'
+import { TestID } from '../resources/TestID'
+import { TalkroomMenuDetail } from '../components/TalkApp/TalkroomMenuDetail'
+import { useAlerts } from '../contexts/AlertsProvider'
+import { AlertState } from '../utils/enums'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -23,6 +31,10 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
   const [members, setMembers] = useState<User[]>([])
   const [talkEntry, setTalkEntry] = useState<TalkEntry>()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const { register, reset, handleSubmit, setValue } = useForm({
+    shouldUseNativeValidation: true,
+  })
+  const { setAlerts } = useAlerts()
 
   const _closeModal = () => {
     closeButtonRef.current?.click()
@@ -49,7 +61,37 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
     void updateTalkroomList()
   }
 
+  const _updateTalkroomName = (talkroom: Talkroom | undefined) => {
+    if (!talkroom) return
+    setValue('name', talkroom.name)
+  }
+
+  const _submit: SubmitHandler<FieldValues> = (data) => {
+    if (!menuTalkroom) {
+      throw new Error(Message.TALKROOM_NOT_SELECTED_ERROR)
+    }
+
+    const _onSuccess = (json: any) => {
+      reset()
+      _closeModal()
+      void updateTalkroomList()
+      setAlerts({
+        content: 'トークルーム名を更新しました。',
+        state: AlertState.SUCCESS,
+      })
+    }
+
+    void updateData({
+      url: `/member/groups/${menuTalkroom.group_id}/talkrooms/${menuTalkroom.id}`,
+      data: data,
+      scope: 'talkroom',
+      onSuccess: _onSuccess,
+      onFail: () => undefined, // TODO
+    })
+  }
+
   useEffect(() => {
+    _updateTalkroomName(menuTalkroom)
     void _updateMembers()
     void _updateTalkEntry()
   }, [menuTalkroom])
@@ -62,21 +104,26 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
       closeButtonRef={closeButtonRef}
     >
       <div className="container py-4 px-5" id={styles.talkroom_menu}>
-        <div className="row my-3">
-          <div className="col-md-3 fw-bold">メンバー</div>
-          <div className="col-md-9 overwrap-auto">
-            {members.map((user) => user.name).join(', ')}
-          </div>
-        </div>
         {talkEntry?.role === 'staff' && (
-          <div className="row my-3">
-            <button
-              className="col-md-8 offset-md-2 btn btn-danger"
-              onClick={_deleteTalkroom}
-            >
-              トークルームを削除
-            </button>
-          </div>
+          <TalkroomMenuForm
+            name="name"
+            label="トークルーム名"
+            register={register}
+            onSubmit={handleSubmit(_submit)}
+            testID={TestID.TALKROOM_MENU_NAME_FORM}
+            submitButtonText="更新"
+            requiredMessage={Message.INPUT_REQUIRED}
+          />
+        )}
+        <TalkroomMenuDetail
+          title="メンバー"
+          content={members.map((user) => user.name).join(', ')}
+        />
+        {talkEntry?.role === 'staff' && (
+          <TalkroomMenuActionButton
+            label="トークルームを削除"
+            handler={_deleteTalkroom}
+          />
         )}
       </div>
     </Modal>
