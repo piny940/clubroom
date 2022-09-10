@@ -3,15 +3,15 @@ import { Talkroom } from '../../containers/Talkroom'
 import { Talkroom as TalkroomType } from '../../types'
 import { fetchTalks } from '../../utils/api'
 import { expect } from '@jest/globals'
-import { useUserState } from '../../contexts/UserStateProvider'
 import { Mock } from 'ts-mockery'
+import { useUserInfo } from '../../contexts/UserInfoProvider'
 
-jest.mock('../../contexts/UserStateProvider')
+jest.mock('../../contexts/UserInfoProvider')
 jest.mock('../../utils/api')
 jest.mock('../../components/TalkApp/Talks')
 jest.mock('../../components/TalkApp/TalkForm')
 const mockedFetchTalks = jest.mocked(fetchTalks)
-const mockedUseUserState = jest.mocked(useUserState)
+const mockedUseUserInfo = jest.mocked(useUserInfo)
 
 describe('<Talkroom />', () => {
   it('正常に動作する', async () => {
@@ -20,7 +20,7 @@ describe('<Talkroom />', () => {
         talks: [],
       })) as jest.Mock
     )
-    mockedUseUserState.mockImplementation(
+    mockedUseUserInfo.mockImplementation(
       jest.fn(() => ({
         user: {
           id: 0,

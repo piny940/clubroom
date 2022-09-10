@@ -3,7 +3,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/Common/FormGroup'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
 import { useAlertsState } from '../contexts/AlertsStateProvider'
-import { useGroupState } from '../contexts/GroupStateProvider'
+import { useUserInfo } from '../contexts/UserInfoProvider'
 import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
 import { Talkroom } from '../types'
@@ -29,7 +29,7 @@ export const NewTalkroomForm: React.FC<NewTalkroomFormProps> = ({
 
   const [alert, setFormAlert] = useState<string>('')
   const { setAlerts } = useAlertsState()
-  const { group } = useGroupState()
+  const { group } = useUserInfo()
 
   const _closeModal = () => {
     closeButtonRef.current?.click()

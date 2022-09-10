@@ -15,9 +15,11 @@ jest.mock('../../contexts/AlertsStateProvider', () => ({
 }))
 
 const updateGroups = jest.fn()
-jest.mock('../../contexts/GroupsStateProvider', () => ({
-  useGroupsState: () => ({
+const setGroup = jest.fn()
+jest.mock('../../contexts/UserInfoProvider', () => ({
+  useUserInfo: () => ({
     updateGroups: updateGroups,
+    setGroup: setGroup,
   }),
 }))
 
@@ -59,6 +61,7 @@ describe('<NewGroupForm />', () => {
       expect(setAlerts).toBeCalled()
       expect(setAlerts.mock.calls[0][0].state).toBe(AlertState.SUCCESS)
       expect(updateGroups).toBeCalled()
+      expect(setGroup).toBeCalled()
     })
   })
 })

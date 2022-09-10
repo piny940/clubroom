@@ -6,10 +6,10 @@ import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'
 import { postData } from '../utils/api'
-import { useUserState } from '../contexts/UserStateProvider'
 import { TestID } from '../resources/TestID'
 import Link from 'next/link'
 import { FormBox } from '../components/Common/FormBox'
+import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -17,13 +17,13 @@ export const LoginForm: React.FC = () => {
   })
 
   const [alert, setAlert] = useState<string>('')
-  const { updateUser } = useUserState()
+  const { updateUser } = useUserInfo()
 
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
-      updateUser()
+      void updateUser()
       void movePage('/', {
         content: json.message,
         state: AlertState.SUCCESS,

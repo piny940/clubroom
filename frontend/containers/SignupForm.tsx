@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { useUserState } from '../contexts/UserStateProvider'
 import { postData } from '../utils/api'
 import { AlertState } from '../utils/enums'
 import { useMovePage } from '../utils/hooks'
@@ -10,6 +9,7 @@ import { FormGroup } from '../components/Common/FormGroup'
 import { Message } from '../resources/Messages'
 import Link from 'next/link'
 import { FormBox } from '../components/Common/FormBox'
+import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export const SignupForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -17,13 +17,13 @@ export const SignupForm: React.FC = () => {
   })
 
   const [alert, setAlert] = useState<string>('')
-  const { updateUser } = useUserState()
+  const { updateUser } = useUserInfo()
 
   const movePage = useMovePage()
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
-      updateUser()
+      void updateUser()
       void movePage('/', {
         content: json.message,
         state: AlertState.SUCCESS,

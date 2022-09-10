@@ -4,7 +4,7 @@ import styles from '../styles/talk-app.module.scss'
 import { Talkroom } from '../types'
 import { TalkListActionButton } from '../components/TalkApp/TalkListActionButton'
 import { TestID } from '../resources/TestID'
-import { useGroupState } from '../contexts/GroupStateProvider'
+import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export interface TalkListProps {
   width: string
@@ -25,7 +25,7 @@ export const TalkList: React.FC<TalkListProps> = ({
   talkroomMenuID,
   setMenuTalkroom,
 }) => {
-  const { group } = useGroupState()
+  const { group } = useUserInfo()
 
   return (
     <section
