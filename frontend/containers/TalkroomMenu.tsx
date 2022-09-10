@@ -12,6 +12,7 @@ import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActionButton'
 import { TestID } from '../resources/TestID'
+import { TalkroomMenuDetail } from '../components/TalkApp/TalkroomMenuDetail'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -82,12 +83,10 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           testID={TestID.TALKROOM_MENU_NAME_FORM}
           submitButtonText="更新"
         />
-        <div className="row my-3">
-          <div className="col-md-3 fw-bold">メンバー</div>
-          <div className="col-md-9">
-            {members.map((user) => user.name).join(', ')}
-          </div>
-        </div>
+        <TalkroomMenuDetail
+          title="メンバー"
+          detail={members.map((user) => user.name).join(', ')}
+        />
         {talkEntry?.role === 'staff' && (
           <TalkroomMenuActionButton
             label="トークルームを削除"
