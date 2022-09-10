@@ -13,6 +13,7 @@ export const DropdownActionButton: React.FC<DropdownActionButtonProps> = ({
   return (
     <li>
       <a
+        role="button"
         className="dropdown-item"
         onClick={handler}
         data-testid={TestID.DROPDOWN_ACTION_BUTTON}

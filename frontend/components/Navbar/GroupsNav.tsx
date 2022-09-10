@@ -37,7 +37,7 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
               id={styles.new_group_link}
               data-bs-toggle="modal"
               data-bs-target={'#' + newGroupFormID}
-              href=""
+              role="button"
             >
               グループを新規作成
             </a>
