@@ -8,6 +8,7 @@ export interface TalkroomMenuFormProps {
   requiredMessage?: string
   onSubmit: FormEventHandler
   testID: string
+  submitButtonText: string
 }
 
 export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
@@ -17,6 +18,7 @@ export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
   requiredMessage,
   onSubmit,
   testID,
+  submitButtonText,
 }) => {
   return (
     <form onSubmit={onSubmit} data-testid={testID}>
@@ -32,7 +34,9 @@ export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
           />
         </div>
         <div className="col-3 col-lg-2">
-          <button className="btn btn-outline-primary btn-small">更新</button>
+          <button className="btn btn-outline-primary btn-small">
+            {submitButtonText}
+          </button>
         </div>
       </label>
     </form>

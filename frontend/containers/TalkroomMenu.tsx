@@ -11,6 +11,7 @@ import { Message } from '../resources/Messages'
 import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActionButton'
+import { TestID } from '../resources/TestID'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -78,6 +79,8 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           label="トークルーム名"
           register={register}
           onSubmit={handleSubmit(_submit)}
+          testID={TestID.TALKROOM_MENU_NAME_FORM}
+          submitButtonText="更新"
         />
         <div className="row my-3">
           <div className="col-md-3 fw-bold">メンバー</div>
