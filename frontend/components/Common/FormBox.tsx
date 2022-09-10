@@ -38,8 +38,9 @@ export const FormBox: React.FC<FormBoxProps> = ({
       )}
       {children}
       <button
-        className="btn btn-primary col-md-6 my-3 offset-md-3"
+        className="btn btn-primary col-12 col-md-6 my-3 offset-md-3"
         data-testid={submitTestID}
+        type="submit"
       >
         {submitButtonText}
       </button>

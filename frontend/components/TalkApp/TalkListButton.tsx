@@ -24,13 +24,16 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
   setMenuTalkroom,
 }) => {
   return (
-    <li className={toClass('position-relative', styles.talk_list_button)}>
+    <li
+      className={toClass(
+        'position-relative',
+        open ? styles.open : '',
+        styles.talk_list_button
+      )}
+    >
       <a
         role="button"
-        className={toClass(
-          'w-100 h-100 d-block pt-2 pe-1 ps-4',
-          open ? styles.open : ''
-        )}
+        className={toClass('h-100 d-block pt-2 pe-1 ps-4', styles.open_button)}
         onClick={() => setOpenTalkroom(talkroom)}
         data-testid={TestID.TALK_LIST_BUTTON}
       >
