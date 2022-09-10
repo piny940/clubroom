@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react'
+import { TestID } from '../../resources/TestID'
 
 export interface TalkroomMenuActionButtonProps {
   label: string
@@ -9,10 +10,12 @@ export const TalkroomMenuActionButton: React.FC<
   TalkroomMenuActionButtonProps
 > = ({ label, handler }) => {
   return (
-    <div className="row my-3">
-      <button className="col-md-8 offset-md-2 btn btn-danger" onClick={handler}>
-        {label}
-      </button>
-    </div>
+    <button
+      className="col-12 col-md-8 offset-md-2 btn btn-danger"
+      onClick={handler}
+      data-testid={TestID.TALKROOM_MENU_ACTION_BUTTON}
+    >
+      {label}
+    </button>
   )
 }

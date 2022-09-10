@@ -26,4 +26,5 @@ export enum TestID {
   NEW_TALKROOM_BUTTON = 'new-talkroom-button',
   TALKROOM_FORM_NAME = 'talkroom-form-name',
   TALKROOM_FORM_SUBMIT = 'talkroom-form-submit',
+  TALKROOM_MENU_ACTION_BUTTON = 'talkroom-menu-action-button',
 }
