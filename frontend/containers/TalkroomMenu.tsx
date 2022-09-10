@@ -6,6 +6,7 @@ import {
   deleteTalkroom,
   fetchTalkEntry,
   fetchTalkroomMembers,
+  updateData,
 } from '../utils/api'
 import { Message } from '../resources/Messages'
 import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
@@ -28,7 +29,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
   const [members, setMembers] = useState<User[]>([])
   const [talkEntry, setTalkEntry] = useState<TalkEntry>()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
-  const { register, reset, handleSubmit } = useForm({
+  const { register, reset, handleSubmit, setValue } = useForm({
     shouldUseNativeValidation: true,
   })
 
@@ -57,12 +58,33 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
     void updateTalkroomList()
   }
 
+  const _updateTalkroomName = (talkroom: Talkroom | undefined) => {
+    if (!talkroom) return
+    setValue('name', talkroom.name)
+  }
+
   const _submit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data)
-    reset()
+    if (!menuTalkroom) {
+      throw new Error(Message.TALKROOM_NOT_SELECTED_ERROR)
+    }
+
+    const _onSuccess = (json: any) => {
+      reset()
+      _closeModal()
+      void updateTalkroomList()
+    }
+
+    void updateData({
+      url: `/member/groups/${menuTalkroom.id}/talkrooms/${menuTalkroom.id}`,
+      data: data,
+      scope: 'talkroom',
+      onSuccess: _onSuccess,
+      onFail: () => undefined, // TODO
+    })
   }
 
   useEffect(() => {
+    _updateTalkroomName(menuTalkroom)
     void _updateMembers()
     void _updateTalkEntry()
   }, [menuTalkroom])
@@ -82,6 +104,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           onSubmit={handleSubmit(_submit)}
           testID={TestID.TALKROOM_MENU_NAME_FORM}
           submitButtonText="更新"
+          requiredMessage={Message.INPUT_REQUIRED}
         />
         <TalkroomMenuDetail
           title="メンバー"

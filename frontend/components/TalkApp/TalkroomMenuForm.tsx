@@ -21,8 +21,8 @@ export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
   submitButtonText,
 }) => {
   return (
-    <form onSubmit={onSubmit} data-testid={testID}>
-      <label className="row my-3 form-group">
+    <form onSubmit={onSubmit} data-testid={testID} className="row my-3">
+      <label className="row form-group">
         <div className="col-lg-3 fw-bold mb-2 mb-lg-0 col-form-label">
           {label}
         </div>
@@ -30,7 +30,9 @@ export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
           <input
             type="text"
             className="w-100 h-100 form-control"
-            {...register(name, { required: requiredMessage })}
+            {...register(name, {
+              required: requiredMessage,
+            })}
           />
         </div>
         <div className="col-3 col-lg-2">
