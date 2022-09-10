@@ -51,6 +51,7 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
         data-bs-target={'#' + talkroomMenuID}
         data-bs-toggle="modal"
         onClick={() => setMenuTalkroom(talkroom)}
+        data-testid={TestID.TALKROOM_MENU_BUTTON}
       >
         <MaterialIcon name="settings" />
       </a>

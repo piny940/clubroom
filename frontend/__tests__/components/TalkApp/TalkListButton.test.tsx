@@ -9,10 +9,12 @@ import { Mock } from 'ts-mockery'
 
 describe('<TalkListButton />', () => {
   it('正常に描画される', async () => {
-    const handler = jest.fn()
+    const setOpenTalkroom = jest.fn()
+    const setMenuTalkroom = jest.fn()
 
     const props = Mock.from<TalkListButtonProps>({
-      handler: handler,
+      setOpenTalkroom: setOpenTalkroom,
+      setMenuTalkroom: setMenuTalkroom,
     })
 
     const { getByTestId } = render(<TalkListButton {...props} />)
@@ -22,7 +24,20 @@ describe('<TalkListButton />', () => {
     })
 
     await waitFor(() => {
-      expect(handler).toBeCalled()
+      expect(setOpenTalkroom).toBeCalled()
+      expect(setMenuTalkroom).not.toBeCalled()
+    })
+
+    setOpenTalkroom.mockReset()
+    setMenuTalkroom.mockReset()
+
+    act(() => {
+      fireEvent.click(getByTestId(TestID.TALKROOM_MENU_BUTTON))
+    })
+
+    await waitFor(() => {
+      expect(setOpenTalkroom).not.toBeCalled()
+      expect(setMenuTalkroom).toBeCalled()
     })
   })
 })
