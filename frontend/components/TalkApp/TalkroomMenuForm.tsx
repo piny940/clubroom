@@ -7,6 +7,7 @@ export interface TalkroomMenuFormProps {
   name: string
   requiredMessage?: string
   onSubmit: FormEventHandler
+  testID: string
 }
 
 export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
@@ -15,9 +16,10 @@ export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
   name,
   requiredMessage,
   onSubmit,
+  testID,
 }) => {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} data-testid={testID}>
       <label className="row my-3 form-group">
         <div className="col-lg-3 fw-bold mb-2 mb-lg-0 col-form-label">
           {label}
