@@ -1,4 +1,6 @@
 class Member::Groups::TalkroomsController < Member::Groups::Base
+  before_action :set_talkroom, only: [:update, :destroy]
+
   def index
     talkrooms = @group.talkrooms.filter { |room| room.members.include?(current_user) }
 
@@ -36,15 +38,36 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
     end
   end
 
+  def update
+    if @talkroom.update(talkroom_params)
+      render json: {
+        message: 'トークルームを更新しました。',
+        data: {
+          talkroom: @talkroom
+        }, status: :ok
+      }
+    else
+      render json: {
+        message: 'トークルームを更新できませんでした。',
+        data: {
+          talkroom: @talkroom
+        }
+      }, status: :bad_request
+    end
+  end
+
   def destroy
-    talkroom = current_user.talkrooms.find(params[:id])
-    talkroom.destroy
+    @talkroom.destroy
     render json: {
       message: 'トークルームを削除しました。'
     }, status: :ok
   end
 
   private
+
+  def set_talkroom
+    @talkroom = current_user.talkrooms.find(params[:id])
+  end
 
   def talkroom_params
     params.require(:talkroom).permit(:name)

@@ -80,4 +80,17 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_equal before_count - 1, Talkroom.count
     assert_equal before_group_talkroom_count - 1, @group1.talkrooms.length
   end
+
+  test 'トークルームを更新できる' do
+    new_name = 'NewName'
+    sign_in @user
+
+    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: new_name} }
+
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    assert_equal new_name, json['data']['talkroom']['name']
+    assert_equal new_name, Talkroom.find(@room1.id).name
+  end
 end
