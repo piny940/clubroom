@@ -44,7 +44,7 @@ $talk_room_padding: 8px;
     &:hover {
       background-color: $talk_list_button_border_color;
     }
-    .open {
+    &.open {
       background-color: $talk_list_button_border_color;
     }
 
