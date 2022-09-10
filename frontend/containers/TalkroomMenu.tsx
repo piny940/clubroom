@@ -8,6 +8,8 @@ import {
   fetchTalkroomMembers,
 } from '../utils/api'
 import { Message } from '../resources/Messages'
+import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -23,6 +25,9 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
   const [members, setMembers] = useState<User[]>([])
   const [talkEntry, setTalkEntry] = useState<TalkEntry>()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const { register, reset, handleSubmit } = useForm({
+    shouldUseNativeValidation: true,
+  })
 
   const _closeModal = () => {
     closeButtonRef.current?.click()
@@ -49,6 +54,11 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
     void updateTalkroomList()
   }
 
+  const _submit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data)
+    reset()
+  }
+
   useEffect(() => {
     void _updateMembers()
     void _updateTalkEntry()
@@ -62,17 +72,12 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
       closeButtonRef={closeButtonRef}
     >
       <div className="container py-4 px-5" id={styles.talkroom_menu}>
-        <label className="row my-3 form-group">
-          <div className="col-lg-3 fw-bold mb-2 mb-lg-0 col-form-label">
-            トークルーム名
-          </div>
-          <div className="col-9 col-lg-7 px-2 mb-2 mb-lg-0">
-            <input type="text" className="w-100 h-100 form-control" />
-          </div>
-          <div className="col-3 col-lg-2">
-            <button className="btn btn-outline-primary btn-small">更新</button>
-          </div>
-        </label>
+        <TalkroomMenuForm
+          name="name"
+          label="トークルーム名"
+          register={register}
+          onSubmit={handleSubmit(_submit)}
+        />
         <div className="row my-3">
           <div className="col-md-3 fw-bold">メンバー</div>
           <div className="col-md-9">
