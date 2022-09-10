@@ -93,4 +93,16 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_equal new_name, json['data']['talkroom']['name']
     assert_equal new_name, Talkroom.find(@room1.id).name
   end
+
+  test '更新後のトークルームの内容が不適切である場合は更新に失敗する' do
+    sign_in @user
+
+    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: ' '} }
+    
+    assert_response 400
+    json = JSON.parse(response.body)
+
+    assert_equal 'room1', json['data']['talkroom']['name']
+    assert_equal 'room1', Talkroom.find(@room1.id).name
+  end
 end

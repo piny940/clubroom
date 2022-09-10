@@ -50,7 +50,7 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
       render json: {
         message: 'トークルームを更新できませんでした。',
         data: {
-          talkroom: @talkroom
+          talkroom: Talkroom.find(@talkroom.id)
         }
       }, status: :bad_request
     end
