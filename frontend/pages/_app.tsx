@@ -14,15 +14,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <AlertsStateProvider>
-      <GroupsStateProvider>
-        <GroupStateProvider>
-          <UserStateProvider>
+      <UserStateProvider>
+        <GroupsStateProvider>
+          <GroupStateProvider>
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </UserStateProvider>
-        </GroupStateProvider>
-      </GroupsStateProvider>
+          </GroupStateProvider>
+        </GroupsStateProvider>
+      </UserStateProvider>
     </AlertsStateProvider>
   )
 }
