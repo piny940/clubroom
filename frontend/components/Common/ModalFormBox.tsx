@@ -35,23 +35,19 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
           <></>
         )}
         {children}
-        <div className="row mx-2">
-          <button
-            className="btn btn-primary col-md-6 mt-4 offset-md-3"
-            data-testid={submitTestID}
-          >
-            {submitButtonText}
-          </button>
-        </div>
-        <div className="row mx-2">
-          <button
-            className="btn btn-secondary col-md-6 my-2 offset-md-3"
-            data-bs-dismiss="modal"
-            onClick={(e) => e.preventDefault()}
-          >
-            キャンセル
-          </button>
-        </div>
+        <button
+          className="btn btn-primary col-12 col-md-6 mt-4 offset-md-3"
+          data-testid={submitTestID}
+        >
+          {submitButtonText}
+        </button>
+        <button
+          className="btn btn-secondary col-12 col-md-6 my-2 offset-md-3"
+          data-bs-dismiss="modal"
+          onClick={(e) => e.preventDefault()}
+        >
+          キャンセル
+        </button>
       </form>
     </Modal>
   )
