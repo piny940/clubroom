@@ -28,8 +28,9 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
       <a
         role="button"
         className={toClass(
-          'w-100 h-100 d-block pt-2 pe-1 ps-4',
-          open ? styles.open : ''
+          'h-100 d-block pt-2 pe-1 ps-4',
+          open ? styles.open : '',
+          styles.open_button
         )}
         onClick={() => setOpenTalkroom(talkroom)}
         data-testid={TestID.TALK_LIST_BUTTON}
