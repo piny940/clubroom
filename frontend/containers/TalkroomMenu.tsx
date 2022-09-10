@@ -62,9 +62,20 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
       closeButtonRef={closeButtonRef}
     >
       <div className="container py-4 px-5" id={styles.talkroom_menu}>
+        <label className="row my-3 form-group">
+          <div className="col-lg-3 fw-bold mb-2 mb-lg-0 col-form-label">
+            トークルーム名
+          </div>
+          <div className="col-9 col-lg-7 px-2 mb-2 mb-lg-0">
+            <input type="text" className="w-100 h-100 form-control" />
+          </div>
+          <div className="col-3 col-lg-2">
+            <button className="btn btn-outline-primary btn-small">更新</button>
+          </div>
+        </label>
         <div className="row my-3">
           <div className="col-md-3 fw-bold">メンバー</div>
-          <div className="col-md-9 overwrap-auto">
+          <div className="col-md-9">
             {members.map((user) => user.name).join(', ')}
           </div>
         </div>
