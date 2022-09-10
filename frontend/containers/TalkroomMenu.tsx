@@ -104,18 +104,20 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
       closeButtonRef={closeButtonRef}
     >
       <div className="container py-4 px-5" id={styles.talkroom_menu}>
-        <TalkroomMenuForm
-          name="name"
-          label="トークルーム名"
-          register={register}
-          onSubmit={handleSubmit(_submit)}
-          testID={TestID.TALKROOM_MENU_NAME_FORM}
-          submitButtonText="更新"
-          requiredMessage={Message.INPUT_REQUIRED}
-        />
+        {talkEntry?.role === 'staff' && (
+          <TalkroomMenuForm
+            name="name"
+            label="トークルーム名"
+            register={register}
+            onSubmit={handleSubmit(_submit)}
+            testID={TestID.TALKROOM_MENU_NAME_FORM}
+            submitButtonText="更新"
+            requiredMessage={Message.INPUT_REQUIRED}
+          />
+        )}
         <TalkroomMenuDetail
           title="メンバー"
-          detail={members.map((user) => user.name).join(', ')}
+          content={members.map((user) => user.name).join(', ')}
         />
         {talkEntry?.role === 'staff' && (
           <TalkroomMenuActionButton
