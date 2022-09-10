@@ -21,7 +21,7 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
 }) => {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
-      <div className="container">
+      <div className="container-fluid px-5">
         <Link href="/">
           <a className="navbar-brand">Clubroom</a>
         </Link>
