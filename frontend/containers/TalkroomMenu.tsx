@@ -16,6 +16,7 @@ import { TestID } from '../resources/TestID'
 import { TalkroomMenuDetail } from '../components/TalkApp/TalkroomMenuDetail'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { AlertState } from '../utils/enums'
+import { CopyTextBox } from '../components/Common/CopyTextBox'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -119,6 +120,15 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           title="メンバー"
           content={members.map((user) => user.name).join(', ')}
         />
+        <div className="row my-3">
+          <div className="col-md-3 fw-bold">招待URL</div>
+          <CopyTextBox
+            text="hoge"
+            className="col-md-9"
+            onSuccess={() => console.log('copy!')}
+          />
+        </div>
+
         {talkEntry?.role === 'staff' && (
           <TalkroomMenuActionButton
             label="トークルームを削除"
