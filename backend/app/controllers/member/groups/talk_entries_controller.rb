@@ -1,6 +1,18 @@
 class Member::Groups::TalkEntriesController < Member::Groups::Base
   def create
     talkroom = Talkroom.find(params[:talkroom_id])
+    if talkroom.members.include? current_user
+      talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom.id)
+
+      return render json: {
+        message: 'このトークルームにはすでに参加しています。',
+        data: {
+          talkroom: talkroom,
+          talk_entry: talk_entry
+        }
+      }, status: :ok
+    end
+
     if talkroom.entry_token == params[:entry_token]
       talkroom.members << current_user
       talkroom.set_token

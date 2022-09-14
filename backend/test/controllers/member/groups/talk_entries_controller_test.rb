@@ -37,4 +37,20 @@ class Member::Groups::TalkEntriesControllerTest < ActionDispatch::IntegrationTes
     assert_equal before_token, @room1.entry_token
     assert_equal 'トークンが違います。', json['message']
   end
+
+  test 'すでにトークルームに参加している場合は200を返す' do
+    @room1.members << @user
+    before_count = @room1.members.length
+    before_token = @room1.entry_token
+    post "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}/talk_entry", params: { entry_token: 'wrong_token' }
+
+    assert_response :success
+    json = JSON.parse(response.body)
+    @room1.reload
+
+    assert_equal before_count, @room1.members.length
+    assert_equal before_token, @room1.entry_token
+    assert_equal 'room1', json['data']['talkroom']['name']
+    assert_equal 'このトークルームにはすでに参加しています。', json['message']
+  end
 end
