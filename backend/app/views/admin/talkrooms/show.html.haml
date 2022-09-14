@@ -5,6 +5,9 @@
 .row.py-1
   .col-md-3.fw-bold Group
   .col-md-9= @talkroom.group.name
+.row.py-1
+  .col-md-3.fw-bold EntryToken
+  .col-md-9= @talkroom.entry_token
 
 = link_to '編集', edit_admin_talkroom_path(@talkroom)
 \|

@@ -49,12 +49,14 @@ tanteidan = Group.create!(name: "少年探偵団", school: "帝丹小学校")
 teitanko = Group.create!(name: "帝丹高校")
 akai_family = Group.create!(name: "赤井一家")
 
+tanteidan.members << admin_user
 tanteidan.members << konann
 tanteidan.members << ai
 tanteidan.members << genta
 tanteidan.members << ayumi
 tanteidan.members << mitsuhiko
 
+teitanko.members << admin_user
 teitanko.members << shinichi
 teitanko.members << rann
 teitanko.members << sonoko
@@ -67,15 +69,18 @@ akai_family.members << shukichi
 
 tanteidan_room1 = tanteidan.talkrooms.create!(name: "探偵団全体")
 tanteidan_room2 = tanteidan.talkrooms.create!(name: "薬で小さくなった人達")
+tanteidan_room1.members << admin_user
 tanteidan_room1.members << konann
 tanteidan_room1.members << ai
 tanteidan_room1.members << genta
 tanteidan_room1.members << ayumi
+tanteidan_room2.members << admin_user
 tanteidan_room1.members << mitsuhiko
 tanteidan_room2.members << konann
 tanteidan_room2.members << ai
 
 teitanko_room1 = teitanko.talkrooms.create!(name: "帝丹高校全体")
+teitanko_room1.members << admin_user
 teitanko_room1.members << shinichi
 teitanko_room1.members << rann
 teitanko_room1.members << sonoko
