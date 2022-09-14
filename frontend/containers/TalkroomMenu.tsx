@@ -33,6 +33,9 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
   const [members, setMembers] = useState<User[]>([])
   const [talkEntry, setTalkEntry] = useState<TalkEntry>()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const entryURL = menuTalkroom
+    ? `${HOST}/talkroom_entry?entry_token=${menuTalkroom.entry_token}&talkroom_id=${menuTalkroom.id}&group_id=${menuTalkroom.group_id}`
+    : ''
   const { register, reset, handleSubmit, setValue } = useForm({
     shouldUseNativeValidation: true,
   })
@@ -125,7 +128,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           <div className="row my-3">
             <div className="col-md-3 fw-bold">招待URL</div>
             <CopyTextBox
-              text={`${HOST}/talkroom_entry?entry_token=${menuTalkroom.entry_token}`}
+              text={entryURL}
               className="col-md-9"
               onSuccess={() => console.log('copy!')}
             />

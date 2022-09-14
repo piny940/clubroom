@@ -1,13 +1,7 @@
-import { useEffect } from 'react'
+import { TalkroomEntryApp } from '../containers/TalkroomEntryApp'
 
 const TalkroomEntry: React.FC = () => {
-  useEffect(() => {})
-
-  return (
-    <div className="container mt-4">
-      トークルームに参加します。そのままお待ちください。
-    </div>
-  )
+  return <TalkroomEntryApp />
 }
 
 export default TalkroomEntry
