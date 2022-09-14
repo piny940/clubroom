@@ -6,12 +6,14 @@ export interface CopyTextBoxProps {
   text: string
   className?: string
   onSuccess?: () => void
+  testID?: string
 }
 
 export const CopyTextBox: React.FC<CopyTextBoxProps> = ({
   text,
   className = '',
   onSuccess = () => undefined,
+  testID,
 }) => {
   const copy: MouseEventHandler = async (e) => {
     await navigator.clipboard.writeText(text)
@@ -27,7 +29,13 @@ export const CopyTextBox: React.FC<CopyTextBoxProps> = ({
         readOnly
         value={text}
       />
-      <a role="button" className="lh-1" data-tip="Copy!" onClick={copy}>
+      <a
+        role="button"
+        className="lh-1"
+        data-tip="Copy!"
+        onClick={copy}
+        data-testid={testID}
+      >
         <MaterialIcon name="content_copy" />
       </a>
     </div>
