@@ -41,4 +41,13 @@ class ApplicationController < ActionController::Base
       }, status: :bad_request
     end
   end
+
+  def check_talkroom_role_staff!(talkroom_id)
+    talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom_id)
+    if !talk_entry&.role_staff?
+      render json: {
+        message: '権限がありません。'
+      }, status: 400
+    end
+  end
 end

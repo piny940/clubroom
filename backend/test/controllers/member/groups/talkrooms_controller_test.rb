@@ -125,11 +125,15 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_response 400
     json = JSON.parse(response.body)
 
-    assert_equal '権限がありません', json['message']
+    assert_equal '権限がありません。', json['message']
   end
 
   test '更新後のトークルームの内容が不適切である場合は更新に失敗する' do
     sign_in @user
+    sign_in @user
+    talk_entry = @user.talk_entries.find_by(talkroom_id: @room1.id)
+    talk_entry.role = 'staff'
+    talk_entry.save!
 
     patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: ' '} }
     

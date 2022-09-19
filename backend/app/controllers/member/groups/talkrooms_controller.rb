@@ -1,5 +1,8 @@
 class Member::Groups::TalkroomsController < Member::Groups::Base
-  before_action :set_talkroom, only: [:update, :destroy]
+  before_action -> {
+    set_talkroom!(params[:id])
+    check_talkroom_role_staff!(params[:id])
+  }, only: [:update, :destroy]
 
   def index
     talkrooms = @group.talkrooms.filter { |room| room.members.include?(current_user) }
@@ -64,10 +67,6 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
   end
 
   private
-
-  def set_talkroom
-    @talkroom = current_user.talkrooms.find(params[:id])
-  end
 
   def talkroom_params
     params.require(:talkroom).permit(:name)
