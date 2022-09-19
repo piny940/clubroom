@@ -1,6 +1,6 @@
 class Member::GroupsController < Member::Base
-  before_action :set_group, only: %i[show update destroy]
-  before_action :check_role_staff!, only: %i[update destroy]
+  before_action -> { set_group!(params[:id]) }, only: %i[show update destroy]
+  before_action -> { check_group_role_staff!(params[:id]) }, only: %i[update destroy]
 
   def index
     render json: {
@@ -72,24 +72,5 @@ class Member::GroupsController < Member::Base
 
   def group_params
     params.require(:group).permit(:name, :school)
-  end
-
-  def set_group
-    @group = Group.find(params[:id])
-
-    if @group.members.exclude?(current_user)
-      render json: {
-        message: 'このグループには所属していません。'
-      }, status: :bad_request
-    end
-  end
-
-  def check_role_staff!
-    joining = current_user.joinings.find_by(group_id: @group.id)
-    if !joining.role_staff?
-      render json: {
-        message: '権限がありません。'
-      }, status: 400
-    end
   end
 end
