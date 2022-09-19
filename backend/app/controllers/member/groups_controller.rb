@@ -1,6 +1,6 @@
 class Member::GroupsController < Member::Base
   include GroupsHelper
-  before_action :set_group, only: %i[show]
+  before_action :set_group, only: %i[show update destroy]
   before_action :check_role_staff!, only: %i[update destroy]
 
   def index
@@ -82,6 +82,15 @@ class Member::GroupsController < Member::Base
       render json: {
         message: 'このグループには所属していません。'
       }, status: :bad_request
+    end
+  end
+
+  def check_role_staff!
+    joining = current_user.joinings.find_by(group_id: @group.id)
+    if !joining.role_staff?
+      render json: {
+        message: '権限がありません。'
+      }, status: 400
     end
   end
 end
