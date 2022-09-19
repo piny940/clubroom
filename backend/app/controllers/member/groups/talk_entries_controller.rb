@@ -1,4 +1,20 @@
 class Member::Groups::TalkEntriesController < Member::Groups::Base
+  def show
+    talkroom = Talkroom.find(params[:talkroom_id])
+
+    if @group.talkrooms.exclude?(talkroom)
+      return render json: {
+        message: '指定されたグループにこのトークルームはありません。'
+      }, status: :bad_request
+    end
+
+    render json: {
+      data: {
+        talk_entry: current_user.talk_entries.find_by(talkroom_id: talkroom.id)
+      }
+    }, status: :ok
+  end
+
   def create
     talkroom = Talkroom.find(params[:talkroom_id])
     if talkroom.members.include? current_user
