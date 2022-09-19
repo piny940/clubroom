@@ -22,7 +22,7 @@ class Member::JoiningsControllerTest < ActionDispatch::IntegrationTest
   test '自身が属していないグループに対してはjoiningをnilとして返す' do
     get "/member/groups/#{@group2.id}/joining"
 
-    assert_response 400
+    assert_response :success
     json = JSON.parse(response.body)
 
     assert_nil json['data']['joining']
