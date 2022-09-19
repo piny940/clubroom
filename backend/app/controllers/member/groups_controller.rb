@@ -1,5 +1,4 @@
 class Member::GroupsController < Member::Base
-  include GroupsHelper
   before_action :set_group, only: %i[show update destroy]
   before_action :check_role_staff!, only: %i[update destroy]
 
