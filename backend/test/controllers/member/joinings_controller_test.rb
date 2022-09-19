@@ -27,4 +27,49 @@ class Member::JoiningsControllerTest < ActionDispatch::IntegrationTest
 
     assert_nil json['data']['joining']
   end
+
+  test '正常に正しいentry_tokenを用いてグループに参加できる' do
+    before_count = @group2.members.length
+    before_token = @group2.entry_token
+    post "/member/groups/#{@group2.id}/joining", params: { entry_token: @group2.entry_token }
+
+    assert_response :success
+    json = JSON.parse(response.body)
+    @group2.reload
+
+    assert_equal before_count + 1, @group2.members.length
+    assert_equal 'group2', json['data']['group']['name']
+    assert_equal 'member', json['data']['joining']['role']
+    assert_not_equal before_token, @group2.entry_token
+  end
+
+  test 'entry_tokenが間違っている場合グループに参加できない' do
+    before_count = @group2.members.length
+    before_token = @group2.entry_token
+    post "/member/groups/#{@group2.id}/joining", params: { entry_token: 'wrong_token' }
+
+    assert_response 400
+    json = JSON.parse(response.body)
+    @group2.reload
+
+    assert_equal before_count, @group2.members.length
+    assert_equal before_token, @group2.entry_token
+    assert_equal 'トークンが違います。', json['message']
+  end
+
+  test 'すでにグループに参加している場合は200を返す' do
+    @group2.members << @user
+    before_count = @group2.members.length
+    before_token = @group2.entry_token
+    post "/member/groups/#{@group2.id}/joining", params: { entry_token: 'wrong_token' }
+
+    assert_response :success
+    json = JSON.parse(response.body)
+    @group2.reload
+
+    assert_equal before_count, @group2.members.length
+    assert_equal before_token, @group2.entry_token
+    assert_equal 'group2', json['data']['group']['name']
+    assert_equal 'このグループにはすでに参加しています。', json['message']
+  end
 end
