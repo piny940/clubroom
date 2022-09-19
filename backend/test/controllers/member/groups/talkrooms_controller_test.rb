@@ -68,6 +68,9 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
 
   test 'トークルームを削除できる' do
     sign_in @user
+    talk_entry = @user.talk_entries.find_by(talkroom_id: @room1.id)
+    talk_entry.role = 'staff'
+    talk_entry.save!
 
     before_count = Talkroom.count
     before_group_talkroom_count = @group1.talkrooms.length
@@ -81,9 +84,29 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_equal before_group_talkroom_count - 1, @group1.talkrooms.length
   end
 
+  test 'roleがstaffでない場合はトークルームを削除できない' do
+    sign_in @user
+
+    before_count = Talkroom.count
+    before_group_talkroom_count = @group1.talkrooms.length
+
+    delete "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}"
+
+    assert_response 400
+    json = JSON.parse(response.body)
+
+    @group1.reload
+    assert_equal before_count, Talkroom.count
+    assert_equal before_group_talkroom_count, @group1.talkrooms.length
+    assert_equal '権限がありません。', json['message']
+  end
+
   test 'トークルームを更新できる' do
     new_name = 'NewName'
     sign_in @user
+    talk_entry = @user.talk_entries.find_by(talkroom_id: @room1.id)
+    talk_entry.role = 'staff'
+    talk_entry.save!
 
     patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: new_name} }
 
@@ -94,8 +117,23 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     assert_equal new_name, Talkroom.find(@room1.id).name
   end
 
+  test 'roleがstaffでない場合はトークルームを更新できない' do
+    sign_in @user
+
+    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: 'NewName'} }
+
+    assert_response 400
+    json = JSON.parse(response.body)
+
+    assert_equal '権限がありません。', json['message']
+  end
+
   test '更新後のトークルームの内容が不適切である場合は更新に失敗する' do
     sign_in @user
+    sign_in @user
+    talk_entry = @user.talk_entries.find_by(talkroom_id: @room1.id)
+    talk_entry.role = 'staff'
+    talk_entry.save!
 
     patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: ' '} }
     

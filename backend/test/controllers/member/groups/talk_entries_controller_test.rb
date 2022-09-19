@@ -9,6 +9,25 @@ class Member::Groups::TalkEntriesControllerTest < ActionDispatch::IntegrationTes
     sign_in @user
   end
 
+  test '正常にトークルームへの自身のTalkEntryを取得できる' do
+    @room1.members << @user
+    get "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}/talk_entry"
+
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    assert_equal @room1.talk_entries.find_by(user_id: @user.id).id, json['data']['talk_entry']['id']
+  end
+
+  test 'トークルームに属していない場合はTalkEntryはnilとして返ってくる' do
+    get "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}/talk_entry"
+
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    assert_nil json['data']['talk_entry']
+  end
+
   test '正常に正しいentry_tokenを用いてトークルームに参加できる' do
     before_count = @room1.members.length
     before_token = @room1.entry_token

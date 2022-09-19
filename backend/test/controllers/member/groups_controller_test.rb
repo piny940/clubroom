@@ -7,7 +7,7 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     @group2 = Group.create!(name: 'group2')
   end
 
-  test '正常にgroupsを取得できる' do
+  test '正常に自身の属するグループのリストを取得できる' do
     @group1.members << @user
 
     sign_in @user
@@ -58,5 +58,59 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     json = JSON.parse(response.body)
     assert_equal before_count, Group.count
     assert_equal 'グループを作成できませんでした。', json['message']
+  end
+
+  test '正常にグループの情報を取得できる' do
+    sign_in @user
+    @group1.members << @user
+    get "/member/groups/#{@group1.id}"
+    assert_response :success
+    json = JSON.parse(response.body)
+    assert_equal 'group1', json['data']['group']['name']
+  end
+
+  test '自身の属していないグループの情報は取得できない' do
+    sign_in @user
+    get "/member/groups/#{@group1.id}"
+    assert_response 400
+    json = JSON.parse(response.body)
+    assert_equal 'このグループには所属していません。', json['message']
+  end
+
+  test '正常にグループの情報を更新できる' do
+    sign_in @user
+    @user.joinings.create!(group_id: @group1.id, role: :staff)
+    patch "/member/groups/#{@group1.id}", params: { group: { name: 'NewName' } }
+    assert_response :success
+    json = JSON.parse(response.body)
+    assert_equal 'グループの情報を更新しました。', json['message']
+    assert_equal 'NewName', json['data']['group']['name']
+  end
+
+  test 'roleがstaffでないとグループの情報を更新できない' do
+    sign_in @user
+    @group1.members << @user
+    patch "/member/groups/#{@group1.id}", params: { group: { name: 'NewName' } }
+    assert_response 400
+    json = JSON.parse(response.body)
+    assert_equal '権限がありません。', json['message']
+  end
+
+  test '正常にグループを削除できる' do
+    sign_in @user
+    @user.joinings.create!(group_id: @group1.id, role: :staff)
+    delete "/member/groups/#{@group1.id}"
+    assert_response :success
+    json = JSON.parse(response.body)
+    assert_equal 'グループを削除しました。', json['message']
+  end
+
+  test 'roleがstaffでないとグループを削除できない' do
+    sign_in @user
+    @user.joinings.create!(group_id: @group1.id)
+    delete "/member/groups/#{@group1.id}"
+    assert_response 400
+    json = JSON.parse(response.body)
+    assert_equal '権限がありません。', json['message']
   end
 end

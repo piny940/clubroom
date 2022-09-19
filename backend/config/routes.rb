@@ -12,17 +12,16 @@ Rails.application.routes.draw do
 
   get 'csrf/', to: 'csrf#show'
   resource :session, only: %i[create destroy]
-  resource :user, only: %i[show create]
+  resource :user, only: %i[show create update destroy]
   namespace :member do
-    resources :groups, only: %i[index create] do
+    resources :groups, only: %i[index create update destroy show] do
       scope module: :groups do
-        resources :talkrooms, only: %i[index create destroy update] do
+        resources :talkrooms, only: %i[index create show destroy update] do
           scope module: :talkrooms do
             resources :talks, only: %i[index create]
             resources :members, only: %i[index]
-            resource :talk_entry, only: %i[show]
           end
-          resource :talk_entry, only: %i[create]
+          resource :talk_entry, only: %i[create show]
         end
       end
     end
