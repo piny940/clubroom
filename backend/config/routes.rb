@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resource :session, only: %i[create destroy]
   resource :user, only: %i[show create update destroy]
   namespace :member do
-    resources :groups, only: %i[index create] do
+    resources :groups, only: %i[index create update destroy show] do
       scope module: :groups do
         resources :talkrooms, only: %i[index create destroy update] do
           scope module: :talkrooms do

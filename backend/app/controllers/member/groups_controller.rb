@@ -1,4 +1,6 @@
 class Member::GroupsController < Member::Base
+  include GroupsHelper
+
   def index
     render json: {
       data: {
@@ -30,6 +32,18 @@ class Member::GroupsController < Member::Base
         message: 'グループを作成できませんでした。'
       }, status: :bad_request
     end
+  end
+
+  def update
+    
+  end
+
+  def show
+
+  end
+
+  def destroy
+
   end
 
   private
