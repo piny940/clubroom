@@ -24,6 +24,7 @@ Rails.application.routes.draw do
           resource :talk_entry, only: %i[create show]
         end
       end
+      resource :joining, only: %i[create show]
     end
   end
 end

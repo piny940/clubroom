@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_10_145644) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_19_125730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_145644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "school"
+    t.string "entry_token", default: "", null: false
     t.index ["name", "school"], name: "index_groups_on_name_and_school", unique: true
     t.index ["name"], name: "index_groups_on_name"
   end
