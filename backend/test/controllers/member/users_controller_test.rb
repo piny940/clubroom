@@ -30,6 +30,7 @@ class Member::UsersControllerTest < ActionDispatch::IntegrationTest
     json = JSON.parse(response.body)
     
     assert_equal 'ユーザー情報を更新できませんでした。', json['message']
+    assert_equal 'john', json['data']['user']['name']
   end
 
   test 'ユーザーを削除できる' do
