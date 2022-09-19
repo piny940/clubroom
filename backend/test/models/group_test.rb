@@ -26,4 +26,9 @@ class GroupTest < ActiveSupport::TestCase
     @group.save
     assert_not dup.valid?
   end
+
+  test '作成時にentry_tokenが生成される' do
+    @group.save!
+    assert_not_nil @group.entry_token
+  end
 end
