@@ -1,5 +1,7 @@
 class Member::GroupsController < Member::Base
   include GroupsHelper
+  before_action :set_group, only: %i[show]
+  before_action :check_role_staff!, only: %i[update destroy]
 
   def index
     render json: {
@@ -34,21 +36,52 @@ class Member::GroupsController < Member::Base
     end
   end
 
-  def update
-    
+  def show
+    render json: {
+      data: {
+        group: @group
+      }
+    }, status: :ok
   end
 
-  def show
-
+  def update
+    if @group.update(group_params)
+      render json: {
+        data: {
+          group: @group
+        },
+        message: 'グループの情報を更新しました。'
+      }, status: :ok
+    else
+      render json: {
+        message: 'グループの情報を更新できませんでした。',
+        data: {
+          group: Group.find(@group.id)
+        }
+      }, status: 400
+    end
   end
 
   def destroy
-
+    @group.destroy
+    render json: {
+      message: 'グループを削除しました。'
+    }, status: :ok
   end
 
   private
 
   def group_params
     params.require(:group).permit(:name, :school)
+  end
+
+  def set_group
+    @group = Group.find(params[:id])
+
+    if @group.members.exclude?(current_user)
+      render json: {
+        message: 'このグループには所属していません。'
+      }, status: :bad_request
+    end
   end
 end

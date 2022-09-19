@@ -71,10 +71,10 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
 
   test '自身の属していないグループの情報は取得できない' do
     sign_in @user
-    get "/member/groups/#{@group.id}"
+    get "/member/groups/#{@group1.id}"
     assert_response 400
     json = JSON.parse(response.body)
-    assert_equal 'このグループには属していません。'
+    assert_equal 'このグループには所属していません。', json['message']
   end
 
   test '正常にグループの情報を更新できる' do
@@ -102,6 +102,15 @@ class Member::GroupsControllerTest < ActionDispatch::IntegrationTest
     delete "/member/groups/#{@group1.id}"
     assert_response :success
     json = JSON.parse(response.body)
-    assert_equal 'グループを削除しました。'
+    assert_equal 'グループを削除しました。', json['message']
+  end
+
+  test 'roleがstaffでないとグループを削除できない' do
+    sign_in @user
+    @user.joinings.create!(group_id: @group1.id)
+    delete "/member/groups/#{@group1.id}"
+    assert_response 400
+    json = JSON.parse(response.body)
+    assert_equal '権限がありません。', json['message']
   end
 end

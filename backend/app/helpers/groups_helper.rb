@@ -1,11 +1,12 @@
 module GroupsHelper
-  def set_group
-    @group = Group.find(params[:group_id])
+  def check_role_staff!
+    set_group
 
-    if @group.members.exclude?(current_user)
+    joining = current_user.joinings.find_by(group_id: @group.id)
+    if !joining.role_staff?
       render json: {
-        message: 'このグループには所属していません。'
-      }, status: :bad_request
+        message: '権限がありません。'
+      }, status: 400
     end
   end
 end
