@@ -35,7 +35,7 @@ export const CopyTextBox: React.FC<CopyTextBoxProps> = ({
       />
       <a
         role="button"
-        className="lh-1 position-relative"
+        className="lh-1"
         data-tip="Copy!"
         onClick={async () => await copy()}
         data-testid={testID}

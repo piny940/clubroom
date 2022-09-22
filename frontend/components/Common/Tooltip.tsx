@@ -43,7 +43,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <>
-      <div ref={tooltipRef} role="tooltip" data-testid={testID}>
+      <div
+        ref={tooltipRef}
+        role="tooltip"
+        data-testid={testID}
+        className="position-relative d-flex flex-column align-items-center"
+      >
         {isShown ? (
           <>
             <div className={style.tooltip}>{text}</div>
