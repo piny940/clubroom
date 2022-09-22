@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { useAlerts } from '../../contexts/AlertsProvider'
-import { AlertInput } from '../../types'
+import { AlertInput } from '../../resources/types'
 import { useMovePage, usePageChange } from '../../utils/hooks'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'

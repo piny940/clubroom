@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react'
 import { Talks, TalksProps } from '../../../components/TalkApp/Talks'
-import { Talk } from '../../../types'
+import { Talk } from '../../../resources/types'
 import { expect } from '@jest/globals'
 import { TalkRow } from '../../../components/TalkApp/TalkRow'
 import { Mock } from 'ts-mockery'

@@ -1,5 +1,5 @@
 import { TestID } from '../../resources/TestID'
-import { Alert as AlertType } from '../../types'
+import { Alert as AlertType } from '../../resources/types'
 import { AlertState } from '../../utils/enums'
 import styles from '../../styles/common.module.scss'
 import { toClass } from '../../utils/helpers'

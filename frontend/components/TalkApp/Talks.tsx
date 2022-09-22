@@ -1,7 +1,7 @@
 import { TalkRow } from './TalkRow'
 import styles from '../../styles/talk-app.module.scss'
 import { RefObject } from 'react'
-import { Talk } from '../../types'
+import { Talk } from '../../resources/types'
 
 export interface TalksProps {
   talks: Talk[]

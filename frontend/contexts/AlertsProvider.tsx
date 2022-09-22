@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
-import { Alert, AlertInput } from '../types'
+import { Alert, AlertInput } from '../resources/types'
 import { usePageChange } from '../utils/hooks'
 
 interface AlertsContextInterface {

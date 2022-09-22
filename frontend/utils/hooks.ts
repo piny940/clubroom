@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useAlerts } from '../contexts/AlertsProvider'
-import { AlertInput } from '../types'
+import { AlertInput } from '../resources/types'
 
 export const usePageChange = (handler: () => void) => {
   const router = useRouter()

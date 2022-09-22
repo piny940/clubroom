@@ -1,4 +1,4 @@
-import { Group } from '../../types'
+import { Group } from '../../resources/types'
 import { DropdownActionButton } from '../Common/DropdownActionButton'
 import styles from '../../styles/navbar.module.scss'
 

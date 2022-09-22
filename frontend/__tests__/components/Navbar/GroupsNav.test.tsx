@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import { GroupNavProps, GroupsNav } from '../../../components/Navbar/GroupsNav'
 import { TestID } from '../../../resources/TestID'
-import { Group } from '../../../types'
+import { Group } from '../../../resources/types'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 

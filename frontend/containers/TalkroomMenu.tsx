@@ -1,5 +1,5 @@
 import { Modal } from '../components/Common/Modal'
-import { TalkEntry, Talkroom, User } from '../types'
+import { TalkEntry, Talkroom, User } from '../resources/types'
 import styles from '../styles/talk-app.module.scss'
 import { useEffect, useRef, useState } from 'react'
 import {

@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 import { UserInfoProvider, useUserInfo } from '../../contexts/UserInfoProvider'
-import { Group } from '../../types'
+import { Group } from '../../resources/types'
 
 jest.mock('../../utils/api', () => ({
   fetchUser: () =>

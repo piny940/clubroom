@@ -1,6 +1,6 @@
 import { serialize } from 'object-to-formdata'
 import { LogoutReturn } from '../resources/apiRetuns'
-import { Group, Talk, TalkEntry, Talkroom, User } from '../types'
+import { Group, Talk, TalkEntry, Talkroom, User } from '../resources/types'
 
 const getToken = async (): Promise<string> => {
   const url = `/api/csrf`

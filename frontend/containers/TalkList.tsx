@@ -1,7 +1,7 @@
 import { TalkListButton } from '../components/TalkApp/TalkListButton'
 import { toClass } from '../utils/helpers'
 import styles from '../styles/talk-app.module.scss'
-import { Talkroom } from '../types'
+import { Talkroom } from '../resources/types'
 import { TalkListActionButton } from '../components/TalkApp/TalkListActionButton'
 import { TestID } from '../resources/TestID'
 import { useUserInfo } from '../contexts/UserInfoProvider'
