@@ -127,11 +127,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           />
           <div className="row my-3">
             <div className="col-md-3 fw-bold">招待URL</div>
-            <CopyTextBox
-              text={entryURL}
-              className="col-md-9"
-              onSuccess={() => console.log('copy!')}
-            />
+            <CopyTextBox text={entryURL} className="col-md-9" />
           </div>
 
           {talkEntry?.role === 'staff' && (
