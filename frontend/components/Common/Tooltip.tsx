@@ -2,11 +2,12 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 import style from '../../styles/common.module.scss'
 
 export interface TooltipProps {
+  testID?: string
   text: string
   children: ReactNode
 }
 
-export const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ text, children, testID }) => {
   const tooltipRef = useRef<HTMLDivElement>(null)
 
   const [isShown, setIsShown] = useState(false)
@@ -18,7 +19,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
 
     if (!targetEl) return
 
-    targetEl.addEventListener('mouseover', () => {
+    targetEl.addEventListener('mouseenter', () => {
       setIsShown(true)
     })
     targetEl.addEventListener('mouseleave', () => {
@@ -28,7 +29,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
 
   return (
     <>
-      <div ref={tooltipRef} role="tooltip">
+      <div ref={tooltipRef} role="tooltip" data-testid={testID}>
         {isShown ? (
           <>
             <div className={style.tooltip}>{text}</div>
