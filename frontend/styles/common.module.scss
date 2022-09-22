@@ -8,3 +8,33 @@
   min-width: 230px;
   max-width: 60%;
 }
+
+$tooltip-flow: 12px;
+$tooltip-color: black;
+
+.tooltip {
+  $width: 60px;
+  position: absolute;
+  width: $width;
+  padding: 7px 0;
+  font-size: 0.9rem;
+  border-radius: 7px;
+  text-align: center;
+  background: $tooltip-color;
+  color: white;
+  bottom: calc(100% + $tooltip-flow);
+  left: calc(50% - $width / 2);
+}
+
+.tooltip_arrow {
+  $width: 16px;
+  $height: 7px;
+  position: absolute;
+  content: '';
+  bottom: calc(100% + $tooltip-flow - $height);
+  left: calc(50% - $width / 2);
+  border-top: $height $tooltip-color solid;
+  border-left: $width / 2 transparent solid;
+  border-right: $width / 2 transparent solid;
+  border-bottom: 0px transparent solid;
+}

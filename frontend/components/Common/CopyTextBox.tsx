@@ -1,6 +1,7 @@
 import { MouseEventHandler } from 'react'
 import { toClass } from '../../utils/helpers'
 import { MaterialIcon } from './MaterialIcon'
+import { Tooltip } from './Tooltip'
 
 export interface CopyTextBoxProps {
   text: string
@@ -31,11 +32,12 @@ export const CopyTextBox: React.FC<CopyTextBoxProps> = ({
       />
       <a
         role="button"
-        className="lh-1"
+        className="lh-1 position-relative"
         data-tip="Copy!"
         onClick={copy}
         data-testid={testID}
       >
+        <Tooltip text="Copy!" />
         <MaterialIcon name="content_copy" />
       </a>
     </div>
