@@ -2,7 +2,7 @@ import { NavbarView } from '../components/Navbar/NavbarView'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import { logout } from '../utils/api'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 import { NewGroupForm } from './NewGroupForm'
 
 export const Navbar: React.FC = () => {

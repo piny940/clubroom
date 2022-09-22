@@ -8,7 +8,7 @@ import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
 import { Talkroom } from '../resources/types'
 import { postData } from '../utils/api'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 
 export interface NewTalkroomFormProps {
   targetID: string

@@ -1,7 +1,7 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FormGroup } from '../components/Common/FormGroup'
 import { Message } from '../resources/Messages'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 import styles from '../styles/accounts.module.scss'
 import { useState } from 'react'
 import { useMovePage } from '../utils/hooks'

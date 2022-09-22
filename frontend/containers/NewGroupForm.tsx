@@ -7,7 +7,7 @@ import { useUserInfo } from '../contexts/UserInfoProvider'
 import { Message } from '../resources/Messages'
 import { TestID } from '../resources/TestID'
 import { postData } from '../utils/api'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 
 export interface NewGroupFormProps {
   targetID: string

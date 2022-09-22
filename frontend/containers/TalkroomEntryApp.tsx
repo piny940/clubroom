@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { postData } from '../utils/api'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 import { useMovePage } from '../utils/hooks'
 
 export const TalkroomEntryApp: React.FC = () => {
