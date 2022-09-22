@@ -1,11 +1,11 @@
-import { GroupMenuBase } from '../../components/GroupMenu/GroupMenuBase'
+import { Base } from '../../components/GroupMenu/Base'
 import { MembersApp } from '../../containers/GroupMenu/MembersApp'
 
 const Members: React.FC = () => {
   return (
-    <GroupMenuBase>
+    <Base>
       <MembersApp />
-    </GroupMenuBase>
+    </Base>
   )
 }
 
