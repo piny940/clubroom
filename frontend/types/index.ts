@@ -27,6 +27,7 @@ export interface Group {
   school?: string
   created_at: Date
   updated_at: Date
+  entry_token: string
 }
 
 export interface Talkroom {
