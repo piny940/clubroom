@@ -9,8 +9,10 @@ export interface BaseProps {
 export const Base: React.FC<BaseProps> = ({ children }) => {
   return (
     <div className="d-flex w-100" id={styles.app}>
-      <PageList width="25%" />
-      <div className="d-flex w-75 bg-white">{children}</div>
+      <PageList width="20%" />
+      <div className="d-flex bg-white" style={{ width: '80%' }}>
+        {children}
+      </div>
     </div>
   )
 }
