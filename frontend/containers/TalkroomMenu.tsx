@@ -1,5 +1,5 @@
 import { Modal } from '../components/Common/Modal'
-import { TalkEntry, Talkroom, User } from '../types'
+import { TalkEntry, Talkroom, User } from '../resources/types'
 import styles from '../styles/talk-app.module.scss'
 import { useEffect, useRef, useState } from 'react'
 import {
@@ -15,7 +15,7 @@ import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActi
 import { TestID } from '../resources/TestID'
 import { TalkroomMenuDetail } from '../components/TalkApp/TalkroomMenuDetail'
 import { useAlerts } from '../contexts/AlertsProvider'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 import { CopyTextBox } from '../components/Common/CopyTextBox'
 import { HOST } from '../resources/constants'
 
@@ -127,11 +127,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           />
           <div className="row my-3">
             <div className="col-md-3 fw-bold">招待URL</div>
-            <CopyTextBox
-              text={entryURL}
-              className="col-md-9"
-              onSuccess={() => console.log('copy!')}
-            />
+            <CopyTextBox text={entryURL} className="col-md-9" />
           </div>
 
           {talkEntry?.role === 'staff' && (

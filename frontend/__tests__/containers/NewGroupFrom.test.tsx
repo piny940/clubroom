@@ -3,9 +3,9 @@ import { NewGroupForm } from '../../containers/NewGroupForm'
 import { expect } from '@jest/globals'
 import { TestID } from '../../resources/TestID'
 import { postData } from '../../utils/api'
-import { AlertState } from '../../utils/enums'
+import { AlertState } from '../../resources/enums'
 import { Mock } from 'ts-mockery'
-import { Group } from '../../types'
+import { Group } from '../../resources/types'
 
 const setAlerts = jest.fn()
 jest.mock('../../contexts/AlertsProvider', () => ({

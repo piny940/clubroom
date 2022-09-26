@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { Group, User } from '../types'
+import { Group, User } from '../resources/types'
 import { fetchGroups, fetchUser } from '../utils/api'
 
 interface UserInfoInterface {
@@ -48,6 +48,10 @@ const UserInfoProvider: React.FC<UserInfoProviderProps> = ({ children }) => {
     const groups = await fetchGroups()
     setGroups(groups)
   }
+
+  useEffect(() => {
+    void updateUser()
+  }, [])
 
   useEffect(() => {
     void updateGroups()

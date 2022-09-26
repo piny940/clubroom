@@ -4,22 +4,17 @@ import { postData } from '../utils/api'
 import { AlertState } from '../resources/enums'
 import { useMovePage } from '../utils/hooks'
 
-export const TalkroomEntryApp: React.FC = () => {
+export const GroupEntryApp: React.FC = () => {
   const router = useRouter()
   const movePage = useMovePage()
 
   useEffect(() => {
     if (!router.isReady) return
 
-    const talkroomID = router.query.talkroom_id
-    const entryToken = router.query.entry_token
     const groupID = router.query.group_id
+    const entryToken = router.query.entry_token
 
-    if (
-      typeof talkroomID !== 'string' ||
-      typeof entryToken !== 'string' ||
-      typeof groupID !== 'string'
-    ) {
+    if (typeof groupID !== 'string' || typeof entryToken !== 'string') {
       throw new Error('無効なURLです。')
     }
 
@@ -31,7 +26,7 @@ export const TalkroomEntryApp: React.FC = () => {
     }
 
     void postData({
-      url: `/member/groups/${groupID}/talkrooms/${talkroomID}/talk_entry?entry_token=${entryToken}`,
+      url: `/member/groups/${groupID}/joining?entry_token=${entryToken}`,
       data: {},
       onSuccess: onSuccess,
       onFail: () => {
@@ -42,7 +37,7 @@ export const TalkroomEntryApp: React.FC = () => {
 
   return (
     <div className="container mt-4">
-      トークルームに参加します。そのままお待ちください。
+      グループに参加します。そのままお待ちください。
     </div>
   )
 }

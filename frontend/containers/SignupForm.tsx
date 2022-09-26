@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { postData } from '../utils/api'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 import { useMovePage } from '../utils/hooks'
 import styles from '../styles/accounts.module.scss'
 import { TestID } from '../resources/TestID'

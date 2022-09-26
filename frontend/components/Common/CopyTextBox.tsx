@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react'
+import { useState } from 'react'
 import { toClass } from '../../utils/helpers'
 import { MaterialIcon } from './MaterialIcon'
 import { Tooltip } from './Tooltip'
@@ -16,8 +16,11 @@ export const CopyTextBox: React.FC<CopyTextBoxProps> = ({
   onSuccess = () => undefined,
   testID,
 }) => {
-  const copy: MouseEventHandler = async (e) => {
+  const [hasCopied, setHasCopied] = useState(false)
+
+  const copy = async () => {
     await navigator.clipboard.writeText(text)
+    setHasCopied(true)
     onSuccess()
   }
 
@@ -32,13 +35,17 @@ export const CopyTextBox: React.FC<CopyTextBoxProps> = ({
       />
       <a
         role="button"
-        className="lh-1 position-relative"
+        className="lh-1"
         data-tip="Copy!"
-        onClick={copy}
+        onClick={async () => await copy()}
         data-testid={testID}
       >
-        <Tooltip text="Copy!" />
-        <MaterialIcon name="content_copy" />
+        <Tooltip
+          text={hasCopied ? 'Copied!' : 'Copy!'}
+          onHidden={() => setHasCopied(false)}
+        >
+          <MaterialIcon name="content_copy" />
+        </Tooltip>
       </a>
     </div>
   )

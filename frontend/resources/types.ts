@@ -1,4 +1,4 @@
-import { AlertState } from '../utils/enums'
+import { AlertState } from './enums'
 
 export interface Alert {
   id: number
@@ -25,6 +25,16 @@ export interface Group {
   id: number
   name: string
   school?: string
+  created_at: Date
+  updated_at: Date
+  entry_token: string
+}
+
+export interface Joining {
+  id: number
+  group_id: number
+  user_id: number
+  role: 'member' | 'staff' | 'admin' | 'ob' | 'left'
   created_at: Date
   updated_at: Date
 }

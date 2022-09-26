@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react'
 import { Talkroom } from '../../containers/Talkroom'
-import { Talkroom as TalkroomType } from '../../types'
+import { Talkroom as TalkroomType } from '../../resources/types'
 import { fetchTalks } from '../../utils/api'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'

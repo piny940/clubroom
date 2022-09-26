@@ -1,5 +1,5 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form'
-import { InputType } from '../../types'
+import { InputType } from '../../resources/types'
 import styles from '../../styles/accounts.module.scss'
 import { toClass } from '../../utils/helpers'
 

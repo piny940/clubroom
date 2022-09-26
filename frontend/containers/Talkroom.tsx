@@ -5,9 +5,9 @@ import { Talks } from '../components/TalkApp/Talks'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import styles from '../styles/talk-app.module.scss'
-import { Talk, Talkroom as TalkroomType } from '../types'
+import { Talk, Talkroom as TalkroomType } from '../resources/types'
 import { fetchTalks, postData } from '../utils/api'
-import { AlertState } from '../utils/enums'
+import { AlertState } from '../resources/enums'
 
 export interface TalkroomProps {
   width: string

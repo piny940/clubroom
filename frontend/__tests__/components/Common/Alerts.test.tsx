@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react'
 import { Alerts } from '../../../components/Common/Alerts'
 import { TestID } from '../../../resources/TestID'
-import { Alert } from '../../../types'
+import { Alert } from '../../../resources/types'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 

@@ -1,6 +1,6 @@
 import { TestID } from '../../resources/TestID'
 import styles from '../../styles/talk-app.module.scss'
-import { Talkroom } from '../../types'
+import { Talkroom } from '../../resources/types'
 import { toClass } from '../../utils/helpers'
 import { MaterialIcon } from '../Common/MaterialIcon'
 

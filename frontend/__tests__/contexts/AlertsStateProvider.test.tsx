@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { AlertsProvider, useAlerts } from '../../contexts/AlertsProvider'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
-import { AlertInput } from '../../types'
+import { AlertInput } from '../../resources/types'
 
 jest.mock('next/router', () => ({
   useRouter: () => ({

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react'
+import { ReactNode } from 'react'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export interface LoginRequiredProps {
@@ -10,11 +10,7 @@ export const LoginRequired: React.FC<LoginRequiredProps> = ({
   children,
   whenNoUser = <></>,
 }) => {
-  const { user, updateUser } = useUserInfo()
-
-  useEffect(() => {
-    void updateUser()
-  }, [])
+  const { user } = useUserInfo()
 
   return user ? <>{children}</> : <>{whenNoUser}</>
 }
