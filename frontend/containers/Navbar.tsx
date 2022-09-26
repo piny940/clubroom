@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
     <>
       <NavbarView
         groups={groups}
-        group={group?.name}
+        group={group}
         setGroup={setGroup}
         logout={handleLogout}
         newGroupFormID={newGroupFormID}

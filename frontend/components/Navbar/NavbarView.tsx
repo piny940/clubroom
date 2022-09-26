@@ -5,7 +5,7 @@ import { GroupsNav } from './GroupsNav'
 import { ProfileNav } from './ProfileNav'
 
 export interface NavbarViewProps {
-  group?: string
+  group?: Group
   groups: Group[]
   setGroup: (group: Group) => void
   logout: () => void
@@ -26,9 +26,16 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
           <a className="navbar-brand">Clubroom</a>
         </Link>
         <LoginRequired>
+          {group && (
+            <div className="d-flex align-items-center w-100">
+              <Link href="/group_menu/members">
+                <a className="text-white navbar-item">グループメニュー</a>
+              </Link>
+            </div>
+          )}
           <div className="d-flex justify-content-end align-items-center w-100">
             <GroupsNav
-              groupName={group}
+              groupName={group?.name}
               groups={groups}
               setGroup={setGroup}
               newGroupFormID={newGroupFormID}
