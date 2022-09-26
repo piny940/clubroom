@@ -50,6 +50,10 @@ const UserInfoProvider: React.FC<UserInfoProviderProps> = ({ children }) => {
   }
 
   useEffect(() => {
+    void updateUser()
+  }, [])
+
+  useEffect(() => {
     void updateGroups()
     setGroup(undefined)
   }, [user])

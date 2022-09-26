@@ -96,6 +96,15 @@ export const fetchGroups = async (): Promise<Group[]> => {
   return json.data.groups
 }
 
+export const fetchGroupMembers = async (groupID: number): Promise<User[]> => {
+  const response = await fetchApi({
+    url: `/member/groups/${groupID}/members`,
+    method: 'GET',
+  })
+  const json = await response.json()
+  return json.data.members
+}
+
 export const fetchJoining = async (groupID: number): Promise<Joining> => {
   const response = await fetchApi({
     url: `/member/groups/${groupID}/joining`,
