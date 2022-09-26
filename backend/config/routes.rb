@@ -15,16 +15,17 @@ Rails.application.routes.draw do
   resource :user, only: %i[show create update destroy]
   namespace :member do
     resources :groups, only: %i[index create update destroy show] do
+      resource :joining, only: %i[create show]
       scope module: :groups do
+        resources :members, only: %i[index]
         resources :talkrooms, only: %i[index create show destroy update] do
+          resource :talk_entry, only: %i[create show]
           scope module: :talkrooms do
             resources :talks, only: %i[index create]
             resources :members, only: %i[index]
           end
-          resource :talk_entry, only: %i[create show]
         end
       end
-      resource :joining, only: %i[create show]
     end
   end
 end
