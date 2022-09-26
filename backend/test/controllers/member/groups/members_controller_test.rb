@@ -25,6 +25,8 @@ class Member::Groups::MembersControllerTest < ActionDispatch::IntegrationTest
   test '自身の属していないグループのメンバーは取得できない' do
     get "/member/groups/#{@group2.id}/members"
     assert_response 400
+    
+    json = JSON.parse(response.body)
     assert_nil json['data'] && json['data']['members']
   end
 end
