@@ -9,7 +9,7 @@ export const PageList: React.FC<PageListProps> = ({ width }) => {
   return (
     <section style={{ width: width }} className="h-100" id={styles.page_list}>
       <ul className="p-0">
-        <PageListButton title="メンバー" open={false} link="members" />
+        <PageListButton title="メンバー" link="members" />
       </ul>
     </section>
   )

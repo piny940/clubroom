@@ -2,9 +2,9 @@ import { toClass } from '../../utils/helpers'
 import styles from '../../styles/group-menu.module.scss'
 import Link from 'next/link'
 import { MouseEventHandler } from 'react'
+import { useRouter } from 'next/router'
 
 export interface PageListButtonProps {
-  open: Boolean
   testID?: string
   title: string
   link: string
@@ -12,14 +12,21 @@ export interface PageListButtonProps {
 }
 
 export const PageListButton: React.FC<PageListButtonProps> = ({
-  open,
   testID,
   title,
   link,
   onClick = () => undefined,
 }) => {
+  const router = useRouter()
+  const openPage = router.pathname.split('/').slice(2).join('/')
+
   return (
-    <li className={toClass(open ? styles.open : '', styles.page_list_button)}>
+    <li
+      className={toClass(
+        openPage === link ? styles.open : '',
+        styles.page_list_button
+      )}
+    >
       <Link href={'/group_menu/' + link}>
         <a
           role="button"
