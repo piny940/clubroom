@@ -25,12 +25,14 @@ export const MembersApp: React.FC = () => {
     void _updateMembers()
   }, [group])
 
-  return (
+  return group && joining ? (
     <div className="container my-4 mx-5">
       <h3>メンバー</h3>
-      <div className="container">
+      <div className="mx-5 my-3">
         <ul>{members.map((member) => member.name).join(', ')}</ul>
       </div>
     </div>
+  ) : (
+    <></>
   )
 }

@@ -20,7 +20,7 @@ export const PageListButton: React.FC<PageListButtonProps> = ({
 }) => {
   return (
     <li className={toClass(open ? styles.open : '', styles.page_list_button)}>
-      <Link href={link}>
+      <Link href={'/group_menu/' + link}>
         <a
           role="button"
           className="h-100 d-block pt-2 px-4"
