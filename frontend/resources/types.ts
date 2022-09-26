@@ -30,6 +30,15 @@ export interface Group {
   entry_token: string
 }
 
+export interface Joining {
+  id: number
+  group_id: number
+  user_id: number
+  role: 'member' | 'staff' | 'admin' | 'ob' | 'left'
+  created_at: Date
+  updated_at: Date
+}
+
 export interface Talkroom {
   id: number
   name: string
