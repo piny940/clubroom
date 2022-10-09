@@ -3,7 +3,7 @@
 const BACKEND =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://clubroom-backend.herokuapp.com'
+    : 'https://clubroom-backend.fly.dev'
 
 const nextConfig = {
   reactStrictMode: true,

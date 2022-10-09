@@ -4,4 +4,4 @@ export const TALK_BORDER_RADIUS: string = '10px'
 export const HOST =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'
-    : 'https://clubrooms.herokuapp.com'
+    : 'https://clubroom.fly.dev'
