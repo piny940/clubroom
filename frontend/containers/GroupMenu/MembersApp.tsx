@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CopyTextBox } from '../../components/Common/CopyTextBox'
+import { Description } from '../../components/GroupMenu/Description'
 import { useUserInfo } from '../../contexts/UserInfoProvider'
 import { HOST } from '../../resources/constants'
 import { Joining, User } from '../../resources/types'
@@ -34,13 +35,12 @@ export const MembersApp: React.FC = () => {
     <div className="container my-4 mx-5">
       <h3>メンバー</h3>
       <div className="mx-5 my-3">
-        <div className="row my-2">
-          <div className="col-md-3 fw-bold">招待URL</div>
-          <div className="col-md-9">
-            <CopyTextBox text={entryURL} />
-          </div>
-        </div>
-        <ul>{members.map((member) => member.name).join(', ')}</ul>
+        <Description label="メンバー">
+          <ul>{members.map((member) => member.name).join(', ')}</ul>
+        </Description>
+        <Description label="招待URL">
+          <CopyTextBox text={entryURL} />
+        </Description>
       </div>
     </div>
   ) : (
