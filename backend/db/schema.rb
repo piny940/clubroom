@@ -103,7 +103,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_171858) do
     t.datetime "updated_at", null: false
     t.integer "kind", default: 0, null: false
     t.string "global_profile", default: "", null: false
-    t.string "global_icon_url"
     t.string "school"
     t.date "birth_date"
     t.integer "gender"
