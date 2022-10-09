@@ -1,4 +1,3 @@
-import { AskLogin } from '../components/Common/AskLogin'
 import { LoginRequired } from './LoginRequired'
 import { TalkList } from './TalkList'
 import { Talkroom } from './Talkroom'
@@ -31,7 +30,7 @@ export const TalkApp: React.FC = () => {
   }, [group])
 
   return (
-    <LoginRequired whenNoUser={<AskLogin />}>
+    <LoginRequired>
       <div className="d-flex" id={styles.app}>
         <TalkList
           width="25%"

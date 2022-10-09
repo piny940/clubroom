@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { AskLogin } from '../components/Common/AskLogin'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export interface LoginRequiredProps {
@@ -8,7 +9,7 @@ export interface LoginRequiredProps {
 
 export const LoginRequired: React.FC<LoginRequiredProps> = ({
   children,
-  whenNoUser = <></>,
+  whenNoUser = <AskLogin />,
 }) => {
   const { user } = useUserInfo()
 
