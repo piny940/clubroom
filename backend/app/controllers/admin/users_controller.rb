@@ -47,11 +47,9 @@ class Admin::UsersController < Admin::Base
     params.require(:user).permit(
       :email,
       :name,
-      :password,
-      :password_confirmation,
       :kind,
       :global_profile,
-      :global_icon_url,
+      :global_icon,
       :school,
       :birth_date,
       :gender,
