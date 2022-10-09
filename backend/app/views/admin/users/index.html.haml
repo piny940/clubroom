@@ -4,7 +4,12 @@
     %tr
       %th メールアドレス
       %th 名前
+      %th 性別
+      %th 生年月日
+      %th 学校
       %th Kind
+      %th 全体公開プロフィール
+      %th 全体公開アイコン
       %th
 
   %tbody
@@ -14,7 +19,12 @@
       %tr
         %td= user.email
         %td= user.name
+        %td= user.gender
+        %td= user.birth_date
+        %td= user.school
         %td= user.kind
+        %td= user.global_profile
+        %td= user.global_icon
         %td
           = link_to '閲覧', admin_user_path(user), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_user_path(user), class: 'btn btn-sm btn-outline-primary'
