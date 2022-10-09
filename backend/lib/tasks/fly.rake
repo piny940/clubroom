@@ -34,4 +34,8 @@ namespace :fly do
     sh 'echo 10 > /proc/sys/vm/swappiness'
     sh 'swapon /swapfile'
   end
+
+  task :console do
+    sh 'fly ssh console -C "app/bin/rails console"'
+  end
 end
