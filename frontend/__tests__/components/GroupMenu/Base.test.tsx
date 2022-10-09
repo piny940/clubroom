@@ -21,6 +21,7 @@ describe('<Base />', () => {
 
     await waitFor(() => {
       expect(component).toBeTruthy()
+      expect(LoginRequired).toBeCalled()
     })
   })
 })
