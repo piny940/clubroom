@@ -25,7 +25,7 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
         <Link href="/">
           <a className="navbar-brand">Clubroom</a>
         </Link>
-        <LoginRequired>
+        <LoginRequired whenNoUser={<></>}>
           {group && (
             <div className="d-flex align-items-center w-100">
               <Link href="/group_menu/members">
