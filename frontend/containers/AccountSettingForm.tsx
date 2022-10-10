@@ -7,7 +7,7 @@ import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import { AlertState } from '../resources/enums'
 import { TestID } from '../resources/TestID'
-import { postData } from '../utils/api'
+import { updateData } from '../utils/api'
 
 export interface AccountSettingsFormProps {
   targetID: string
@@ -24,11 +24,20 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
   const { register, handleSubmit, reset, setValue } = useForm({
     shouldUseNativeValidation: true,
   })
+  const fields = {
+    email: 'email',
+    name: 'name',
+    gender: 'gender',
+    school: 'school',
+    globalProfile: 'global_profile',
+    globalIcon: 'global_icon',
+  } as const
 
   const _updateSettings = () => {
     if (!user) return
-    setValue('email', user.email)
-    setValue('name', user.name)
+    for (const field of Object.values(fields)) {
+      setValue(field, user[field])
+    }
   }
 
   const _closeModal = () => {
@@ -46,9 +55,9 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
       })
     }
 
-    void postData({
-      url: 'member/setting',
-      scope: 'setting',
+    void updateData({
+      url: '/user',
+      scope: 'user',
       data: data,
       onSuccess: _onSuccess,
       onFail: (json: any) => setFormAlert(json.message),
@@ -73,7 +82,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         <InputBox
           label="メールアドレス"
           type="email"
-          name="email"
+          name={fields.email}
           testID={TestID.ACCOUNT_SETTINGS_EMAIL}
           register={register}
           labelProportion={LABEL_PROPORTION}
@@ -81,7 +90,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         <InputBox
           label="名前"
           type="text"
-          name="name"
+          name={fields.name}
           testID={TestID.ACCOUNT_SETTINGS_NAME}
           register={register}
           labelProportion={LABEL_PROPORTION}
@@ -89,7 +98,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         <InputBox
           label="性別"
           type="text"
-          name="gender"
+          name={fields.gender}
           testID={TestID.ACCOUNT_SETTINGS_GENDER}
           register={register}
           labelProportion={LABEL_PROPORTION}
@@ -97,7 +106,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         <InputBox
           label="学校"
           type="text"
-          name="school"
+          name={fields.school}
           testID={TestID.ACCOUNT_SETTINGS_SCHOOL}
           register={register}
           labelProportion={LABEL_PROPORTION}
@@ -105,7 +114,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         <InputBox
           label="全体公開プロフィール"
           type="textarea"
-          name="global_profile"
+          name={fields.globalProfile}
           testID={TestID.ACCOUNT_SETTINGS_GLOBAL_PROFILE}
           register={register}
           labelProportion={LABEL_PROPORTION}
@@ -113,7 +122,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         <InputBox
           label="全体公開アイコン"
           type="file"
-          name="global_icon"
+          name={fields.globalIcon}
           testID={TestID.ACCOUNT_SETTINGS_GLOBAL_ICON}
           register={register}
           labelProportion={LABEL_PROPORTION}

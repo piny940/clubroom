@@ -18,6 +18,10 @@ export interface User {
   id: number
   email: string
   name: string
+  gender: 'male' | 'female' | 'other'
+  school: string
+  global_profile: string
+  global_icon: File
   kind: string
   created_at: Date
   updated_at: Date
