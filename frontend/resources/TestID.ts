@@ -19,7 +19,7 @@ export enum TestID {
   TALK_FORM = 'talk-form',
   TALK_FORM_INPUT = 'talk-form-input',
   TALK_FORM_SUBMIT = 'talk-form-submit',
-  DROPDOWN_SET_GROUP_BUTTON = 'dropdown-set-group-button',
+  SET_GROUP_DROPDOWN_BUTTON = 'dropdown-set-group-button',
   GROUP_FORM_NAME = 'group-form-name',
   GROUP_FORM_SCHOOL = 'group-form-school',
   GROUP_FORM_SUBMIT = 'group-form-submit',

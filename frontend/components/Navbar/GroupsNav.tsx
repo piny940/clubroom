@@ -49,7 +49,7 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
                 label={group.name}
                 handler={() => setGroup(group)}
                 key={group.id}
-                testID={TestID.DROPDOWN_SET_GROUP_BUTTON}
+                testID={TestID.SET_GROUP_DROPDOWN_BUTTON}
               />
             ))}
           </ul>

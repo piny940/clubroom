@@ -20,8 +20,8 @@ export const FormGroup: React.FC<FormGroupProps> = ({
 }) => {
   return (
     <label className="row form-group my-3">
-      <div className="col-md-3 col-form-label">{label}</div>
-      <div className="col-md-9">
+      <div className="col-lg-3 col-form-label">{label}</div>
+      <div className="col-lg-9">
         <input
           type={type}
           className="form-control"

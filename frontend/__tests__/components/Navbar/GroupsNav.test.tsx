@@ -20,6 +20,6 @@ describe('<GroupsNav />', () => {
 
     const { getAllByTestId } = render(<GroupsNav {...props} />)
 
-    expect(getAllByTestId(TestID.DROPDOWN_ACTION_BUTTON).length).toBe(2)
+    expect(getAllByTestId(TestID.SET_GROUP_DROPDOWN_BUTTON).length).toBe(2)
   })
 })
