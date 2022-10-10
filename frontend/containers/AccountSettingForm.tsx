@@ -3,6 +3,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { CollapseBox } from '../components/Common/CollapseBox'
 import { InputBox } from '../components/Common/InputBox'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
+import { SelectBox } from '../components/Common/SelectBox'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import { AlertState } from '../resources/enums'
@@ -95,14 +96,16 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           register={register}
           labelProportion={LABEL_PROPORTION}
         />
-        <InputBox
+        <SelectBox
           label="性別"
           type="text"
           name={fields.gender}
           testID={TestID.ACCOUNT_SETTINGS_GENDER}
           register={register}
           labelProportion={LABEL_PROPORTION}
-        />
+        >
+          hoge
+        </SelectBox>
         <InputBox
           label="学校"
           type="text"
