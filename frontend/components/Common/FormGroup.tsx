@@ -1,7 +1,5 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { InputType } from '../../resources/types'
-import styles from '../../styles/accounts.module.scss'
-import { toClass } from '../../utils/helpers'
 
 export interface FormGroupProps {
   label: string
@@ -26,7 +24,7 @@ export const FormGroup: React.FC<FormGroupProps> = ({
       <div className="col-md-9">
         <input
           type={type}
-          className={toClass('form-control', styles.input)}
+          className="form-control"
           data-testid={testID}
           {...register(name, { required })}
         />

@@ -1,5 +1,8 @@
 @use './layout.module.scss' as layout;
 
+.form {
+  max-width: 700px;
+}
 #alerts {
   position: absolute;
   z-index: 800;

@@ -29,4 +29,6 @@ export enum TestID {
   TALKROOM_MENU_ACTION_BUTTON = 'talkroom-menu-action-button',
   TALKROOM_MENU_NAME_FORM = 'talkroom-menu-name-form',
   ACCOUNT_SETTINGS_SUBMIT = 'account-settings-submit',
+  ACCOUNT_SETTINGS_EMAIL = 'account-settings-email',
+  ACCOUNT_SETTINGS_NAME = 'account-settings-name',
 }

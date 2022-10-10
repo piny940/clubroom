@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FormGroup } from '../components/Common/FormGroup'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
 import { TestID } from '../resources/TestID'
 
@@ -28,7 +29,20 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
       alert={alert}
       submitTestID={TestID.ACCOUNT_SETTINGS_SUBMIT}
     >
-      hoge
+      <FormGroup
+        label="メールアドレス"
+        type="email"
+        name="email"
+        testID={TestID.ACCOUNT_SETTINGS_EMAIL}
+        register={register}
+      />
+      <FormGroup
+        label="名前"
+        type="text"
+        name="name"
+        testID={TestID.ACCOUNT_SETTINGS_EMAIL}
+        register={register}
+      />
     </ModalFormBox>
   )
 }
