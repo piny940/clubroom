@@ -31,4 +31,8 @@ export enum TestID {
   ACCOUNT_SETTINGS_SUBMIT = 'account-settings-submit',
   ACCOUNT_SETTINGS_EMAIL = 'account-settings-email',
   ACCOUNT_SETTINGS_NAME = 'account-settings-name',
+  ACCOUNT_SETTINGS_GENDER = 'account-settings-gender',
+  ACCOUNT_SETTINGS_SCHOOL = 'account-settings-school',
+  ACCOUNT_SETTINGS_GLOBAL_PROFILE = 'account-settings-global-profile',
+  ACCOUNT_SETTINGS_GLOBAL_ICON = 'account-settings-global-icon',
 }

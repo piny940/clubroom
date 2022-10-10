@@ -11,10 +11,11 @@ export interface AlertInput {
   state: AlertState
 }
 
-export type InputType = 'text' | 'email' | 'password' | 'file'
+export type InputType = 'text' | 'email' | 'password' | 'file' | 'textarea'
 
 export interface User {
   id: number
+  email: string
   name: string
   kind: string
   created_at: Date
