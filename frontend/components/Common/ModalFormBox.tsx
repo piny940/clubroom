@@ -24,7 +24,7 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
   closeButtonRef,
 }) => {
   return (
-    <Modal targetID={targetID} closeButtonRef={closeButtonRef}>
+    <Modal targetID={targetID} closeButtonRef={closeButtonRef} scrollable>
       <form onSubmit={onSubmit} className="container p-5">
         <h2 className="ms-2 mb-4">{title}</h2>
         {alert ? (
