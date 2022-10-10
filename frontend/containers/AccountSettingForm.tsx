@@ -16,6 +16,7 @@ export interface AccountSettingsFormProps {
 export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
   targetID,
 }) => {
+  const LABEL_PROPORTION = 26
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const [alert, setFormAlert] = useState('')
   const { user, group, updateUser } = useUserInfo()
@@ -68,13 +69,14 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
       alert={alert}
       submitTestID={TestID.ACCOUNT_SETTINGS_SUBMIT}
     >
-      <CollapseBox label="全体設定" className="my-2">
+      <CollapseBox label="全体設定" className="my-2" paddingLeft="2.4rem">
         <InputBox
           label="メールアドレス"
           type="email"
           name="email"
           testID={TestID.ACCOUNT_SETTINGS_EMAIL}
           register={register}
+          labelProportion={LABEL_PROPORTION}
         />
         <InputBox
           label="名前"
@@ -82,6 +84,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name="name"
           testID={TestID.ACCOUNT_SETTINGS_NAME}
           register={register}
+          labelProportion={LABEL_PROPORTION}
         />
         <InputBox
           label="性別"
@@ -89,6 +92,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name="gender"
           testID={TestID.ACCOUNT_SETTINGS_GENDER}
           register={register}
+          labelProportion={LABEL_PROPORTION}
         />
         <InputBox
           label="学校"
@@ -96,6 +100,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name="school"
           testID={TestID.ACCOUNT_SETTINGS_SCHOOL}
           register={register}
+          labelProportion={LABEL_PROPORTION}
         />
         <InputBox
           label="全体公開プロフィール"
@@ -103,6 +108,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name="global_profile"
           testID={TestID.ACCOUNT_SETTINGS_GLOBAL_PROFILE}
           register={register}
+          labelProportion={LABEL_PROPORTION}
         />
         <InputBox
           label="全体公開アイコン"
@@ -110,6 +116,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name="global_icon"
           testID={TestID.ACCOUNT_SETTINGS_GLOBAL_ICON}
           register={register}
+          labelProportion={LABEL_PROPORTION}
         />
       </CollapseBox>
       {group ? (

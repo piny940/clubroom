@@ -12,6 +12,7 @@ export interface AlertInput {
 }
 
 export type InputType = 'text' | 'email' | 'password' | 'file' | 'textarea'
+export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
 export interface User {
   id: number

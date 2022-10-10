@@ -1,5 +1,6 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form'
-import { InputType } from '../../resources/types'
+import { breakPoints } from '../../resources/constants'
+import { BreakPoint, InputType } from '../../resources/types'
 
 export interface InputBoxProps {
   label: string
@@ -8,6 +9,8 @@ export interface InputBoxProps {
   name: string
   required?: string
   testID: string
+  labelProportion?: number
+  breakPoint?: BreakPoint
 }
 
 export const InputBox: React.FC<InputBoxProps> = ({
@@ -17,6 +20,8 @@ export const InputBox: React.FC<InputBoxProps> = ({
   name,
   required = '',
   testID,
+  labelProportion = 25,
+  breakPoint = 'lg',
 }) => {
   const props = {
     type: type,
@@ -25,10 +30,22 @@ export const InputBox: React.FC<InputBoxProps> = ({
     ...register(name, { required }),
   }
 
+  const labelWidth =
+    window.innerWidth > breakPoints[breakPoint]
+      ? `${labelProportion}%`
+      : undefined
+
+  const inputWidth =
+    window.innerWidth > breakPoints[breakPoint]
+      ? `${100 - labelProportion}%`
+      : undefined
+
   return (
     <label className="row form-group my-3">
-      <div className="col-lg-3 col-form-label">{label}</div>
-      <div className="col-lg-9">
+      <div className="col-form-label" style={{ width: labelWidth }}>
+        {label}
+      </div>
+      <div className="" style={{ width: inputWidth }}>
         {type === 'textarea' ? <textarea {...props} /> : <input {...props} />}
       </div>
     </label>
