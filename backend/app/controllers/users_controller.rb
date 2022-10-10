@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
+    if current_user.update(user_params_without_password)
       render json: {
         data: {
           user: current_user
@@ -75,6 +75,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :email,
       :name,
+      :password,
+      :password_confirmation,
       :kind,
       :global_profile,
       :global_icon,
@@ -82,4 +84,18 @@ class UsersController < ApplicationController
       :birth_date,
       :gender,
     )
+  end
+
+  def user_params_without_password
+    params.require(:user).permit(
+      :email,
+      :name,
+      :kind,
+      :global_profile,
+      :global_icon,
+      :school,
+      :birth_date,
+      :gender,
+    )
+  end
 end
