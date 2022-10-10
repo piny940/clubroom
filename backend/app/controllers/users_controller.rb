@@ -54,7 +54,7 @@ class UsersController < ApplicationController
           user: User.find(current_user.id)
         },
         message: 'ユーザー情報を更新できませんでした。'
-      }, status: 400
+      }, status: :bad_request
     end
   end
 
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
       :global_icon,
       :school,
       :birth_date,
-      :gender,
+      :gender
     )
   end
 
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
       :global_icon,
       :school,
       :birth_date,
-      :gender,
+      :gender
     )
   end
 end

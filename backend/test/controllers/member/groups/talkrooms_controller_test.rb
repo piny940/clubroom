@@ -108,7 +108,7 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     talk_entry.role = 'staff'
     talk_entry.save!
 
-    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: new_name} }
+    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: new_name } }
 
     assert_response :success
     json = JSON.parse(response.body)
@@ -120,7 +120,7 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
   test 'roleがstaffでない場合はトークルームを更新できない' do
     sign_in @user
 
-    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: 'NewName'} }
+    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: 'NewName' } }
 
     assert_response 400
     json = JSON.parse(response.body)
@@ -135,8 +135,8 @@ class Member::Groups::TalkroomsControllerTest < ActionDispatch::IntegrationTest
     talk_entry.role = 'staff'
     talk_entry.save!
 
-    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: ' '} }
-    
+    patch "/member/groups/#{@room1.group.id}/talkrooms/#{@room1.id}", params: { talkroom: { name: ' ' } }
+
     assert_response 400
     json = JSON.parse(response.body)
 

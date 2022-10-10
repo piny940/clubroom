@@ -57,7 +57,7 @@ class Member::GroupsController < Member::Base
         data: {
           group: Group.find(@group.id)
         }
-      }, status: 400
+      }, status: :bad_request
     end
   end
 

@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   enum kind: { member: 0, admin: 1 }, _prefix: true
   enum gender: { male: 0, female: 10, other: 20 }, _prefix: true
-  
+
   has_many :joinings, dependent: :destroy, inverse_of: :user
   has_many :groups, through: :joinings
   has_many :talk_entries, dependent: :destroy, inverse_of: :user

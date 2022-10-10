@@ -1,8 +1,8 @@
 class Member::Groups::TalkroomsController < Member::Groups::Base
-  before_action -> {
+  before_action lambda {
     set_talkroom!(params[:id])
     check_talkroom_role_staff!(params[:id])
-  }, only: [:update, :destroy]
+  }, only: %i[update destroy]
 
   def index
     talkrooms = @group.talkrooms.filter { |room| room.members.include?(current_user) }

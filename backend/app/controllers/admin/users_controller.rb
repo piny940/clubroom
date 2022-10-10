@@ -54,12 +54,12 @@ class Admin::UsersController < Admin::Base
       :global_icon,
       :school,
       :birth_date,
-      :gender,
+      :gender
     ).to_hash
-    
-    if !user_params_hash[:password].present?
-      user_params_hash.delete("password")
-      user_params_hash.delete("password_confirmation")
+
+    if user_params_hash[:password].blank?
+      user_params_hash.delete('password')
+      user_params_hash.delete('password_confirmation')
     end
     user_params_hash
   end

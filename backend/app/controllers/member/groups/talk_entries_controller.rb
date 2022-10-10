@@ -23,8 +23,8 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
       return render json: {
         message: 'このトークルームにはすでに参加しています。',
         data: {
-          talkroom: talkroom,
-          talk_entry: talk_entry
+          talkroom:,
+          talk_entry:
         }
       }, status: :ok
     end
@@ -34,12 +34,12 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
       talkroom.set_token
       talkroom.save!
       talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom.id)
-      
+
       render json: {
         message: 'トークルームに参加しました。',
         data: {
-          talkroom: talkroom,
-          talk_entry: talk_entry
+          talkroom:,
+          talk_entry:
         }
       }, status: :ok
     else

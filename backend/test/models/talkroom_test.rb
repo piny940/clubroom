@@ -29,7 +29,7 @@ class TalkroomTest < ActiveSupport::TestCase
     talkroom = Talkroom.new(name: 'Test')
     assert_not talkroom.valid?
   end
-  
+
   test 'kindがgroupの時はTalkroom作成時に自動的にentry_tokenがセットされる' do
     talkroom = Talkroom.create!(name: 'Test', group_id: @group.id)
     assert talkroom.entry_token

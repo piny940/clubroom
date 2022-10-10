@@ -15,8 +15,8 @@ class Member::JoiningsController < Member::Base
       return render json: {
         message: 'このグループにはすでに参加しています。',
         data: {
-          group: group,
-          joining: joining
+          group:,
+          joining:
         }
       }, status: :ok
     end
@@ -26,12 +26,12 @@ class Member::JoiningsController < Member::Base
       group.set_token
       group.save!
       joining = current_user.joinings.find_by(group_id: group.id)
-      
+
       render json: {
         message: 'グループに参加しました。',
         data: {
-          group: group,
-          joining: joining
+          group:,
+          joining:
         }
       }, status: :ok
     else
