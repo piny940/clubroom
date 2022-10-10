@@ -39,3 +39,12 @@ $tooltip-color: black;
   border-right: $width / 2 transparent solid;
   border-bottom: 0px transparent solid;
 }
+.no_color_link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+}

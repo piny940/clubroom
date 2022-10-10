@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { CollapseBox } from '../components/Common/CollapseBox'
 import { InputBox } from '../components/Common/InputBox'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
 import { TestID } from '../resources/TestID'
@@ -29,20 +30,22 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
       alert={alert}
       submitTestID={TestID.ACCOUNT_SETTINGS_SUBMIT}
     >
-      <InputBox
-        label="メールアドレス"
-        type="email"
-        name="email"
-        testID={TestID.ACCOUNT_SETTINGS_EMAIL}
-        register={register}
-      />
-      <InputBox
-        label="名前"
-        type="text"
-        name="name"
-        testID={TestID.ACCOUNT_SETTINGS_EMAIL}
-        register={register}
-      />
+      <CollapseBox label="全体設定">
+        <InputBox
+          label="メールアドレス"
+          type="email"
+          name="email"
+          testID={TestID.ACCOUNT_SETTINGS_EMAIL}
+          register={register}
+        />
+        <InputBox
+          label="名前"
+          type="text"
+          name="name"
+          testID={TestID.ACCOUNT_SETTINGS_EMAIL}
+          register={register}
+        />
+      </CollapseBox>
     </ModalFormBox>
   )
 }
