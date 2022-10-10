@@ -7,11 +7,17 @@
           %li= message
   
   .row.mb-3
-    .col-md-3.col-form-label.fw-bold メールアドレス(必須)
+    .col-md-3.col-form-label.fw-bold メールアドレス
     .col-md-9= form.email_field :email, class: 'form-control'
   .row.mb-3
-    .col-md-3.col-form-label.fw-bold 名前(必須)
+    .col-md-3.col-form-label.fw-bold 名前
     .col-md-9= form.text_field :name, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold パスワード
+    .col-md-9= form.password_field :password, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold パスワード(確認用)
+    .col-md-9= form.password_field :password_confirmation, class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold 性別
     .col-md-9= form.select :gender, User.genders.keys, {}, class: 'form-control'
