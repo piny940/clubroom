@@ -5,7 +5,7 @@ import { AlertState } from '../resources/enums'
 import { useMovePage } from '../utils/hooks'
 import styles from '../styles/accounts.module.scss'
 import { TestID } from '../resources/TestID'
-import { FormGroup } from '../components/Common/FormGroup'
+import { InputBox } from '../components/Common/InputBox'
 import { Message } from '../resources/Messages'
 import Link from 'next/link'
 import { FormBox } from '../components/Common/FormBox'
@@ -52,7 +52,7 @@ export const SignupForm: React.FC = () => {
       submitTestID={TestID.SIGNUP_SUBMIT}
       submitButtonText="送信"
     >
-      <FormGroup
+      <InputBox
         label="メールアドレス"
         type="email"
         register={register}
@@ -60,7 +60,7 @@ export const SignupForm: React.FC = () => {
         testID={TestID.SIGNUP_EMAIL}
         required={Message.INPUT_REQUIRED}
       />
-      <FormGroup
+      <InputBox
         label="氏名"
         type="text"
         register={register}
@@ -68,7 +68,7 @@ export const SignupForm: React.FC = () => {
         testID={TestID.SIGNUP_NAME}
         required={Message.INPUT_REQUIRED}
       />
-      <FormGroup
+      <InputBox
         label="パスワード"
         type="password"
         register={register}
@@ -76,7 +76,7 @@ export const SignupForm: React.FC = () => {
         testID={TestID.SIGNUP_PASSWORD}
         required={Message.INPUT_REQUIRED}
       />
-      <FormGroup
+      <InputBox
         label="パスワード(確認用)"
         type="password"
         register={register}

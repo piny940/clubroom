@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
-import { FormGroup, FormGroupProps } from '../../../components/Common/FormGroup'
+import { InputBox, InputBoxProps } from '../../../components/Common/InputBox'
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 
@@ -7,14 +7,14 @@ describe('<FormGroup />', () => {
   it('パスワードのFormGroupが正常に描画される', async () => {
     const register = jest.fn()
 
-    const props = Mock.from<FormGroupProps>({
+    const props = Mock.from<InputBoxProps>({
       type: 'password',
       name: 'password',
       register: register,
       testID: 'test',
     })
 
-    const { getByTestId } = render(<FormGroup {...props} />)
+    const { getByTestId } = render(<InputBox {...props} />)
 
     await waitFor(() => {
       expect(getByTestId(props.testID).getAttribute('type')).toBe('password')
@@ -26,7 +26,7 @@ describe('<FormGroup />', () => {
   it('テキストのFormGroupが正常に描画される', async () => {
     const register = jest.fn()
 
-    const props = Mock.from<FormGroupProps>({
+    const props = Mock.from<InputBoxProps>({
       label: 'Test2',
       type: 'text',
       name: 'test',
@@ -34,7 +34,7 @@ describe('<FormGroup />', () => {
       testID: 'test',
     })
 
-    const { getByTestId } = render(<FormGroup {...props} />)
+    const { getByTestId } = render(<InputBox {...props} />)
 
     await waitFor(() => {
       expect(getByTestId(props.testID).getAttribute('type')).toBe('text')

@@ -1,5 +1,5 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { FormGroup } from '../components/Common/FormGroup'
+import { InputBox } from '../components/Common/InputBox'
 import { Message } from '../resources/Messages'
 import { AlertState } from '../resources/enums'
 import styles from '../styles/accounts.module.scss'
@@ -46,7 +46,7 @@ export const LoginForm: React.FC = () => {
       submitTestID={TestID.LOGIN_SUBMIT}
       submitButtonText="ログイン"
     >
-      <FormGroup
+      <InputBox
         register={register}
         label="メールアドレス"
         type="email"
@@ -54,7 +54,7 @@ export const LoginForm: React.FC = () => {
         required={Message.INPUT_REQUIRED}
         testID={TestID.LOGIN_EMAIL}
       />
-      <FormGroup
+      <InputBox
         register={register}
         label="パスワード"
         type="password"

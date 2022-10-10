@@ -1,7 +1,7 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { InputType } from '../../resources/types'
 
-export interface FormGroupProps {
+export interface InputBoxProps {
   label: string
   type: InputType
   register: UseFormRegister<FieldValues>
@@ -10,7 +10,7 @@ export interface FormGroupProps {
   testID: string
 }
 
-export const FormGroup: React.FC<FormGroupProps> = ({
+export const InputBox: React.FC<InputBoxProps> = ({
   label,
   type,
   register,
