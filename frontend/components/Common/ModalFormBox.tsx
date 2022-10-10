@@ -36,13 +36,13 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
         )}
         {children}
         <button
-          className="btn btn-primary col-12 col-md-6 mt-4 offset-md-3"
+          className="btn btn-primary col-12 col-md-6 mt-4 offset-md-3 d-block"
           data-testid={submitTestID}
         >
           {submitButtonText}
         </button>
         <button
-          className="btn btn-secondary col-12 col-md-6 my-2 offset-md-3"
+          className="btn btn-secondary col-12 col-md-6 my-2 offset-md-3 d-block"
           data-bs-dismiss="modal"
           onClick={(e) => e.preventDefault()}
         >

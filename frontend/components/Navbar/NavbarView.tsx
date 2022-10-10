@@ -10,6 +10,7 @@ export interface NavbarViewProps {
   setGroup: (group: Group) => void
   logout: () => void
   newGroupFormID: string
+  accountSettingsFormID: string
 }
 
 export const NavbarView: React.FC<NavbarViewProps> = ({
@@ -18,6 +19,7 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
   setGroup,
   logout,
   newGroupFormID,
+  accountSettingsFormID,
 }) => {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -40,7 +42,10 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
               setGroup={setGroup}
               newGroupFormID={newGroupFormID}
             />
-            <ProfileNav logout={logout} />
+            <ProfileNav
+              logout={logout}
+              accountSettingsFormID={accountSettingsFormID}
+            />
           </div>
         </LoginRequired>
       </div>

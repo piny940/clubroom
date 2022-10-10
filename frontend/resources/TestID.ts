@@ -11,7 +11,6 @@ export enum TestID {
   SIGNUP_PASSWORD = 'signup-password',
   SIGNUP_PASSWORD_CONFIRMATION = 'signup-password-confirmation',
   SIGNUP_SUBMIT = 'signup-submit',
-  DROPDOWN_ACTION_BUTTON = 'dropdown-action-button',
   FORM_ERROR = 'form-error',
   TALK_LIST_BUTTON = 'talk-list-button',
   TALKROOM_MENU_BUTTON = 'talkroom-menu-button',
@@ -20,6 +19,7 @@ export enum TestID {
   TALK_FORM = 'talk-form',
   TALK_FORM_INPUT = 'talk-form-input',
   TALK_FORM_SUBMIT = 'talk-form-submit',
+  DROPDOWN_SET_GROUP_BUTTON = 'dropdown-set-group-button',
   GROUP_FORM_NAME = 'group-form-name',
   GROUP_FORM_SCHOOL = 'group-form-school',
   GROUP_FORM_SUBMIT = 'group-form-submit',
@@ -28,4 +28,5 @@ export enum TestID {
   TALKROOM_FORM_SUBMIT = 'talkroom-form-submit',
   TALKROOM_MENU_ACTION_BUTTON = 'talkroom-menu-action-button',
   TALKROOM_MENU_NAME_FORM = 'talkroom-menu-name-form',
+  ACCOUNT_SETTINGS_SUBMIT = 'account-settings-submit',
 }
