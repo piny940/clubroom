@@ -16,4 +16,10 @@ class User < ApplicationRecord
   has_many :talkrooms, through: :talk_entries
   has_many :talks, foreign_key: 'from_user_id', dependent: :nullify
   has_one_attached :global_icon, dependent: :destroy
+
+  def serialized
+    as_json.merge(
+      'global_icon' => global_icon.url
+    )
+  end
 end

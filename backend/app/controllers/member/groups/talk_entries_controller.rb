@@ -10,7 +10,7 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
 
     render json: {
       data: {
-        talk_entry: current_user.talk_entries.find_by(talkroom_id: talkroom.id)
+        talk_entry: current_user.talk_entries.find_by(talkroom_id: talkroom.id)&.serialized
       }
     }, status: :ok
   end
@@ -23,8 +23,8 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
       return render json: {
         message: 'このトークルームにはすでに参加しています。',
         data: {
-          talkroom:,
-          talk_entry:
+          talkroom: talkroom.serialized,
+          talk_entry: talk_entry.serialized
         }
       }, status: :ok
     end
@@ -38,8 +38,8 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
       render json: {
         message: 'トークルームに参加しました。',
         data: {
-          talkroom:,
-          talk_entry:
+          talkroom: talkroom.serialized,
+          talk_entry: talk_entry.serialized
         }
       }, status: :ok
     else

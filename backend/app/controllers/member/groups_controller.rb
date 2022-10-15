@@ -5,7 +5,7 @@ class Member::GroupsController < Member::Base
   def index
     render json: {
       data: {
-        groups: current_user.groups
+        groups: current_user.groups.serialized
       }
     }, status: :ok
   end
@@ -20,8 +20,8 @@ class Member::GroupsController < Member::Base
 
       render json: {
         data: {
-          group:,
-          joining:
+          group: group.serialized,
+          joining: joining.serialized
         },
         message: 'グループを作成しました。'
       }, status: :ok
@@ -38,7 +38,7 @@ class Member::GroupsController < Member::Base
   def show
     render json: {
       data: {
-        group: @group
+        group: @group.serialized
       }
     }, status: :ok
   end
@@ -47,7 +47,7 @@ class Member::GroupsController < Member::Base
     if @group.update(group_params)
       render json: {
         data: {
-          group: @group
+          group: @group.serialized
         },
         message: 'グループの情報を更新しました。'
       }, status: :ok
@@ -55,7 +55,7 @@ class Member::GroupsController < Member::Base
       render json: {
         message: 'グループの情報を更新できませんでした。',
         data: {
-          group: Group.find(@group.id)
+          group: @group.reload.serialized
         }
       }, status: :bad_request
     end

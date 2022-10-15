@@ -2,7 +2,7 @@ class Member::Groups::Talkrooms::TalksController < Member::Groups::Talkrooms::Ba
   def index
     render json: {
       data: {
-        talks: @talkroom.talks
+        talks: @talkroom.talks.serialized
       }
     }, status: :ok
   end
@@ -15,13 +15,16 @@ class Member::Groups::Talkrooms::TalksController < Member::Groups::Talkrooms::Ba
       return
     end
 
-    talk = @talkroom.talks.new(from_user: current_user, content: talk_params[:content])
+    talk = @talkroom.talks.new(
+      from_user: current_user,
+      content: talk_params[:content]
+    )
 
     if talk.save
       render json: {
         message: 'トークを作成しました。',
         data: {
-          talk:
+          talk: talk.serialized
         }
       }, status: :ok
     else

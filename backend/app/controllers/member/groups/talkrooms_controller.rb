@@ -5,11 +5,11 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
   }, only: %i[update destroy]
 
   def index
-    talkrooms = @group.talkrooms.filter { |room| room.members.include?(current_user) }
+    talkrooms = current_user.talkrooms.where(group_id: @group.id)
 
     render json: {
       data: {
-        talkrooms:
+        talkrooms: talkrooms.serialized
       }
     }, status: :ok
   end
@@ -27,8 +27,8 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
       render json: {
         message: 'トークルームを作成しました。',
         data: {
-          talkroom:,
-          talk_entry:
+          talkroom: talkroom.serialized,
+          talk_entry: talk_entry.serialized
         }
       }, status: :ok
     else
@@ -46,14 +46,14 @@ class Member::Groups::TalkroomsController < Member::Groups::Base
       render json: {
         message: 'トークルームを更新しました。',
         data: {
-          talkroom: @talkroom
+          talkroom: @talkroom.serialized
         }, status: :ok
       }
     else
       render json: {
         message: 'トークルームを更新できませんでした。',
         data: {
-          talkroom: Talkroom.find(@talkroom.id)
+          talkroom: @talkroom.reload.serialized
         }
       }, status: :bad_request
     end
