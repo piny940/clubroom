@@ -44,23 +44,8 @@ class Admin::UsersController < Admin::Base
   end
 
   def user_params
-    user_params_hash = params.require(:user).permit(
-      :email,
-      :name,
-      :password,
-      :password_confirmation,
-      :kind,
-      :global_profile,
-      :global_icon,
-      :school,
-      :birth_date,
-      :gender
-    ).to_hash
-
-    if user_params_hash[:password].blank?
-      user_params_hash.delete('password')
-      user_params_hash.delete('password_confirmation')
-    end
-    user_params_hash
+    permits = %i[email name kind global_profile global_icon school birth_date gender]
+    permits += %i[password password_confirmation] if params[:user][:password].present?
+    params.require(:user).permit(*permits)
   end
 end
