@@ -30,18 +30,6 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
           <a className="navbar-brand">Clubroom</a>
         </Link>
         <LoginRequired whenNoUser={<></>}>
-          {group && (
-            <div className="d-flex align-items-center w-100">
-              <a
-                className="text-white navbar-item"
-                role="button"
-                data-bs-toggle="modal"
-                data-bs-target={`#${groupMenuID}`}
-              >
-                グループメニュー
-              </a>
-            </div>
-          )}
           <div className="d-flex justify-content-end align-items-center w-100">
             <GroupsNav
               groupName={group?.name}
@@ -52,6 +40,7 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
             <ProfileNav
               logout={logout}
               accountSettingsFormID={accountSettingsFormID}
+              groupMenuID={groupMenuID}
             />
           </div>
         </LoginRequired>

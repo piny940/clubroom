@@ -1,16 +1,21 @@
 import { DropdownActionButton } from '../Common/DropdownActionButton'
 import styles from '../../styles/navbar.module.scss'
 import { AccountIcon } from '../Common/AccountIcon'
+import { useUserInfo } from '../../contexts/UserInfoProvider'
 
 export interface ProfileNavProps {
   logout: () => void
   accountSettingsFormID: string
+  groupMenuID: string
 }
 
 export const ProfileNav: React.FC<ProfileNavProps> = ({
   logout,
   accountSettingsFormID,
+  groupMenuID,
 }) => {
+  const { group } = useUserInfo()
+
   return (
     <div className="dropdown navbar-item">
       <a
@@ -27,6 +32,13 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
           bsToggle="modal"
           label="アカウント設定"
         />
+        {group && (
+          <DropdownActionButton
+            bsTarget={'#' + groupMenuID}
+            bsToggle="modal"
+            label="グループ設定"
+          />
+        )}
         <DropdownActionButton handler={logout} label="ログアウト" />
       </ul>
     </div>
