@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_group_role_staff!(group_id)
-    joining = current_user.joinings.find_by(group_id: group_id)
-    if !joining&.role_staff?
+    joining = current_user.joinings.find_by(group_id:)
+    unless joining&.role_staff?
       render json: {
         message: '権限がありません。'
-      }, status: 400
+      }, status: :bad_request
     end
   end
 
@@ -43,11 +43,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_talkroom_role_staff!(talkroom_id)
-    talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom_id)
-    if !talk_entry&.role_staff?
+    talk_entry = current_user.talk_entries.find_by(talkroom_id:)
+    unless talk_entry&.role_staff?
       render json: {
         message: '権限がありません。'
-      }, status: 400
+      }, status: :bad_request
     end
   end
 end

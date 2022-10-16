@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { FormGroup } from '../components/Common/FormGroup'
+import { InputBox } from '../components/Common/InputBox'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
@@ -72,7 +72,7 @@ export const NewTalkroomForm: React.FC<NewTalkroomFormProps> = ({
       onSubmit={handleSubmit(_submit)}
       closeButtonRef={closeButtonRef}
     >
-      <FormGroup
+      <InputBox
         register={register}
         label="トークルーム名"
         type="text"

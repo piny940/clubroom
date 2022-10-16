@@ -6,8 +6,25 @@
   .col-md-3.fw-bold 名前
   .col-md-9= @user.name
 .row.py-1
+  .col-md-3.fw-bold 性別
+  .col-md-9= @user.gender
+.row.py-1
+  .col-md-3.fw-bold 生年月日
+  .col-md-9= @user.birth_date
+.row.py-1
+  .col-md-3.fw-bold 学校
+  .col-md-9= @user.school
+.row.py-1
   .col-md-3.fw-bold Kind
   .col-md-9= @user.kind
+.row.py-1
+  .col-md-3.fw-bold 全体公開プロフィール
+  .col-md-9= @user.global_profile
+.row.py-1
+  .col-md-3.fw-bold 全体公開アイコン
+  .col-md-9
+    - if @user.global_icon.attached?
+      = image_tag @user.global_icon, style: 'width: 200px'
 
 = link_to '編集', edit_admin_user_path(@user)
 \|

@@ -2,7 +2,7 @@ class Member::Groups::Talkrooms::MembersController < Member::Groups::Talkrooms::
   def index
     render json: {
       data: {
-        members: @talkroom.members
+        members: @talkroom.members.serialized
       }
     }, status: :ok
   end

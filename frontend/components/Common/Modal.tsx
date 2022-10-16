@@ -13,7 +13,7 @@ export const Modal: React.FC<ModalProps> = ({
   targetID,
   children,
   title,
-  scrollable,
+  scrollable = true,
   closeButtonRef,
 }) => {
   return (

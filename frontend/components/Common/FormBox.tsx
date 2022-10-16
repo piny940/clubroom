@@ -1,6 +1,6 @@
 import { FormEventHandler, ReactNode } from 'react'
 import { toClass } from '../../utils/helpers'
-import styles from '../../styles/accounts.module.scss'
+import styles from '../../styles/common.module.scss'
 import { TestID } from '../../resources/TestID'
 
 export interface FormBoxProps {

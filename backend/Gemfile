@@ -87,3 +87,7 @@ gem 'rack-cors'
 
 # テストを見やすくする
 gem 'minitest-reporters'
+
+# 画像
+gem 'google-cloud-storage'
+gem 'image_processing'

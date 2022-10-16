@@ -11,11 +11,17 @@ export interface AlertInput {
   state: AlertState
 }
 
-export type InputType = 'text' | 'email' | 'password'
+export type InputType = 'text' | 'email' | 'password' | 'textarea'
+export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
 export interface User {
   id: number
+  email: string
   name: string
+  gender: 'male' | 'female' | 'other'
+  school: string
+  global_profile: string
+  global_icon: string
   kind: string
   created_at: Date
   updated_at: Date

@@ -1,5 +1,8 @@
 @use './layout.module.scss' as layout;
 
+.form {
+  max-width: 700px;
+}
 #alerts {
   position: absolute;
   z-index: 800;
@@ -35,4 +38,13 @@ $tooltip-color: black;
   border-left: $width / 2 transparent solid;
   border-right: $width / 2 transparent solid;
   border-bottom: 0px transparent solid;
+}
+.no_color_link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
 }

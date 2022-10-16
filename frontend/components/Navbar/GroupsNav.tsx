@@ -1,6 +1,7 @@
 import { Group } from '../../resources/types'
 import { DropdownActionButton } from '../Common/DropdownActionButton'
 import styles from '../../styles/navbar.module.scss'
+import { TestID } from '../../resources/TestID'
 
 export interface GroupNavProps {
   groupName?: string
@@ -48,6 +49,7 @@ export const GroupsNav: React.FC<GroupNavProps> = ({
                 label={group.name}
                 handler={() => setGroup(group)}
                 key={group.id}
+                testID={TestID.SET_GROUP_DROPDOWN_BUTTON}
               />
             ))}
           </ul>

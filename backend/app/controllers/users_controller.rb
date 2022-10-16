@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     render json: {
       data: {
-        user: current_user
+        user: current_user&.serialized
       }
     }, status: :ok
   end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       sign_in user
       render json: {
         data: {
-          user:
+          user: user.serialized
         },
         message: 'アカウントが作成されました。'
       }, status: :ok
@@ -44,17 +44,17 @@ class UsersController < ApplicationController
     if current_user.update(user_params)
       render json: {
         data: {
-          user: current_user
+          user: current_user.serialized
         },
         message: 'ユーザー情報を更新しました。'
       }, status: :ok
     else
       render json: {
         data: {
-          user: User.find(current_user.id)
+          user: current_user.reload.serialized
         },
         message: 'ユーザー情報を更新できませんでした。'
-      }, status: 400
+      }, status: :bad_request
     end
   end
 
@@ -72,6 +72,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :name, :password, :password_confirmation)
+    permits = %i[email name kind global_profile global_icon school birth_date gender]
+    permits += %i[password password_confirmation] if params[:user][:password].present?
+    params.require(:user).permit(*permits)
   end
 end

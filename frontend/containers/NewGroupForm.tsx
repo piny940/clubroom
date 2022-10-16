@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { FormGroup } from '../components/Common/FormGroup'
+import { InputBox } from '../components/Common/InputBox'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
@@ -60,7 +60,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
       onSubmit={handleSubmit(_submit)}
       closeButtonRef={closeButtonRef}
     >
-      <FormGroup
+      <InputBox
         register={register}
         label="グループ名"
         type="text"
@@ -68,7 +68,7 @@ export const NewGroupForm: React.FC<NewGroupFormProps> = ({ targetID }) => {
         required={Message.INPUT_REQUIRED}
         testID={TestID.GROUP_FORM_NAME}
       />
-      <FormGroup
+      <InputBox
         register={register}
         label="学校"
         type="text"

@@ -19,8 +19,20 @@
     .col-md-3.col-form-label.fw-bold パスワード(確認用)
     .col-md-9= form.password_field :password_confirmation, class: 'form-control'
   .row.mb-3
+    .col-md-3.col-form-label.fw-bold 性別
+    .col-md-9= form.select :gender, User.genders.keys, {}, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold 学校
+    .col-md-9= form.text_field :school, class: 'form-control'
+  .row.mb-3
     .col-md-3.col-form-label.fw-bold kind
     .col-md-9= form.select :kind, User.kinds.keys, {}, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold 全体公開プロフィール
+    .col-md-9= form.text_area :global_profile, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold 全体公開アイコン
+    .col-md-9= form.file_field :global_icon, class: 'form-control'
   .row
     .col
       = form.submit '保存', class: 'btn btn-primary d-block w-100'

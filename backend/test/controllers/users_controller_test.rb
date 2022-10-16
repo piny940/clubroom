@@ -104,7 +104,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch '/user', params: { user: { name: 'michael' } }
     assert_response :success
     json = JSON.parse(response.body)
-    
+
     assert_equal 'michael', json['data']['user']['name']
   end
 
@@ -115,7 +115,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch '/user', params: { user: { name: ' ' } }
     assert_response 400
     json = JSON.parse(response.body)
-    
+
     assert_equal 'ユーザー情報を更新できませんでした。', json['message']
     assert_equal 'john', json['data']['user']['name']
   end
