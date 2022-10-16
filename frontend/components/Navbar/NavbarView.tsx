@@ -11,6 +11,7 @@ export interface NavbarViewProps {
   logout: () => void
   newGroupFormID: string
   accountSettingsFormID: string
+  groupMenuID: string
 }
 
 export const NavbarView: React.FC<NavbarViewProps> = ({
@@ -20,6 +21,7 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
   logout,
   newGroupFormID,
   accountSettingsFormID,
+  groupMenuID,
 }) => {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -30,9 +32,14 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
         <LoginRequired whenNoUser={<></>}>
           {group && (
             <div className="d-flex align-items-center w-100">
-              <Link href="/group_menu/members">
-                <a className="text-white navbar-item">グループメニュー</a>
-              </Link>
+              <a
+                className="text-white navbar-item"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target={`#${groupMenuID}`}
+              >
+                グループメニュー
+              </a>
             </div>
           )}
           <div className="d-flex justify-content-end align-items-center w-100">

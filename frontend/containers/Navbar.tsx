@@ -5,10 +5,12 @@ import { logout } from '../utils/api'
 import { AlertState } from '../resources/enums'
 import { NewGroupForm } from './NewGroupForm'
 import { AccountSettingsForm } from './AccountSettingForm'
+import { GroupMenu } from './GroupMenu'
 
 export const Navbar: React.FC = () => {
   const newGroupFormID = 'new-group-form'
   const accountSettingsFormID = 'account-settings-form'
+  const groupMenuID = 'group-menu'
 
   const { groups, group, updateUser, setGroup } = useUserInfo()
   const { setAlerts } = useAlerts()
@@ -32,9 +34,11 @@ export const Navbar: React.FC = () => {
         logout={handleLogout}
         newGroupFormID={newGroupFormID}
         accountSettingsFormID={accountSettingsFormID}
+        groupMenuID={groupMenuID}
       />
       <NewGroupForm targetID={newGroupFormID} />
       <AccountSettingsForm targetID={accountSettingsFormID} />
+      <GroupMenu targetID={groupMenuID} />
     </>
   )
 }

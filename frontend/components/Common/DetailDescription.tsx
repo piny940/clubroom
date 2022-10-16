@@ -1,9 +1,9 @@
-export interface TalkroomMenuDetailProps {
+export interface DetailDescriptionProps {
   title: string
   content: string
 }
 
-export const TalkroomMenuDetail: React.FC<TalkroomMenuDetailProps> = ({
+export const DetailDescription: React.FC<DetailDescriptionProps> = ({
   title,
   content,
 }) => {
