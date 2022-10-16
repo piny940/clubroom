@@ -6,6 +6,8 @@ import {
 import { expect } from '@jest/globals'
 import { Mock } from 'ts-mockery'
 
+jest.mock('next/image')
+
 describe('<ProfileNav />', () => {
   it('正常に描画される', async () => {
     const props = Mock.all<ProfileNavProps>()
