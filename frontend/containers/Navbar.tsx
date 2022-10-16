@@ -14,6 +14,7 @@ export const Navbar: React.FC = () => {
   const { setAlerts } = useAlerts()
 
   const handleLogout = async () => {
+    if (!window.confirm('ログアウトしますか。')) return
     const json = await logout()
     setAlerts({
       content: json.message,
