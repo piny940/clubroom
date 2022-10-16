@@ -1,6 +1,6 @@
 import { DropdownActionButton } from '../Common/DropdownActionButton'
 import styles from '../../styles/navbar.module.scss'
-import { MaterialIcon } from '../Common/MaterialIcon'
+import { AccountIcon } from '../Common/AccountIcon'
 
 export interface ProfileNavProps {
   logout: () => void
@@ -13,8 +13,13 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
 }) => {
   return (
     <div className="dropdown navbar-item">
-      <a role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <MaterialIcon className="text-white mx-2 fs-2" name="account_circle" />
+      <a
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        className="mx-2"
+      >
+        <AccountIcon size={28} />
       </a>
       <ul className="dropdown-menu m-0" id={styles.profile_dropdown}>
         <DropdownActionButton
