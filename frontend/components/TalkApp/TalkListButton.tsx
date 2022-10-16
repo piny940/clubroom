@@ -3,6 +3,7 @@ import styles from '../../styles/talk-app.module.scss'
 import { Talkroom } from '../../resources/types'
 import { toClass } from '../../utils/helpers'
 import { MaterialIcon } from '../Common/MaterialIcon'
+import { MouseEventHandler } from 'react'
 
 export interface TalkListButtonProps {
   detail?: string
@@ -10,8 +11,8 @@ export interface TalkListButtonProps {
   open: boolean
   talkroomMenuID: string
   talkroom: Talkroom
-  setOpenTalkroom: (talkroom: Talkroom) => void
-  setMenuTalkroom: (talkroom: Talkroom) => void
+  onClick: MouseEventHandler
+  onSettingButtonClicked: MouseEventHandler
 }
 
 export const TalkListButton: React.FC<TalkListButtonProps> = ({
@@ -20,8 +21,8 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
   open,
   talkroomMenuID,
   talkroom,
-  setOpenTalkroom,
-  setMenuTalkroom,
+  onClick,
+  onSettingButtonClicked,
 }) => {
   return (
     <li
@@ -34,7 +35,7 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
       <a
         role="button"
         className={toClass('h-100 d-block pt-2 pe-1', styles.open_button)}
-        onClick={() => setOpenTalkroom(talkroom)}
+        onClick={onClick}
         data-testid={TestID.TALK_LIST_BUTTON}
       >
         <h5>{title}</h5>
@@ -50,7 +51,7 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
         className={styles.menu_button}
         data-bs-target={'#' + talkroomMenuID}
         data-bs-toggle="modal"
-        onClick={() => setMenuTalkroom(talkroom)}
+        onClick={onSettingButtonClicked}
         data-testid={TestID.TALKROOM_MENU_BUTTON}
       >
         <MaterialIcon name="settings" />

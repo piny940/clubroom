@@ -12,9 +12,15 @@ import { toClass } from '../utils/helpers'
 
 export interface TalkroomProps {
   openTalkroom: TalkroomType | undefined
+  talkroomShown: boolean
+  setTalkroomShown: (shown: boolean) => void
 }
 
-export const Talkroom: React.FC<TalkroomProps> = ({ openTalkroom }) => {
+export const Talkroom: React.FC<TalkroomProps> = ({
+  openTalkroom,
+  setTalkroomShown,
+  talkroomShown,
+}) => {
   const [talks, setTalks] = useState<Talk[]>([])
   const { user } = useUserInfo()
   const { setAlerts } = useAlerts()
@@ -66,9 +72,18 @@ export const Talkroom: React.FC<TalkroomProps> = ({ openTalkroom }) => {
   }
 
   return (
-    <section className={toClass(styles.talk_room, 'col-md-9 p-0')}>
+    <section
+      className={toClass(
+        styles.talk_room,
+        'col-md-8 col-lg-9 p-0',
+        talkroomShown ? 'd-block' : 'd-md-block d-none'
+      )}
+    >
       {openTalkroom ? (
         <>
+          <a role="button" onClick={() => setTalkroomShown(false)}>
+            戻る
+          </a>
           <Talks talks={talks} userID={user?.id} talksRef={talksRef} />
           <TalkForm
             register={register}

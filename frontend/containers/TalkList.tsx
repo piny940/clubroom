@@ -13,6 +13,8 @@ export interface TalkListProps {
   newTalkroomFormID: string
   talkroomMenuID: string
   setMenuTalkroom: (talkroom: Talkroom) => void
+  talkroomShown: boolean
+  setTalkroomShown: (shown: boolean) => void
 }
 
 export const TalkList: React.FC<TalkListProps> = ({
@@ -22,11 +24,24 @@ export const TalkList: React.FC<TalkListProps> = ({
   newTalkroomFormID,
   talkroomMenuID,
   setMenuTalkroom,
+  setTalkroomShown,
+  talkroomShown,
 }) => {
   const { group } = useUserInfo()
 
+  const onTalkListButtonClicked = (talkroom: Talkroom) => {
+    setOpenTalkroom(talkroom)
+    setTalkroomShown(true)
+  }
+
   return (
-    <section className={toClass('h-100 col-md-3 p-0', styles.talk_list)}>
+    <section
+      className={toClass(
+        'h-100 col-md-4 col-lg-3 p-0',
+        styles.talk_list,
+        talkroomShown ? 'd-none d-md-block' : 'd-block'
+      )}
+    >
       {group && (
         <>
           <div
@@ -52,8 +67,8 @@ export const TalkList: React.FC<TalkListProps> = ({
                 open={talkroom.id === openTalkroom?.id}
                 talkroomMenuID={talkroomMenuID}
                 talkroom={talkroom}
-                setOpenTalkroom={setOpenTalkroom}
-                setMenuTalkroom={setMenuTalkroom}
+                onClick={() => onTalkListButtonClicked(talkroom)}
+                onSettingButtonClicked={() => setMenuTalkroom(talkroom)}
               />
             ))}
           </ul>
