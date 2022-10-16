@@ -26,7 +26,7 @@ export const InputBox: React.FC<InputBoxProps> = ({
   const props = {
     type: type,
     className: 'form-control',
-    'data-testid': { testID },
+    'data-testid': testID,
     ...register(name, { required }),
   }
 

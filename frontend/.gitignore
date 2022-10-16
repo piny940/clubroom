@@ -43,3 +43,5 @@ next-env.d.ts
 **/cypress/reports/*
 **/cypress/screenshots/*
 **/cypress/videos/*
+
+google-credential.json

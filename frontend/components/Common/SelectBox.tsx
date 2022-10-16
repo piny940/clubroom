@@ -1,11 +1,10 @@
 import { ReactNode } from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
-import { BreakPoint, InputType } from '../../resources/types'
+import { BreakPoint } from '../../resources/types'
 import { upBreakPoint } from '../../utils/helpers'
 
 export interface SelectBoxProps {
   label: string
-  type: InputType
   register: UseFormRegister<FieldValues>
   name: string
   required?: string
@@ -17,7 +16,6 @@ export interface SelectBoxProps {
 
 export const SelectBox: React.FC<SelectBoxProps> = ({
   label,
-  type,
   register,
   name,
   required = '',
@@ -26,13 +24,6 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
   breakPoint = 'lg',
   children,
 }) => {
-  const props = {
-    type: type,
-    className: 'form-control',
-    'data-testid': { testID },
-    ...register(name, { required }),
-  }
-
   return (
     <label className="row form-group my-3">
       <div
@@ -44,7 +35,13 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
       <div
         style={{ width: upBreakPoint(breakPoint, `${100 - labelProportion}%`) }}
       >
-        {type === 'textarea' ? <textarea {...props} /> : <input {...props} />}
+        <select
+          className="form-control"
+          data-testid={testID}
+          {...register(name, { required })}
+        >
+          {children}
+        </select>
       </div>
     </label>
   )

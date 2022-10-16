@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { CollapseBox } from '../components/Common/CollapseBox'
@@ -69,7 +70,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
     _updateSettings()
   }, [user])
 
-  return (
+  return user ? (
     <ModalFormBox
       onSubmit={handleSubmit(_submit)}
       targetID={targetID}
@@ -98,13 +99,14 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         />
         <SelectBox
           label="性別"
-          type="text"
           name={fields.gender}
           testID={TestID.ACCOUNT_SETTINGS_GENDER}
           register={register}
           labelProportion={LABEL_PROPORTION}
         >
-          hoge
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+          <option value="other">その他</option>
         </SelectBox>
         <InputBox
           label="学校"
@@ -130,6 +132,15 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           register={register}
           labelProportion={LABEL_PROPORTION}
         />
+        {user.global_icon ? (
+          <div className="row">
+            <div className="offset-md-1">
+              <Image src={user.global_icon} alt="" width="100" height="100" />
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </CollapseBox>
       {group ? (
         <CollapseBox label="グループ内設定" className="my-2">
@@ -139,5 +150,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         <></>
       )}
     </ModalFormBox>
+  ) : (
+    <></>
   )
 }

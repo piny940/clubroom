@@ -21,7 +21,7 @@ export interface User {
   gender: 'male' | 'female' | 'other'
   school: string
   global_profile: string
-  global_icon: File
+  global_icon: string
   kind: string
   created_at: Date
   updated_at: Date
