@@ -13,11 +13,11 @@ import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActionButton'
 import { TestID } from '../resources/TestID'
-import { TalkroomMenuDetail } from '../components/TalkApp/TalkroomMenuDetail'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { AlertState } from '../resources/enums'
 import { CopyTextBox } from '../components/Common/CopyTextBox'
 import { HOST } from '../resources/constants'
+import { DetailDescription } from '../components/Common/DetailDescription'
 
 export interface TalkroomMenuProps {
   targetID: string
@@ -121,7 +121,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
               requiredMessage={Message.INPUT_REQUIRED}
             />
           )}
-          <TalkroomMenuDetail
+          <DetailDescription
             title="メンバー"
             content={members.map((user) => user.name).join(', ')}
           />
