@@ -7,7 +7,6 @@ import { TestID } from '../resources/TestID'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export interface TalkListProps {
-  width: string
   setOpenTalkroom: (talkroom: Talkroom) => void
   openTalkroom: Talkroom | undefined
   talkrooms: Talkroom[]
@@ -17,7 +16,6 @@ export interface TalkListProps {
 }
 
 export const TalkList: React.FC<TalkListProps> = ({
-  width,
   setOpenTalkroom,
   openTalkroom,
   talkrooms,
@@ -28,10 +26,7 @@ export const TalkList: React.FC<TalkListProps> = ({
   const { group } = useUserInfo()
 
   return (
-    <section
-      style={{ width: width }}
-      className={toClass('h-100', styles.talk_list)}
-    >
+    <section className={toClass('h-100 col-md-3 p-0', styles.talk_list)}>
       {group && (
         <>
           <div

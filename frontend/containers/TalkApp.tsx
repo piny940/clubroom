@@ -31,9 +31,8 @@ export const TalkApp: React.FC = () => {
 
   return (
     <LoginRequired>
-      <div className="d-flex" id={styles.app}>
+      <div className="row m-0" id={styles.app}>
         <TalkList
-          width="25%"
           setOpenTalkroom={setOpenTalkroom}
           openTalkroom={openTalkroom}
           talkrooms={talkrooms}
@@ -41,7 +40,7 @@ export const TalkApp: React.FC = () => {
           talkroomMenuID={talkroomMenuID}
           setMenuTalkroom={setMenuTalkroom}
         />
-        <Talkroom width="75%" openTalkroom={openTalkroom} />
+        <Talkroom openTalkroom={openTalkroom} />
       </div>
       <NewTalkroomForm
         targetID={newTalkroomID}

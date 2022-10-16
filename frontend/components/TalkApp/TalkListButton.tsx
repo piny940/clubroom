@@ -33,7 +33,7 @@ export const TalkListButton: React.FC<TalkListButtonProps> = ({
     >
       <a
         role="button"
-        className={toClass('h-100 d-block pt-2 pe-1 ps-4', styles.open_button)}
+        className={toClass('h-100 d-block pt-2 pe-1', styles.open_button)}
         onClick={() => setOpenTalkroom(talkroom)}
         data-testid={TestID.TALK_LIST_BUTTON}
       >

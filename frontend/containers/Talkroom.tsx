@@ -8,13 +8,13 @@ import styles from '../styles/talk-app.module.scss'
 import { Talk, Talkroom as TalkroomType } from '../resources/types'
 import { fetchTalks, postData } from '../utils/api'
 import { AlertState } from '../resources/enums'
+import { toClass } from '../utils/helpers'
 
 export interface TalkroomProps {
-  width: string
   openTalkroom: TalkroomType | undefined
 }
 
-export const Talkroom: React.FC<TalkroomProps> = ({ width, openTalkroom }) => {
+export const Talkroom: React.FC<TalkroomProps> = ({ openTalkroom }) => {
   const [talks, setTalks] = useState<Talk[]>([])
   const { user } = useUserInfo()
   const { setAlerts } = useAlerts()
@@ -66,7 +66,7 @@ export const Talkroom: React.FC<TalkroomProps> = ({ width, openTalkroom }) => {
   }
 
   return (
-    <section style={{ width: width }} className={styles.talk_room}>
+    <section className={toClass(styles.talk_room, 'col-md-9 p-0')}>
       {openTalkroom ? (
         <>
           <Talks talks={talks} userID={user?.id} talksRef={talksRef} />
