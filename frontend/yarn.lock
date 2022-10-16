@@ -896,6 +896,11 @@
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-2.0.0.tgz"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
+"@types/activestorage@^5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@types/activestorage/-/activestorage-5.2.4.tgz#6455e5cb183d2d74fb3a19440c6e261b90a8e5de"
+  integrity sha512-JsZHACUmSgi4xCX70c8bM7plVLc7ld6nVVfYjUTNPbPxa3zJURw8hr3T7GisayvOikC1uEBnWAAar57N+BpcHg==
+
 "@types/aria-query@^4.2.0":
   version "4.2.2"
   resolved "https://registry.npmjs.org/@types/aria-query/-/aria-query-4.2.2.tgz"

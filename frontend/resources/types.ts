@@ -11,7 +11,7 @@ export interface AlertInput {
   state: AlertState
 }
 
-export type InputType = 'text' | 'email' | 'password' | 'file' | 'textarea'
+export type InputType = 'text' | 'email' | 'password' | 'textarea'
 export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
 export interface User {

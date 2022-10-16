@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { CollapseBox } from '../components/Common/CollapseBox'
+import { FileInputBox } from '../components/Common/FileInputBox'
 import { InputBox } from '../components/Common/InputBox'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
 import { SelectBox } from '../components/Common/SelectBox'
@@ -87,7 +88,6 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name={fields.email}
           testID={TestID.ACCOUNT_SETTINGS_EMAIL}
           register={register}
-          labelProportion={LABEL_PROPORTION}
         />
         <InputBox
           label="名前"
@@ -95,7 +95,6 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name={fields.name}
           testID={TestID.ACCOUNT_SETTINGS_NAME}
           register={register}
-          labelProportion={LABEL_PROPORTION}
         />
         <SelectBox
           label="性別"
@@ -114,7 +113,6 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name={fields.school}
           testID={TestID.ACCOUNT_SETTINGS_SCHOOL}
           register={register}
-          labelProportion={LABEL_PROPORTION}
         />
         <InputBox
           label="全体公開プロフィール"
@@ -122,15 +120,13 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
           name={fields.globalProfile}
           testID={TestID.ACCOUNT_SETTINGS_GLOBAL_PROFILE}
           register={register}
-          labelProportion={LABEL_PROPORTION}
         />
-        <InputBox
+        <FileInputBox
           label="全体公開アイコン"
-          type="file"
           name={fields.globalIcon}
           testID={TestID.ACCOUNT_SETTINGS_GLOBAL_ICON}
-          register={register}
-          labelProportion={LABEL_PROPORTION}
+          setValue={setValue}
+          accept={['image/.png', 'image/.jpeg']}
         />
         {user.global_icon ? (
           <div className="row">
