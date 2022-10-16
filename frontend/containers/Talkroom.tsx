@@ -9,6 +9,7 @@ import { Talk, Talkroom as TalkroomType } from '../resources/types'
 import { fetchTalks, postData } from '../utils/api'
 import { AlertState } from '../resources/enums'
 import { toClass } from '../utils/helpers'
+import { MaterialIcon } from '../components/Common/MaterialIcon'
 
 export interface TalkroomProps {
   openTalkroom: TalkroomType | undefined
@@ -81,9 +82,15 @@ export const Talkroom: React.FC<TalkroomProps> = ({
     >
       {openTalkroom ? (
         <>
-          <a role="button" onClick={() => setTalkroomShown(false)}>
-            戻る
+          <a
+            role="button"
+            className="d-md-none d-flex align-items-center ms-4 my-1"
+            onClick={() => setTalkroomShown(false)}
+          >
+            <MaterialIcon name="chevron_left" className="fs-5" />
+            トーク一覧に戻る
           </a>
+          <h3 className="d-md-none ms-4">{openTalkroom.name}</h3>
           <Talks talks={talks} userID={user?.id} talksRef={talksRef} />
           <TalkForm
             register={register}
