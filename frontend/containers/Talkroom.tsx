@@ -76,21 +76,23 @@ export const Talkroom: React.FC<TalkroomProps> = ({
     <section
       className={toClass(
         styles.talk_room,
-        'col-md-8 col-lg-9 p-0',
+        'col-md-8 col-lg-9 p-0 position-relative',
         talkroomShown ? 'd-block' : 'd-md-block d-none'
       )}
     >
       {openTalkroom ? (
         <>
-          <a
-            role="button"
-            className="d-md-none d-flex align-items-center ms-4 my-1"
-            onClick={() => setTalkroomShown(false)}
-          >
-            <MaterialIcon name="chevron_left" className="fs-5" />
-            トーク一覧に戻る
-          </a>
-          <h3 className="d-md-none ms-4">{openTalkroom.name}</h3>
+          <div className="d-md-none position-absolute bg-white w-100">
+            <a
+              role="button"
+              className="d-md-none d-flex align-items-center ms-4 my-1"
+              onClick={() => setTalkroomShown(false)}
+            >
+              <MaterialIcon name="chevron_left" className="fs-5" />
+              トーク一覧に戻る
+            </a>
+            <h3 className="d-md-none ms-4">{openTalkroom.name}</h3>
+          </div>
           <Talks talks={talks} userID={user?.id} talksRef={talksRef} />
           <TalkForm
             register={register}

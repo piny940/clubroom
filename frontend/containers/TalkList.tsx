@@ -37,7 +37,7 @@ export const TalkList: React.FC<TalkListProps> = ({
   return (
     <section
       className={toClass(
-        'h-100 col-md-4 col-lg-3 p-0',
+        'col-md-4 col-lg-3 p-0',
         styles.talk_list,
         talkroomShown ? 'd-none d-md-block' : 'd-block'
       )}

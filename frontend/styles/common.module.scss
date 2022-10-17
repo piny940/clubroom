@@ -1,5 +1,8 @@
 @use './layout.module.scss' as layout;
 
+$screen-height: 100vh;
+$screen-height: 100svh;
+
 .form {
   max-width: 700px;
 }
