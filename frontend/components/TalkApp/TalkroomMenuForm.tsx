@@ -26,7 +26,7 @@ export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
         <div className="col-lg-3 fw-bold mb-2 mb-lg-0 col-form-label">
           {label}
         </div>
-        <div className="col-9 col-lg-7 px-2 mb-2 mb-lg-0">
+        <div className="col-8 col-md-9 col-lg-7 px-2 mb-2 mb-lg-0">
           <input
             type="text"
             className="w-100 h-100 form-control"
@@ -35,7 +35,7 @@ export const TalkroomMenuForm: React.FC<TalkroomMenuFormProps> = ({
             })}
           />
         </div>
-        <div className="col-3 col-lg-2">
+        <div className="col-4 col-md-3 col-lg-2">
           <button className="btn btn-outline-primary btn-small">
             {submitButtonText}
           </button>
