@@ -72,8 +72,9 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    permits = %i[email name kind global_profile global_icon school birth_date gender]
+    permits = %i[email name kind global_profile school birth_date gender]
     permits += %i[password password_confirmation] if params[:user][:password].present?
+    permits += %i[global_icon] if params[:user][:global_icon].present?
     params.require(:user).permit(*permits)
   end
 end
