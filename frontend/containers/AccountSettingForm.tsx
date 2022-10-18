@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { CollapseBox } from '../components/Common/CollapseBox'
 import { FileInputBox } from '../components/Common/FileInputBox'
 import { InputBox } from '../components/Common/InputBox'
 import { ModalFormBox } from '../components/Common/ModalFormBox'
@@ -22,7 +21,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
   const LABEL_PROPORTION = 26
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const [alert, setFormAlert] = useState('')
-  const { user, group, updateUser } = useUserInfo()
+  const { user, updateUser } = useUserInfo()
   const { setAlerts } = useAlerts()
   const { register, handleSubmit, reset, setValue } = useForm({
     shouldUseNativeValidation: true,
@@ -80,67 +79,58 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
       alert={alert}
       submitTestID={TestID.ACCOUNT_SETTINGS_SUBMIT}
     >
-      <CollapseBox label="全体設定" className="my-2" paddingLeft="2.4rem">
-        <InputBox
-          label="メールアドレス"
-          type="email"
-          name={fields.email}
-          testID={TestID.ACCOUNT_SETTINGS_EMAIL}
-          register={register}
-        />
-        <InputBox
-          label="名前"
-          type="text"
-          name={fields.name}
-          testID={TestID.ACCOUNT_SETTINGS_NAME}
-          register={register}
-        />
-        <SelectBox
-          label="性別"
-          name={fields.gender}
-          testID={TestID.ACCOUNT_SETTINGS_GENDER}
-          register={register}
-          labelProportion={LABEL_PROPORTION}
-        >
-          <option value="male">男性</option>
-          <option value="female">女性</option>
-          <option value="other">その他</option>
-        </SelectBox>
-        <InputBox
-          label="学校"
-          type="text"
-          name={fields.school}
-          testID={TestID.ACCOUNT_SETTINGS_SCHOOL}
-          register={register}
-        />
-        <InputBox
-          label="全体公開プロフィール"
-          type="textarea"
-          name={fields.globalProfile}
-          testID={TestID.ACCOUNT_SETTINGS_GLOBAL_PROFILE}
-          register={register}
-        />
-        <FileInputBox
-          label="全体公開アイコン"
-          name="global_icon"
-          testID={TestID.ACCOUNT_SETTINGS_GLOBAL_ICON}
-          setValue={setValue}
-          accept={['image/.png', 'image/.jpeg']}
-        />
-        {user.global_icon ? (
-          <div className="row">
-            <div className="offset-md-1">
-              <Image src={user.global_icon} alt="" width="100" height="100" />
-            </div>
+      <InputBox
+        label="メールアドレス"
+        type="email"
+        name={fields.email}
+        testID={TestID.ACCOUNT_SETTINGS_EMAIL}
+        register={register}
+      />
+      <InputBox
+        label="名前"
+        type="text"
+        name={fields.name}
+        testID={TestID.ACCOUNT_SETTINGS_NAME}
+        register={register}
+      />
+      <SelectBox
+        label="性別"
+        name={fields.gender}
+        testID={TestID.ACCOUNT_SETTINGS_GENDER}
+        register={register}
+        labelProportion={LABEL_PROPORTION}
+      >
+        <option value="male">男性</option>
+        <option value="female">女性</option>
+        <option value="other">その他</option>
+      </SelectBox>
+      <InputBox
+        label="学校"
+        type="text"
+        name={fields.school}
+        testID={TestID.ACCOUNT_SETTINGS_SCHOOL}
+        register={register}
+      />
+      <InputBox
+        label="全体公開プロフィール"
+        type="textarea"
+        name={fields.globalProfile}
+        testID={TestID.ACCOUNT_SETTINGS_GLOBAL_PROFILE}
+        register={register}
+      />
+      <FileInputBox
+        label="全体公開アイコン"
+        name="global_icon"
+        testID={TestID.ACCOUNT_SETTINGS_GLOBAL_ICON}
+        setValue={setValue}
+        accept={['image/.png', 'image/.jpeg']}
+      />
+      {user.global_icon ? (
+        <div className="row">
+          <div className="offset-md-1">
+            <Image src={user.global_icon} alt="" width="100" height="100" />
           </div>
-        ) : (
-          <></>
-        )}
-      </CollapseBox>
-      {group ? (
-        <CollapseBox label="グループ内設定" className="my-2">
-          hoge
-        </CollapseBox>
+        </div>
       ) : (
         <></>
       )}
