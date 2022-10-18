@@ -3,6 +3,7 @@ import { LoginRequired } from '../../containers/LoginRequired'
 import { Group } from '../../resources/types'
 import { GroupsNav } from './GroupsNav'
 import { ProfileNav } from './ProfileNav'
+import styles from '../../styles/navbar.module.scss'
 
 export interface NavbarViewProps {
   group?: Group
@@ -27,7 +28,9 @@ export const NavbarView: React.FC<NavbarViewProps> = ({
     <nav className="navbar navbar-expand navbar-dark bg-dark">
       <div className="container-fluid px-5">
         <Link href="/">
-          <a className="navbar-brand">Clubroom</a>
+          <h1 className="navbar-brand" id={styles.title}>
+            Clubroom
+          </h1>
         </Link>
         <LoginRequired whenNoUser={<></>}>
           <div className="d-flex justify-content-end align-items-center w-100">
