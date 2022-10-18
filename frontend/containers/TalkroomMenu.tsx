@@ -63,6 +63,10 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
 
     await deleteTalkroom(menuTalkroom)
     _closeModal()
+    setAlerts({
+      state: AlertState.SUCCESS,
+      content: 'トークルームを削除しました。',
+    })
     void updateTalkroomList()
   }
 

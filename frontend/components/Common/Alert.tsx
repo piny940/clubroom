@@ -13,7 +13,7 @@ export interface AlertProps {
 }
 
 export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
-  const CLOSE_TIME = 5000
+  const CLOSE_TIME = 3000
 
   let className = ''
   switch (alert.state) {

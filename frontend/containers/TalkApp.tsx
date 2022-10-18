@@ -23,6 +23,7 @@ export const TalkApp: React.FC = () => {
     if (!group) return
 
     setTalkrooms(await fetchTalkrooms(group.id))
+    setTalkroomShown(false)
   }
 
   useEffect(() => {
