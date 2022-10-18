@@ -33,7 +33,6 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
     gender: 'gender',
     school: 'school',
     globalProfile: 'global_profile',
-    globalIcon: 'global_icon',
   } as const
 
   const _updateSettings = () => {
@@ -123,7 +122,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         />
         <FileInputBox
           label="全体公開アイコン"
-          name={fields.globalIcon}
+          name="global_icon"
           testID={TestID.ACCOUNT_SETTINGS_GLOBAL_ICON}
           setValue={setValue}
           accept={['image/.png', 'image/.jpeg']}
