@@ -10,9 +10,14 @@ $screen-height: 100svh;
   position: absolute;
   z-index: 800;
   right: 10px;
-  top: layout.$header-height + 10px;
+  bottom: 40px;
   min-width: 230px;
   max-width: 90%;
+}
+@media (min-width: 768px) {
+  #alerts {
+    top: layout.$header-height + 10px;
+  }
 }
 
 $tooltip-flow: 12px;
