@@ -24,7 +24,7 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
         aria-expanded="false"
         className="mx-2"
       >
-        <AccountIcon size={28} />
+        <AccountIcon size={28} theme="dark" />
       </a>
       <ul className="dropdown-menu m-0" id={styles.profile_dropdown}>
         <DropdownActionButton
