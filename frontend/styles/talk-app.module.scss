@@ -1,11 +1,13 @@
 @use './layout.module.scss' as layout;
+@use './common.module.scss' as common;
 
-$talk_list_button_border_color: rgb(229, 229, 229);
-$talk_room_height: 110px;
-$talk_room_padding: 8px;
+$talk-list-button-border-color: rgb(229, 229, 229);
+$talk-form-height: 110px;
+$talk-room-padding: 8px;
+$talkroom-header-height: 70px;
 
 #app {
-  height: calc(100vh - #{layout.$header-height});
+  height: calc(#{common.$screen-height} - #{layout.$header-height});
 }
 
 // ========== TalkList ==========
@@ -15,7 +17,7 @@ $talk_room_padding: 8px;
   overflow-y: auto;
 
   .action_buttons {
-    border-bottom: 1px solid $talk_list_button_border_color;
+    border-bottom: 1px solid $talk-list-button-border-color;
 
     .action_button {
       font-weight: 500;
@@ -34,7 +36,7 @@ $talk_room_padding: 8px;
     height: 65px;
     width: 100%;
     list-style-type: none;
-    border-bottom: 1px solid $talk_list_button_border_color;
+    border-bottom: 1px solid $talk-list-button-border-color;
 
     h5 {
       font-size: 16px;
@@ -42,14 +44,15 @@ $talk_room_padding: 8px;
     }
 
     &:hover {
-      background-color: $talk_list_button_border_color;
+      background-color: $talk-list-button-border-color;
     }
     &.open {
-      background-color: $talk_list_button_border_color;
+      background-color: $talk-list-button-border-color;
     }
 
     a.open_button {
       width: calc(100% - $menu-button-size);
+      padding-left: 34px;
     }
 
     a.menu_button {
@@ -79,7 +82,14 @@ $talk_room_padding: 8px;
 
   #talks {
     overflow-y: auto;
-    height: calc(100vh - #{layout.$header-height + $talk_room_height});
+    height: calc(
+      #{common.$screen-height} - #{layout.$header-height + $talk-form-height}
+    );
+    padding-top: $talkroom-header-height;
+
+    @media (min-width: 768px) {
+      padding-top: 0;
+    }
 
     li {
       list-style-type: none;
@@ -108,13 +118,13 @@ $talk_room_padding: 8px;
     display: flex;
     align-items: flex-end;
     background-color: rgb(249, 249, 249);
-    height: $talk_room_height;
-    padding: $talk_room_padding;
+    height: $talk-form-height;
+    padding: $talk-room-padding;
 
     textarea {
       margin: 0 2%;
       width: 90%;
-      height: $talk_room_height - $talk_room_padding * 2;
+      height: $talk-form-height - $talk-room-padding * 2;
       background-color: white;
 
       &::placeholder {

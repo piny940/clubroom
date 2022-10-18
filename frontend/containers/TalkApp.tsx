@@ -17,6 +17,7 @@ export const TalkApp: React.FC = () => {
   const [openTalkroom, setOpenTalkroom] = useState<TalkroomType>()
   const [talkrooms, setTalkrooms] = useState<TalkroomType[]>([])
   const [menuTalkroom, setMenuTalkroom] = useState<TalkroomType>()
+  const [talkroomShown, setTalkroomShown] = useState(false)
 
   const updateTalkroomList = async () => {
     if (!group) return
@@ -31,17 +32,22 @@ export const TalkApp: React.FC = () => {
 
   return (
     <LoginRequired>
-      <div className="d-flex" id={styles.app}>
+      <div className="row m-0" id={styles.app}>
         <TalkList
-          width="25%"
           setOpenTalkroom={setOpenTalkroom}
           openTalkroom={openTalkroom}
           talkrooms={talkrooms}
           newTalkroomFormID={newTalkroomID}
           talkroomMenuID={talkroomMenuID}
           setMenuTalkroom={setMenuTalkroom}
+          setTalkroomShown={setTalkroomShown}
+          talkroomShown={talkroomShown}
         />
-        <Talkroom width="75%" openTalkroom={openTalkroom} />
+        <Talkroom
+          openTalkroom={openTalkroom}
+          talkroomShown={talkroomShown}
+          setTalkroomShown={setTalkroomShown}
+        />
       </div>
       <NewTalkroomForm
         targetID={newTalkroomID}

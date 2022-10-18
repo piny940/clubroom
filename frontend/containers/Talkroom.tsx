@@ -8,13 +8,20 @@ import styles from '../styles/talk-app.module.scss'
 import { Talk, Talkroom as TalkroomType } from '../resources/types'
 import { fetchTalks, postData } from '../utils/api'
 import { AlertState } from '../resources/enums'
+import { toClass } from '../utils/helpers'
+import { MaterialIcon } from '../components/Common/MaterialIcon'
 
 export interface TalkroomProps {
-  width: string
   openTalkroom: TalkroomType | undefined
+  talkroomShown: boolean
+  setTalkroomShown: (shown: boolean) => void
 }
 
-export const Talkroom: React.FC<TalkroomProps> = ({ width, openTalkroom }) => {
+export const Talkroom: React.FC<TalkroomProps> = ({
+  openTalkroom,
+  setTalkroomShown,
+  talkroomShown,
+}) => {
   const [talks, setTalks] = useState<Talk[]>([])
   const { user } = useUserInfo()
   const { setAlerts } = useAlerts()
@@ -66,9 +73,26 @@ export const Talkroom: React.FC<TalkroomProps> = ({ width, openTalkroom }) => {
   }
 
   return (
-    <section style={{ width: width }} className={styles.talk_room}>
+    <section
+      className={toClass(
+        styles.talk_room,
+        'col-md-8 col-lg-9 p-0 position-relative',
+        talkroomShown ? 'd-block' : 'd-md-block d-none'
+      )}
+    >
       {openTalkroom ? (
         <>
+          <div className="d-md-none position-absolute bg-white w-100">
+            <a
+              role="button"
+              className="d-md-none d-flex align-items-center ms-4 my-1"
+              onClick={() => setTalkroomShown(false)}
+            >
+              <MaterialIcon name="chevron_left" className="fs-5" />
+              トーク一覧に戻る
+            </a>
+            <h3 className="d-md-none ms-4">{openTalkroom.name}</h3>
+          </div>
           <Talks talks={talks} userID={user?.id} talksRef={talksRef} />
           <TalkForm
             register={register}

@@ -7,30 +7,40 @@ import { TestID } from '../resources/TestID'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 
 export interface TalkListProps {
-  width: string
   setOpenTalkroom: (talkroom: Talkroom) => void
   openTalkroom: Talkroom | undefined
   talkrooms: Talkroom[]
   newTalkroomFormID: string
   talkroomMenuID: string
   setMenuTalkroom: (talkroom: Talkroom) => void
+  talkroomShown: boolean
+  setTalkroomShown: (shown: boolean) => void
 }
 
 export const TalkList: React.FC<TalkListProps> = ({
-  width,
   setOpenTalkroom,
   openTalkroom,
   talkrooms,
   newTalkroomFormID,
   talkroomMenuID,
   setMenuTalkroom,
+  setTalkroomShown,
+  talkroomShown,
 }) => {
   const { group } = useUserInfo()
 
+  const onTalkListButtonClicked = (talkroom: Talkroom) => {
+    setOpenTalkroom(talkroom)
+    setTalkroomShown(true)
+  }
+
   return (
     <section
-      style={{ width: width }}
-      className={toClass('h-100', styles.talk_list)}
+      className={toClass(
+        'col-md-4 col-lg-3 p-0',
+        styles.talk_list,
+        talkroomShown ? 'd-none d-md-block' : 'd-block'
+      )}
     >
       {group && (
         <>
@@ -57,8 +67,8 @@ export const TalkList: React.FC<TalkListProps> = ({
                 open={talkroom.id === openTalkroom?.id}
                 talkroomMenuID={talkroomMenuID}
                 talkroom={talkroom}
-                setOpenTalkroom={setOpenTalkroom}
-                setMenuTalkroom={setMenuTalkroom}
+                onClick={() => onTalkListButtonClicked(talkroom)}
+                onSettingButtonClicked={() => setMenuTalkroom(talkroom)}
               />
             ))}
           </ul>
