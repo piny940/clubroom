@@ -10,6 +10,7 @@ import { Message } from '../resources/Messages'
 import Link from 'next/link'
 import { FormBox } from '../components/Common/FormBox'
 import { useUserInfo } from '../contexts/UserInfoProvider'
+import { CheckBox } from '../components/Common/CheckBox'
 
 export const SignupForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -38,7 +39,6 @@ export const SignupForm: React.FC = () => {
     void postData({
       url: '/user',
       data: data,
-      scope: 'user',
       onFail: (json: any) => setAlert(json.message),
       onSuccess: _onSuccess,
     })
@@ -56,7 +56,7 @@ export const SignupForm: React.FC = () => {
         label="メールアドレス"
         type="email"
         register={register}
-        name="email"
+        name="user.email"
         testID={TestID.SIGNUP_EMAIL}
         required={Message.INPUT_REQUIRED}
       />
@@ -64,7 +64,7 @@ export const SignupForm: React.FC = () => {
         label="氏名"
         type="text"
         register={register}
-        name="name"
+        name="user.name"
         testID={TestID.SIGNUP_NAME}
         required={Message.INPUT_REQUIRED}
       />
@@ -72,7 +72,7 @@ export const SignupForm: React.FC = () => {
         label="パスワード"
         type="password"
         register={register}
-        name="password"
+        name="user.password"
         testID={TestID.SIGNUP_PASSWORD}
         required={Message.INPUT_REQUIRED}
       />
@@ -80,9 +80,15 @@ export const SignupForm: React.FC = () => {
         label="パスワード(確認用)"
         type="password"
         register={register}
-        name="password-confirmation"
+        name="user.password-confirmation"
         testID={TestID.SIGNUP_PASSWORD_CONFIRMATION}
         required={Message.INPUT_REQUIRED}
+      />
+      <CheckBox
+        label="次回自動でログインする"
+        register={register}
+        name="remember_me"
+        className="ms-2 mb-2"
       />
       <div className="row">
         <span className="w-auto mx-auto">

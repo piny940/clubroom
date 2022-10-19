@@ -10,6 +10,7 @@ import { TestID } from '../resources/TestID'
 import Link from 'next/link'
 import { FormBox } from '../components/Common/FormBox'
 import { useUserInfo } from '../contexts/UserInfoProvider'
+import { CheckBox } from '../components/Common/CheckBox'
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
@@ -61,6 +62,12 @@ export const LoginForm: React.FC = () => {
         name="password"
         required={Message.INPUT_REQUIRED}
         testID={TestID.LOGIN_PASSWORD}
+      />
+      <CheckBox
+        label="次回自動でログインする"
+        register={register}
+        name="remember_me"
+        className="ms-2 mb-2"
       />
       <div className="row">
         <span className="w-auto mx-auto">

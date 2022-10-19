@@ -22,4 +22,8 @@ class User < ApplicationRecord
       'global_icon' => global_icon.url
     )
   end
+
+  # def remember_me
+    # true
+  # end
 end
