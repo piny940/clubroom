@@ -1,5 +1,4 @@
 @use './layout.module.scss' as layout;
-@use './common.module.scss' as common;
 
 $talk-list-button-border-color: rgb(229, 229, 229);
 $talk-form-height: 110px;
@@ -7,7 +6,7 @@ $talk-room-padding: 8px;
 $talkroom-header-height: 70px;
 
 #app {
-  height: calc(#{common.$screen-height} - #{layout.$header-height});
+  height: calc(var(--vh100) - #{layout.$header-height});
 }
 
 // ========== TalkList ==========
@@ -82,9 +81,7 @@ $talkroom-header-height: 70px;
 
   #talks {
     overflow-y: auto;
-    height: calc(
-      #{common.$screen-height} - #{layout.$header-height + $talk-form-height}
-    );
+    height: calc(var(--vh100) - #{layout.$header-height + $talk-form-height});
     padding-top: $talkroom-header-height;
 
     @media (min-width: 768px) {
