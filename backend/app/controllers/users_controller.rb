@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      user.remember_me = params[:remember_me]
       sign_in user
       render json: {
         data: {
