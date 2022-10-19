@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { FileInputBox } from '../components/Common/FileInputBox'
 import { InputBox } from '../components/Common/InputBox'
@@ -9,7 +9,7 @@ import { useAlerts } from '../contexts/AlertsProvider'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import { AlertState } from '../resources/enums'
 import { TestID } from '../resources/TestID'
-import { updateData } from '../utils/api'
+import { fetchApi, updateData } from '../utils/api'
 
 export interface AccountSettingsFormProps {
   targetID: string
@@ -45,13 +45,37 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
     closeButtonRef.current?.click()
   }
 
+  const _deleteUser: MouseEventHandler = async (e) => {
+    e.preventDefault()
+
+    if (
+      !window.confirm(
+        'この操作は取り消せません。本当にアカウントを削除しますか?'
+      )
+    ) {
+      return
+    }
+
+    await fetchApi({
+      url: '/user',
+      method: 'DELETE',
+    })
+
+    void updateUser()
+    setAlerts({
+      state: AlertState.NOTICE,
+      content: 'ユーザーを削除しました。',
+    })
+    _closeModal()
+  }
+
   const _submit: SubmitHandler<FieldValues> = (data) => {
     const _onSuccess = (json: any) => {
       void updateUser()
       reset()
       _closeModal()
       setAlerts({
-        state: AlertState.SUCCESS,
+        state: AlertState.NOTICE,
         content: '設定を更新しました。',
       })
     }
@@ -78,6 +102,14 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
       closeButtonRef={closeButtonRef}
       alert={alert}
       submitTestID={TestID.ACCOUNT_SETTINGS_SUBMIT}
+      anotherButton={
+        <button
+          onClick={_deleteUser}
+          className="my-2 btn btn-danger col-12 col-lg-6 offset-lg-3 d-block"
+        >
+          ユーザーを削除する
+        </button>
+      }
     >
       <InputBox
         label="メールアドレス"
