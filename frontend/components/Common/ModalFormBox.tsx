@@ -11,6 +11,7 @@ export interface ModalFormBoxProps {
   submitButtonText: string
   children: ReactNode
   closeButtonRef: RefObject<HTMLButtonElement>
+  anotherButton?: ReactNode
 }
 
 export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
@@ -22,6 +23,7 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
   submitTestID,
   submitButtonText,
   closeButtonRef,
+  anotherButton,
 }) => {
   return (
     <Modal targetID={targetID} closeButtonRef={closeButtonRef}>
@@ -36,11 +38,12 @@ export const ModalFormBox: React.FC<ModalFormBoxProps> = ({
         )}
         {children}
         <button
-          className="btn btn-primary col-12 col-lg-6 mt-4 offset-lg-3 d-block"
+          className="btn btn-primary col-12 col-lg-6 mt-4 mb-2 offset-lg-3 d-block"
           data-testid={submitTestID}
         >
           {submitButtonText}
         </button>
+        {anotherButton}
         <button
           className="btn btn-secondary col-12 col-lg-6 my-2 offset-lg-3 d-block"
           data-bs-dismiss="modal"
