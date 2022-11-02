@@ -37,11 +37,18 @@ export const LoginForm: React.FC = () => {
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
+      delete router.query.next
       void updateUser()
-      void movePage(nextPage, {
-        content: json.message,
-        state: AlertState.SUCCESS,
-      })
+      void movePage(
+        {
+          pathname: nextPage,
+          query: router.query,
+        },
+        {
+          content: json.message,
+          state: AlertState.SUCCESS,
+        }
+      )
     }
 
     void postData({
