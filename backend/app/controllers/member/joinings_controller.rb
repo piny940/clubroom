@@ -44,11 +44,15 @@ class Member::JoiningsController < Member::Base
   end
 
   def destroy
+    return render json: {
+      message: 'このグループには属していません。'
+    }, status: :bad_request if @joining.nil?
+
     @joining.destroy
 
     render json: {
       message: 'グループから抜けました。'
-    }
+    }, status: :ok
   end
 
   private
