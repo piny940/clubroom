@@ -60,6 +60,28 @@ export const GroupMenu: React.FC<GroupMenuProp> = ({ targetID }) => {
     }
   }
 
+  const _deleteGroup = async () => {
+    if (!group) return
+
+    const response = await fetchApi({
+      url: `/member/groups/${group.id}`,
+      method: 'DELETE',
+    })
+    const json = await response.json()
+
+    if (response.status >= 400) {
+      throw new Error(json.message)
+    } else {
+      _closeModal()
+      void updateGroups()
+      setGroup(undefined)
+      setAlerts({
+        content: 'グループを削除しました。',
+        state: AlertState.NOTICE,
+      })
+    }
+  }
+
   useEffect(() => {
     void _updateJoining()
     void _updateMembers()
@@ -88,6 +110,14 @@ export const GroupMenu: React.FC<GroupMenuProp> = ({ targetID }) => {
           label="グループから抜ける"
           handler={_quitGroup}
         />
+        {joining.role === 'admin' || joining.role === 'staff' ? (
+          <ModalMenuActionButton
+            label="グループを削除する"
+            handler={_deleteGroup}
+          />
+        ) : (
+          <></>
+        )}
       </div>
     </Modal>
   ) : (
