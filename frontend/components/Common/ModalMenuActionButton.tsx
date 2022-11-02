@@ -13,7 +13,7 @@ export const ModalMenuActionButton: React.FC<ModalMenuActionButtonProps> = ({
 }) => {
   return (
     <button
-      className="col-12 col-md-8 offset-md-2 btn btn-danger"
+      className="col-12 col-md-8 offset-md-2 my-1 btn btn-danger"
       onClick={handler}
       data-testid={testId}
     >
