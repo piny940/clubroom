@@ -10,7 +10,7 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
 
     render json: {
       data: {
-        talk_entry: current_user.talk_entries.find_by(talkroom_id: talkroom.id)&.serialized
+        talk_entry: @talk_entry&.serialized
       }
     }, status: :ok
   end
@@ -47,5 +47,19 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
         message: 'トークンが違います。'
       }, status: :bad_request
     end
+  end
+
+  def destroy
+    @talk_entry.destroy
+
+    render json: {
+      message: 'トークルームから抜けました。'
+    }
+  end
+
+  private
+
+  def set_talkroom
+    @talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom.id)
   end
 end
