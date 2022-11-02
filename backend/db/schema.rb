@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_171858) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_151936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_171858) do
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
     t.index ["talkroom_id"], name: "index_talk_entries_on_talkroom_id"
+    t.index ["user_id", "talkroom_id"], name: "index_talk_entries_on_user_id_and_talkroom_id", unique: true
     t.index ["user_id"], name: "index_talk_entries_on_user_id"
   end
 

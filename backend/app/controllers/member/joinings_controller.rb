@@ -1,6 +1,6 @@
 class Member::JoiningsController < Member::Base
   before_action :set_joining, only: %i[show destroy]
-  
+
   def show
     render json: {
       data: {
@@ -44,11 +44,17 @@ class Member::JoiningsController < Member::Base
   end
 
   def destroy
+    if @joining.nil?
+      return render json: {
+        message: 'このグループには属していません。'
+      }, status: :bad_request
+    end
+
     @joining.destroy
 
     render json: {
       message: 'グループから抜けました。'
-    }
+    }, status: :ok
   end
 
   private

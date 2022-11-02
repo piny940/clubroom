@@ -5,14 +5,15 @@ import {
 } from '../../../components/Common/ModalMenuActionButton'
 import { Mock } from 'ts-mockery'
 import { expect } from '@jest/globals'
-import { TestID } from '../../../resources/TestID'
 
 describe('<TalkroomMenuActionButton', () => {
   it('正常に動作する', async () => {
     const handler = jest.fn()
+    const testId = 'test-talkroom-menu^action-button'
 
     const props = Mock.from<ModalMenuActionButtonProps>({
       handler: handler,
+      testId: testId,
     })
     const { getByTestId } = render(<ModalMenuActionButton {...props} />)
 
@@ -21,7 +22,7 @@ describe('<TalkroomMenuActionButton', () => {
     })
 
     act(() => {
-      fireEvent.click(getByTestId(TestID.TALKROOM_MENU_ACTION_BUTTON))
+      fireEvent.click(getByTestId(testId))
     })
 
     await waitFor(() => {

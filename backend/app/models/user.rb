@@ -24,6 +24,6 @@ class User < ApplicationRecord
   end
 
   # def remember_me
-    # true
+  # true
   # end
 end

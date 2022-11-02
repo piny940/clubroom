@@ -4,6 +4,7 @@ import styles from '../styles/talk-app.module.scss'
 import { useEffect, useRef, useState } from 'react'
 import {
   deleteTalkroom,
+  fetchApi,
   fetchTalkEntry,
   fetchTalkroomMembers,
   updateData,
@@ -70,6 +71,27 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
     void updateTalkroomList()
   }
 
+  const _quitTalkroom = async () => {
+    if (!menuTalkroom) return
+
+    const response = await fetchApi({
+      url: `/member/groups/${menuTalkroom.group_id}/talkrooms/${menuTalkroom.id}/talk_entry`,
+      method: 'DELETE',
+    })
+    const json = await response.json()
+
+    if (response.status >= 400) {
+      throw new Error(json.message)
+    } else {
+      void updateTalkroomList()
+      _closeModal()
+      setAlerts({
+        content: 'トークルームから抜けました。',
+        state: AlertState.NOTICE,
+      })
+    }
+  }
+
   const _updateTalkroomName = (talkroom: Talkroom | undefined) => {
     if (!talkroom) return
     setValue('name', talkroom.name)
@@ -133,6 +155,11 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
             <div className="col-md-3 fw-bold">招待URL</div>
             <CopyTextBox text={entryURL} className="col-md-9" />
           </div>
+
+          <ModalMenuActionButton
+            label="トークルームから抜ける"
+            handler={_quitTalkroom}
+          />
 
           {talkEntry?.role === 'staff' && (
             <ModalMenuActionButton

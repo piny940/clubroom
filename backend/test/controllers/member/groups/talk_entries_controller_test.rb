@@ -72,4 +72,31 @@ class Member::Groups::TalkEntriesControllerTest < ActionDispatch::IntegrationTes
     assert_equal 'room1', json['data']['talkroom']['name']
     assert_equal 'このトークルームにはすでに参加しています。', json['message']
   end
+
+  test '正常にトークルームから抜けることができる' do
+    @room1.members << @user
+    before_count = @room1.members.length
+
+    delete "/member/groups/#{@group1.id}/talkrooms/#{@room1.id}/talk_entry"
+    assert_response :success
+    @room1.reload
+
+    json = JSON.parse(response.body)
+
+    assert_equal before_count - 1, @room1.members.length
+    assert json['message']
+  end
+
+  test '入っていないトークルームから抜けようとすると400を返す' do
+    before_count = @room1.members.length
+
+    delete "/member/groups/#{@group1.id}/talkrooms/#{@room1.id}/talk_entry"
+    assert_response 400
+    @room1.reload
+
+    json = JSON.parse(response.body)
+
+    assert json['message']
+    assert_equal before_count, @room1.members.length
+  end
 end
