@@ -80,7 +80,7 @@ export const LoginForm: React.FC = () => {
       />
       <div className="row">
         <span className="w-auto mx-auto">
-          <Link href="/accounts/signup">
+          <Link href={{ pathname: '/accounts/signup', query: router.query }}>
             <a id={styles.signup_link} data-testid={TestID.SIGNUP_LINK}>
               アカウントをお持ちでない方
             </a>
