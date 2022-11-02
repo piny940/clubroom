@@ -7,7 +7,6 @@ export interface CheckBoxProps {
   required?: string
   testID?: string
   className?: string
-  initialValue: 'checked' | 'unchecked'
 }
 
 export const CheckBox: React.FC<CheckBoxProps> = ({
@@ -17,7 +16,6 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   required,
   testID,
   className,
-  initialValue,
 }) => {
   return (
     <label className={className}>
@@ -26,7 +24,6 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
         type="checkbox"
         className="form-check-input me-2"
         data-testid={testID}
-        checked={initialValue === 'checked'}
       />
       <span className="form-check-label">{label}</span>
     </label>

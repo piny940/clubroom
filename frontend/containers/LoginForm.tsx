@@ -14,7 +14,7 @@ import { CheckBox } from '../components/Common/CheckBox'
 import { useRouter } from 'next/router'
 
 export const LoginForm: React.FC = () => {
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     shouldUseNativeValidation: true,
   })
   const router = useRouter()
@@ -30,6 +30,10 @@ export const LoginForm: React.FC = () => {
       setNextPage(router.query.next)
     }
   }, [router.isReady])
+
+  useEffect(() => {
+    setValue('remember_me', 'on')
+  })
 
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
@@ -77,7 +81,6 @@ export const LoginForm: React.FC = () => {
         register={register}
         name="remember_me"
         className="ms-2 mb-2"
-        initialValue="checked"
       />
       <div className="row">
         <span className="w-auto mx-auto">
