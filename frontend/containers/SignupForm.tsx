@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { postData } from '../utils/api'
 import { AlertState } from '../resources/enums'
@@ -11,21 +11,30 @@ import Link from 'next/link'
 import { FormBox } from '../components/Common/FormBox'
 import { useUserInfo } from '../contexts/UserInfoProvider'
 import { CheckBox } from '../components/Common/CheckBox'
+import { useRouter } from 'next/router'
 
 export const SignupForm: React.FC = () => {
   const { register, handleSubmit } = useForm({
     shouldUseNativeValidation: true,
   })
+  const router = useRouter()
 
   const [alert, setAlert] = useState<string>('')
+  const [nextPage, setNextPage] = useState('/')
   const { updateUser } = useUserInfo()
 
   const movePage = useMovePage()
 
+  useEffect(() => {
+    if (router.isReady && typeof router.query.next === 'string') {
+      setNextPage(router.query.next)
+    }
+  }, [router.isReady])
+
   const _submit: SubmitHandler<FieldValues> = async (data) => {
     const _onSuccess = (json: any) => {
       void updateUser()
-      void movePage('/', {
+      void movePage(nextPage, {
         content: json.message,
         state: AlertState.SUCCESS,
       })
@@ -92,7 +101,7 @@ export const SignupForm: React.FC = () => {
       />
       <div className="row">
         <span className="w-auto mx-auto">
-          <Link href="/accounts/login">
+          <Link href={{ pathname: '/accounts/login', query: router.query }}>
             <a id={styles.signup_link}>ログイン画面へ戻る</a>
           </Link>
         </span>
