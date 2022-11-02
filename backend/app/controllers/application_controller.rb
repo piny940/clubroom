@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def check_group_role_staff!(group_id)
     joining = current_user.joinings.find_by(group_id:)
-    unless joining&.role_staff?
+    unless joining&.role_staff? || joining&.role_admin?
       render json: {
         message: '権限がありません。'
       }, status: :bad_request
