@@ -4,6 +4,7 @@ class TalkEntry < ApplicationRecord
 
   validate :entry_count_within_limit?
   validate :can_user_join?
+  validates :user, uniqueness: { scope: :talkroom }
 
   enum role: { member: 0, staff: 10 }, _prefix: true
 
