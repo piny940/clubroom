@@ -1,4 +1,6 @@
 class Member::Groups::TalkEntriesController < Member::Groups::Base
+  before_action :set_talk_entry, only: %i[show destroy]
+
   def show
     talkroom = Talkroom.find(params[:talkroom_id])
 
@@ -59,7 +61,7 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
 
   private
 
-  def set_talkroom
-    @talk_entry = current_user.talk_entries.find_by(talkroom_id: talkroom.id)
+  def set_talk_entry
+    @talk_entry = current_user.talk_entries.find_by(talkroom_id: params[:talkroom_id])
   end
 end

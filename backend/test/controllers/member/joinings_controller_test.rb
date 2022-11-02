@@ -72,4 +72,26 @@ class Member::JoiningsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'group2', json['data']['group']['name']
     assert_equal 'このグループにはすでに参加しています。', json['message']
   end
+
+  test 'グループから正常に抜けることができる' do
+    before_count = Joining.count
+    delete "/member/groups/#{@group1.id}/joining"
+
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    assert_equal before_count - 1, Joining.count
+    assert json['message']
+  end
+
+  test '入っていないグループを指定した場合は400を返す' do
+    before_count = Joining.count
+    delete "/member/groups/#{@group2.id}/joining"
+
+    assert_response 400
+    json = JSON.parse(response.body)
+
+    assert_equal before_count, Joining.count
+    assert json['message']
+  end
 end
