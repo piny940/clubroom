@@ -77,6 +77,7 @@ export const LoginForm: React.FC = () => {
         register={register}
         name="remember_me"
         className="ms-2 mb-2"
+        initialValue="checked"
       />
       <div className="row">
         <span className="w-auto mx-auto">
