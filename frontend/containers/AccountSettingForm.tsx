@@ -144,14 +144,14 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
         register={register}
       />
       <InputBox
-        label="全体公開プロフィール"
+        label="プロフィール"
         type="textarea"
         name={fields.globalProfile}
         testID={TestID.ACCOUNT_SETTINGS_GLOBAL_PROFILE}
         register={register}
       />
       <FileInputBox
-        label="全体公開アイコン"
+        label="アイコン"
         name="global_icon"
         testID={TestID.ACCOUNT_SETTINGS_GLOBAL_ICON}
         setValue={setValue}
