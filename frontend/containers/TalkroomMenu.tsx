@@ -11,7 +11,7 @@ import {
 import { Message } from '../resources/Messages'
 import { TalkroomMenuForm } from '../components/TalkApp/TalkroomMenuForm'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { TalkroomMenuActionButton } from '../components/TalkApp/TalkroomMenuActionButton'
+import { ModalMenuActionButton } from '../components/Common/ModalMenuActionButton'
 import { TestID } from '../resources/TestID'
 import { useAlerts } from '../contexts/AlertsProvider'
 import { AlertState } from '../resources/enums'
@@ -135,7 +135,7 @@ export const TalkroomMenu: React.FC<TalkroomMenuProps> = ({
           </div>
 
           {talkEntry?.role === 'staff' && (
-            <TalkroomMenuActionButton
+            <ModalMenuActionButton
               label="トークルームを削除"
               handler={_deleteTalkroom}
             />
