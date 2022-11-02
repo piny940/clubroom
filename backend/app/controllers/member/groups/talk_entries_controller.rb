@@ -52,6 +52,10 @@ class Member::Groups::TalkEntriesController < Member::Groups::Base
   end
 
   def destroy
+    return render json: {
+      message: 'このトークルームには属していません。'
+    }, status: 400 if @talk_entry.nil?
+    
     @talk_entry.destroy
 
     render json: {
