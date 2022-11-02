@@ -1,5 +1,6 @@
 class Member::JoiningsController < Member::Base
-  before_action: :set_joining, only: %i[show destroy]
+  before_action :set_joining, only: %i[show destroy]
+  
   def show
     render json: {
       data: {
