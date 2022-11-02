@@ -1,8 +1,10 @@
 class Member::JoiningsController < Member::Base
+  before_action :set_joining, only: %i[show destroy]
+  
   def show
     render json: {
       data: {
-        joining: current_user.joinings.find_by(group_id: params[:group_id])&.serialized
+        joining: @joining&.serialized
       }
     }, status: :ok
   end
@@ -39,5 +41,19 @@ class Member::JoiningsController < Member::Base
         message: 'トークンが違います。'
       }, status: :bad_request
     end
+  end
+
+  def destroy
+    @joining.destroy
+
+    render json: {
+      message: 'グループから抜けました。'
+    }
+  end
+
+  private
+
+  def set_joining
+    @joining = current_user.joinings.find_by(group_id: params[:group_id])
   end
 end
