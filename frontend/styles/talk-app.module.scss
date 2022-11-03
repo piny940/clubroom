@@ -92,6 +92,12 @@ $talkroom-header-height: 70px;
       list-style-type: none;
     }
 
+    .from_user_name {
+      color: rgb(80, 80, 80);
+      font-size: 0.7rem;
+      text-align: center;
+    }
+
     .talk {
       overflow-wrap: break-word;
       padding: 5px 13px;

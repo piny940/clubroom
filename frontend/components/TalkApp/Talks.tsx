@@ -5,25 +5,16 @@ import { Talk } from '../../resources/types'
 
 export interface TalksProps {
   talks: Talk[]
-  userID?: number
   talksRef: RefObject<HTMLUListElement>
 }
 
-export const Talks: React.FC<TalksProps> = ({ talks, userID, talksRef }) => {
+export const Talks: React.FC<TalksProps> = ({ talks, talksRef }) => {
   return (
     <section id={styles.talks}>
       <ul className="px-0 pb-1 m-0" ref={talksRef}>
-        {userID ? (
-          talks.map((talk) => (
-            <TalkRow
-              content={talk.content}
-              sentFrom={talk.from_user_id === userID ? 'myself' : 'others'}
-              key={talk.id}
-            />
-          ))
-        ) : (
-          <></>
-        )}
+        {talks.map((talk) => (
+          <TalkRow talk={talk} key={talk.id} />
+        ))}
       </ul>
     </section>
   )

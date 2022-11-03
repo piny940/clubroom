@@ -6,17 +6,23 @@ import {
   OTHERS_TALK_COLOR,
   TALK_BORDER_RADIUS,
 } from '../../resources/constants'
+import { Talk as TalkType } from '../../resources/types'
+import { useUserInfo } from '../../contexts/UserInfoProvider'
 
 export interface TalkProps {
-  content: string
-  sentFrom: 'myself' | 'others'
+  talk: TalkType
 }
 
-export const Talk: React.FC<TalkProps> = ({ content, sentFrom }) => {
+export const Talk: React.FC<TalkProps> = ({ talk }) => {
+  const { user } = useUserInfo()
+
   const style: CSSProperties = {
-    backgroundColor: sentFrom === 'myself' ? MY_TALK_COLOR : OTHERS_TALK_COLOR,
-    borderTopLeftRadius: sentFrom === 'myself' ? TALK_BORDER_RADIUS : 0,
-    borderTopRightRadius: sentFrom === 'myself' ? 0 : TALK_BORDER_RADIUS,
+    backgroundColor:
+      talk.from_user_id === user?.id ? MY_TALK_COLOR : OTHERS_TALK_COLOR,
+    borderTopLeftRadius:
+      talk.from_user_id === user?.id ? TALK_BORDER_RADIUS : 0,
+    borderTopRightRadius:
+      talk.from_user_id === user?.id ? 0 : TALK_BORDER_RADIUS,
   }
 
   return (
@@ -26,7 +32,7 @@ export const Talk: React.FC<TalkProps> = ({ content, sentFrom }) => {
       className={styles.talk}
       data-testid={TestID.TALK}
     >
-      {content}
+      {talk.content}
     </a>
   )
 }

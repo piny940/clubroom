@@ -61,6 +61,10 @@ export interface Talk {
   content: string
   created_at: Date
   updated_at: Date
+  from_user: {
+    name: string
+    global_icon: string
+  }
 }
 
 export interface TalkEntry {

@@ -4,11 +4,15 @@ import { useUserInfo } from '../../contexts/UserInfoProvider'
 export interface AccountIconProps {
   size: number
   theme: 'dark' | 'light'
+  className?: string
+  src?: string
 }
 
 export const AccountIcon: React.FC<AccountIconProps> = ({
   size,
   theme = 'light',
+  className,
+  src,
 }) => {
   const { user } = useUserInfo()
   const defaultIconPath =
@@ -17,9 +21,12 @@ export const AccountIcon: React.FC<AccountIconProps> = ({
       : '/images/default_account_icon_white.png'
 
   return (
-    <span className="" style={{ width: `${size}px`, height: `${size}px` }}>
+    <span
+      className={className}
+      style={{ width: `${size}px`, height: `${size}px` }}
+    >
       <Image
-        src={user?.global_icon || defaultIconPath}
+        src={src || user?.global_icon || defaultIconPath}
         className="rounded-circle"
         width={`${size}px`}
         height={`${size}px`}

@@ -3,7 +3,6 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { TalkForm } from '../components/TalkApp/TalkForm'
 import { Talks } from '../components/TalkApp/Talks'
 import { useAlerts } from '../contexts/AlertsProvider'
-import { useUserInfo } from '../contexts/UserInfoProvider'
 import styles from '../styles/talk-app.module.scss'
 import { Talk, Talkroom as TalkroomType } from '../resources/types'
 import { fetchTalks, postData } from '../utils/api'
@@ -23,7 +22,6 @@ export const Talkroom: React.FC<TalkroomProps> = ({
   talkroomShown,
 }) => {
   const [talks, setTalks] = useState<Talk[]>([])
-  const { user } = useUserInfo()
   const { setAlerts } = useAlerts()
 
   const { register, reset, handleSubmit } = useForm({
@@ -93,7 +91,7 @@ export const Talkroom: React.FC<TalkroomProps> = ({
             </a>
             <h3 className="d-md-none ms-4">{openTalkroom.name}</h3>
           </div>
-          <Talks talks={talks} userID={user?.id} talksRef={talksRef} />
+          <Talks talks={talks} talksRef={talksRef} />
           <TalkForm
             register={register}
             name="content"
