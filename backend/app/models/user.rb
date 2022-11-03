@@ -23,7 +23,7 @@ class User < ApplicationRecord
     )
   end
 
-  # def remember_me
-  # true
-  # end
+  def for_talk
+    serialized.keep_if{ |key, value| %w[name global_icon].include? key}
+  end
 end

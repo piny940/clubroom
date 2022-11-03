@@ -6,6 +6,14 @@ class Talk < ApplicationRecord
   validates :from_user, presence: true, on: :create
   validate :from_user_in_talkroom?
 
+  def self.serialized
+    all.as_json.map do |talk|
+      talk.merge({
+        from_user: User.find(talk["from_user_id"]).for_talk
+      })
+    end
+  end
+
   private
 
   def from_user_in_talkroom?
