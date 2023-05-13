@@ -1,4 +1,4 @@
-# fly.toml file generated for clubroom-backend on 2022-10-10T00:02:04+09:00
+# fly.toml file generated for clubroom-backend on 2023-05-13T13:41:50+09:00
 
 app = "clubroom-backend"
 kill_signal = "SIGINT"

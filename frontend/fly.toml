@@ -1,13 +1,9 @@
-# fly.toml file generated for clubroom on 2022-10-10T00:31:31+09:00
+# fly.toml file generated for clubroom on 2023-05-13T13:55:32+09:00
 
 app = "clubroom"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
-
-[build]
-  [build.args]
-    NEXT_PUBLIC_EXAMPLE = "Value goes here"
 
 [env]
   PORT = "8080"
