@@ -16,7 +16,7 @@ export const TalkRow: React.FC<TalkRowProps> = ({ talk }) => {
   return (
     <li
       className={toClass(
-        'w-100 my-2 px-4 d-flex align-items-end',
+        'w-100 my-3 px-4 d-flex align-items-end',
         `flex-row${talk.from_user_id === user?.id ? '-reverse' : ''}`
       )}
       data-testid={TestID.TALK_ROW}
