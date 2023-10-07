@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { useUserInfo } from '../../contexts/UserInfoProvider'
 
 export interface AccountIconProps {
   size: number
@@ -14,7 +13,6 @@ export const AccountIcon: React.FC<AccountIconProps> = ({
   className,
   src,
 }) => {
-  const { user } = useUserInfo()
   const defaultIconPath =
     theme === 'light'
       ? '/images/default_account_icon_black.png'
@@ -26,7 +24,7 @@ export const AccountIcon: React.FC<AccountIconProps> = ({
       style={{ width: `${size}px`, height: `${size}px` }}
     >
       <Image
-        src={src || user?.global_icon || defaultIconPath}
+        src={src || defaultIconPath}
         className="rounded-circle"
         width={`${size}px`}
         height={`${size}px`}
