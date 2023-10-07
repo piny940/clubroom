@@ -49,6 +49,21 @@ tanteidan = Group.create!(name: "少年探偵団", school: "帝丹小学校")
 teitanko = Group.create!(name: "帝丹高校")
 akai_family = Group.create!(name: "赤井一家")
 
+friend1 = User.create!(name: "友達1", email: "friend1@example.com",
+  password: "password", password_confirmation: "password")
+friend2 = User.create!(name: "友達2", email: "friend2@example.com",
+  password: "password", password_confirmation: "password")
+friend3 = User.create!(name: "友達3", email: "friend3@example.com",
+  password: "password", password_confirmation: "password")
+friend4 = User.create!(name: "友達4", email: "friend4@example.com",
+  password: "password", password_confirmation: "password")
+friend5 = User.create!(name: "友達5", email: "frined5@example.com",
+  password: "password", password_confirmation: "password")
+friend6 = User.create!(name: "友達6", email: "friend6@example.com",
+  password: "password", password_confirmation: "password")
+
+soccer_group = Group.create!(name: "サッカー部")
+
 tanteidan.members << admin_user
 tanteidan.members << konann
 tanteidan.members << ai
@@ -67,8 +82,19 @@ akai_family.members << sera
 akai_family.members << mary
 akai_family.members << shukichi
 
+soccer_group.members << admin_user
+soccer_group.members << friend1
+soccer_group.members << friend2
+soccer_group.members << friend3
+soccer_group.members << friend4
+soccer_group.members << friend5
+soccer_group.members << friend6
+
 tanteidan_room1 = tanteidan.talkrooms.create!(name: "探偵団全体")
 tanteidan_room2 = tanteidan.talkrooms.create!(name: "薬で小さくなった人達")
+soccer_zentai_room = soccer_group.talkrooms.create!(name: "サッカー部全体")
+soccer_gakusai_room = soccer_group.talkrooms.create!(name: "学祭準備")
+soccer_gasshku_room = soccer_group.talkrooms.create!(name: "夏休み合宿！")
 tanteidan_room1.members << admin_user
 tanteidan_room1.members << konann
 tanteidan_room1.members << ai
@@ -91,6 +117,25 @@ akai_family_room1.members << sera
 akai_family_room1.members << mary
 akai_family_room1.members << shuichi
 akai_family_room1.members << shukichi
+
+soccer_zentai_room.members << admin_user
+soccer_zentai_room.members << friend1
+soccer_zentai_room.members << friend2
+soccer_zentai_room.members << friend3
+soccer_zentai_room.members << friend4
+soccer_zentai_room.members << friend5
+soccer_zentai_room.members << friend6
+
+soccer_gakusai_room.members << admin_user
+soccer_gakusai_room.members << friend1
+soccer_gakusai_room.members << friend3
+soccer_gakusai_room.members << friend5
+
+soccer_gasshku_room.members << admin_user
+soccer_gasshku_room.members << friend1
+soccer_gasshku_room.members << friend2
+soccer_gasshku_room.members << friend4
+soccer_gasshku_room.members << friend6
 
 konann.talks.create!(talkroom_id: tanteidan_room1.id, content: "真実はいつも1つ!")
 ai.talks.create!(talkroom_id: tanteidan_room1.id, content: "私はパス。")
