@@ -146,5 +146,24 @@ soccer_christmas_room.members << friend3
 soccer_christmas_room.members << friend4
 soccer_christmas_room.members << friend5
 
+friend1.talks.create!(talkroom_id: soccer_zentai_room.id, content: "皆、明日の練習詳細だけ確認させてください！👀 10時からスタートで、最初の30分はランニングで暖を取りますね？")
+friend2.talks.create!(talkroom_id: soccer_zentai_room.id, content: "了解です✅。それで、その後はテクニックの練習と戦術の話し合いをする時間も作りたいね！")
+friend3.talks.create!(talkroom_id: soccer_zentai_room.id, content: "確かに👍。特にセットプレーの練習をもう少し増やしたい。先週の試合でちょっと苦労したからね。")
+admin_user.talks.create!(talkroom_id: soccer_zentai_room.id, content: "いいね！🔥 セットプレーの練習は必要だね。それと、最後にはフリープレーの時間も取り入れて、実戦形式の練習もやりたいと思うんだけど、どうかな？")
+friend1.talks.create!(talkroom_id: soccer_zentai_room.id, content: "良さそう！フリープレーで先週の試合の反省を活かしてみるのもいいかもね。😄 ちなみに、誰かボールを持ってきてくれるかな？")
+friend2.talks.create!(talkroom_id: soccer_zentai_room.id, content: "ボールは僕が持ってくるよ🏐。あと、飲み物もみんなでシェアしようか。みんな何か1つずつ持ってくる？🥤")
+friend3.talks.create!(talkroom_id: soccer_zentai_room.id, content: "いいね、ジュース持ってくるよ！🍹 それと、もし暑かったら日焼け止めも忘れずにね。")
+admin_user.talks.create!(talkroom_id: soccer_zentai_room.id, content: "おお、ありがと、友人2！🙏 私はスポーツドリンク持参するね。🥤 友人1、君は何を持ってくる？")
+friend1.talks.create!(talkroom_id: soccer_zentai_room.id, content: "う〜ん、お菓子かな？🍪 小腹が空いた時用に！ あとでエネルギー補給できるやつを！")
+admin_user.talks.create!(talkroom_id: soccer_zentai_room.id, content: "それもいいね！それじゃ、明日は準備ばっちりで頑張りましょう！💪 みんな、お疲れ様〜！")
+
+friend1.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "11月の学園祭の出し物を決めようと思います")
+friend1.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "サッカー部として出品したいものを上げていってください！")
+friend2.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "焼きそばとかどう？")
+admin_user.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "いいね！")
+friend3.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "僕はお化け屋敷がいいな")
+friend4.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "僕はヨーヨー釣りがいいな")
+friend1.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "ヨーヨー釣りいいね！")
+
 konann.talks.create!(talkroom_id: tanteidan_room1.id, content: "真実はいつも1つ!")
 ai.talks.create!(talkroom_id: tanteidan_room1.id, content: "私はパス。")
