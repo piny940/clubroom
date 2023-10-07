@@ -18,9 +18,11 @@ class User < ApplicationRecord
   has_one_attached :global_icon, dependent: :destroy
 
   def serialized
-    as_json.merge(
-      'global_icon' => global_icon.url
-    )
+    p global_icon.url
+    as_json
+    # as_json.merge(
+    #   'global_icon' => global_icon.url
+    # )
   end
 
   def for_talk

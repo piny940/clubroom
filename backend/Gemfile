@@ -90,4 +90,6 @@ gem 'minitest-reporters'
 
 # 画像
 gem 'google-cloud-storage'
-gem 'image_processing'
+
+# 環境変数
+gem 'dotenv-rails'
