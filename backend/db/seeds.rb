@@ -95,6 +95,8 @@ tanteidan_room2 = tanteidan.talkrooms.create!(name: "薬で小さくなった人
 soccer_zentai_room = soccer_group.talkrooms.create!(name: "サッカー部全体")
 soccer_gakusai_room = soccer_group.talkrooms.create!(name: "学祭準備")
 soccer_gasshku_room = soccer_group.talkrooms.create!(name: "夏休み合宿！")
+soccer_christmas_room = soccer_group.talkrooms.create!(name: "クリスマスパーティー")
+
 tanteidan_room1.members << admin_user
 tanteidan_room1.members << konann
 tanteidan_room1.members << ai
@@ -136,6 +138,13 @@ soccer_gasshku_room.members << friend1
 soccer_gasshku_room.members << friend2
 soccer_gasshku_room.members << friend4
 soccer_gasshku_room.members << friend6
+
+soccer_christmas_room.members << admin_user
+soccer_christmas_room.members << friend1
+soccer_christmas_room.members << friend2
+soccer_christmas_room.members << friend3
+soccer_christmas_room.members << friend4
+soccer_christmas_room.members << friend5
 
 konann.talks.create!(talkroom_id: tanteidan_room1.id, content: "真実はいつも1つ!")
 ai.talks.create!(talkroom_id: tanteidan_room1.id, content: "私はパス。")
