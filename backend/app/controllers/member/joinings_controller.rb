@@ -25,8 +25,6 @@ class Member::JoiningsController < Member::Base
 
     if group.entry_token == params[:entry_token]
       group.members << current_user
-      group.set_token
-      group.save!
       joining = current_user.joinings.find_by(group_id: group.id)
 
       render json: {
