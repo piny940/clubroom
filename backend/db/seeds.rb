@@ -49,6 +49,22 @@ tanteidan = Group.create!(name: "少年探偵団", school: "帝丹小学校")
 teitanko = Group.create!(name: "帝丹高校")
 akai_family = Group.create!(name: "赤井一家")
 
+friend1 = User.create!(name: "友達1", email: "friend1@example.com",
+  password: "password", password_confirmation: "password")
+friend2 = User.create!(name: "友達2", email: "friend2@example.com",
+  password: "password", password_confirmation: "password")
+friend3 = User.create!(name: "友達3", email: "friend3@example.com",
+  password: "password", password_confirmation: "password")
+friend4 = User.create!(name: "友達4", email: "friend4@example.com",
+  password: "password", password_confirmation: "password")
+friend5 = User.create!(name: "友達5", email: "frined5@example.com",
+  password: "password", password_confirmation: "password")
+friend6 = User.create!(name: "友達6", email: "friend6@example.com",
+  password: "password", password_confirmation: "password")
+
+soccer_group = Group.create!(name: "サッカー部")
+class_group = Group.create!(name: "3年1組")
+
 tanteidan.members << admin_user
 tanteidan.members << konann
 tanteidan.members << ai
@@ -67,8 +83,31 @@ akai_family.members << sera
 akai_family.members << mary
 akai_family.members << shukichi
 
+soccer_group.members << admin_user
+soccer_group.members << friend1
+soccer_group.members << friend2
+soccer_group.members << friend3
+soccer_group.members << friend4
+soccer_group.members << friend5
+soccer_group.members << friend6
+
+class_group.members << admin_user
+class_group.members << friend2
+class_group.members << friend3
+class_group.members << friend4
+class_group.members << friend5
+
 tanteidan_room1 = tanteidan.talkrooms.create!(name: "探偵団全体")
 tanteidan_room2 = tanteidan.talkrooms.create!(name: "薬で小さくなった人達")
+soccer_zentai_room = soccer_group.talkrooms.create!(name: "サッカー部全体")
+soccer_gakusai_room = soccer_group.talkrooms.create!(name: "学祭準備")
+soccer_gasshku_room = soccer_group.talkrooms.create!(name: "夏休み合宿！")
+soccer_christmas_room = soccer_group.talkrooms.create!(name: "クリスマスパーティー")
+
+class_zentai_room = class_group.talkrooms.create!(name: "3年1組全体")
+class_gakusai_room = class_group.talkrooms.create!(name: "学園祭準備")
+class_iinkai_room = class_group.talkrooms.create!(name: "学級委員")
+
 tanteidan_room1.members << admin_user
 tanteidan_room1.members << konann
 tanteidan_room1.members << ai
@@ -91,6 +130,63 @@ akai_family_room1.members << sera
 akai_family_room1.members << mary
 akai_family_room1.members << shuichi
 akai_family_room1.members << shukichi
+
+soccer_zentai_room.members << admin_user
+soccer_zentai_room.members << friend1
+soccer_zentai_room.members << friend2
+soccer_zentai_room.members << friend3
+soccer_zentai_room.members << friend4
+soccer_zentai_room.members << friend5
+soccer_zentai_room.members << friend6
+
+soccer_gakusai_room.members << admin_user
+soccer_gakusai_room.members << friend1
+soccer_gakusai_room.members << friend3
+soccer_gakusai_room.members << friend5
+
+soccer_gasshku_room.members << admin_user
+soccer_gasshku_room.members << friend1
+soccer_gasshku_room.members << friend2
+soccer_gasshku_room.members << friend4
+soccer_gasshku_room.members << friend6
+
+soccer_christmas_room.members << admin_user
+soccer_christmas_room.members << friend1
+soccer_christmas_room.members << friend2
+soccer_christmas_room.members << friend3
+soccer_christmas_room.members << friend4
+soccer_christmas_room.members << friend5
+
+class_zentai_room.members << admin_user
+class_zentai_room.members << friend2
+class_zentai_room.members << friend3
+class_zentai_room.members << friend4
+class_zentai_room.members << friend5
+
+friend1.talks.create!(talkroom_id: soccer_zentai_room.id, content: "皆、明日の練習詳細だけ確認させてください！👀 10時からスタートで、最初の30分はランニングで暖を取りますね？")
+friend2.talks.create!(talkroom_id: soccer_zentai_room.id, content: "了解です✅。それで、その後はテクニックの練習と戦術の話し合いをする時間も作りたいね！")
+friend3.talks.create!(talkroom_id: soccer_zentai_room.id, content: "確かに👍。特にセットプレーの練習をもう少し増やしたい。先週の試合でちょっと苦労したからね。")
+admin_user.talks.create!(talkroom_id: soccer_zentai_room.id, content: "いいね！🔥 セットプレーの練習は必要だね。それと、最後にはフリープレーの時間も取り入れて、実戦形式の練習もやりたいと思うんだけど、どうかな？")
+friend1.talks.create!(talkroom_id: soccer_zentai_room.id, content: "良さそう！フリープレーで先週の試合の反省を活かしてみるのもいいかもね。😄 ちなみに、誰かボールを持ってきてくれるかな？")
+friend2.talks.create!(talkroom_id: soccer_zentai_room.id, content: "ボールは僕が持ってくるよ🏐。あと、飲み物もみんなでシェアしようか。みんな何か1つずつ持ってくる？🥤")
+friend3.talks.create!(talkroom_id: soccer_zentai_room.id, content: "いいね、ジュース持ってくるよ！🍹 それと、もし暑かったら日焼け止めも忘れずにね。")
+admin_user.talks.create!(talkroom_id: soccer_zentai_room.id, content: "おお、ありがと、友人2！🙏 私はスポーツドリンク持参するね。🥤 友人1、君は何を持ってくる？")
+friend1.talks.create!(talkroom_id: soccer_zentai_room.id, content: "う〜ん、お菓子かな？🍪 小腹が空いた時用に！ あとでエネルギー補給できるやつを！")
+admin_user.talks.create!(talkroom_id: soccer_zentai_room.id, content: "それもいいね！それじゃ、明日は準備ばっちりで頑張りましょう！💪 みんな、お疲れ様〜！")
+
+friend1.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "11月の学園祭の出し物を決めようと思います")
+friend1.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "サッカー部として出品したいものを上げていってください！")
+friend2.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "焼きそばとかどう？")
+admin_user.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "いいね！")
+friend3.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "僕はお化け屋敷がいいな")
+friend4.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "僕はヨーヨー釣りがいいな")
+friend1.talks.create!(talkroom_id: soccer_gakusai_room.id, content: "ヨーヨー釣りいいね！")
+
+admin_user.talks.create!(talkroom_id: class_zentai_room.id, content: "みんな、こんにちは！👋 今週末のクラスイベントの計画、少し話し合えるかな？")
+friend2.talks.create!(talkroom_id: class_zentai_room.id, content: "はい！👍")
+friend3.talks.create!(talkroom_id: class_zentai_room.id, content: "ちょうどいいタイミング！ 🕒 私、BBQを提案したいんだ🍖🔥。みんなで公園でやると楽しいと思うんだけどどうかな？")
+friend4.talks.create!(talkroom_id: class_zentai_room.id, content: "いいね！👍 私もBBQがいいと思う！")
+friend5.talks.create!(talkroom_id: class_zentai_room.id, content: "BBQいいね🎉！でも、食材とか誰が準備するの？役割分担とかどうしよう？")
 
 konann.talks.create!(talkroom_id: tanteidan_room1.id, content: "真実はいつも1つ!")
 ai.talks.create!(talkroom_id: tanteidan_room1.id, content: "私はパス。")
