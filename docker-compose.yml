@@ -42,8 +42,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - 54020:3080
-      - 54030:4080
+      - 54050:3080
+      - 54060:4080
     depends_on:
       - rails
       - next
