@@ -112,8 +112,11 @@ export const SignupForm: React.FC = () => {
       />
       <div className="row">
         <span className="w-auto mx-auto">
-          <Link href={{ pathname: '/accounts/login', query: router.query }}>
-            <a id={styles.signup_link}>ログイン画面へ戻る</a>
+          <Link
+            href={{ pathname: '/accounts/login', query: router.query }}
+            id={styles.signup_link}
+          >
+            ログイン画面へ戻る
           </Link>
         </span>
       </div>

@@ -26,8 +26,8 @@ export const AccountIcon: React.FC<AccountIconProps> = ({
       <Image
         src={src || defaultIconPath}
         className="rounded-circle"
-        width={`${size}px`}
-        height={`${size}px`}
+        width={size}
+        height={size}
         alt="account icon"
       />
     </span>

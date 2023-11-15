@@ -59,6 +59,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
     await fetchApi({
       url: '/user',
       method: 'DELETE',
+      data: '',
     })
 
     void updateUser()
@@ -160,7 +161,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
       {user.global_icon ? (
         <div className="row">
           <div className="offset-md-1">
-            <Image src={user.global_icon} alt="" width="100" height="100" />
+            <Image src={user.global_icon} alt="" width={100} height={100} />
           </div>
         </div>
       ) : (
