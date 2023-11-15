@@ -59,6 +59,7 @@ export const AccountSettingsForm: React.FC<AccountSettingsFormProps> = ({
     await fetchApi({
       url: '/user',
       method: 'DELETE',
+      data: '',
     })
 
     void updateUser()
