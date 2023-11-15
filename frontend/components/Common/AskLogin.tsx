@@ -17,10 +17,9 @@ export const AskLogin: React.FC<AskLoginProps> = ({ next }) => {
             pathname: '/accounts/login',
             query,
           }}
+          className="text-danger border-bottom border-danger"
         >
-          <a className="text-danger border-bottom border-danger">
-            ログインしてください。
-          </a>
+          ログインしてください。
         </Link>
       ) : (
         <></>

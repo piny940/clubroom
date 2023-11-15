@@ -30,8 +30,8 @@ export const DropdownActionButton: React.FC<DropdownActionButtonProps> = ({
   return (
     <li>
       {href ? (
-        <Link href={href}>
-          <a {...aProps}>{label}</a>
+        <Link href={href} {...aProps}>
+          {label}
         </Link>
       ) : (
         <a {...aProps}>{label}</a>

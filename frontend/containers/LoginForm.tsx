@@ -91,10 +91,12 @@ export const LoginForm: React.FC = () => {
       />
       <div className="row">
         <span className="w-auto mx-auto">
-          <Link href={{ pathname: '/accounts/signup', query: router.query }}>
-            <a id={styles.signup_link} data-testid={TestID.SIGNUP_LINK}>
-              アカウントをお持ちでない方
-            </a>
+          <Link
+            id={styles.signup_link}
+            data-testid={TestID.SIGNUP_LINK}
+            href={{ pathname: '/accounts/signup', query: router.query }}
+          >
+            アカウントをお持ちでない方
           </Link>
         </span>
       </div>
