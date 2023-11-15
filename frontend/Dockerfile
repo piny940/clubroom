@@ -1,41 +1,62 @@
-# Install dependencies only when needed
-FROM node:16-alpine AS builder
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
+# syntax=docker/dockerfile:1
+
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/engine/reference/builder/
+
+ARG NODE_VERSION=18.16.0
+
+################################################################################
+# Use node image for base image for all stages.
+FROM node:${NODE_VERSION}-alpine as base
+
+# Set working directory for all build stages.
+WORKDIR /usr/src/app
+
+
+################################################################################
+# Create a stage for installing production dependecies.
+FROM base as deps
+
+# Download dependencies as a separate step to take advantage of Docker's caching.
+# Leverage a cache mount to /root/.yarn to speed up subsequent builds.
+# Leverage bind mounts to package.json and yarn.lock to avoid having to copy them
+# into this layer.
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=yarn.lock,target=yarn.lock \
+    --mount=type=cache,target=/root/.yarn \
+    yarn install --production --frozen-lockfile
+
+################################################################################
+# Create a stage for building the application.
+FROM deps as build
+
+# Copy the rest of the source files into the image.
 COPY . .
-RUN yarn install --frozen-lockfile
+# Run the build script.
+RUN yarn run build
 
-# If using npm with a `package-lock.json` comment out above and use below instead
-# RUN npm ci
+################################################################################
+# Create a new stage to run the application with minimal runtime dependencies
+# where the necessary files are copied from the build stage.
+FROM base as final
 
-ENV NEXT_TELEMETRY_DISABLED 1
-
-# Add `ARG` instructions below if you need `NEXT_PUBLIC_` variables
-# then put the value on your fly.toml
-# Example:
-# ARG NEXT_PUBLIC_EXAMPLE="value here"
-
-RUN yarn build
-
-# If using npm comment out above and use below instead
-# RUN npm run build
-
-# Production image, copy all the files and run next
-FROM node:16-alpine AS runner
-WORKDIR /app
-
+# Use production node environment by default.
 ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+RUN chown node:node -R /usr/src/app
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Run the application as a non-root user.
+USER node
 
-COPY --from=builder /app ./
+# Copy package.json so that package manager commands can be used.
+COPY package.json .
 
-USER nextjs
+# Copy the production dependencies from the deps stage and also
+# the built application from the build stage into the image.
+COPY --from=deps /usr/src/app/node_modules ./node_modules
+COPY --from=build /usr/src/app/.next ./.next
+COPY --from=build /usr/src/app/next.config.js ./next.config.js
+COPY ./public ./public
 
-CMD ["yarn", "start"]
-
-# If using npm comment out above and use below instead
-# CMD ["npm", "run", "start"]
+# Run the application.
+CMD yarn start

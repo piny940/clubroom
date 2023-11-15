@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const BACKEND =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://clubroom-backend.fly.dev'
-
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -15,7 +10,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${BACKEND}/:path*`,
+        destination: `${process.env.BACKEND_HOST}/:path*`,
       },
     ]
   },
