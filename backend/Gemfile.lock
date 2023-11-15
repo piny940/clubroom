@@ -233,7 +233,7 @@ GEM
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
-    puma (5.6.7)
+    puma (6.4.0)
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.8)
@@ -377,7 +377,7 @@ DEPENDENCIES
   minitest-reporters
   pg (~> 1.1)
   propshaft
-  puma (~> 5.0)
+  puma (~> 6.4)
   rack-cors
   rails (~> 7.1.2)
   rubocop
