@@ -24,6 +24,6 @@ class User < ApplicationRecord
   end
 
   def for_talk
-    serialized.keep_if{ |key, value| %w[name global_icon].include? key}
+    serialized.keep_if { |key, _value| %w[name global_icon].include? key }
   end
 end

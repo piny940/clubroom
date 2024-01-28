@@ -9,8 +9,8 @@ class Talk < ApplicationRecord
   def self.serialized
     all.as_json.map do |talk|
       talk.merge({
-        from_user: User.find(talk["from_user_id"]).for_talk
-      })
+                   from_user: User.find(talk['from_user_id']).for_talk
+                 })
     end
   end
 
