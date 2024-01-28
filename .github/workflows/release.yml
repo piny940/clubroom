@@ -1,6 +1,7 @@
 name: Build for Release
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   backend:
