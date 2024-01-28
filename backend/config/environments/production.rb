@@ -90,5 +90,12 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  p ENV.fetch('RAILS_HOSTS', nil)&.split(',')
+  p ENV.fetch('POSTGRES_HOST')
+  p ENV.fetch('POSTGRES_PORT')
+  p ENV.fetch('POSTGRES_USER')
+  p ENV.fetch('POSTGRES_PASSWORD')
+  p ENV.fetch('POSTGRES_NAME')
   config.hosts += ENV.fetch('RAILS_HOSTS', nil)&.split(',')
 end
