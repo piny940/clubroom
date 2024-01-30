@@ -3,6 +3,7 @@
 process.env.BACKEND_HOST ||=
   'http://clubroom-backend.default.svc.cluster.local:3000'
 
+console.log('backend host: ', process.env.BACKEND_HOST)
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
