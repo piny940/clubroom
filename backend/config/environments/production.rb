@@ -93,5 +93,4 @@ Rails.application.configure do
 
   config.secret_key_base = ENV.fetch('SECRET_KEY_BASE', nil)
   config.hosts += ENV.fetch('RAILS_HOSTS', nil)&.split(',')
-  p config.hosts
 end
