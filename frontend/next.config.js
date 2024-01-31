@@ -15,7 +15,6 @@ const nextConfig = {
     domains: ['storage.googleapis.com'],
   },
   async rewrites() {
-    console.log('rewrite to', process.env.BACKEND_HOST)
     return [
       {
         source: '/api/:path*',
