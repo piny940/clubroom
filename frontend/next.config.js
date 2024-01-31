@@ -19,7 +19,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `http://clubroom-backend.default.svc.cluster.local:3000/:path*`,
+        destination: `${process.env.BACKEND_HOST}/:path*`,
       },
     ]
   },
