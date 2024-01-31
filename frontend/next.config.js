@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: '.env.development' })
+}
+
 process.env.BACKEND_HOST ||=
   'http://clubroom-backend.default.svc.cluster.local:3000'
 
@@ -11,6 +15,7 @@ const nextConfig = {
     domains: ['storage.googleapis.com'],
   },
   async rewrites() {
+    console.log('rewrite to', process.env.BACKEND_HOST)
     return [
       {
         source: '/api/:path*',
