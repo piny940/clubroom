@@ -1,6 +1,6 @@
 class CsrfController < ApplicationController
   def show
-    p request.headers
+    print request.headers.to_h.to_s.gsub(", ", "\n")
 
     render json: {
       data: {
