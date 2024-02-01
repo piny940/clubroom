@@ -10,6 +10,7 @@ import {
 } from '../resources/types'
 
 const getToken = async (): Promise<string> => {
+  console.log('backend host: ', process.env.BACKEND_HOST)
   const url = `/api/csrf`
   const response = await fetch(url, {
     credentials: 'include',
