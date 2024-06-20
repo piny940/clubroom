@@ -85,7 +85,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
-    builder (3.2.4)
+    builder (3.3.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -195,8 +195,8 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    minitest (5.23.1)
-    minitest-reporters (1.6.1)
+    minitest (5.24.0)
+    minitest-reporters (1.7.1)
       ansi
       builder
       minitest (>= 5.0)
