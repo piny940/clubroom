@@ -20,7 +20,11 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - BACKEND_HOST=http://rails:3000
     restart: always
+    env_file:
+      - ./frontend/.env
     depends_on:
       - rails
 
@@ -43,7 +47,7 @@ services:
     restart: always
     ports:
       - 54050:3080
-      - 54060:4080
+      - 54080:4080
     depends_on:
       - rails
       - next
