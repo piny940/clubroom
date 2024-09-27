@@ -2,6 +2,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins [
       'http://localhost:3001',
+      'http://localhost:54050',
+      'http://localhost:54080',
       'https://clubrooms.herokuapp.com',
       'https://clubroom.piny940.com',
       'https://stg-clubroom.piny940.com',
