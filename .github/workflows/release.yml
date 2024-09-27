@@ -2,6 +2,8 @@ name: Build for Release
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
 
 jobs:
   backend:
@@ -50,4 +52,3 @@ jobs:
           tags: |
             ghcr.io/piny940/clubroom-frontend:1.0.${{ github.run_number }}
             ghcr.io/piny940/clubroom-frontend:latest
-
